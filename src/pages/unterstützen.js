@@ -17,8 +17,8 @@ const IndexPage = () => (
 
 
         </Hero>
-        <Section backgroundColor='#F5C5D9'>
-            <div style={{ padding: '100px 400px' }}>
+        <Section backgroundColor='#F5C5D9' type={'text'}>
+            <div style={{ paddingTop: 100, paddingBottom: 100 }}>
                 <p >
                     Nicht nur Kunst braucht Förderer, auch unsere Kunstaktion braucht Unterstützer, die das Projekt in ihre Netzwerke streuen. Oder die uns unterstützen, indem sie die Produktionskosten für diese Aktion übernehmen.
                 </p>

@@ -1,10 +1,30 @@
 import React from 'react';
+import style from './container.module.scss';
 
-export default function Container({ children, maxWidth }) {
+export default function Container({ children, maxWidth, type }) {
+
+    const extraStyle = {};
+    if (maxWidth) {
+        extraStyle.maxWidth = maxWidth
+    }
+
+    const getTypeClass = (type) => {
+
+        switch (type) {
+            case 'text':
+                return style.text
+                break;
+
+            default:
+                return style.default
+                break;
+        }
+    }
+
 
     return (
 
-        <div style={{ width: '100%', maxWidth: maxWidth || 2600, margin: '0 auto', padding: '0 20px', padding: '0 7%' }}>
+        <div className={getTypeClass(type)} style={extraStyle}>
             {children}
         </div>
 

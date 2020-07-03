@@ -16,8 +16,8 @@ const IndexPage = () => (
             <h1 >Warum wir <Frida></Frida> ins Leben gerufen haben</h1>
 
         </Hero>
-        <Section backgroundColor='#F5C5D9'>
-<div style={{padding:'100px 400px'}}>
+        <Section backgroundColor='#F5C5D9' type='text'>
+<div>
             <p >
                 Wir zeigen die kuratierten Werke junger Künstler*innen in unseren Online-Galerien auf Social Media und der eigenen Website. Außerdem bringen wir die Werke auf digitale Werbeflächen und Plakatwände in deutschen Städten. Damit schaffen wir die größte Kunstausstellung, die es im öffentlichen Raum je gab.
                 </p>

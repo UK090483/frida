@@ -15,8 +15,8 @@ const Ausstellung = () => (
             <h1>Entdecke</h1>
 
         </Hero>
-        <Section >
-            <div style={{ padding: '100px 400px' }}>
+        <Section type={'text'}>
+            <div style={{ paddingTop: 100 }}>
                 <p >
                     Wir bringen die Kunst dahin, wo alle sie sehen:
                     Dafür nutzen wir im August (digitale) Werbeflächen, die wegen der Corona-Krise nicht

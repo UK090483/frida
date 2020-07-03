@@ -6,13 +6,13 @@ import Header from '../header'
 export default function Overlay(props) {
 
     const { children, open, setOpen } = props;
-    console.log(props)
+
     return (
 
         <Slide right when={open} duration={500}>
             <div className='nav_wrap' style={{ pointerEvents: open ? 'auto' : 'none' }}>
                 <Header>
-                    <div></div>
+                    <h1></h1>
                     <div style={{ width: 40 }} onClick={() => setOpen(!open)}><Kreutz></Kreutz></div>
                 </Header>
 

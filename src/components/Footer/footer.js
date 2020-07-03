@@ -19,10 +19,9 @@ export default function Footer() {
                 </div>
             </Section>
 
-            <div style={{ width: '100vw', display: 'flex', padding: '0 0 50px 0', backgroundColor: '#fa464c' }}>
-                <BigButton label={'instagram'}></BigButton>
-                <BigButton label={'Facebook'}></BigButton>
-            </div>
+
+            <BigButton ></BigButton>
+
 
             <Section backgroundColor='#fa464c'>
                 <div className={'text-white'} style={{ padding: '10px 0', display: 'flex' }}>

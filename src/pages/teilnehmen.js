@@ -17,9 +17,14 @@ const IndexPage = () => (
             <h2 className={`text-lila`}>Submissions open 15 June-Deadline 1 August</h2>
 
         </Hero>
-        <Section backgroundColor='#fa464c'>
+        <Section type={'text'} backgroundColor='#fa464c'>
 
-            <p style={{ padding: '100px 200px' }}>Du hast ein abgeschlossenes Kunststudium oder arbeitest seit mindestens drei Jahren als Kunstschaffende*r oder hattest schon mindestens zwei Ausstellungen? Dann bewirb dich mit den Werken, die Du bei MeetFrida zeigen willst.</p>
+
+            <p style={{ paddingTop: 100, paddingBottom: 100 }}>
+                Du hast ein abgeschlossenes Kunststudium oder arbeitest seit mindestens
+                drei Jahren als Kunstschaffende*r oder hattest schon mindestens zwei Ausstellungen?
+                Dann bewirb dich mit den Werken, die Du bei MeetFrida zeigen willst.
+            </p>
         </Section>
 
 

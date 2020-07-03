@@ -23,6 +23,12 @@
         -webkit-text-fill-color: transparent;
         -webkit-text-stroke-color: white;
         -webkit-text-stroke-width: 0.02em;
+
+        &.active{
+            text-decoration: underline;
+            text-decoration-color: $white;
+            
+        }
     }
     a:hover{ 
         -webkit-text-fill-color: white;
@@ -31,22 +37,23 @@
     }
 }
 
-.active{
-    text-decoration: underline;
-    border-bottom: solid 10px white;
+
+
+@include tablet {
+    .root{
+       
+     }
+     
 }
 
-// @include tablet {
-//     .root{
-       
-//      }
-//      .linksRoot{
-
-//      }
-// }
-
-// @include mobile {
-//     .root{
-      
-//      }
-// }
+@include mobile {
+    .root{
+        
+     }
+     .linksRoot{
+         a{
+            font-size: 2rem;
+            line-height: 3rem;
+         }
+    }
+}
