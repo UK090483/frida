@@ -1,0 +1,33 @@
+.root{
+padding: 6% 30px 30px 30px;
+display:flex;
+}
+.imageRoot{
+    padding:  30px;
+    width:50%;
+    overflow: hidden;
+    max-height: 100vh;
+}
+.imageRoot img{
+    max-height: 500px
+}
+.infoRoot{
+    padding:  30px;
+    width:50%;
+}
+.dot{}
+.dotSold{
+
+}
+.artworkName{
+
+}
+.props{
+
+}
+.price{
+
+}
+.buyButton{
+    
+}

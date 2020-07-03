@@ -11,8 +11,14 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
+import './theme.scss'
 
-const Layout = ({ children }) => {
+
+import Nav from "./nav/nav"
+import Footer from "./Footer/footer"
+//import Mouse from "./Mouse/mouse"
+
+const Layout = ({ children, title, color }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -24,23 +30,24 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+    <div style={{}}>
+      {/* <Mouse></Mouse> */}
+      <Header siteTitle={data.site.siteMetadata.title} title={title}>
+        <Nav></Nav>
+      </Header>
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
+          maxWidth: 2000,
         }}
       >
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+        <Footer>
+
+        </Footer>
+
       </div>
-    </>
+    </div>
   )
 }
 

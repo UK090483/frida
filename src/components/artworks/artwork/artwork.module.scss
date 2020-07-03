@@ -1,0 +1,49 @@
+@import '../../variables.scss';
+
+.root{
+   width: 25%;
+}
+
+@include tablet {
+    .root{
+       width: 35%;
+       border: red solid 1px;
+     }
+}
+
+@include mobile {
+    .root{
+       width: 100%;
+       padding: 0 20px;
+       border: green solid 1px;
+     }
+}
+
+
+.artistName{
+    font-size: 1.35rem; 
+}
+
+.infoRoot{
+    display: flex;
+    align-items: center;
+    font-size: 1.35rem;
+    font-weight: 500;
+}
+.dot{
+    width: 20px;
+    height:20px;
+    border-radius: 50%;
+}
+
+.dot{
+    background-color: $green;
+}
+.dotSold{
+    background-color: $red;
+}
+
+.artworkName{
+    padding-left: 10px;
+    margin-right: auto;
+}

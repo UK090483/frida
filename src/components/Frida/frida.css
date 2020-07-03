@@ -1,0 +1,12 @@
+.frida-span{
+    color: white;
+    position: relative;
+}
+.frida-span:before {
+    content: '';
+    border-bottom: rgb(0, 0, 0) solid .16em;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+}

@@ -1,0 +1,15 @@
+.root{
+   padding-top: 200px;
+}
+
+
+.singleRoot{
+   position: fixed;
+   z-index: 9999999;
+   width: 100vw; height: 100vh;
+   top: 0; 
+   left: 0;
+   padding: 200;
+   background-color: white;
+
+}

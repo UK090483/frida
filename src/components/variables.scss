@@ -1,0 +1,16 @@
+$black :black;
+$green: #75f9d5;
+$red:#fa464c;
+$white: white;
+
+@mixin mobile {
+    @media (max-width: 700px ) {
+      @content;
+    }
+  }
+  
+  @mixin tablet {
+    @media (max-width: 900px)  {
+      @content;
+    }
+  }
