@@ -5,21 +5,30 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
+import Frida from '../components/Frida/frida'
 
 
 const IndexPage = () => (
     <Layout title={'NewCustomers'}>
         <SEO title="Teilnehmen" />
-        <Hero color='#FA464C'>
+        <Hero color='#F5C5D9'>
 
-            <h4>TEILNEHMEN</h4>
-            <h2 className={`text-white`}>Open Call: <br></br>Mitmachen und Deine Kunst in ganz Deutschland zeigen</h2>
-            <h2 className={`text-lila`}>Submissions open 15 June-Deadline 1 August</h2>
+            <h4>KONTAKT</h4>
+            <h1>Meet the Team</h1>
+
 
         </Hero>
-        <Section backgroundColor='#fa464c'>
+        <Section type={'text'} backgroundColor='#F5C5D9'>
 
-            <p style={{ padding: '100px 200px' }}>Du hast ein abgeschlossenes Kunststudium oder arbeitest seit mindestens drei Jahren als Kunstschaffende*r oder hattest schon mindestens zwei Ausstellungen? Dann bewirb dich mit den Werken, die Du bei MeetFrida zeigen willst.</p>
+            <p style={{ paddingTop: 100, paddingBottom: 100 }}>
+
+                Du willst wissen, wer hinter <Frida /> steckt? Wir sind ein Creative Think
+                Tank, der Inhalte relevant und komplexe Themen zu
+                nachhaltigen Kampagnen macht. Seit 2015 denken wir täglich neu – vernetzt,
+                digital, unabhängig. Wir greifen aktuelle Trends auf und geben Botschaften
+                einen Mehrwert –
+                gesellschaftlich, ökologisch, kulturell, politisch.
+            </p>
         </Section>
 
     </Layout>

@@ -1,0 +1,111 @@
+@import '../../variables.scss';
+
+.root{
+padding: 6% 30px 60px 30px;
+display:flex;
+height:100vh;
+min-height: 400px;
+overflow: auto;
+}
+.imageRoot{
+    padding:  0 30px;
+    width:50%;
+    overflow: hidden;
+    max-height: 100vh;
+
+    img{
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.infoRoot{
+    padding: 0  30px;
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   
+}
+
+.nameRoot{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.artworkName{
+    font-size: 3em;
+    font-weight: 800;
+    line-height: 1.2em;
+}
+.dot{
+    align-self: start;
+    min-width: 35px;
+    min-height:35px;
+    border-radius: 50%;
+    background-color: $green;
+    margin-right: 10px;
+    margin-top: 1em;
+}
+.dotSold{
+    background-color: $red;
+}
+.props{
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.price{
+    margin-bottom: 20px;
+    font-size: 1.9em;
+    font-weight: 800;
+}
+.buyButton{
+    background-color: $red;
+    min-height:50px;
+    color:$white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    font-size: 1.4em;
+    font-weight: 900;
+}
+
+
+@include tablet {
+    .root{
+        padding: 100px 20px 20px 20px;
+        padding-top: 100px;
+        flex-wrap:wrap;
+        
+    }
+
+    .imageRoot{
+        padding: 0;
+        width:100%
+    }
+    .infoRoot{
+        padding: 0;
+        width:100%
+    }
+}
+
+@include mobile {
+    .root{
+        padding: 100px 20px 20px 20px;
+        padding-top: 100px;
+        flex-wrap:wrap;
+        
+    }
+
+    .imageRoot{
+        padding: 0;
+        width:100%
+    }
+    .infoRoot{
+        padding: 0;
+        width:100%
+    }
+}

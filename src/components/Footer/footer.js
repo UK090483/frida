@@ -2,6 +2,9 @@ import React from 'react';
 import Section from '../container/section'
 import BigButton from '../buttons/bigButton'
 import TextFlow from './textFlow'
+import style from './footer.module.scss';
+
+
 export default function Footer() {
 
     return (

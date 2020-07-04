@@ -1,7 +1,7 @@
 import React from 'react';
 import Kreutz from "../../assets/Menu_Kreutz.svg";
 import Slide from 'react-reveal/Slide';
-import Header from '../header'
+import Header from '../header/header'
 
 export default function Overlay(props) {
 

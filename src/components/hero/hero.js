@@ -1,10 +1,11 @@
 import React from 'react';
-import Container from '../container/container'
+import Container from '../container/container';
+import style from './hero.module.scss'
 
 export default function Hero({ children, color }) {
 
     return (
-        <div style={{ backgroundColor: color || 'white', height: '100vh', display: 'flex', alignItems: 'center' }}>
+        <div className={style.root} style={{ backgroundColor: color || 'white' }}>
             <Container>
                 {children}
             </Container>

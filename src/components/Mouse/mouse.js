@@ -1,5 +1,118 @@
-import React, { useEffect, useRef } from 'react';
-import './mouse.css'
+import React, { useEffect, useRef, useContext } from 'react';
+import style from './mouse.module.scss';
+import UiContext from '../../context/UiContext'
+
+
+export default function () {
+
+    const UI = useContext(UiContext);
+
+    console.log(UI)
+
+    const MouseRef = useRef()
+
+    useEffect(() => {
+
+        document.querySelectorAll('a').forEach((elem) => {
+            elem.addEventListener('mouseenter', () => {
+                console.log('mouseIn')
+                setLinkHover(true)
+                UI.setMouseStyle('link')
+            })
+            elem.addEventListener('mouseleave', () => {
+                setLinkHover(false)
+                console.log('mouseOut')
+                UI.setMouseStyle(null)
+            })
+        })
+
+
+        document.addEventListener('mousemove', (e) => {
+            if (MouseRef.current) {
+                MouseRef.current.style.left = e.pageX - 15 + 'px';
+                MouseRef.current.style.top = e.pageY - 15 + 'px';
+            }
+        })
+
+        document.addEventListener('mousedown', (e) => {
+
+            setMouseDown(true)
+
+
+        })
+        document.addEventListener('mouseup', (e) => {
+            setMouseDown(false)
+        })
+
+    }, []);
+
+    const setMouseDown = (direction) => {
+        if (MouseRef.current) {
+            direction ? MouseRef.current.classList.add(style.mousedown) : MouseRef.current.classList.remove(style.mousedown)
+        }
+    }
+    const setLinkHover = (direction) => {
+        // if (MouseRef.current) {
+        //     direction ? MouseRef.current.classList.add(style.linkhover) : MouseRef.current.classList.remove(style.linkhover)
+        // }
+    }
+
+    const getStyle = () => {
+        if (UI.mouseStyle === 'link') {
+            return style.linkhover
+        }
+    }
+
+
+    return (
+
+        <div ref={MouseRef} className={`${style.mouse} ${getStyle()}`}>
+            <div></div>
+        </div>
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -31,7 +144,7 @@ function useEventListener(eventName, handler, element = document) {
  *
  * @author Stephen Scaff
  */
-export default function AnimatedCursor({
+function AnimatedCursor({
     color = '220, 90, 90',
     outerAlpha = 0.4,
     innerSize = 18,

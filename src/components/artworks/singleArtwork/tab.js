@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import style from './tab.module.css'
+
+import style from './tab.module.scss'
 
 export default function Tab({ text1, text2 }) {
     const [active, setActive] = useState(true);
@@ -11,8 +12,8 @@ export default function Tab({ text1, text2 }) {
         <div className={style.root}>
 
             <div className={style.button} onClick={() => { setActive(!active) }}>
-                <div>Artist Info</div>
-                <div>Artwork Info</div>
+                <div className={active && style.active} >Artist Info</div>
+                <div className={!active && style.active} >Artwork Info</div>
             </div>
 
 
