@@ -7,13 +7,17 @@ export default function Overlay(props) {
 
     const { children, open, setOpen } = props;
 
+    const handleKeyPress = () => {
+        console.log('keypress')
+    }
+
     return (
 
         <Slide right when={open} duration={500}>
             <div className='nav_wrap' style={{ pointerEvents: open ? 'auto' : 'none' }}>
                 <Header>
                     <h1></h1>
-                    <div style={{ width: 40 }} onClick={() => setOpen(!open)}><Kreutz></Kreutz></div>
+                    <div tabIndex={0} role="button" style={{ width: 40 }} onKeyPress={handleKeyPress} onClick={() => setOpen(!open)}><Kreutz></Kreutz></div>
                 </Header>
 
 

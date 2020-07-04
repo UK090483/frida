@@ -28,6 +28,16 @@
       }
 
    }
+   &.black{
+      div{
+         background-color: $black;
+         &::before{
+            border:  $black solid 0px;
+         }
+   
+      }
+
+   }
    &.mousedown{
      
       div{

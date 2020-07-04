@@ -8,6 +8,24 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify-cms`,
     {
+      resolve: "gatsby-source-custom-api",
+      options: {
+        url: 'https://frida.konradullrich.com/wp-json/frida/v1/artworks/1/?filter={"künstler":null,"medium":null,"stil":null,"price":null}',
+        imageKeys: ["image"],
+        rootKey: "artworks",
+        schemas: {
+          artworks: `
+              url: String
+              image: image
+          `,
+          image: `
+              original: String
+              
+          `,
+        }
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,

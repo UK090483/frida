@@ -9,16 +9,16 @@ import Frida from '../components/Frida/frida'
 
 
 const IndexPage = () => (
-    <Layout title={'NewCustomers'}>
-        <SEO title="Teilnehmen" />
-        <Hero color='#F5C5D9'>
+    <Layout title={'us'}>
+        <SEO title="Kontakt" />
+        <Hero backgroundColor='lila'>
 
             <h4>KONTAKT</h4>
             <h1>Meet the Team</h1>
 
 
         </Hero>
-        <Section type={'text'} backgroundColor='#F5C5D9'>
+        <Section type={'text'} backgroundColor='lila'>
 
             <p style={{ paddingTop: 100, paddingBottom: 100 }}>
 

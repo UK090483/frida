@@ -5,11 +5,11 @@ import PageTitle from '../pageTitle/pageTitle'
 
 import style from './header.module.scss';
 
-const Header = ({ children, siteTitle, title, color = 'white' }) => (
+const Header = ({ children, siteTitle, title = '', color = 'white', link = true }) => (
   <header className={style.root}>
     <div className={style.inner}>
 
-      {siteTitle && <PageTitle title={title} color={color}></PageTitle>}
+      {title && <PageTitle title={title} color={color} link={link}></PageTitle>}
 
       {children}
 

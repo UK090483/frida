@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './singleArtwork.module.scss';
 import Tab from './tab';
+import FridaImage from './fridaImage';
 //import FittedImage from 'react-fitted-image';
 
 export default function Artworks({ artwork }) {
@@ -13,7 +14,8 @@ export default function Artworks({ artwork }) {
             <div className={style.imageRoot}>
 
 
-                <img srcSet={image.srcset}></img>
+                <FridaImage image={image}></FridaImage>
+
                 {/* <FittedImage
                     fit="contain"
                     loader={<div>Loading</div>}

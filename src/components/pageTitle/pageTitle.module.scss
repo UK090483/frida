@@ -11,12 +11,13 @@
         font-size: 2.25rem;
         margin: 0;
     }
+
 }
 
 
 .name{
     position: relative;
-
+    color: $white;
     &:before {
     content: '';
     border-bottom: #000 solid .16em;
@@ -25,7 +26,15 @@
     bottom: 0;
     position: absolute;
     }
+ &.lila{
+        color: $lila;
+    }
+   
 }
+.white{
+    color: $white;
+}
+
 
 
 @include tablet {

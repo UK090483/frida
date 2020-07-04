@@ -8,12 +8,16 @@ export default function Container({ children, maxWidth, type }) {
         extraStyle.maxWidth = maxWidth
     }
 
+
     const getTypeClass = (type) => {
 
         switch (type) {
             case 'text':
                 return style.text
-                break;
+            case 'full':
+                return style.full
+
+
 
             default:
                 return style.default

@@ -10,14 +10,14 @@ import Frida from '../components/Frida/frida'
 const IndexPage = () => (
     <Layout title={'OurSupporters'}>
         <SEO title="Teilnehmen" />
-        <Hero color='#F5C5D9'>
+        <Hero backgroundColor='lila'>
 
             <h4>UNTERSTÜTZEN</h4>
             <h1>Unterstützen Sie <Frida /> und werden Sie teil der größten Kunstschau Deutschlands</h1>
 
 
         </Hero>
-        <Section backgroundColor='#F5C5D9' type={'text'}>
+        <Section backgroundColor='lila' type={'text'}>
             <div style={{ paddingTop: 100, paddingBottom: 100 }}>
                 <p >
                     Nicht nur Kunst braucht Förderer, auch unsere Kunstaktion braucht Unterstützer, die das Projekt in ihre Netzwerke streuen. Oder die uns unterstützen, indem sie die Produktionskosten für diese Aktion übernehmen.

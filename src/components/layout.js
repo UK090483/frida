@@ -37,7 +37,7 @@ const Layout = ({ children, title, color }) => {
     <div style={{}}>
 
       {Ui.isBrowser && <Mouse></Mouse>}
-      <Header siteTitle={data.site.siteMetadata.title} title={title}>
+      <Header title={title}>
         <Nav></Nav>
       </Header>
       <div

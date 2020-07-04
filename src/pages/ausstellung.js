@@ -9,7 +9,7 @@ import Section from '../components/container/section'
 const Ausstellung = () => (
     <Layout title={'NewArtists'}>
         <SEO title="Ausstellung" />
-        <Hero color='#F5C5D9'>
+        <Hero backgroundColor='lila'>
 
             <h4>AUSSTELLUNG</h4>
             <h1>Entdecke</h1>

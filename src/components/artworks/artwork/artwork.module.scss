@@ -4,19 +4,7 @@
    width: 25%;
 }
 
-@include tablet {
-    .root{
-       width: 34%;
-     }
-}
 
-@include mobile {
-    .root{
-       width: 100%;
-       padding: 0 20px;
-      
-     }
-}
 
 
 .artistName{
@@ -30,8 +18,10 @@
     font-weight: 500;
 }
 .dot{
-    width: 20px;
-    height:20px;
+    align-self: flex-start;
+    margin-top: 4px;
+    min-width: 20px;
+    min-height:20px;
     border-radius: 50%;
 }
 
@@ -45,4 +35,37 @@
 .artworkName{
     padding-left: 10px;
     margin-right: auto;
+}
+
+
+@include tablet {
+    .root{
+       width: 34%;
+     }
+
+}
+
+@include mobile {
+    .root{
+       width: 100%;
+       padding: 0 20px;
+      
+     }
+     .infoRoot{
+         flex-wrap: wrap;
+
+        .dot{
+            align-self: flex-start;
+            margin-top: 3px;
+
+        }
+        .artworkName{
+            width: calc(100% - 30px);
+            padding-left: 10px;
+            margin:0;
+        }
+        .price{
+            margin-top: 20px;
+        }
+     }
 }

@@ -12,10 +12,9 @@ export default function Tab({ text1, text2 }) {
         <div className={style.root}>
 
             <div className={style.button} onClick={() => { setActive(!active) }}>
-                <div className={active && style.active} >Artist Info</div>
-                <div className={!active && style.active} >Artwork Info</div>
+                <div className={active ? style.active : ''} >Artist Info</div>
+                <div className={!active ? style.active : ''} >Artwork Info</div>
             </div>
-
 
             {active && <div className={style.text}>
                 {text1}

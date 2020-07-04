@@ -7,7 +7,7 @@ export default function () {
 
     const UI = useContext(UiContext);
 
-    console.log(UI)
+
 
     const MouseRef = useRef()
 
@@ -15,14 +15,22 @@ export default function () {
 
         document.querySelectorAll('a').forEach((elem) => {
             elem.addEventListener('mouseenter', () => {
-                console.log('mouseIn')
-                setLinkHover(true)
+
                 UI.setMouseStyle('link')
             })
             elem.addEventListener('mouseleave', () => {
-                setLinkHover(false)
-                console.log('mouseOut')
+
                 UI.setMouseStyle(null)
+            })
+        })
+        document.querySelectorAll('[data-color=red]').forEach((elem) => {
+            elem.addEventListener('mouseenter', () => {
+
+                UI.setMouseColor('black')
+            })
+            elem.addEventListener('mouseleave', () => {
+
+                UI.setMouseColor('red')
             })
         })
 
@@ -51,22 +59,19 @@ export default function () {
             direction ? MouseRef.current.classList.add(style.mousedown) : MouseRef.current.classList.remove(style.mousedown)
         }
     }
-    const setLinkHover = (direction) => {
-        // if (MouseRef.current) {
-        //     direction ? MouseRef.current.classList.add(style.linkhover) : MouseRef.current.classList.remove(style.linkhover)
-        // }
-    }
+
 
     const getStyle = () => {
-        if (UI.mouseStyle === 'link') {
-            return style.linkhover
-        }
+        return UI.mouseStyle === 'link' ? style.linkhover : ''
     }
+    const getColor = () => {
 
+        return UI.mouseColor === 'black' ? style.black : ''
+    }
 
     return (
 
-        <div ref={MouseRef} className={`${style.mouse} ${getStyle()}`}>
+        <div ref={MouseRef} className={`${style.mouse} ${getStyle()} ${getColor()}`}>
             <div></div>
         </div>
     )

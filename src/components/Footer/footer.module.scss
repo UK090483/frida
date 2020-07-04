@@ -1,0 +1,40 @@
+@import '../variables.scss';
+
+.sub{
+    color:white;
+    display: flex;
+    align-items: center;
+    
+    height:100px;
+   
+    p{
+        width:50%;
+        margin:0;
+        padding:0;
+    }
+}
+
+
+@include tablet {
+    .sub{
+        p{
+           font-size: 1.2em;
+
+        }
+       
+    }
+} 
+@include mobile {
+    .sub{
+        height:150px;
+        padding-top:40px;
+        padding-bottom:20px;
+        flex-wrap: wrap;
+        p{
+            width: 100%;
+           font-size: 1.2em;
+
+        }
+       
+    }
+} 

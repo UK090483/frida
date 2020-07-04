@@ -11,7 +11,7 @@ import Artworks from "../components/artworks/artworks"
 const IndexPage = () => (
   <Layout title={'frida'}>
     <SEO title="Home" />
-    <Hero color='#F5C5D9'>
+    <Hero backgroundColor='lila'>
 
       <h4>500 Werke, 200 Ausstellungsorte, 1 Hashtag.</h4>
       <h1><Frida></Frida>-Deutschlands
@@ -19,11 +19,7 @@ const IndexPage = () => (
 
     </Hero>
     <Artworks></Artworks>
-    {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link> */}
+
   </Layout>
 )
 

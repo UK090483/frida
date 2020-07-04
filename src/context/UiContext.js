@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import {
-    BrowserView,
-    MobileView,
     isBrowser,
     isMobile
 } from "react-device-detect";
@@ -20,7 +18,7 @@ const UiContext = React.createContext(defaultState)
 function UiContextProvider({ children }) {
 
     const [mouseStyle, setMouseStyle] = useState(null);
-
+    const [mouseColor, setMouseColor] = useState('red');
 
 
 
@@ -28,9 +26,12 @@ function UiContextProvider({ children }) {
         <UiContext.Provider
             value={{
                 mouseStyle,
+                mouseColor,
+                setMouseColor,
                 setMouseStyle,
                 isMobile,
-                isBrowser
+                isBrowser,
+
             }}
         >
             {children}
