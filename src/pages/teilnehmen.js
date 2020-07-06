@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
+import Embet from '../components/embet/embet'
 
 
 const IndexPage = () => (
@@ -25,6 +26,7 @@ const IndexPage = () => (
             </p>
         </Section>
 
+        <Embet></Embet>
 
     </Layout>
 )

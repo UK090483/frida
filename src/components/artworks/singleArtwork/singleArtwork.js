@@ -2,7 +2,7 @@ import React from 'react';
 import style from './singleArtwork.module.scss';
 import Tab from './tab';
 import FridaImage from './fridaImage';
-//import FittedImage from 'react-fitted-image';
+
 
 export default function Artworks({ artwork }) {
     const { image, availability, arwork_name, price, artist_description, artwork_description, height, instagram_link, medium, stil, width } = artwork
@@ -16,13 +16,7 @@ export default function Artworks({ artwork }) {
 
                 <FridaImage image={image}></FridaImage>
 
-                {/* <FittedImage
-                    fit="contain"
-                    loader={<div>Loading</div>}
-                    onLoad={(...args) => console.log(...args)}
-                    onError={(...args) => console.log(...args)}
-                    src={image.large}
-                /> */}
+
 
             </div>
 

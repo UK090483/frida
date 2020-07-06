@@ -27,8 +27,10 @@
     "react-dom": "^16.12.0",
     "react-fitted-image": "^1.0.1",
     "react-helmet": "^6.1.0",
+    "react-image-magnifiers": "^1.4.0",
     "react-magic-grid": "^1.1.0",
-    "react-reveal": "^1.2.2"
+    "react-reveal": "^1.2.2",
+    "react-typeform-embed": "^0.2.1"
   },
   "devDependencies": {
     "prettier": "2.0.5"

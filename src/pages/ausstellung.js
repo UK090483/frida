@@ -3,7 +3,7 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Hero from "../components/hero/hero"
-import Artworks from "../components/artworks/artworks"
+import Artworks from "../components/artworks/artworks/artworks"
 import Section from '../components/container/section'
 
 const Ausstellung = () => (
