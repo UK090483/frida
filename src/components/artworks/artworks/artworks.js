@@ -41,7 +41,7 @@ export default function Artworks({ postCount = 9 }) {
       }
   `)
 
-
+    console.log(adata)
 
     const [open, setOpen] = useState(false);
     const [artwork, setArtwork] = useState(null);

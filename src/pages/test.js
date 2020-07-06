@@ -3,6 +3,7 @@ import firebase from "gatsby-plugin-firebase"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import AddArtwork from "../components/user/addArtwork"
 
 
 
@@ -15,7 +16,7 @@ const IndexPage = () => {
         <SEO title="Home" />
 
         <h1>Test</h1>
-        <Component></Component>
+        <AddArtwork></AddArtwork>
 
 
 
@@ -31,18 +32,19 @@ function Component() {
 
     React.useEffect(() => {
 
-        firebase
-            .firestore()
-            .collection("Artworks")
-            .get()
-            .then(snapshot => {
+        // firebase
+        //     .firestore()
+        //     .collection("Artworks")
+        //     .get()
+        //     .then(snapshot => {
 
-                snapshot.forEach(function (doc) {
-                    // doc.data() is never undefined for query doc snapshots
-                    console.log(doc.id, " => ", doc.data());
-                });
+        //         snapshot.forEach(function (doc) {
+        //             // doc.data() is never undefined for query doc snapshots
+        //             console.log(doc.id, " => ", doc.data());
+        //         });
 
-            })
+        //     })
+
 
 
     }, [])
