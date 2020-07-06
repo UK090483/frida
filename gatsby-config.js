@@ -26,6 +26,21 @@ module.exports = {
       }
     },
     {
+      resolve: "gatsby-plugin-firebase",
+      options: {
+        credentials: {
+          apiKey: "AIzaSyAAYD757BUfXf0TCdeM3C4Jx88a0LynuMk",
+          authDomain: "frida-f2f3c.firebaseapp.com",
+          databaseURL: "https://frida-f2f3c.firebaseio.com",
+          projectId: "frida-f2f3c",
+          storageBucket: "frida-f2f3c.appspot.com",
+          messagingSenderId: "1058184616168",
+          appId: "1:1058184616168:web:4be69e0c2f682df866915d",
+          measurementId: "G-SEDC77C9YL"
+        }
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
