@@ -13,14 +13,8 @@ const IndexPage = () => (
   <Layout title={'frida'}>
     <SEO title="Home" />
 
-    {/* <StartHero></StartHero> */}
-    <Hero backgroundColor='lila'>
+    <StartHero></StartHero>
 
-      <h4>500 Werke, 200 Ausstellungsorte, 1 Hashtag.</h4>
-      <h1><Frida></Frida>-Deutschlands
-        größte Kunstschau digital und analog</h1>
-
-    </Hero>
     <Artworks></Artworks>
 
   </Layout>

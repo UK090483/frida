@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "gatsby";
 import Burger from "../../assets/Menu_Burger.svg";
-import Overlay from '../overlay/overlay';
 import BigButton from '../buttons/bigButton';
 import Section from '../container/section';
 import Slide from 'react-reveal/Slide';
@@ -15,7 +14,7 @@ export default function Nav() {
 
     return (
         <div>
-            <div style={{ width: 40 }} onClick={() => setOpen(!open)}><Burger></Burger></div>
+            <div style={{ width: 40, transform: 'translateX(10px) translateY(5px)' }} onClick={() => setOpen(!open)}><Burger></Burger></div>
 
             <Slide right when={open} duration={500}>
                 <div className={style.root} style={{ pointerEvents: open ? 'auto' : 'none' }}>

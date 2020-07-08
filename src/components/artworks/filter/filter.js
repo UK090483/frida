@@ -28,11 +28,11 @@ export default function Filter({ artworks, setFElements }) {
         const MediumOptions = []
 
         artworks.forEach(artwork => {
-            const { artist_name, stil, medium } = artwork;
+            const { artistName, stil, medium } = artwork.node;
 
-            if (!artists.includes(artist_name)) {
-                artists.push(artist_name)
-                ArtistsOptions.push({ label: artist_name, value: artist_name })
+            if (!artists.includes(artistName)) {
+                artists.push(artistName)
+                ArtistsOptions.push({ label: artistName, value: artistName })
             }
             if (!stils.includes(stil)) {
                 stils.push(stil)
@@ -55,6 +55,7 @@ export default function Filter({ artworks, setFElements }) {
 
     const options = getOptions();
 
+
     const handleSetOpen = (i) => {
         setCurentlyOpen(i)
     }
@@ -69,24 +70,32 @@ export default function Filter({ artworks, setFElements }) {
 
     const filterElements = (f) => {
 
+
         let res = artworks.filter((e) => {
+            const artwork = e.node
             let res = true;
             if (f.Artist) {
-                res = e.artist_name === f.Artist
+
+                res = artwork.artistName === f.Artist
             }
             if (f.Stil && res) {
-                res = e.stil === f.Stil
+                res = artwork.stil === f.Stil
+
             }
             if (f.Medium && res) {
-                res = e.medium === f.Medium
+                res = artwork.medium === f.Medium
+
             }
             if (f.Preis && res) {
                 let range = f.Preis.split('-')
 
-                res = (e.price > parseInt(range[0])) && (e.price < parseInt(range[1]))
+                res = (artwork.price > parseInt(range[0])) && (artwork.price < parseInt(range[1]))
+
             }
             return res
         })
+
+        console.log(res)
         setFElements(res)
     }
 

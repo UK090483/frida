@@ -5,29 +5,24 @@ import FridaImage from './fridaImage';
 
 
 export default function Artworks({ artwork }) {
-    const { image, availability, arwork_name, price, artist_description, artwork_description, height, instagram_link, medium, stil, width } = artwork
+    const { images, availability, artworkName, price, artistDescription, artworkDescription, height, instagramLink, medium, stil, width } = artwork.node
 
 
     return (
 
         <div className={style.root}>
             <div className={style.imageRoot}>
-
-
-                <FridaImage image={image}></FridaImage>
-
-
-
+                <FridaImage images={images}></FridaImage>
             </div>
 
             <div className={style.infoRoot}>
 
 
 
-                <Tab text1={artist_description} text2={artwork_description}></Tab>
+                <Tab text1={artistDescription} text2={artworkDescription}></Tab>
                 <div className={style.nameRoot}>
                     <div className={`${style.dot} ${availability && style.dotSold}`}></div>
-                    <div className={style.artworkName}> {arwork_name}</div>
+                    <div className={style.artworkName}> {artworkName}</div>
                 </div>
                 <div className={style.props}> {`${medium}, ${width}*${height} ${stil}`} </div>
                 <div className={style.price}>{price}€</div>

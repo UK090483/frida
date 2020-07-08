@@ -6,22 +6,64 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-netlify-cms`,
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: 'myNodes',
+        imagePath: 'path.to.image',
+      },
+    },
+
+    // {
+    //   resolve: "gatsby-source-custom-api",
+    //   options: {
+    //     url: 'https://frida.konradullrich.com/wp-json/frida/v1/artworks/1/?filter={"künstler":null,"medium":null,"stil":null,"price":null}',
+    //     imageKeys: ["images"],
+    //     rootKey: "artworks",
+    //     schemas: {
+    //       artworks: `
+    //         artist_name: String
+    //       `,
+    //       images: `
+    //       url: String
+
+    //   `,
+    //       image: `
+    //        large: String
+    //        srcset: String
+    //        original: String
+    //       `
+    //     }
+    //   }
+    // },
     {
       resolve: "gatsby-source-custom-api",
       options: {
-        url: 'https://frida.konradullrich.com/wp-json/frida/v1/artworks/1/?filter={"künstler":null,"medium":null,"stil":null,"price":null}',
-        imageKeys: ["image"],
-        rootKey: "artworks",
+        url: 'https://us-central1-frida-f2f3c.cloudfunctions.net/helloMrfaker',
+        imageKeys: ["images"],
+        rootKey: "fakeArtworks",
         schemas: {
           artworks: `
-              url: String
-              image: image
+          artistName: String
+          artistEmail: String
+
           `,
-          image: `
-              original: String
-              
-          `,
+          images: `
+          url: String
+        `
+        }
+      }
+    },
+    {
+      resolve: "gatsby-source-custom-api",
+      options: {
+        url: "https://eu-api.jotform.com/form/201882655258059/submissions?apiKey=031974a65f427ea31e551072408be244",
+        rootKey: 'testArtworks',
+        schemas: {
+          testArtworks: `
+                  id: String
+              `,
+
         }
       }
     },
@@ -83,6 +125,6 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    // `gatsby - plugin - offline`,
   ],
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import style from './fridaImage.module.scss';
 
-export default function FridaImage({ image }) {
+export default function FridaImage({ images }) {
 
     const imageRef = useRef()
     const RootRef = useRef()
@@ -38,6 +38,9 @@ export default function FridaImage({ image }) {
         setPos({ x: x, y: y, pageX: e.pageX, pageY: (e.pageY - scrollY) })
     }
 
+    const srcSet = images.local ? images.local.childImageSharp.fluid.srcSet : null
+    const src = images.url;
+
     return (
         <div ref={RootRef} className={style.root}>
 
@@ -48,14 +51,18 @@ export default function FridaImage({ image }) {
                 className={`${style.image} ${resized ? style.resized : ''}`}
                 onLoad={() => { setLoaded(true) }}
                 ref={imageRef}
-                srcSet={image.srcset}>
+                srcSet={srcSet}
+                src={src}
+            >
+
             </img>
             <div className={`${style.magni} ${showGlass ? style.showGalss : ''}`} style={{ left: `${pos.pageX}px`, top: `${pos.pageY}px` }}>
                 <img
                     className={style.glassImg}
                     ref={loupImageRef}
-                    srcSet={image.srcset}
+                    srcSet={srcSet}
                     style={{ transform: `scale(2) translateX(${pos.x}%) translateY(${pos.y}%)` }}
+                    src={src}
                 >
                 </img>
 

@@ -1,3 +1,102 @@
+@import '../variables.scss';
+
 .root{
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: $lila;
     
 }
+
+.image{
+    position: absolute;
+    width: 9vw;
+    z-index: 0;
+    animation-name: drive;
+    animation-duration: 10s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+.text{
+    margin-top: 100px;
+    z-index: 1;
+    padding: 0 7%;
+}
+
+.stoerer{
+    transform: translateY(-50%);
+    right: 300px;
+    width: 400px;
+    position: absolute;
+    margin-bottom: 100px;
+   
+    z-index: 10;
+
+    svg{
+        animation-name: spin;
+        animation-duration: 10s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-fill-mode: forwards;
+    }
+}
+.stoererSpacer{
+    height: 200px;
+}
+
+
+@keyframes drive{
+0%{
+    top: 100vh;
+    
+}
+5%{opacity: 0;}
+15%{
+    opacity: 1;
+}
+100%{
+    top: -100vh;
+}
+
+}
+
+@keyframes spin {
+    from {transform:rotate(0deg) }
+    to {transform:rotate(360deg) }
+}
+
+
+
+@include tablet {
+    .stoerer{
+        right: 100px;
+        width: 300px;
+    }
+    .stoererSpacer{
+        height: 150px;
+    }
+    .image{
+        width: 20vw;
+    }
+
+}
+
+@include mobile {
+    .stoerer{
+        right: 30px;
+        width: 150px;
+    }
+    .stoererSpacer{
+        height: 75px;
+    }
+    .image{
+        width: 25vw;
+    }
+    
+}
+

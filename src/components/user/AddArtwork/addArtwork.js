@@ -1,9 +1,20 @@
 /* src/App.js */
 import React, { useEffect, useState } from 'react'
 import firebase from "gatsby-plugin-firebase"
+import ImageUploader from 'react-images-upload';
 
 
-const initialState = { name: '', description: '' }
+const initialState = {
+    name: '',
+    description: '',
+    availability: '',
+    stil: '',
+    price: '',
+    medium: '',
+    height: '',
+    width: '',
+    instaLink: ''
+}
 
 const AddArtwork = (props) => {
 
@@ -12,38 +23,85 @@ const AddArtwork = (props) => {
     const [todos, setTodos] = useState([])
     const [image, setImage] = useState(null)
 
-    useEffect(() => {
-        fetchTodos()
-    }, [])
+
 
     function setInput(key, value) {
         setFormState({ ...formState, [key]: value })
     }
 
-    function fetchTodos() {
-        // try {
-        //     const todoData = await API.graphql(graphqlOperation(listArtworks))
-        //     // const todos = todoData.data.listTodos.items
-        //     console.log(todoData)
-        //     // setTodos(todos)
-        // } catch (err) { console.log('error fetching todos', err) }
-    }
+
 
     function addArtwork() {
-        firebase
-            .firestore()
-            .collection("Artworks").add({
-                name: formState.name,
-                state: "CA",
-                country: "USA"
-            })
-            .then(function (docRef) {
-                console.log("Document written with ID: ", docRef.id);
-            })
-            .catch(function (error) {
-                console.error("Error adding document: ", error);
+
+        uploadImage();
+        // firebase
+        //     .firestore()
+        //     .collection("Artworks").add({
+        //         ...formState
+        //     })
+        //     .then(function (docRef) {
+        //         console.log("Document written with ID: ", docRef.id);
+        //     })
+        //     .catch(function (error) {
+        //         console.error("Error adding document: ", error);
+        //     });
+    }
+
+    function uploadImage() {
+        // File or Blob named mountains.jpg
+        var storageRef = firebase.storage().ref();
+        var file = image
+
+        // Create the file metadata
+        var metadata = {
+            contentType: 'image/jpeg'
+        };
+
+        // Upload file and metadata to the object 'images/mountains.jpg'
+        var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+            function (snapshot) {
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            }, function (error) {
+
+                // A full list of error codes is available at
+                // https://firebase.google.com/docs/storage/web/handle-errors
+                switch (error.code) {
+                    case 'storage/unauthorized':
+                        // User doesn't have permission to access the object
+                        break;
+
+                    case 'storage/canceled':
+                        // User canceled the upload
+                        break;
+
+                    case 'storage/unknown':
+                        // Unknown error occurred, inspect error.serverResponse
+                        break;
+                }
+            }, function () {
+                // Upload completed successfully, now we can get the download URL
+                uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                    console.log('File available at', downloadURL);
+                });
             });
 
+    }
+
+    function onImage(e) {
+        setImage(e[0])
     }
 
 
@@ -99,10 +157,18 @@ const AddArtwork = (props) => {
                 placeholder="height"
             />
             <input
-                onChange={event => setInput('insta_link', event.target.value)}
+                onChange={event => setInput('instaLink', event.target.value)}
                 style={styles.input}
                 value={formState.instaLink}
                 placeholder="Instagram Link"
+            />
+            <ImageUploader
+                withPreview={true}
+                withIcon={true}
+                buttonText='Choose images'
+                onChange={onImage}
+                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                maxFileSize={5242880}
             />
 
             <button style={styles.button} onClick={addArtwork}>Create Artwork</button>

@@ -1,0 +1,60 @@
+@import '../variables.scss';
+
+
+.root{
+   
+    
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-decoration: none;
+    color: $black;
+    
+   
+    
+}
+
+.inner{
+    padding: 1.2rem 2rem;
+    width: fit-content;
+    border: $black solid 4px ;
+    border-radius: 50px;
+    transition: background-color 0.4s, color 0.4s;
+
+    &:hover{
+       
+        background-color: $black;
+        color: $lila;
+    }
+
+}
+
+
+@include tablet {
+    .root{
+        font-size: 0.8rem;
+     }
+     .inner{
+        padding: 0.8rem 1rem;
+        width: fit-content;
+        border: $black solid 4px ;
+        border-radius: 50px;
+        transition: background-color 0.4s, color 0.4s;
+    
+        &:hover{
+           
+            background-color: $black;
+            color: $lila;
+        }
+    
+    }
+
+}
+
+@include mobile {
+    .root{
+      
+      
+     }
+    
+}
+
