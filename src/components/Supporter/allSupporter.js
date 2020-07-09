@@ -14,10 +14,10 @@ import style from './supporter.module.scss'
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const Image = () => {
-  const data = useStaticQuery(graphql`
-    query KooperationQuery {
-        allFile(filter: {relativeDirectory: {eq: "AllSupporter/kooperation"}}) {
+const AllSuporters = () => {
+    const data = useStaticQuery(graphql`
+    query AllSupportersQuery {
+        allFile(filter: {relativeDirectory: {regex: "/AllSupporter/\\w+/"}}) {
           edges {
             node {
               childImageSharp {
@@ -29,21 +29,23 @@ const Image = () => {
           }
         }
       }
-  
   `)
 
 
 
-  return (
+    return (
 
-    <div className={style.root}>
-      <img srcSet={data.allFile.edges[1].node.childImageSharp.fluid.srcSet}></img>
-      <img srcSet={data.allFile.edges[0].node.childImageSharp.fluid.srcSet}></img>
-    </div>
+        <div className={style.root}>
+            <img srcSet={data.allFile.edges[1].node.childImageSharp.fluid.srcSet}></img>
+            <img srcSet={data.allFile.edges[0].node.childImageSharp.fluid.srcSet}></img>
+            <img srcSet={data.allFile.edges[2].node.childImageSharp.fluid.srcSet}></img>
+            <img srcSet={data.allFile.edges[3].node.childImageSharp.fluid.srcSet}></img>
+            <img srcSet={data.allFile.edges[4].node.childImageSharp.fluid.srcSet}></img>
+        </div>
 
-  )
+    )
 
 
 }
 
-export default Image
+export default AllSuporters

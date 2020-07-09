@@ -3,7 +3,7 @@ import Section from '../container/section'
 import BigButton from '../buttons/bigButton'
 import TextFlow from './textFlow'
 import style from './footer.module.scss';
-import Supporter from '../Supporter/supporter';
+import AllSupporter from '../Supporter/allSupporter';
 
 
 export default function Footer({ title }) {
@@ -17,9 +17,9 @@ export default function Footer({ title }) {
                 <React.Fragment>
                     <Section backgroundColor='lila'>
                         <div style={{ padding: '200px 0' }}>
-                            <h4>Supporter</h4>
-                            <h2>OHNE EUCH WÄRE DIESE ACTION NICHT MÖGLICH. <span style={{ color: 'white' }}>DANKE.</span></h2>
-                            <Supporter></Supporter>
+                            <h4>SUPPORTER</h4>
+                            <h2>Ohne Euch wäre diese Action nicht möglich. <span style={{ color: 'white' }}>DANKE.</span></h2>
+                            <AllSupporter></AllSupporter>
                         </div>
 
                     </Section>

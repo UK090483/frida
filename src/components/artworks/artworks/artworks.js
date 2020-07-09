@@ -9,7 +9,8 @@ import Kreutz from "../../../assets/Menu_Kreutz.svg";
 import SingleArtwork from '../singleArtwork/singleArtwork';
 import Section from '../../container/section';
 import Button from '../../buttons/button';
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby";
+import ArtworsContainer from './artworksContainer';
 
 import style from './artworks.module.css'
 
@@ -151,6 +152,7 @@ export default function Artworks({ postCount = 9, filter = false }) {
                             <Artwork key={artwork.node.id} artwork={artwork} handleLoaded={handleLoaded} handleClick={handleClick} index={index}></Artwork>
                         ))}
                     </div>
+                    {/* <ArtworsContainer artworks={initPosts} handleClick={handleClick}></ArtworsContainer> */}
 
 
 
