@@ -3,19 +3,31 @@ import Section from '../container/section'
 import BigButton from '../buttons/bigButton'
 import TextFlow from './textFlow'
 import style from './footer.module.scss';
+import Supporter from '../Supporter/supporter';
 
 
-export default function Footer() {
+export default function Footer({ title }) {
+
 
     return (
         <div>
-            <Section backgroundColor='lila'>
-                <div style={{ padding: '200px 0' }}>
-                    <h4>Supporter</h4>
-                    <h2>OHNE EUCH WÄRE DIESE ACTION NICHT MÖGLICH. DANKE.</h2>
-                </div>
-            </Section>
-            <TextFlow></TextFlow>
+
+
+            {(title !== 'OurSupporters') &&
+                <React.Fragment>
+                    <Section backgroundColor='lila'>
+                        <div style={{ padding: '200px 0' }}>
+                            <h4>Supporter</h4>
+                            <h2>OHNE EUCH WÄRE DIESE ACTION NICHT MÖGLICH. <span style={{ color: 'white' }}>DANKE.</span></h2>
+                            <Supporter></Supporter>
+                        </div>
+
+                    </Section>
+                    <TextFlow></TextFlow>
+                </React.Fragment>
+
+            }
+
             <Section backgroundColor='red'>
                 <div style={{ padding: '50px 0' }}>
                     <h1 className={'text-white'}>GET IN TOUCH WITH FRIDA</h1>

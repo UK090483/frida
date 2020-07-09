@@ -1,0 +1,26 @@
+@import '../variables.scss';
+
+.root{
+   height:100vh;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: right;
+    margin-left: 7%;
+}
+
+
+@include tablet {
+    
+    .root{
+        background-size: 80%;
+    }
+}
+
+@include mobile {
+    
+    .root{
+        background-size: 90%;
+    }
+}

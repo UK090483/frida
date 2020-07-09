@@ -1,0 +1,33 @@
+@import '../variables.scss';
+
+.root{
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+
+img{
+    margin-left: -38px;
+    max-width: 200px;
+    padding: 40px;
+}
+}
+
+
+
+
+@include tablet {
+   
+
+}
+
+@include mobile {
+
+    .root{
+        img{
+            max-width: 150px;
+        }
+       }
+  
+}

@@ -103,7 +103,7 @@ function getFake(number) {
 
 
 exports.helloMrfaker = functions.https.onRequest((request, response) => {
-    let res = getFake(500);
+    let res = getFake(50);
     response.send(res);
 });
 

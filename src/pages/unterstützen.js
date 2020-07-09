@@ -5,7 +5,8 @@ import SEO from "../components/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
 import Frida from '../components/Frida/frida'
-
+import Supporter from '../components/Supporter/supporter'
+import Kooperation from '../components/Supporter/kooperation'
 
 const IndexPage = () => (
     <Layout title={'OurSupporters'}>
@@ -22,16 +23,18 @@ const IndexPage = () => (
                 <p >
                     Nicht nur Kunst braucht Förderer, auch unsere Kunstaktion braucht Unterstützer, die das Projekt in ihre Netzwerke streuen. Oder die uns unterstützen, indem sie die Produktionskosten für diese Aktion übernehmen.
                 </p>
-                <p>
+                <p style={{ paddingBottom: 50 }}>
                     Schirmherr der Aktion
                     Carsten Brosda, Kultursenator der Stadt Hamburg
                 </p>
                 <p>
-                    Unsere Kooperationspartner
+                    <span style={{ fontWeight: 800 }}>  Unsere Kooperationspartner </span>
                 </p>
+                <Kooperation></Kooperation>
                 <p>
-                    Unsere Supporter
+                    <span style={{ fontWeight: 800 }}> Unsere Supporter </span>
                 </p>
+                <Supporter></Supporter>
 
             </div>
         </Section>

@@ -11,12 +11,14 @@ export default function StartHero() {
 
   const data = useStaticQuery(graphql`
   query startQuery {
-    allImageSharp {
-      edges {
-        node {
-          ... on ImageSharp {
-            resize(width: 150) {
-              src
+    allFakeArtworks {
+      nodes {
+        images {
+          local {
+            childImageSharp {
+              resize(width: 150) {
+                src
+              }
             }
           }
         }
@@ -29,7 +31,8 @@ export default function StartHero() {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
-  const allImages = data.allImageSharp.edges
+
+  const allImages = data.allFakeArtworks.nodes
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -39,15 +42,19 @@ export default function StartHero() {
         nextImages.shift()
       }
 
+      let src = getImageWithlocal()
+
       const NextImage = {
         key: Date.now(),
         zIndex: (getRandomInt(0, 2) > 0) ? 1 : 0,
-        src: allImages[getRandomInt(0, allImages.length)].node.resize.src,
+        src: src,
         left: `${getRandomInt(0, 100)}vw`
       }
-
-      nextImages.push(NextImage)
+      if (src) {
+        nextImages.push(NextImage)
+      }
       setImages(nextImages)
+
 
     }, 500)
     return () => {
@@ -56,6 +63,13 @@ export default function StartHero() {
   }, [images, setImages]);
 
 
+  function getImageWithlocal() {
+
+    let item = allImages[getRandomInt(0, allImages.length)].images
+    if (item.local) {
+      return item.local.childImageSharp.resize.src
+    }
+  }
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min);

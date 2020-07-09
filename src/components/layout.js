@@ -47,7 +47,7 @@ const Layout = ({ children, title, color }) => {
         }}
       >
         <main>{children}</main>
-        <Footer>
+        <Footer title={title}>
 
         </Footer>
 

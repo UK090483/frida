@@ -6,18 +6,20 @@ import SEO from "../components/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
 import Frida from '../components/Frida/frida'
+import TeamImage from '../components/image/heroImage'
 
 
 const IndexPage = () => (
     <Layout title={'us'}>
         <SEO title="Kontakt" />
-        <Hero backgroundColor='lila'>
-
-            <h4>KONTAKT</h4>
-            <h1>Meet the Team</h1>
+        <Section backgroundColor='lila' type={'full'}>
 
 
-        </Hero>
+
+            <TeamImage></TeamImage>
+
+
+        </Section>
         <Section type={'text'} backgroundColor='lila'>
 
             <p style={{ paddingTop: 100, paddingBottom: 100 }}>

@@ -51,12 +51,25 @@ export default function () {
         document.addEventListener('mouseup', (e) => {
             setMouseDown(false)
         })
+        document.addEventListener('mouseleave', (e) => {
+
+            setMouseIn(true)
+        })
+        document.addEventListener('mouseenter', (e) => {
+
+            setMouseIn(false)
+        })
 
     }, []);
 
     const setMouseDown = (direction) => {
         if (MouseRef.current) {
             direction ? MouseRef.current.classList.add(style.mousedown) : MouseRef.current.classList.remove(style.mousedown)
+        }
+    }
+    const setMouseIn = (direction) => {
+        if (MouseRef.current) {
+            direction ? MouseRef.current.classList.add(style.mouseOut) : MouseRef.current.classList.remove(style.mouseOut)
         }
     }
 

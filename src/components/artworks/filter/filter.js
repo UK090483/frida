@@ -95,7 +95,6 @@ export default function Filter({ artworks, setFElements }) {
             return res
         })
 
-        console.log(res)
         setFElements(res)
     }
 

@@ -58,8 +58,9 @@ export default function Artworks({ postCount = 9, filter = false }) {
     const [open, setOpen] = useState(false);
     const [artwork, setArtwork] = useState(null);
     const [filert, setFElements] = useState(null);
-    const initPosts = filert ? filert.slice(0, postCount) : [...adata.allFakeArtworks.edges].slice(0, postCount);
 
+
+    const initPosts = filert ? filert.slice(0, postCount) : [...adata.allFakeArtworks.edges].slice(0, postCount);
     const bodyRef = useRef()
 
     const gridRef = useRef();
@@ -86,7 +87,28 @@ export default function Artworks({ postCount = 9, filter = false }) {
         }
     }, [gridRef, filert]);
 
+    useEffect(() => {
 
+        window.addEventListener('scroll', handleScroll);
+        function handleScroll() {
+            if (gridRef.current) {
+                const clientRef = gridRef.current.getBoundingClientRect();
+
+                if (clientRef.bottom - window.innerHeight < 400) {
+                    addItems()
+                }
+
+            }
+        }
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+
+    const addItems = () => {
+        console.log('add items')
+    }
 
     const handleClick = (artwork) => {
         setArtwork(artwork)

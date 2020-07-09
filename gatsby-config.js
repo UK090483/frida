@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `Frida`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    description: ``,
+    author: ``,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -14,28 +14,6 @@ module.exports = {
       },
     },
 
-    // {
-    //   resolve: "gatsby-source-custom-api",
-    //   options: {
-    //     url: 'https://frida.konradullrich.com/wp-json/frida/v1/artworks/1/?filter={"künstler":null,"medium":null,"stil":null,"price":null}',
-    //     imageKeys: ["images"],
-    //     rootKey: "artworks",
-    //     schemas: {
-    //       artworks: `
-    //         artist_name: String
-    //       `,
-    //       images: `
-    //       url: String
-
-    //   `,
-    //       image: `
-    //        large: String
-    //        srcset: String
-    //        original: String
-    //       `
-    //     }
-    //   }
-    // },
     {
       resolve: "gatsby-source-custom-api",
       options: {
@@ -120,7 +98,7 @@ module.exports = {
         background_color: `#f5c5d9`,
         theme_color: `#f5c5d9`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/frida-icon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
