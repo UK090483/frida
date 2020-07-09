@@ -1,0 +1,64 @@
+@import '../variables.scss';
+
+.root{
+    position: absolute;
+    width: 100vw; height: 100vh;
+    top: 0; 
+    left: 0;
+    padding: 200;
+    background-color: black;
+    
+}
+.linksRoot{
+   
+    width: 100%;
+    padding-top: 30vh;
+
+    a{
+        color: white;
+        font-size: 3.9rem;
+        line-height: 5.2rem;
+        text-decoration: none;
+        font-weight: 800; 
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-color: white;
+        -webkit-text-stroke-width: 0.02em;
+
+        &.active{
+            text-decoration: underline;
+            text-decoration-color: $white;
+            
+        }
+    }
+    a:hover{ 
+        -webkit-text-fill-color: white;
+        -webkit-text-stroke-color: white;
+        -webkit-text-stroke-width: 0.02em;
+    }
+}
+
+.icon{
+  pointer-events: all;
+  transform:translateX(10px) translateY(5px);
+}
+
+
+
+@include tablet {
+    .root{
+       
+     }
+     
+}
+
+@include mobile {
+    .root{
+        
+     }
+     .linksRoot{
+         a{
+            font-size: 2rem;
+            line-height: 3rem;
+         }
+    }
+}
