@@ -22,6 +22,7 @@ export default function () {
 
                 UI.setMouseStyle(null)
             })
+            elem.style.cursor = 'none';
         })
         document.querySelectorAll('[data-color=red]').forEach((elem) => {
             elem.addEventListener('mouseenter', () => {
@@ -59,6 +60,8 @@ export default function () {
 
             setMouseIn(false)
         })
+
+        document.querySelector('body').style.cursor = 'none'
 
     }, []);
 

@@ -19,7 +19,7 @@ export default function input({ label = 'no label', options, open, setOpen, setF
 
     return (
         <React.Fragment>
-            <div className={`${style.root} ${open ? style.active : ''}`} >
+            <a className={`${style.root} ${open ? style.active : ''}`} >
                 <div onClick={() => { open ? setOpen(false) : setOpen(label) }} className={style.label}>{label} {selfActive ? ' : ' + selfActive : ''}</div>
                 <Flip top cascade when={open} unmountOnExit={true} mountOnEnter={true} duration={1000}>
                     <div className={style.options} >
@@ -29,7 +29,7 @@ export default function input({ label = 'no label', options, open, setOpen, setF
                         ))}
                     </div>
                 </Flip>
-            </div >
+            </a>
         </React.Fragment>
     )
 

@@ -6,6 +6,7 @@ import Stoerer from "../../assets/Störer_Participate.svg";
 import style from './startHero.module.scss';
 import Button from '../buttons/button';
 import { Link } from "gatsby";
+import Section from '../container/section';
 
 export default function StartHero() {
 
@@ -79,12 +80,9 @@ export default function StartHero() {
 
   return (
 
-
     <React.Fragment>
 
       <div className={style.root} >
-
-
 
         <div className={style.text}>
           <h4 >500 WERKE, 200 AUSSTELLUNGSORTE, 1 HASHTAG.</h4>
@@ -107,7 +105,10 @@ export default function StartHero() {
           <Stoerer></Stoerer>
         </Link>
       </div>
-      <div className={style.stoererSpacer}></div>
+
+      <Section>
+        <div className={style.stoererSpacer}></div>
+      </Section>
 
     </React.Fragment>
 

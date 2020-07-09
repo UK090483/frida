@@ -29,7 +29,7 @@ const Ausstellung = () => (
                 </p>
             </div>
         </Section>
-        <Artworks filter={true}></Artworks>
+        <Artworks filter={true} infinite={true}></Artworks>
     </Layout>
 )
 
