@@ -14,18 +14,18 @@ export default function Artwork({ artwork, handleClick, handleLoaded, handleKeyP
 
 
 
-    const { images, availability, artworkName, artistName, price } = artwork.node
+    const { images, availability, artworkName, artistName, price, artistAnzeigeName } = artwork.node
+
 
     const srcSet = images.local ? images.local.childImageSharp.fluid.srcSet : null
-    const src = images.url;
+    const src = images.local ? images.local.childImageSharp.fluid.src : images.url;
 
     const makeVisilbe = () => {
 
         handleLoaded()
 
-        setTimeout(() => {
-            setloaded(true);
-        }, 500);
+        setloaded(true);
+
 
     }
 
@@ -36,8 +36,8 @@ export default function Artwork({ artwork, handleClick, handleLoaded, handleKeyP
         <React.Fragment>
 
             {images && <a className={`${style.root}  ${loaded ? style.loaded : ''}`} onClick={() => handleClick(artwork)} onMouseEnter={() => { Ui.setMouseStyle('link') }} onMouseLeave={() => { Ui.setMouseStyle(null) }} >
-                <img alt={`artwork ${artworkName} from ${artistName}`} onLoad={() => { makeVisilbe() }} srcSet={srcSet} src={src} ></img>
-                <h3 className={style.artistName} ><Frida text={artistName} textColor='#f5c5d9'></Frida></h3>
+                <img className={style.image} alt={`artwork ${artworkName} from ${artistName}`} onLoad={() => { makeVisilbe() }} src={src} ></img>
+                <h3 className={style.artistName} ><Frida text={artistAnzeigeName} textColor='#f5c5d9'></Frida></h3>
                 <div className={style.infoRoot}>
                     <div className={`${style.dot} ${availability === 'sold' ? style.dotSold : ''}`}></div>
                     <div className={style.artworkName}> {artworkName}</div>

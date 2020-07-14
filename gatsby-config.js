@@ -17,9 +17,9 @@ module.exports = {
     {
       resolve: "gatsby-source-custom-api",
       options: {
-        url: 'https://us-central1-frida-f2f3c.cloudfunctions.net/helloMrfaker',
+        url: 'https://us-central1-frida-f2f3c.cloudfunctions.net/helloRealData',
         imageKeys: ["images"],
-        rootKey: "fakeArtworks",
+        rootKey: "Artworks",
         schemas: {
           artworks: `
           artistName: String
@@ -45,21 +45,29 @@ module.exports = {
         }
       }
     },
-    {
-      resolve: "gatsby-plugin-firebase",
-      options: {
-        credentials: {
-          apiKey: "AIzaSyAAYD757BUfXf0TCdeM3C4Jx88a0LynuMk",
-          authDomain: "frida-f2f3c.firebaseapp.com",
-          databaseURL: "https://frida-f2f3c.firebaseio.com",
-          projectId: "frida-f2f3c",
-          storageBucket: "frida-f2f3c.appspot.com",
-          messagingSenderId: "1058184616168",
-          appId: "1:1058184616168:web:4be69e0c2f682df866915d",
-          measurementId: "G-SEDC77C9YL"
-        }
-      }
-    },
+    // {
+    //   resolve: "gatsby-plugin-firebase",
+    //   options: {
+    //     credentials: {
+    //       apiKey: "AIzaSyAAYD757BUfXf0TCdeM3C4Jx88a0LynuMk",
+    //       authDomain: "frida-f2f3c.firebaseapp.com",
+    //       databaseURL: "https://frida-f2f3c.firebaseio.com",
+    //       projectId: "frida-f2f3c",
+    //       storageBucket: "frida-f2f3c.appspot.com",
+    //       messagingSenderId: "1058184616168",
+    //       appId: "1:1058184616168:web:4be69e0c2f682df866915d",
+    //       measurementId: "G-SEDC77C9YL"
+    //     },
+    //     features: {
+    //       auth: true,
+    //       database: true,
+    //       firestore: true,
+    //       storage: true,
+    //       messaging: true,
+    //       functions: true,
+    //     },
+    //   }
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

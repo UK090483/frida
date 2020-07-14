@@ -7,6 +7,7 @@ import Section from "../components/container/section"
 import Frida from '../components/Frida/frida'
 import Supporter from '../components/Supporter/supporter'
 import Kooperation from '../components/Supporter/kooperation'
+import Button from '../components/buttons/button'
 
 const IndexPage = () => (
     <Layout title={'OurSupporters'}>
@@ -27,12 +28,14 @@ const IndexPage = () => (
                     Schirmherr der Aktion
                     Carsten Brosda, Kultursenator der Stadt Hamburg
                 </p>
+
+                <div style={{ padding: '60px 0' }}><Button label={'Jetzt Unterstützen'} ></Button></div>
                 <p>
-                    <span style={{ fontWeight: 800 }}>  Unsere Kooperationspartner </span>
+                    <span style={{ fontWeight: 800 }}>  Unsere Kooperationspartner*innen: </span>
                 </p>
                 <Kooperation></Kooperation>
                 <p>
-                    <span style={{ fontWeight: 800 }}> Unsere Supporter </span>
+                    <span style={{ fontWeight: 800 }}> Unsere Supporter*innen </span>
                 </p>
                 <Supporter></Supporter>
 

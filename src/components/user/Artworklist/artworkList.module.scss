@@ -1,0 +1,22 @@
+.root{
+   padding-bottom: 200px;
+
+}
+
+.itemRoot{
+    padding: 30px;
+    max-width: 300px;
+}
+
+.active{
+    display: flex;
+    align-items: center;
+    border: red solid 1px;
+   
+}
+.noActive{
+    display: flex;
+    align-items: center;
+    border: blue solid 1px;
+    min-height: 300px;
+}

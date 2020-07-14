@@ -12,21 +12,23 @@ import style from './nav.module.scss';
 
 export default function Nav() {
     const [open, setOpen] = useState(false);
+    const [counter, setCounter] = useState(false);
 
-    console.log(open)
+
+
 
     return (
         <div>
-            <div style={{ width: 40, transform: 'translateX(10px) translateY(5px)', pointerEvents: 'all' }} onClick={() => setOpen(!open)}><Burger></Burger></div>
+            <div style={{ width: 40, transform: 'translateX(10px) translateY(5px)', pointerEvents: 'all' }} onClick={() => { setOpen(!open); setCounter(true) }}><Burger></Burger></div>
 
 
-            <div className={`${style.root} ${open ? style.active : ''}`} style={{ pointerEvents: open ? 'auto' : 'none' }}>
+            <div className={`${style.root} ${open ? style.active : (counter && style.onClose)}`} style={{ pointerEvents: open ? 'auto' : 'none' }}>
                 <div className={style.aniCircle1} ></div>
                 <div className={style.aniCircle2} ></div>
 
-                <Header color='#F5C5D9'>
+                {open && <Header color='#F5C5D9'>
                     <div></div> <a className={style.icon} style={{ width: 40 }} onClick={() => setOpen(!open)}><Kreutz></Kreutz></a>
-                </Header>
+                </Header>}
 
                 <Fade right cascade when={open}>
                     <div className={style.linksRoot}>

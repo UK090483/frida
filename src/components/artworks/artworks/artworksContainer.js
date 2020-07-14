@@ -17,7 +17,15 @@ export default function artworks({ artworks, handleClick, infinite = false }) {
 
     useEffect(() => {
 
-        setGrid()
+        // setInterval(() => {
+
+        //     if (mgrid.current) {
+        //         console.log('loaded')
+        //         mgrid.current.positionItems();
+        //     }
+        // }, 2000)
+
+        setGrid(artworks.length)
     }, [artworks]);
 
 
@@ -71,6 +79,7 @@ export default function artworks({ artworks, handleClick, infinite = false }) {
     const handleLoaded = () => {
 
         if (mgrid.current) {
+
             mgrid.current.positionItems();
         }
     }

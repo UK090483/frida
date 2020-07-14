@@ -8,7 +8,7 @@ export default function BigButtons({ label, link }) {
     return (
 
         <div className={style.root} >
-            <BigButton label={'instagram'} link={'https://www.instagram.com/schwan_communications/'}></BigButton>
+            <BigButton label={'Instagram'} link={'https://www.instagram.com/schwan_communications/'}></BigButton>
             <BigButton label={'Facebook'} link={'https://www.facebook.com/schwancomm/'}></BigButton>
         </div>
 

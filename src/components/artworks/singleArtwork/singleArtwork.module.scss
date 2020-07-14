@@ -71,6 +71,12 @@ overflow: auto;
     border-radius: 50px;
     font-size: 1.4em;
     font-weight: 900;
+    text-decoration: none;
+    border: $red solid 2px;
+}
+.buyButton:hover{
+    background-color: $white;
+    color:$red;
 }
 
 

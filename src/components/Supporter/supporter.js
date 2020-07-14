@@ -39,7 +39,7 @@ const Image = () => {
     <div className={style.root}>
       <img srcSet={data.allFile.edges[0].node.childImageSharp.fluid.srcSet}></img>
       <img srcSet={data.allFile.edges[1].node.childImageSharp.fluid.srcSet}></img>
-      <img srcSet={data.allFile.edges[2].node.childImageSharp.fluid.srcSet}></img>
+
     </div>
 
   )

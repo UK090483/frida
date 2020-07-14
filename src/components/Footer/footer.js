@@ -18,7 +18,7 @@ export default function Footer({ title }) {
                     <Section backgroundColor='lila'>
                         <div style={{ padding: '200px 0' }}>
                             <h4>SUPPORTER</h4>
-                            <h2>Ohne Euch wäre diese Action nicht möglich. <span style={{ color: 'white' }}>DANKE.</span></h2>
+                            <h2>Ohne Euch wäre diese Aktion nicht möglich. <span style={{ color: 'white' }}>DANKE.</span></h2>
                             <AllSupporter></AllSupporter>
                         </div>
 

@@ -9,7 +9,7 @@ import Embet from '../components/embet/embet'
 
 
 const IndexPage = () => (
-    <Layout title={'NewCustomers'}>
+    <Layout title={'MeetCollectors'}>
         <SEO title="Teilnehmen" />
         <Hero backgroundColor='red'>
 
@@ -20,9 +20,10 @@ const IndexPage = () => (
         </Hero>
         <Section type={'text'} backgroundColor='red'>
             <p style={{ paddingTop: 100, paddingBottom: 100 }}>
-                Du hast ein abgeschlossenes Kunststudium oder arbeitest seit mindestens
-                drei Jahren als Kunstschaffende*r oder hattest schon mindestens zwei Ausstellungen?
-                Dann bewirb dich mit den Werken, die Du bei MeetFrida zeigen willst.
+                Du hast ein abgeschlossenes Kunststudium? Oder Du arbeitest seit
+                mindestens drei Jahren als Kunstschaffende*r?  Oder Du hattest schon
+                mindestens zwei Ausstellungen? Dann bewirb dich bis zum 1. August
+                2020 mit den Werken, die Du bei #MeetFrida zeigen willst.
             </p>
         </Section>
 

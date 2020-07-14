@@ -34,6 +34,12 @@ div{
     max-height: 400px;
     overflow: auto;
     margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: 400;
+    p{  
+        font-weight: 400;
+        font-size: 1rem; 
+    }
 }
 
 @include tablet {

@@ -12,7 +12,7 @@ export default function StartHero() {
 
   const data = useStaticQuery(graphql`
   query startQuery {
-    allFakeArtworks {
+    allArtworks {
       nodes {
         images {
           local {
@@ -33,7 +33,7 @@ export default function StartHero() {
   }
 
 
-  const allImages = data.allFakeArtworks.nodes
+  const allImages = data.allArtworks.nodes
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export default function StartHero() {
           <h4 >500 WERKE, 200 AUSSTELLUNGSORTE, 1 HASHTAG.</h4>
           <h1 ><Frida></Frida>-Deutschlands
         größte Kunstschau digital und analog</h1>
-          <Button label={'mehr Erfahren'} link={'/unterstützen/'}></Button>
+          <Button label={'Mehr Erfahren'} link={'/unterstützen/'}></Button>
         </div>
 
 

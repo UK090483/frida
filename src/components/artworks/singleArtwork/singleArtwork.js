@@ -5,7 +5,7 @@ import FridaImage from './fridaImage';
 
 
 export default function Artworks({ artwork }) {
-    const { images, availability, artworkName, price, artistDescription, artworkDescription, height, instagramLink, medium, stil, width } = artwork.node
+    const { images, availability, artworkName, price, artistDescription, artworkDescription, height, artworkInstagramLink, medium, stil, width } = artwork.node
 
 
     return (
@@ -26,7 +26,7 @@ export default function Artworks({ artwork }) {
                 </div>
                 <div className={style.props}> {`${medium}, ${width}*${height} ${stil}`} </div>
                 <div className={style.price}>{price}€</div>
-                <div className={style.buyButton}>Kaufen</div>
+                <a href={artworkInstagramLink} className={style.buyButton}>Kaufen</a>
 
             </div>
         </div>
