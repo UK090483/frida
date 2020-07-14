@@ -169,3 +169,147 @@ exports.helloRealData = functions.https.onRequest(async (request, response) => {
     }
 });
 
+exports.getArtworks = functions.https.onRequest(async (request, response) => {
+
+    const onlineArtworksArray = await admin.firestore().collection('einstellungen').doc('options').get()
+    let ActiveArray = [];
+    let artists = [];
+    let res = [];
+
+    if (!onlineArtworksArray.exists) {
+        console.log('No such document! onlineArtworksArray');
+        response.send(['nono onlineArtworksArray']);
+    } else {
+        console.log('Document data:', onlineArtworksArray.data());
+        ActiveArray = onlineArtworksArray.data().ArtworksActive
+
+    }
+
+    const fetchedArtists = await admin.firestore().collection('users').get()
+
+    if (fetchedArtists.empty) {
+        console.log('No such document! fetchedArtists');
+        response.send(['nono fetchedArtists']);
+    } else {
+
+        fetchedArtists.forEach((doc) => {
+            console.log(doc.id, ' => ', doc.data());
+            artists.push({ ...doc.data(), id: doc.id })
+        });
+
+    }
+
+
+    const onlineArtworks = await admin.firestore().collection('artworks').where('online', '==', true).get()
+
+
+    if (onlineArtworks.empty) {
+        console.log('No such document! onlineArtworks');
+        response.send(['nono onlineArtworks']);
+    } else {
+
+
+        onlineArtworks.forEach((doc) => {
+
+            let item = doc.data();
+            let findArtist = artists.find(a => {
+                return a.id === item.user_id
+            })
+
+            const safe = {
+                artistDescription: findArtist ? findArtist.description : 'artist not found',
+                artistEmail: findArtist ? findArtist.email : 'artist not found',
+                artistName: findArtist ? findArtist.name : 'artist not found',
+                artistInstagramLink: findArtist ? findArtist.instagramLink : 'artist not found',
+                artistAnzeigeName: findArtist ? findArtist.anzeigeName || '' : 'artist not found',
+                artworkDescription: item.description,
+                artworkName: item.title,
+                availability: item.availability,
+                height: item.height,
+                artworkInstagramLink: item.instagramLink,
+                medium: item.medium,
+                price: item.price,
+                stil: item.stil,
+                width: item.width,
+                images: { url: `https://us-central1-frida-f2f3c.cloudfunctions.net/getImage/${doc.id}/picture.jpg` }
+            }
+
+            res.push(safe)
+        });
+        response.send(res);
+    }
+});
+
+exports.helloRealData = functions.https.onRequest(async (request, response) => {
+
+    const onlineArtworksArray = await admin.firestore().collection('einstellungen').doc('options').get()
+    let ActiveArray = [];
+    let artists = [];
+    let res = [];
+
+    if (!onlineArtworksArray.exists) {
+        console.log('No such document! onlineArtworksArray');
+        response.send(['nono onlineArtworksArray']);
+    } else {
+        console.log('Document data:', onlineArtworksArray.data());
+        ActiveArray = onlineArtworksArray.data().ArtworksActive
+
+    }
+
+    const fetchedArtists = await admin.firestore().collection('users').get()
+
+    if (fetchedArtists.empty) {
+        console.log('No such document! fetchedArtists');
+        response.send(['nono fetchedArtists']);
+    } else {
+
+        fetchedArtists.forEach((doc) => {
+            console.log(doc.id, ' => ', doc.data());
+            artists.push({ ...doc.data(), id: doc.id })
+        });
+
+    }
+
+
+    const onlineArtworks = await admin.firestore().collection('artworks').where('__name__', 'in', ActiveArray).get()
+
+
+    if (onlineArtworks.empty) {
+        console.log('No such document! onlineArtworks');
+        response.send(['nono onlineArtworks']);
+    } else {
+
+
+        onlineArtworks.forEach((doc) => {
+
+            let item = doc.data();
+            let findArtist = artists.find(a => {
+                return a.id === item.user_id
+            })
+
+            const safe = {
+                artistDescription: findArtist ? findArtist.description : 'artist not found',
+                artistEmail: findArtist ? findArtist.email : 'artist not found',
+                artistName: findArtist ? findArtist.name : 'artist not found',
+                artistInstagramLink: findArtist ? findArtist.instagramLink : 'artist not found',
+                artistAnzeigeName: findArtist ? findArtist.anzeigeName || '' : 'artist not found',
+                artworkDescription: item.description,
+                artworkName: item.title,
+                availability: item.availability,
+                height: item.height,
+                artworkInstagramLink: item.instagramLink,
+                medium: item.medium,
+                price: item.price,
+                stil: item.stil,
+                width: item.width,
+                images: { url: `https://us-central1-frida-f2f3c.cloudfunctions.net/getImage/${doc.id}/picture.jpg` }
+            }
+
+            res.push(safe)
+        });
+        response.send(res);
+    }
+});
+
+
+

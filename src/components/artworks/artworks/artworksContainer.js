@@ -12,29 +12,14 @@ export default function artworks({ artworks, handleClick, infinite = false }) {
     const scrollRef = useRef(0);
     const [postCount, setPostCount] = useState(9);
 
-
-
-
     useEffect(() => {
 
-        // setInterval(() => {
-
-        //     if (mgrid.current) {
-        //         console.log('loaded')
-        //         mgrid.current.positionItems();
-        //     }
-        // }, 2000)
-
         setGrid(artworks.length)
+
     }, [artworks]);
-
-
-
 
     const setGrid = (number) => {
         if (gridRef.current && artworks.length > 0) {
-
-
 
             mgrid.current = new MagicGrid({
                 container: '#frida-grid',
@@ -59,7 +44,6 @@ export default function artworks({ artworks, handleClick, infinite = false }) {
                     const clientRef = gridRef.current.getBoundingClientRect();
 
                     if ((clientRef.bottom - window.innerHeight) < 1000) {
-
 
                         loadItems()
                         scrollRef.current = true
@@ -96,7 +80,7 @@ export default function artworks({ artworks, handleClick, infinite = false }) {
     const loadItems = () => {
 
         if ((postCount < artworks.length) && !scrollRef.current) {
-            console.log('reload')
+
             const ADD = 9
             const summand = (postCount + ADD) > artworks.length ? artworks.length - postCount : postCount + ADD
             const nextPostcount = postCount + summand;

@@ -89,7 +89,7 @@ export default function Filter({ artworks, setFElements }) {
             if (f.Preis && res) {
                 let range = f.Preis.split('-')
 
-                res = (artwork.price > parseInt(range[0])) && (artwork.price < parseInt(range[1]))
+                res = (artwork.price >= parseInt(range[0])) && (artwork.price <= parseInt(range[1]))
 
             }
             return res

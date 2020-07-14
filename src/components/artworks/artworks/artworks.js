@@ -58,28 +58,18 @@ export default function Artworks({ postCount = 9, filter = false, infinite = fal
 
   const artworks = adata.allArtworks.edges
 
-
-
   const [open, setOpen] = useState(false);
   const [artwork, setArtwork] = useState(null);
   const [filert, setFElements] = useState(null);
 
 
-
   const bodyRef = useRef()
-
-
   const mgrid = useRef();
 
   useEffect(() => {
     bodyRef.current = document.querySelector('html')
 
   }, []);
-
-
-
-
-
 
   const handleClick = (artwork) => {
     setArtwork(artwork)
@@ -92,10 +82,6 @@ export default function Artworks({ postCount = 9, filter = false, infinite = fal
     setOpen(false)
     bodyRef.current.style.overflow = 'auto'
   }
-
-
-
-
 
   return (
     <React.Fragment>
@@ -121,7 +107,7 @@ export default function Artworks({ postCount = 9, filter = false, infinite = fal
               <Artwork key={artwork.node.id} artwork={artwork} handleLoaded={handleLoaded} handleClick={handleClick} index={index}></Artwork>
             ))}
           </div> */}
-          <ArtworsContainer artworks={adata.allArtworks.edges} handleClick={handleClick} infinite={infinite}></ArtworsContainer>
+          <ArtworsContainer artworks={filert || artworks} handleClick={handleClick} infinite={infinite}></ArtworsContainer>
 
 
 

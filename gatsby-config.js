@@ -17,7 +17,7 @@ module.exports = {
     {
       resolve: "gatsby-source-custom-api",
       options: {
-        url: 'https://us-central1-frida-f2f3c.cloudfunctions.net/helloRealData',
+        url: 'https://us-central1-frida-f2f3c.cloudfunctions.net/getArtworks',
         imageKeys: ["images"],
         rootKey: "Artworks",
         schemas: {
