@@ -10,7 +10,7 @@ import StartHero from '../components/StartHero/startHero'
 
 
 const IndexPage = () => (
-  <Layout title={'frida'}>
+  <Layout title={'Frida'}>
     <SEO title="Home" />
 
     <StartHero></StartHero>
