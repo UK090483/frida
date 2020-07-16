@@ -39,6 +39,7 @@ export default function Artworks({ postCount = 9, filter = false, infinite = fal
           medium {
             title
           }
+          avalibility
           name
           price
           width
@@ -70,12 +71,12 @@ export default function Artworks({ postCount = 9, filter = false, infinite = fal
         artistDescription: _artwork.artist[0].beschreibung,
         artworkName: _artwork.name,
         artworkDescription: _artwork.beschreibung,
-        availability: 'availabil',
+        availability: _artwork.avalibility === true ? 'sold' : 'availebil',
         images: {
           src: _artwork.image.asset.fluid.src,
           srcSet: _artwork.image.asset.fluid.srcSet,
         },
-        height: _artwork.hight,
+        height: _artwork.height,
         width: _artwork.width,
         price: _artwork.price,
         stil: _artwork.stil[0].title,

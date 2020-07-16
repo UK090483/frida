@@ -31,6 +31,11 @@ export default {
             validation: Rule => Rule.required()
         },
         {
+            title: 'Verkauft',
+            name: 'avalibility',
+            type: 'boolean'
+        },
+        {
             name: 'beschreibung',
             type: 'text',
             title: 'Beschreibung',
