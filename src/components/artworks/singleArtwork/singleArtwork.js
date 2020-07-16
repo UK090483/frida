@@ -5,7 +5,7 @@ import FridaImage from './fridaImage';
 
 
 export default function Artworks({ artwork }) {
-    const { images, availability, artworkName, price, artistDescription, artworkDescription, height, artworkInstagramLink, medium, stil, width } = artwork.node
+    const { images, availability, artworkName, price, artistDescription, artworkDescription, height, artworkInstagramLink, medium, stil, width } = artwork
 
 
     return (

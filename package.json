@@ -23,6 +23,7 @@
     "gatsby-plugin-sharp": "^2.6.14",
     "gatsby-source-custom-api": "^2.1.4",
     "gatsby-source-filesystem": "^2.3.14",
+    "gatsby-source-sanity": "^6.0.2",
     "gatsby-source-wordpress": "^3.3.19",
     "gatsby-transformer-sharp": "^2.5.7",
     "magic-grid": "^3.2.4",

@@ -11,15 +11,13 @@ import Section from '../container/section';
 export default function StartHero() {
 
   const data = useStaticQuery(graphql`
-  query startQuery {
-    allArtworks {
+  query startHeroQuery {
+    allSanityArtwork {
       nodes {
-        images {
-          local {
-            childImageSharp {
-              resize(width: 150) {
-                src
-              }
+        image {
+          asset {
+            fluid(maxWidth: 150) {
+              src
             }
           }
         }
@@ -28,13 +26,15 @@ export default function StartHero() {
   }
   `)
 
+
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
 
-  const allImages = data.allArtworks.nodes
+  const allImages = data.allSanityArtwork.nodes
   const [images, setImages] = useState([]);
+
 
   useEffect(() => {
     const int = setTimeout(() => {
@@ -63,17 +63,10 @@ export default function StartHero() {
     };
   }, [images, setImages]);
 
-
   function getImageWithlocal() {
 
-    let item = allImages[getRandomInt(0, allImages.length)].images
-    if (item.local) {
-      return item.local.childImageSharp.resize.src
-    }
-  }
-
-  function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
+    let item = allImages[getRandomInt(0, allImages.length)].image
+    return item.asset.fluid.src
   }
 
 
@@ -91,9 +84,7 @@ export default function StartHero() {
           <Button label={'Mehr Erfahren'} link={'/unterstützen/'}></Button>
         </div>
 
-
         {images.map((image) => {
-
           return <img className={style.image} style={{ left: image.left, zIndex: image.zIndex }} key={image.key} src={image.src} ></img>
         })}
 

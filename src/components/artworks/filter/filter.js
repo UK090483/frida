@@ -28,7 +28,7 @@ export default function Filter({ artworks, setFElements }) {
         const MediumOptions = []
 
         artworks.forEach(artwork => {
-            const { artistName, stil, medium } = artwork.node;
+            const { artistName, stil, medium } = artwork;
 
             if (!artists.includes(artistName)) {
                 artists.push(artistName)
@@ -72,7 +72,7 @@ export default function Filter({ artworks, setFElements }) {
 
 
         let res = artworks.filter((e) => {
-            const artwork = e.node
+            const artwork = e
             let res = true;
             if (f.Artist) {
 

@@ -13,6 +13,18 @@ module.exports = {
         imagePath: 'path.to.image',
       },
     },
+    {
+      resolve: 'gatsby-source-sanity',
+      options: {
+        projectId: 'vn5k8b7t',
+        dataset: 'production',
+        // To enable preview of drafts, copy .env-example into .env,
+        // and add a token with read permissions
+        // token: process.env.SANITY_TOKEN,
+        graphqlTag: 'default',
+
+      }
+    },
 
     {
       resolve: "gatsby-source-custom-api",

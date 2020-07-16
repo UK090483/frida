@@ -1,11 +1,8 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import Artwork from '../artwork/artwork';
 import MagicGrid from "magic-grid";
-import MasonryLayout from 'react-masonry-layout';
 
 export default function artworks({ artworks, handleClick, infinite = false }) {
-
 
     const gridRef = useRef();
     const mgrid = useRef();
@@ -59,7 +56,6 @@ export default function artworks({ artworks, handleClick, infinite = false }) {
 
     }, [postCount]);
 
-
     const handleLoaded = () => {
 
         if (mgrid.current) {
@@ -72,7 +68,7 @@ export default function artworks({ artworks, handleClick, infinite = false }) {
 
         const initPosts = [...artworks].slice(0, postCount);
         return initPosts.map((artwork, index) => (
-            <Artwork key={artwork.node.id} artwork={artwork} handleLoaded={handleLoaded} handleClick={handleClick} index={index}></Artwork>
+            <Artwork key={index} artwork={artwork} handleLoaded={handleLoaded} handleClick={handleClick} index={index}></Artwork>
         ))
 
     }
@@ -89,13 +85,9 @@ export default function artworks({ artworks, handleClick, infinite = false }) {
 
         }
 
-
     }
 
-
-
     return (
-
 
         <React.Fragment>
             <div ref={gridRef} id='frida-grid'>
@@ -103,7 +95,6 @@ export default function artworks({ artworks, handleClick, infinite = false }) {
             </div>
 
         </React.Fragment>
-
     )
 
 }

@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Artwork from '../artwork/artwork';
+
 
 import Filter from '../filter/filter';
-import MagicGrid from "magic-grid";
 import Slide from 'react-reveal/Slide';
 import Header from '../../header/header';
 import Kreutz from "../../../assets/Menu_Kreutz.svg";
@@ -13,58 +12,84 @@ import { useStaticQuery, graphql } from "gatsby";
 import ArtworsContainer from './artworksContainer';
 import Frida from '../../Frida/frida'
 
-import style from './artworks.module.css'
+import style from './artworks.module.scss'
 
 export default function Artworks({ postCount = 9, filter = false, infinite = false }) {
 
-
-  const adata = useStaticQuery(graphql`
-     query MyQuery {
-        allArtworks {
-          edges {
-            node {
-              artistAnzeigeName
-              artistDescription
-              artistEmail
-              artistInstagramLink
-              artistName
-              artworkDescription
-              artworkInstagramLink
-              artworkName
-              availability
-              height
-              id
-              medium
-              price
-              stil
-              width
-              images {
-                url
-                local {
-                  childImageSharp {
-                    fluid(maxWidth: 600) {
-                      srcSet
-                      src
-                    }
-                  }
-                }
+  const data = useStaticQuery(graphql`
+  query MyQuery {
+    allSanityArtwork {
+      edges {
+        node {
+          image {
+            asset {
+              fluid(maxWidth: 600) {
+                src
+                srcSet
               }
             }
           }
+          artist {
+            anzeigeName
+            beschreibung
+            email
+            name
+            webLink
+          }
+          medium {
+            title
+          }
+          name
+          price
+          width
+          height
+          stil {
+            title
+          }
+          beschreibung
         }
       }
-      
+    }
+  }
+  
   `)
-
-  const artworks = adata.allArtworks.edges
 
   const [open, setOpen] = useState(false);
   const [artwork, setArtwork] = useState(null);
   const [filert, setFElements] = useState(null);
 
+  function getArtworks() {
+    let a = []
+    data.allSanityArtwork.edges.forEach((artwork) => {
 
+      let _artwork = artwork.node
+
+      let res = {
+        artistName: _artwork.artist[0].anzeigeName,
+        artistEmail: _artwork.artist[0].email,
+        artistDescription: _artwork.artist[0].beschreibung,
+        artworkName: _artwork.name,
+        artworkDescription: _artwork.beschreibung,
+        availability: 'availabil',
+        images: {
+          src: _artwork.image.asset.fluid.src,
+          srcSet: _artwork.image.asset.fluid.srcSet,
+        },
+        height: _artwork.hight,
+        width: _artwork.width,
+        price: _artwork.price,
+        stil: _artwork.stil[0].title,
+        medium: _artwork.medium[0].title,
+        instagramLink: _artwork.webLink
+      }
+      a.push(res)
+    })
+    return a
+  }
+
+  const artworks = getArtworks();
   const bodyRef = useRef()
-  const mgrid = useRef();
+
 
   useEffect(() => {
     bodyRef.current = document.querySelector('html')
@@ -93,7 +118,7 @@ export default function Artworks({ postCount = 9, filter = false, infinite = fal
         <div className={style.root}>
           <Slide mountOnEnter={true} unmountOnExit={true} right when={open} duration={500}>
             <div className={style.singleRoot} style={{ pointerEvents: open ? 'auto' : 'none' }}>
-              <Header title={artwork ? artwork.node.artistAnzeigeName : ''} color='lila' link={false}>
+              <Header title={artwork ? artwork.artistName : ''} color='lila' link={false}>
                 <a style={{ width: 40, pointerEvents: 'all' }} onClick={handleCloseClick}><Kreutz></Kreutz></a>
               </Header>
               {artwork && <SingleArtwork artwork={artwork}></SingleArtwork>}

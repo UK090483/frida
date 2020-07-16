@@ -38,8 +38,8 @@ export default function FridaImage({ images }) {
         setPos({ x: x, y: y, pageX: e.pageX, pageY: (e.pageY - scrollY) })
     }
 
-    const srcSet = images.local ? images.local.childImageSharp.fluid.srcSet : null
-    const src = images.url;
+    const srcSet = images.srcSet
+    const src = images.src;
 
     return (
         <div ref={RootRef} className={style.root}>
@@ -74,4 +74,3 @@ export default function FridaImage({ images }) {
 
 }
 
-// transform: `scale(2) translate3d(${300}px ${500}px 0)`
