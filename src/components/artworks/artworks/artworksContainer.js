@@ -93,7 +93,6 @@ export default function ArtworkContainer({
       ></Artwork>
     ))
   }
-
   return (
     <React.Fragment>
       <div ref={gridRef} id="frida-grid">
