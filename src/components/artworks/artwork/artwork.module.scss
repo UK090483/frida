@@ -1,24 +1,18 @@
 @import '../../variables';
 
 .root{
-   width: calc(33.3% - 47px);
-
-  
-   margin-bottom: 80px;
+    width: calc(33.3% - 47px);
+    margin-bottom: 80px;
     opacity: 1;
-   
-  
 }
+
 .loaded{
     opacity: 1;
-   
 }
+
 .image{
-   
   width:100%;
 }
-
-
 
 .artistName{
     font-size: 1.35rem; 
@@ -54,26 +48,20 @@
 @include tablet {
     .root{
         width: calc(50% - 37px);
-       border: red solid 1px;
      }
-
 }
 
 @include mobile {
     .root{
-       width: 100%;
-    padding: 0 20px;
-       border: blue solid 1px;
+        width: 100%;
+        padding: 0 20px;
         margin: 0;
-      
      }
      .infoRoot{
          flex-wrap: wrap;
-
         .dot{
             align-self: flex-start;
             margin-top: 3px;
-
         }
         .artworkName{
             width: calc(100% - 30px);
