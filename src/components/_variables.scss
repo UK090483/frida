@@ -10,6 +10,7 @@ $lila:#F5C5D9;
     }
   }
   
+
   @mixin tablet {
     @media (max-width: 900px)  {
       @content;

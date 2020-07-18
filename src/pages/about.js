@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
-import Frida from '../components/Frida/frida'
+import Frida from '../components/frida/frida'
 
 const IndexPage = () => (
     <Layout title={'Frida'}>

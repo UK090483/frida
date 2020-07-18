@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReactTypeformEmbed } from 'react-typeform-embed';
 import JotformEmbed from 'react-jotform-embed';
 import style from './embet.module.scss';
 import Section from '../container/section'

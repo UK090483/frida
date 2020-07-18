@@ -14,7 +14,7 @@ export default function Filter({ artworks, setFElements }) {
 
     const [curentlyOpen, setCurentlyOpen] = useState('');
     const [filter, setF] = useState({});
-    const [filtered, setFiltert] = useState([]);
+
 
 
 

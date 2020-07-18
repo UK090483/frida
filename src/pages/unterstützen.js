@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
-import Frida from '../components/Frida/frida'
+import Frida from '../components/frida/frida'
 import Supporter from '../components/Supporter/supporter'
 import Kooperation from '../components/Supporter/kooperation'
 import Button from '../components/buttons/button'

@@ -1,6 +1,5 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
 import style from './supporter.module.scss'
 
 /*
@@ -37,9 +36,9 @@ const Image = () => {
   return (
 
     <div className={style.root}>
-      <img srcSet={data.allFile.edges[1].node.childImageSharp.fluid.srcSet}></img>
-      <img srcSet={data.allFile.edges[2].node.childImageSharp.fluid.srcSet}></img>
-      <img srcSet={data.allFile.edges[0].node.childImageSharp.fluid.srcSet}></img>
+      <img alt={'Logo'} srcSet={data.allFile.edges[1].node.childImageSharp.fluid.srcSet}></img>
+      <img alt={'Logo'} srcSet={data.allFile.edges[2].node.childImageSharp.fluid.srcSet}></img>
+      <img alt={'Logo'} srcSet={data.allFile.edges[0].node.childImageSharp.fluid.srcSet}></img>
 
     </div>
 

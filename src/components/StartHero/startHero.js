@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useStaticQuery, graphql } from "gatsby";
-import Hero from '../hero/hero';
-import Frida from '../Frida/frida';
+import Frida from '../frida/frida';
 import Stoerer from "../../assets/Störer_Participate.svg";
 import style from './startHero.module.scss';
 import Button from '../buttons/button';
@@ -12,12 +11,16 @@ export default function StartHero() {
 
   const data = useStaticQuery(graphql`
   query startHeroQuery {
-    allSanityArtwork {
-      nodes {
-        image {
-          asset {
-            fluid(maxWidth: 150) {
-              src
+    allFridaArtwork {
+      edges {
+        node {
+          images {
+            local {
+              childImageSharp {
+                fluid(maxWidth: 150) {
+                  src
+                }
+              }
             }
           }
         }
@@ -26,17 +29,22 @@ export default function StartHero() {
   }
   `)
 
-
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
   }
 
 
-  const allImages = data.allSanityArtwork.nodes
+
+  const allImages = data.allFridaArtwork.edges
   const [images, setImages] = useState([]);
 
 
+
   useEffect(() => {
+    function getImageWithlocal() {
+      let item = allImages[getRandomInt(0, allImages.length)].node.images
+      return item[0].local.childImageSharp.fluid.src
+    }
     const int = setTimeout(() => {
       const nextImages = [...images]
       if (nextImages.length > 10) {
@@ -61,13 +69,9 @@ export default function StartHero() {
     return () => {
       clearTimeout(int);
     };
-  }, [images, setImages]);
+  }, [allImages, images, setImages]);
 
-  function getImageWithlocal() {
 
-    let item = allImages[getRandomInt(0, allImages.length)].image
-    return item.asset.fluid.src
-  }
 
 
 
@@ -85,7 +89,7 @@ export default function StartHero() {
         </div>
 
         {images.map((image) => {
-          return <img className={style.image} style={{ left: image.left, zIndex: image.zIndex }} key={image.key} src={image.src} ></img>
+          return <img alt={'flying '} className={style.image} style={{ left: image.left, zIndex: image.zIndex }} key={image.key} src={image.src} ></img>
         })}
 
 

@@ -7,38 +7,45 @@
     align-items: center;
     
 }
-.image{
-    opacity: 0;
+.image{  
     transition: opacity 0.3s;
-    &.resized{
-        transition: opacity 0.3s;
-        opacity: 1;
+    height: 100%;
+   
+    &.landscape{
+        height: auto;
+        width: 100%;
     }
 }
 
 .magni{
-   position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
-    width: 200px;
-    height: 200px;
+    width: 0;
+    height: 0;
     overflow: hidden;
     border-radius: 50%;
     pointer-events: none;
     transform: translateX(-100px) translateY(-100px);
     opacity: 0;
     border: $red solid 3px;
+    transition: width 0.3s, height 0.3s;
+
+    &.showGalss{
+        transition: width 0.3s, height 0.3s;
+        width: 200px;
+        height: 200px;
+        opacity: 1;
+    }
     
     .glassImg{
         max-width: 1000%!important;
         position: absolute;
-        top: 500px;
-        left: 400px;
-      
+        top: 98.5px;
+        left: 98.5px;
+        transition: width 0.3s, height 0.3s;
     }
-    &.showGalss{
-        opacity: 1;
-    }
+    
     
 }
 

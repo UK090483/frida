@@ -1,17 +1,19 @@
 import React from 'react';
-import { Link } from "gatsby";
+
 import style from './button.module.scss'
 
-export default function buttons({ label, link }) {
+export default function buttons({ label, onClick }) {
 
 
 
 
     return (
 
-        <Link className={style.root} to={link}>
+        <div className={style.root} onClick={onClick}>
+
             <div className={style.inner}>{label}</div>
-        </Link>
+
+        </div>
     )
 
 }

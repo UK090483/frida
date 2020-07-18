@@ -4,6 +4,7 @@ import style from './pageTitle.module.scss';
 export default function PageTitle({ title, color = 'white', link = true }) {
 
     const interItems = useRef()
+    const ref = useRef()
 
     const getColorClass = (color) => {
         switch (color) {
@@ -16,16 +17,21 @@ export default function PageTitle({ title, color = 'white', link = true }) {
     }
 
 
+
+
+
     useEffect(() => {
         if (link) {
             interItems.current = document.querySelectorAll('[data-color=default]')
-
+            console.log(interItems)
             if (interItems.current.length > 0) {
                 document.addEventListener('scroll', () => {
                     checkInterfering()
                 })
             }
         }
+
+
     }, [link]);
 
 
@@ -42,7 +48,11 @@ export default function PageTitle({ title, color = 'white', link = true }) {
                 }
             });
 
-            sholdAdd ? root.classList.add(style.lila) : root.classList.remove(style.lila)
+            if (sholdAdd) {
+                root.classList.add(style.lila)
+            } else {
+                root.classList.remove(style.lila)
+            }
         }
     }
 
@@ -52,7 +62,7 @@ export default function PageTitle({ title, color = 'white', link = true }) {
         <React.Fragment>
             {link ? <Link to="/" style={{ textDecoration: 'none' }}>
                 <div className={style.root} >
-                    <h1> #Meet<span className={`${style.name} ${getColorClass(color)}`} >{title}</span></h1>
+                    <h1 ref={ref}> #Meet<span className={`${style.name} ${getColorClass(color)}`} >{title}</span></h1>
                 </div>
             </Link>
                 :

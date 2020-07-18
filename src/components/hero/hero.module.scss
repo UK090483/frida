@@ -3,7 +3,8 @@
 
 .root{
     
-    height: 100vh,;
+    min-height: 100vh;
+    padding-top: 100px;
     display: flex; 
     align-items: center;
 
@@ -13,4 +14,17 @@
     h2{
         margin: 0;
     }
+}
+
+
+@include tablet {
+    .root{
+        padding-top: 80px;
+     }
+}
+
+@include mobile {
+    .root{
+        padding-top: 60px;
+     }
 }

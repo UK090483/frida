@@ -7,10 +7,10 @@
 
 import React, { useContext } from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+
 
 import Header from "./header/header"
-import "./layout.css"
+import "./layout.scss"
 import './theme.scss'
 import UiContext from '../context/UiContext'
 
@@ -23,15 +23,7 @@ const Layout = ({ children, title, color }) => {
 
   const Ui = useContext(UiContext);
 
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+
 
   return (
     <div style={{}}>

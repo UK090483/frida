@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import Frida from '../../Frida/frida';
+import Frida from '../../frida/frida';
 import UiContext from '../../../context/UiContext';
 import style from './artwork.module.scss';
 
@@ -10,7 +10,7 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
     const [loaded, setloaded] = useState(false);
     const Ui = useContext(UiContext);
 
-    const srcSet = images.srcSet
+    // const srcSet = images.srcSet
     const src = images.src
 
     const makeVisilbe = () => {
@@ -18,7 +18,7 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
         handleLoaded()
         setloaded(true);
     }
-
+    /* eslint-disable jsx-a11y/anchor-is-valid */
     return (
         <React.Fragment>
 
