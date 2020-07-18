@@ -1,16 +1,11 @@
 // import React, { useState, useEffect, useContext } from 'react';
 
-
 // import firebase from "gatsby-plugin-firebase"
-
-
-
 
 // export function editUserOptions(NextuserOptions, setSubmitting) {
 
 //     const context = useContext(UserContext);
 //     const { setSlider, userOptions, setMessage, setUserOptions } = context;
-
 
 //     const MergedUserOptions = { ...userOptions, ...NextuserOptions }
 
@@ -32,4 +27,3 @@
 //         });
 
 // }
-

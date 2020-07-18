@@ -1,142 +1,85 @@
-import React, { useEffect, useRef, useContext } from 'react';
-import style from './mouse.module.scss';
-import UiContext from '../../context/UiContext'
-
+import React, { useEffect, useRef, useContext } from "react"
+import style from "./mouse.module.scss"
+import UiContext from "../../context/UiContext"
 
 export default function () {
+  const UI = useContext(UiContext)
 
-    const UI = useContext(UiContext);
+  const MouseRef = useRef()
 
+  useEffect(() => {
+    document.querySelectorAll("a").forEach(elem => {
+      elem.addEventListener("mouseenter", () => {
+        UI.setMouseStyle("link")
+      })
+      elem.addEventListener("mouseleave", () => {
+        UI.setMouseStyle(null)
+      })
+      elem.style.cursor = "none"
+    })
+    document.querySelectorAll("[data-color=red]").forEach(elem => {
+      elem.addEventListener("mouseenter", () => {
+        UI.setMouseColor("black")
+      })
+      elem.addEventListener("mouseleave", () => {
+        UI.setMouseColor("red")
+      })
+    })
 
+    document.addEventListener("mousemove", e => {
+      if (MouseRef.current) {
+        MouseRef.current.style.left = e.pageX - 15 + "px"
+        MouseRef.current.style.top = e.pageY - 15 + "px"
+      }
+    })
 
-    const MouseRef = useRef()
+    document.addEventListener("mousedown", e => {
+      setMouseDown(true)
+    })
+    document.addEventListener("mouseup", e => {
+      setMouseDown(false)
+    })
+    document.addEventListener("mouseleave", e => {
+      setMouseIn(true)
+    })
+    document.addEventListener("mouseenter", e => {
+      setMouseIn(false)
+    })
 
-    useEffect(() => {
+    document.querySelector("body").style.cursor = "none"
+  }, [UI])
 
-        document.querySelectorAll('a').forEach((elem) => {
-            elem.addEventListener('mouseenter', () => {
-
-                UI.setMouseStyle('link')
-            })
-            elem.addEventListener('mouseleave', () => {
-
-                UI.setMouseStyle(null)
-            })
-            elem.style.cursor = 'none';
-        })
-        document.querySelectorAll('[data-color=red]').forEach((elem) => {
-            elem.addEventListener('mouseenter', () => {
-
-                UI.setMouseColor('black')
-            })
-            elem.addEventListener('mouseleave', () => {
-
-                UI.setMouseColor('red')
-            })
-        })
-
-
-        document.addEventListener('mousemove', (e) => {
-            if (MouseRef.current) {
-                MouseRef.current.style.left = e.pageX - 15 + 'px';
-                MouseRef.current.style.top = e.pageY - 15 + 'px';
-            }
-        })
-
-        document.addEventListener('mousedown', (e) => {
-
-            setMouseDown(true)
-
-
-        })
-        document.addEventListener('mouseup', (e) => {
-            setMouseDown(false)
-        })
-        document.addEventListener('mouseleave', (e) => {
-
-            setMouseIn(true)
-        })
-        document.addEventListener('mouseenter', (e) => {
-
-            setMouseIn(false)
-        })
-
-        document.querySelector('body').style.cursor = 'none'
-
-    }, [UI]);
-
-    const setMouseDown = (direction) => {
-        if (MouseRef.current) {
-            direction ? MouseRef.current.classList.add(style.mousedown) : MouseRef.current.classList.remove(style.mousedown)
-        }
+  const setMouseDown = direction => {
+    if (MouseRef.current) {
+      direction
+        ? MouseRef.current.classList.add(style.mousedown)
+        : MouseRef.current.classList.remove(style.mousedown)
     }
-    const setMouseIn = (direction) => {
-        if (MouseRef.current) {
-            direction ? MouseRef.current.classList.add(style.mouseOut) : MouseRef.current.classList.remove(style.mouseOut)
-        }
+  }
+  const setMouseIn = direction => {
+    if (MouseRef.current) {
+      direction
+        ? MouseRef.current.classList.add(style.mouseOut)
+        : MouseRef.current.classList.remove(style.mouseOut)
     }
+  }
 
+  const getStyle = () => {
+    return UI.mouseStyle === "link" ? style.linkhover : ""
+  }
+  const getColor = () => {
+    return UI.mouseColor === "black" ? style.black : ""
+  }
 
-    const getStyle = () => {
-        return UI.mouseStyle === 'link' ? style.linkhover : ''
-    }
-    const getColor = () => {
-
-        return UI.mouseColor === 'black' ? style.black : ''
-    }
-
-    return (
-
-        <div ref={MouseRef} className={`${style.mouse} ${getStyle()} ${getColor()}`}>
-            <div></div>
-        </div>
-    )
+  return (
+    <div
+      ref={MouseRef}
+      className={`${style.mouse} ${getStyle()} ${getColor()}`}
+    >
+      <div></div>
+    </div>
+  )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // function useEventListener(eventName, handler, element = document) {
 //     const savedHandler = React.useRef()
@@ -165,7 +108,6 @@ export default function () {
  *
  * @author Stephen Scaff
  */
-
 
 // function AnimatedCursor({
 //     color = '220, 90, 90',

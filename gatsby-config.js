@@ -1,4 +1,4 @@
-const postCssPlugins = require('./postcss-config.js');
+const postCssPlugins = require("./postcss-config.js")
 
 module.exports = {
   siteMetadata: {
@@ -10,23 +10,23 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
 
     {
-      resolve: 'gatsby-plugin-eslint',
+      resolve: "gatsby-plugin-eslint",
       options: {
         test: /\.js$|\.jsx$/,
         exclude: /(node_modules|.cache|public)/,
-        stages: ['develop'],
+        stages: ["develop"],
         options: {
           emitWarning: true,
           failOnError: false,
-          fix: true
-        }
-      }
+          fix: true,
+        },
+      },
     },
 
     {
       resolve: "gatsby-source-custom-api",
       options: {
-        url: 'https://frida.konradullrich.com/wp-json/frida/v1/artworks/',
+        url: "https://frida.konradullrich.com/wp-json/frida/v1/artworks/",
         imageKeys: ["images"],
         rootKey: "fridaArtwork",
         schemas: {
@@ -37,8 +37,8 @@ module.exports = {
             url: String,
             modified: Int
           `,
-        }
-      }
+        },
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -48,9 +48,10 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-mailchimp',
+      resolve: "gatsby-plugin-mailchimp",
       options: {
-        endpoint: "https://konradullrich.us10.list-manage.com/subscribe/post?u=4086aed2c1ff1703b8719e7e5&amp;id=8b7620f5a3", // string; add your MC list endpoint here; see instructions below
+        endpoint:
+          "https://konradullrich.us10.list-manage.com/subscribe/post?u=4086aed2c1ff1703b8719e7e5&amp;id=8b7620f5a3", // string; add your MC list endpoint here; see instructions below
         timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
       },
     },
@@ -58,9 +59,9 @@ module.exports = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /assets/
-        }
-      }
+          include: /assets/,
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
@@ -68,19 +69,19 @@ module.exports = {
         fonts: [
           {
             family: `Montserrat`,
-            variants: [`400`, `500`, `600`, `800`, `700`]
+            variants: [`400`, `500`, `600`, `800`, `700`],
           },
         ],
       },
     },
     {
-      resolve: 'gatsby-plugin-sass',
+      resolve: "gatsby-plugin-sass",
       options: {
         postCssPlugins: [...postCssPlugins],
         cssLoaderOptions: {
           camelCase: false,
-        }
-      }
+        },
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -101,4 +102,3 @@ module.exports = {
     // `gatsby - plugin - offline`,
   ],
 }
-

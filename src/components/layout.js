@@ -8,26 +8,20 @@
 import React, { useContext } from "react"
 import PropTypes from "prop-types"
 
-
 import Header from "./header/header"
 import "./layout.scss"
-import './theme.scss'
-import UiContext from '../context/UiContext'
-
+import "./theme.scss"
+import UiContext from "../context/UiContext"
 
 import Nav from "./nav/nav"
 import Footer from "./Footer/footer"
 import Mouse from "./Mouse/mouse"
 
 const Layout = ({ children, title, color }) => {
-
-  const Ui = useContext(UiContext);
-
-
+  const Ui = useContext(UiContext)
 
   return (
     <div style={{}}>
-
       {Ui.isBrowser && <Mouse></Mouse>}
       <Header title={title}>
         <Nav></Nav>
@@ -39,12 +33,8 @@ const Layout = ({ children, title, color }) => {
         }}
       >
         <main>{children}</main>
-        <Footer title={title}>
-
-        </Footer>
-
+        <Footer title={title}></Footer>
       </div>
-
     </div>
   )
 }

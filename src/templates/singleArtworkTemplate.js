@@ -1,15 +1,13 @@
-import React from 'react';
+import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import SingleArtwork from '../components/artworks/singleArtwork/singleArtwork';
-import Section from '../components/container/section';
-import { graphql } from 'gatsby';
-import getArtwork from '../components/artworks/helper/getArtwork';
+import SingleArtwork from "../components/artworks/singleArtwork/singleArtwork"
+import Section from "../components/container/section"
+import { graphql } from "gatsby"
+import getArtwork from "../components/artworks/helper/getArtwork"
 
 export default function SingleArtworkTemplate({ data }) {
-
-
-  const artwork = getArtwork(data.fridaArtwork);
+  const artwork = getArtwork(data.fridaArtwork)
 
   return (
     <Layout title={artwork.artistName}>
@@ -19,40 +17,38 @@ export default function SingleArtworkTemplate({ data }) {
       </Section>
     </Layout>
   )
-
 }
 
 export const query = graphql`
-query ($slug: String!) {
-  fridaArtwork(slug:  {eq: $slug}) {
-    artistDescription
-    artistEmail
-    artistName
-    artworkDescription
-    artworkName
-    availability
-    height
-    id
-    instagramLink
-    medium
-    price
-    stil
-    width
-    images {
-      local {
-        childImageSharp {
-          fluid(maxWidth: 600) {
-            src
-            srcSet
-          }
-          original {
-            height
-            width
+  query($slug: String!) {
+    fridaArtwork(slug: { eq: $slug }) {
+      artistDescription
+      artistEmail
+      artistName
+      artworkDescription
+      artworkName
+      availability
+      height
+      id
+      instagramLink
+      medium
+      price
+      stil
+      width
+      images {
+        local {
+          childImageSharp {
+            fluid(maxWidth: 600) {
+              src
+              srcSet
+            }
+            original {
+              height
+              width
+            }
           }
         }
       }
     }
   }
-}
-
 `

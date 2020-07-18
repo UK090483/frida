@@ -1,20 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react"
 
 export default function Input({ label }) {
+  const handleChange = e => {}
 
-
-
-    const handleChange = (e) => {
-
-
-    }
-
-    return (
-
-        <div>
-            <input onChange={handleChange}></input>
-        </div>
-
-    )
-
+  return (
+    <div>
+      <input onChange={handleChange}></input>
+    </div>
+  )
 }
