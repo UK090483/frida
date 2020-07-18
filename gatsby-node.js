@@ -18,24 +18,15 @@ exports.createPages = ({ graphql, actions }) => {
     // fetch your data here, generally with graphQL.
     // for example, let say you use your data from Contentful using its associated source plugin
     graphql(`
-        query AllSupportersQuery {
-            allSanityArtwork {
-              edges {
-                node {
-                  slug {
-                    current
-                  }
-                }
-              }
-            }
-            allFridaArtwork {
-              edges {
-                node {
-                  slug
-                }
-              }
-            }
+    query MyQuery {
+      allFridaArtwork {
+        edges {
+          node {
+            slug
           }
+        }
+      }
+    }
           
     `).then(result => {
       // first check if there is no errors
