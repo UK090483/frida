@@ -1,11 +1,12 @@
 @import '../../variables';
 
 .root{
-   width: 25%;
-   
-  opacity: 1;
+   width: calc(33.3% - 47px);
+
   
- 
+   margin-bottom: 80px;
+    opacity: 1;
+   
   
 }
 .loaded{
@@ -52,7 +53,8 @@
 
 @include tablet {
     .root{
-       width: 34%;
+        width: calc(50% - 37px);
+       border: red solid 1px;
      }
 
 }
@@ -60,7 +62,9 @@
 @include mobile {
     .root{
        width: 100%;
-       padding: 0 20px;
+    padding: 0 20px;
+       border: blue solid 1px;
+        margin: 0;
       
      }
      .infoRoot{

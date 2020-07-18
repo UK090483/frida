@@ -1,0 +1,24 @@
+@import '../../variables';
+
+
+.root{
+  
+     max-width: 1400px;
+     width: 80%;
+     margin: 0 auto;
+
+}
+
+
+@include tablet {
+    .root{
+        width: 90%;
+     }
+
+}
+
+@include mobile {
+    .root{
+        width: 100%;
+     }
+}
