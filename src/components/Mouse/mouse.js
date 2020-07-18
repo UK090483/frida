@@ -8,30 +8,25 @@ export default function () {
   const MouseRef = useRef()
 
   useEffect(() => {
-    document.querySelectorAll("a").forEach(elem => {
-      elem.addEventListener("mouseenter", () => {
-        UI.setMouseStyle("link")
-      })
-      elem.addEventListener("mouseleave", () => {
-        UI.setMouseStyle(null)
-      })
-      elem.style.cursor = "none"
-    })
-    document.querySelectorAll("[data-color=red]").forEach(elem => {
-      elem.addEventListener("mouseenter", () => {
-        UI.setMouseColor("black")
-      })
-      elem.addEventListener("mouseleave", () => {
-        UI.setMouseColor("red")
-      })
-    })
+    // document.querySelectorAll("a").forEach(elem => {
+    //   elem.addEventListener("mouseenter", () => {
+    //     UI.setMouseStyle("link")
+    //   })
+    //   elem.addEventListener("mouseleave", () => {
+    //     UI.setMouseStyle(null)
+    //   })
+    //   elem.style.cursor = "none"
+    // })
+    // document.querySelectorAll("[data-color=red]").forEach(elem => {
+    //   elem.addEventListener("mouseenter", () => {
+    //     UI.setMouseColor("black")
+    //   })
+    //   elem.addEventListener("mouseleave", () => {
+    //     UI.setMouseColor("red")
+    //   })
+    // })
 
-    document.addEventListener("mousemove", e => {
-      if (MouseRef.current) {
-        MouseRef.current.style.left = e.pageX - 15 + "px"
-        MouseRef.current.style.top = e.pageY - 15 + "px"
-      }
-    })
+
 
     document.addEventListener("mousedown", e => {
       setMouseDown(true)
@@ -73,6 +68,7 @@ export default function () {
 
   return (
     <div
+      id={'mouse'}
       ref={MouseRef}
       className={`${style.mouse} ${getStyle()} ${getColor()}`}
     >

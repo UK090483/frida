@@ -5,25 +5,30 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { useContext } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 
 import Header from "./header/header"
 import "./layout.scss"
 import "./theme.scss"
-import UiContext from "../context/UiContext"
+
+import { isBrowser } from "react-device-detect"
 
 import Nav from "./nav/nav"
 import Footer from "./Footer/footer"
 import Mouse from "./Mouse/mouse"
 
-const Layout = ({ children, title, color }) => {
-  const Ui = useContext(UiContext)
+import useMouse from './Mouse/hooks/useMouse';
+
+const Layout = ({ children, title }) => {
+
+  const { setMouse } = useMouse()
+
 
   return (
-    <div style={{}}>
-      {Ui.isBrowser && <Mouse></Mouse>}
-      <Header title={title}>
+    <div style={{}} onMouseMove={(e) => { setMouse('move', e) }} >
+      {isBrowser && <Mouse></Mouse>}
+      <Header title={title}  >
         <Nav></Nav>
       </Header>
       <div

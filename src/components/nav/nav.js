@@ -5,17 +5,27 @@ import BigButton from "../buttons/bigButton"
 import Header from "../header/header"
 import Kreutz from "../../assets/Menu_Kreutz.svg"
 import Fade from "react-reveal/Fade"
+import useMouse from '../Mouse/hooks/useMouse'
 
 import style from "./nav.module.scss"
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [counter, setCounter] = useState(false)
+  const { setMouse } = useMouse()
 
   /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
     <div>
       <div
+        onMouseEnter={() => {
+          setMouse('link', true)
+          setMouse('color', true)
+        }}
+        onMouseLeave={() => {
+          setMouse('link', false)
+          setMouse('color', false)
+        }}
         style={{
           width: 40,
           transform: "translateX(10px) translateY(5px)",
@@ -32,7 +42,7 @@ export default function Nav() {
       <div
         className={`${style.root} ${
           open ? style.active : counter && style.onClose
-        }`}
+          }`}
         style={{ pointerEvents: open ? "auto" : "none" }}
       >
         <div className={style.aniCircle1}></div>

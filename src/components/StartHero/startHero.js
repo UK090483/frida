@@ -6,6 +6,7 @@ import style from "./startHero.module.scss"
 import Button from "../buttons/button"
 import { Link } from "gatsby"
 import Section from "../container/section"
+// import useMouse from '../../hooks/useMouse'
 
 export default function StartHero() {
   const data = useStaticQuery(graphql`
@@ -34,6 +35,8 @@ export default function StartHero() {
 
   const allImages = data.allFridaArtwork.edges
   const [images, setImages] = useState([])
+
+  // const [mouse, setMouse] = useMouse()
 
   useEffect(() => {
     function getImageWithlocal() {
@@ -88,7 +91,7 @@ export default function StartHero() {
         })}
       </div>
 
-      <div className={style.stoerer}>
+      <div className={style.stoerer} >
         <Link to="/unterstützen/">
           <Stoerer></Stoerer>
         </Link>

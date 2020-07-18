@@ -18,7 +18,6 @@ export default function PageTitle({ title, color = "white", link = true }) {
   useEffect(() => {
     if (link) {
       interItems.current = document.querySelectorAll("[data-color=default]")
-      console.log(interItems)
       if (interItems.current.length > 0) {
         document.addEventListener("scroll", () => {
           checkInterfering()
@@ -62,16 +61,16 @@ export default function PageTitle({ title, color = "white", link = true }) {
           </div>
         </Link>
       ) : (
-        <div className={style.root}>
-          <h1>
-            {" "}
+          <div className={style.root}>
+            <h1>
+              {" "}
             #Meet
             <span className={`${style.name} ${getColorClass(color)}`}>
-              {title}
-            </span>
-          </h1>
-        </div>
-      )}
+                {title}
+              </span>
+            </h1>
+          </div>
+        )}
     </React.Fragment>
   )
 }

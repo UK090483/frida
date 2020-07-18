@@ -1,17 +1,20 @@
-import React, { useContext, useState } from "react"
+import React, { useState } from "react"
 import Frida from "../../frida/frida"
-import UiContext from "../../../context/UiContext"
 import style from "./artwork.module.scss"
+import useMouse from '../../Mouse/hooks/useMouse'
 
 export default function Artwork({ artwork, handleClick, handleLoaded }) {
   const { images, availability, artworkName, artistName, price } = artwork
   const [loaded, setloaded] = useState(false)
-  const Ui = useContext(UiContext)
+
+
+  const { setMouse } = useMouse()
 
   // const srcSet = images.srcSet
   const src = images.src
 
   const makeVisilbe = () => {
+
     handleLoaded()
     setloaded(true)
   }
@@ -19,14 +22,17 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
   return (
     <React.Fragment>
       {images && (
-        <a
+        <div
           className={`${style.root}  ${loaded ? style.loaded : ""}`}
           onClick={() => handleClick(artwork)}
           onMouseEnter={() => {
-            Ui.setMouseStyle("link")
+
+            setMouse('link', true)
+
           }}
           onMouseLeave={() => {
-            Ui.setMouseStyle(null)
+
+            setMouse('link', false)
           }}
         >
           <img
@@ -44,12 +50,12 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
             <div
               className={`${style.dot} ${
                 availability === "sold" ? style.dotSold : ""
-              }`}
+                }`}
             ></div>
             <div className={style.artworkName}> {artworkName}</div>
             <div className={style.price}>{price}€</div>
           </div>
-        </a>
+        </div>
       )}
     </React.Fragment>
   )

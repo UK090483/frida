@@ -1,5 +1,6 @@
 export default function getArtwork(artwork) {
   return {
+    id: artwork.id,
     artistName: artwork.artistName,
     artistEmail: artwork.artistEmail,
     artistDescription: artwork.artistDescription,
