@@ -30,8 +30,6 @@ export default function ArtworkContainer({
 
       function handleScroll() {
 
-
-
         if (gridRef.current) {
           const clientRef = gridRef.current.getBoundingClientRect()
 
