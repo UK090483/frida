@@ -29,6 +29,11 @@ export default function Mouse() {
                     e ? mouse.current.classList.add(style.black) : mouse.current.classList.remove(style.black)
                     break;
 
+                case 'hide':
+                    e ? mouse.current.classList.add(style.hide) : mouse.current.classList.remove(style.hide)
+                    break;
+
+
                 default:
                     break;
             }

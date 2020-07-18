@@ -12,6 +12,10 @@
     opacity: 0;
     transition: opacity 0.5s 1s;
 
+    .link{
+        cursor: none;
+    }
+
     &.active{
         // display: block;
         transition: opacity 0.5s;

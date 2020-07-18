@@ -29,6 +29,10 @@
       }
 
    }
+
+   &.hide{
+      opacity: 0;
+   }
    &.mouseOut{
      opacity: 0;
    }

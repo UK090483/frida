@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react"
 import style from "./fridaImage.module.scss"
+import useMouse from '../../Mouse/hooks/useMouse'
 
 const SCALE = [2, 3]
 
@@ -7,8 +8,12 @@ export default function FridaImage({ artwork }) {
   const imageRef = useRef()
   const RootRef = useRef()
   const loupImageRef = useRef()
+  const { setMouse } = useMouse();
+
   // const [loaded, setLoaded] = useState(false);
   // const [resized, setResized] = useState(false);
+
+
   const [showGlass, setShowGlass] = useState(false)
   const [pos, setPos] = useState({ x: 50, y: 50, pageX: 0, pageY: 0 })
   const [scale, setScale] = useState(0)
@@ -48,9 +53,11 @@ export default function FridaImage({ artwork }) {
         }}
         onMouseEnter={() => {
           setShowGlass(true)
+          setMouse('hide', true)
         }}
         onMouseLeave={() => {
           setShowGlass(false)
+          setMouse('hide', false)
         }}
         onClick={handleclick}
         className={`${style.image} ${width > height ? style.landscape : ""}`}

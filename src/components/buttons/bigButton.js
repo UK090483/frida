@@ -1,9 +1,23 @@
 import React from "react"
 import style from "./bigButtons.module.scss"
+import useMouse from '../Mouse/hooks/useMouse';
 
 export default function BigButtons({ label, link }) {
+
+  const { setMouse } = useMouse();
+
   return (
-    <div className={style.root}>
+    <div
+      className={style.root}
+      onMouseEnter={() => {
+        setMouse('link', true)
+
+      }}
+      onMouseLeave={() => {
+        setMouse('link', false)
+
+      }}
+    >
       <BigButton
         label={"Instagram"}
         link={"https://www.instagram.com/schwan_communications/"}

@@ -14,6 +14,25 @@ export default function Nav() {
   const [counter, setCounter] = useState(false)
   const { setMouse } = useMouse()
 
+  const fridaLink = (link, label) => (
+    <h1>
+      <Link
+        activeClassName={style.active}
+        className={style.link}
+        to={link}
+        onMouseEnter={() => {
+          setMouse('link', true)
+        }}
+        onMouseLeave={() => {
+          setMouse('link', false)
+        }}
+      >
+        {label}
+      </Link>
+    </h1>
+
+  )
+
   /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
     <div>
@@ -56,43 +75,28 @@ export default function Nav() {
               style={{ width: 40 }}
               onClick={() => setOpen(!open)}
             >
-              <Kreutz></Kreutz>
+              <Kreutz
+                onMouseEnter={() => {
+                  setMouse('link', true)
+                }}
+                onMouseLeave={() => {
+                  setMouse('link', false)
+                }}
+
+              ></Kreutz>
             </a>
           </Header>
         )}
 
         <Fade right cascade when={open}>
           <div className={style.linksRoot}>
-            <h1>
-              {" "}
-              <Link activeClassName={style.active} to="/ausstellung/">
-                AUSSTELLUNG
-              </Link>
-            </h1>
-            <h1>
-              {" "}
-              <Link activeClassName={style.active} to="/teilnehmen/">
-                TEILNEHMEN
-              </Link>
-            </h1>
-            <h1>
-              {" "}
-              <Link activeClassName={style.active} to="/unterstützen/">
-                UNTERSTÜTZEN
-              </Link>
-            </h1>
-            <h1>
-              {" "}
-              <Link activeClassName={style.active} to="/about/">
-                WER IST FRIDA?
-              </Link>
-            </h1>
-            <h1>
-              {" "}
-              <Link activeClassName={style.active} to="/kontakt/">
-                KONTAKT
-              </Link>
-            </h1>
+
+            {fridaLink('/ausstellung/', 'AUSSTELLUNG')}
+            {fridaLink('/teilnehmen/', 'TEILNEHMEN')}
+            {fridaLink('/unterstützen//', 'UNTERSTÜTZEN')}
+            {fridaLink('/about/', 'WER IST FRIDA?')}
+            {fridaLink('/kontakt/', 'KONTAKT')}
+
           </div>
         </Fade>
 

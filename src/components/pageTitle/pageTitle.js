@@ -1,9 +1,14 @@
 import React, { useEffect, useRef } from "react"
 import { Link } from "gatsby"
+import useMouse from '../Mouse/hooks/useMouse';
 import style from "./pageTitle.module.scss"
+
+
+
 export default function PageTitle({ title, color = "white", link = true }) {
   const interItems = useRef()
   const ref = useRef()
+  const { setMouse } = useMouse()
 
   const getColorClass = color => {
     switch (color) {
@@ -50,7 +55,11 @@ export default function PageTitle({ title, color = "white", link = true }) {
     <React.Fragment>
       {link ? (
         <Link to="/" style={{ textDecoration: "none" }}>
-          <div className={style.root}>
+          <div
+            className={style.root}
+            onMouseEnter={() => { setMouse('link', true); setMouse('color', true) }}
+            onMouseLeave={() => { setMouse('link', false); setMouse('color', false) }}
+          >
             <h1 ref={ref}>
               {" "}
               #Meet
@@ -61,7 +70,11 @@ export default function PageTitle({ title, color = "white", link = true }) {
           </div>
         </Link>
       ) : (
-          <div className={style.root}>
+          <div
+            className={style.root}
+            onMouseEnter={() => { setMouse('link', true); setMouse('color', true) }}
+            onMouseLeave={() => { setMouse('link', false); setMouse('color', false) }}
+          >
             <h1>
               {" "}
             #Meet

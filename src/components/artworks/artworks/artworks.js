@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import ArtworsContainer from "./artworksContainer"
 import Frida from "../../frida/frida"
 import getArtwork from "../helper/getArtwork"
+import useMouse from '../../Mouse/hooks/useMouse'
 
 import style from "./artworks.module.scss"
 
@@ -60,6 +61,7 @@ export default function Artworks({
   const [open, setOpen] = useState(false)
   const [artwork, setArtwork] = useState(null)
   const [filert, setFElements] = useState(null)
+  const { setMouse } = useMouse();
 
   function getArtworks() {
     let a = []
@@ -125,7 +127,11 @@ export default function Artworks({
                   style={{ width: 40, pointerEvents: "all" }}
                   onClick={handleCloseClick}
                 >
-                  <Kreutz></Kreutz>
+                  <Kreutz
+                    onMouseEnter={() => { setMouse('link', true) }}
+                    onMouseLeave={() => { setMouse('link', false) }}
+
+                  />
                 </a>
               </Header>
               {artwork && <SingleArtwork artwork={artwork}></SingleArtwork>}
