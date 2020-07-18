@@ -138,11 +138,6 @@ export default function Artworks({
             </div>
           </Slide>
 
-          {/* <div ref={gridRef}>
-            {initPosts.map((artwork, index) => (
-              <Artwork key={artwork.node.id} artwork={artwork} handleLoaded={handleLoaded} handleClick={handleClick} index={index}></Artwork>
-            ))}
-          </div> */}
           <ArtworsContainer
             artworks={filert || artworks}
             handleClick={handleClick}
