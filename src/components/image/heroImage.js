@@ -1,6 +1,5 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
 import style from './heroImage.module.scss'
 
 /*
@@ -15,7 +14,7 @@ import style from './heroImage.module.scss'
  */
 
 const Image = () => {
-    const data = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query  {
         allFile(filter: {relativePath: {eq: "team-image.jpg"}}) {
           edges {
@@ -33,16 +32,16 @@ const Image = () => {
   `)
 
 
-    return (
-        <div className={style.root} style={{ backgroundImage: `url(${data.allFile.edges[0].node.childImageSharp.resize.src})` }}>
+  return (
+    <div className={style.root} style={{ backgroundImage: `url(${data.allFile.edges[0].node.childImageSharp.resize.src})` }}>
 
-            <div className={style.text} >
-                <h4>KONTAKT</h4>
-                <h1 >Meet the  <span style={{ color: 'white' }}>Team</span></h1>
-            </div>
+      <div className={style.text} >
+        <h4>KONTAKT</h4>
+        <h1 >Meet the  <span style={{ color: 'white' }}>Team</span></h1>
+      </div>
 
-        </div>
-    )
+    </div>
+  )
 }
 
 export default Image

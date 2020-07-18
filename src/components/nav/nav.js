@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link } from "gatsby";
 import Burger from "../../assets/Menu_Burger.svg";
 import BigButton from '../buttons/bigButton';
-import Section from '../container/section';
-import Slide from 'react-reveal/Slide';
 import Header from '../header/header';
 import Kreutz from "../../assets/Menu_Kreutz.svg";
 import Fade from 'react-reveal/Fade';
@@ -16,7 +14,7 @@ export default function Nav() {
 
 
 
-
+    /* eslint-disable jsx-a11y/anchor-is-valid */
     return (
         <div>
             <div style={{ width: 40, transform: 'translateX(10px) translateY(5px)', pointerEvents: 'all' }} onClick={() => { setOpen(!open); setCounter(true) }}><Burger></Burger></div>
@@ -32,6 +30,7 @@ export default function Nav() {
 
                 <Fade right cascade when={open}>
                     <div className={style.linksRoot}>
+
                         <h1> <Link activeClassName={style.active} to="/ausstellung/">AUSSTELLUNG</Link></h1>
                         <h1> <Link activeClassName={style.active} to="/teilnehmen/">TEILNEHMEN</Link></h1>
                         <h1> <Link activeClassName={style.active} to="/unterstützen/">UNTERSTÜTZEN</Link></h1>

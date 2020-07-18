@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useStaticQuery, graphql } from "gatsby";
-import Hero from '../hero/hero';
-import Frida from '../Frida/frida';
+import Frida from '../frida/frida';
 import Stoerer from "../../assets/Störer_Participate.svg";
 import style from './startHero.module.scss';
 import Button from '../buttons/button';
@@ -11,14 +10,16 @@ import Section from '../container/section';
 export default function StartHero() {
 
   const data = useStaticQuery(graphql`
-  query startQuery {
-    allArtworks {
-      nodes {
-        images {
-          local {
-            childImageSharp {
-              resize(width: 150) {
-                src
+  query startHeroQuery {
+    allFridaArtwork {
+      edges {
+        node {
+          images {
+            local {
+              childImageSharp {
+                fluid(maxWidth: 150) {
+                  src
+                }
               }
             }
           }
@@ -33,10 +34,17 @@ export default function StartHero() {
   }
 
 
-  const allImages = data.allArtworks.nodes
+
+  const allImages = data.allFridaArtwork.edges
   const [images, setImages] = useState([]);
 
+
+
   useEffect(() => {
+    function getImageWithlocal() {
+      let item = allImages[getRandomInt(0, allImages.length)].node.images
+      return item[0].local.childImageSharp.fluid.src
+    }
     const int = setTimeout(() => {
       const nextImages = [...images]
       if (nextImages.length > 10) {
@@ -61,20 +69,9 @@ export default function StartHero() {
     return () => {
       clearTimeout(int);
     };
-  }, [images, setImages]);
+  }, [allImages, images, setImages]);
 
 
-  function getImageWithlocal() {
-
-    let item = allImages[getRandomInt(0, allImages.length)].images
-    if (item.local) {
-      return item.local.childImageSharp.resize.src
-    }
-  }
-
-  function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
-  }
 
 
 
@@ -91,10 +88,8 @@ export default function StartHero() {
           <Button label={'Mehr Erfahren'} link={'/unterstützen/'}></Button>
         </div>
 
-
         {images.map((image) => {
-
-          return <img className={style.image} style={{ left: image.left, zIndex: image.zIndex }} key={image.key} src={image.src} ></img>
+          return <img alt={'flying '} className={style.image} style={{ left: image.left, zIndex: image.zIndex }} key={image.key} src={image.src} ></img>
         })}
 
 

@@ -21,7 +21,7 @@ export default function Container({ children, maxWidth, type }) {
 
             default:
                 return style.default
-                break;
+
         }
     }
 

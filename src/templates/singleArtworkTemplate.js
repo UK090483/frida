@@ -1,48 +1,58 @@
 import React from 'react';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Hero from "../components/hero/hero"
 import SingleArtwork from '../components/artworks/singleArtwork/singleArtwork';
 import Section from '../components/container/section';
 import { graphql } from 'gatsby';
+import getArtwork from '../components/artworks/helper/getArtwork';
 
 export default function SingleArtworkTemplate({ data }) {
 
 
+  const artwork = getArtwork(data.fridaArtwork);
 
   return (
-    // <Layout title={data.artworks.artist_name}>
-    //   <SEO title="aboute" />
-    //   <Section>
-    //     {data.artworks && <SingleArtwork artwork={data.artworks}></SingleArtwork>}
-    //   </Section>
-    // </Layout>
-    <div></div>
-
+    <Layout title={artwork.artistName}>
+      <SEO title="aboute" />
+      <Section>
+        {data.fridaArtwork && <SingleArtwork artwork={artwork}></SingleArtwork>}
+      </Section>
+    </Layout>
   )
 
 }
 
-// export const query = graphql`
-// query ($slug: String!) {
-//     artworks(arwork_name: {eq: $slug}) {
-//       artist_description
-//       artist_name
-//       artwork_description
-//       arwork_name
-//       availability
-//       height
-//       id
-//       instagram_link
-//       medium
-//       price
-//       stil
-//       width
-//       image {
-//         large
-//         original
-//         srcset
-//       }
-//     }
-//   }
-// `
+export const query = graphql`
+query ($slug: String!) {
+  fridaArtwork(slug:  {eq: $slug}) {
+    artistDescription
+    artistEmail
+    artistName
+    artworkDescription
+    artworkName
+    availability
+    height
+    id
+    instagramLink
+    medium
+    price
+    stil
+    width
+    images {
+      local {
+        childImageSharp {
+          fluid(maxWidth: 600) {
+            src
+            srcSet
+          }
+          original {
+            height
+            width
+          }
+        }
+      }
+    }
+  }
+}
+
+`

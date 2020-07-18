@@ -1,8 +1,8 @@
-.frida-span{
+.root{
     color: white;
     position: relative;
 }
-.frida-span:before {
+.root:before {
     content: '';
     border-bottom: rgb(0, 0, 0) solid .16em;
     left: 0;

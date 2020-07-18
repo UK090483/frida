@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import Artwork from '../artwork/artwork';
+
 
 import Filter from '../filter/filter';
-import MagicGrid from "magic-grid";
 import Slide from 'react-reveal/Slide';
 import Header from '../../header/header';
 import Kreutz from "../../../assets/Menu_Kreutz.svg";
@@ -11,60 +10,74 @@ import Section from '../../container/section';
 import Button from '../../buttons/button';
 import { useStaticQuery, graphql } from "gatsby";
 import ArtworsContainer from './artworksContainer';
-import Frida from '../../Frida/frida'
+import Frida from '../../frida/frida';
+import getArtwork from '../helper/getArtwork';
 
-import style from './artworks.module.css'
+import style from './artworks.module.scss'
 
 export default function Artworks({ postCount = 9, filter = false, infinite = false }) {
 
-
-  const adata = useStaticQuery(graphql`
-     query MyQuery {
-        allArtworks {
-          edges {
-            node {
-              artistAnzeigeName
-              artistDescription
-              artistEmail
-              artistInstagramLink
-              artistName
-              artworkDescription
-              artworkInstagramLink
-              artworkName
-              availability
-              height
-              id
-              medium
-              price
-              stil
-              width
-              images {
-                url
-                local {
-                  childImageSharp {
-                    fluid(maxWidth: 600) {
-                      srcSet
-                      src
-                    }
-                  }
+  const data = useStaticQuery(graphql`
+  query MyQuery {
+    allFridaArtwork {
+      edges {
+        node {
+          id
+          medium
+          stil
+          width
+          price
+          slug
+          artworkName
+          artistName
+          artistDescription
+          artworkDescription
+          availability
+          height
+          artistEmail
+          images {
+            local {
+              childImageSharp {
+                fluid(maxWidth: 600, quality: 100) {
+                  src
+                  srcSet
+                }
+                original {
+                  height
+                  width
                 }
               }
             }
           }
         }
       }
-      
+    }
+  }
+  
   `)
-
-  const artworks = adata.allArtworks.edges
 
   const [open, setOpen] = useState(false);
   const [artwork, setArtwork] = useState(null);
   const [filert, setFElements] = useState(null);
 
 
+  function getArtworks() {
+    let a = []
+    data.allFridaArtwork.edges.forEach((artwork) => {
+
+      let _artwork = artwork.node
+      let res = getArtwork(_artwork)
+
+      a.push(res)
+    })
+    return a
+  }
+
+
+
+  const artworks = getArtworks();
   const bodyRef = useRef()
-  const mgrid = useRef();
+
 
   useEffect(() => {
     bodyRef.current = document.querySelector('html')
@@ -82,7 +95,7 @@ export default function Artworks({ postCount = 9, filter = false, infinite = fal
     setOpen(false)
     bodyRef.current.style.overflow = 'auto'
   }
-
+  /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
     <React.Fragment>
       <Section type={'full'} >
@@ -93,7 +106,9 @@ export default function Artworks({ postCount = 9, filter = false, infinite = fal
         <div className={style.root}>
           <Slide mountOnEnter={true} unmountOnExit={true} right when={open} duration={500}>
             <div className={style.singleRoot} style={{ pointerEvents: open ? 'auto' : 'none' }}>
-              <Header title={artwork ? artwork.node.artistAnzeigeName : ''} color='lila' link={false}>
+              <Header title={artwork ? artwork.artistName : ''} color='lila' link={false}>
+
+
                 <a style={{ width: 40, pointerEvents: 'all' }} onClick={handleCloseClick}><Kreutz></Kreutz></a>
               </Header>
               {artwork && <SingleArtwork artwork={artwork}></SingleArtwork>}

@@ -6,7 +6,7 @@ import Flip from 'react-reveal/Flip';
 
 
 
-export default function input({ label = 'no label', options, open, setOpen, setFilter }) {
+export default function Input({ label = 'no label', options, open, setOpen, setFilter }) {
 
     // const [open, setOpen] = useState(false);
     const [selfActive, setSelfActive] = useState(false);
@@ -19,7 +19,7 @@ export default function input({ label = 'no label', options, open, setOpen, setF
 
     return (
         <React.Fragment>
-            <a className={`${style.root} ${open ? style.active : ''}`} >
+            <button className={`${style.root} ${open ? style.active : ''}`} >
                 <div onClick={() => { open ? setOpen(false) : setOpen(label) }} className={style.label}>{label} {selfActive ? ' : ' + selfActive : ''}</div>
                 <Flip top cascade when={open} unmountOnExit={true} mountOnEnter={true} duration={1000}>
                     <div className={style.options} >
@@ -29,7 +29,7 @@ export default function input({ label = 'no label', options, open, setOpen, setF
                         ))}
                     </div>
                 </Flip>
-            </a>
+            </button>
         </React.Fragment>
     )
 
