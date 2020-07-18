@@ -38,7 +38,7 @@ export default function Artworks({ postCount = 9, filter = false, infinite = fal
           images {
             local {
               childImageSharp {
-                fluid(maxWidth: 600, quality: 100) {
+                fluid(maxWidth: 600, quality: 60) {
                   src
                   srcSet
                 }
