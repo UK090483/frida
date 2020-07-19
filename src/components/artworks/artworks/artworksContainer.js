@@ -2,11 +2,12 @@ import React, { useEffect, useState, useRef } from "react"
 import Artwork from "../artwork/artwork"
 import Masonry from 'react-masonry-component';
 import style from './artworksContainer.module.scss';
+import artworkStyle from '../artwork/artwork.module.scss';
 
 
 
 const masonryOptions = {
-  transitionDuration: 100,
+  transitionDuration: 0,
   gutter: 80,
   percentPosition: true
 }
@@ -73,9 +74,9 @@ export default function ArtworkContainer({
         <Masonry
           className={style.root} // default ''
           options={masonryOptions} // default {}
-          disableImagesLoaded={false} // default false
-          updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-          imagesLoadedOptions={imagesLoadedOptions} // default {}
+        // disableImagesLoaded={false} // default false
+        // updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+        // imagesLoadedOptions={imagesLoadedOptions} // default {}
         >
           {getArtworks()}
         </Masonry>

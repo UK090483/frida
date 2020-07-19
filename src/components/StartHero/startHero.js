@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Frida from "../frida/frida"
-import Stoerer from "../../assets/Störer_Participate.svg"
+import Stoerer from "../../assets/Störer_open_call.svg"
 import style from "./startHero.module.scss"
 import Button from "../buttons/button"
 import { Link } from "gatsby"

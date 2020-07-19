@@ -3,12 +3,17 @@
 .root{
     width: calc(33.3% - 47px);
     margin-bottom: 80px;
-    opacity: 1;
+    opacity: 0;
+    transition: opacity 1s;
+
+    &.loaded{
+         transition: opacity 1s;
+          opacity: 1;
+    }
+    
 }
 
-.loaded{
-    opacity: 1;
-}
+
 
 .image{
   width:100%;

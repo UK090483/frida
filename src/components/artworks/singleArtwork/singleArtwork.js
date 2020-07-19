@@ -13,7 +13,6 @@ export default function Artworks({ artwork }) {
     artistDescription,
     artworkDescription,
     height,
-    artworkInstagramLink,
     medium,
     stil,
     width,
@@ -39,10 +38,8 @@ export default function Artworks({ artwork }) {
         </div>
         <div className={style.price}>{price}€</div>
 
-        <SendMail></SendMail>
-        <a href={artworkInstagramLink} className={style.buyButton}>
-          Kaufen
-        </a>
+        <SendMail artwork={artwork} ></SendMail>
+
       </div>
     </div>
   )
