@@ -3,7 +3,7 @@
 .root{
     width: calc(33.3% - 47px);
     margin-bottom: 80px;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 1s;
 
     &.loaded{
