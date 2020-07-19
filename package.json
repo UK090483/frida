@@ -22,6 +22,7 @@
     "gatsby-source-sanity": "^6.0.2",
     "gatsby-transformer-sharp": "^2.5.7",
     "magic-grid": "^3.2.4",
+    "netlify-lambda": "^2.0.0",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -54,7 +55,7 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "prebuild": "cd .netlify/functions && npm i",
+    "postinstall": "netlify-lambda install",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
