@@ -1,9 +1,7 @@
 const sgMail = require('@sendgrid/mail')
-// const { SENDGRID_API_KEY, SENDGRID_TO_EMAIL } = process.env
+const { SENDGRID_API_KEY, SENDGRID_TO_EMAIL } = process.env
 
-const SENDGRID_API_KEY = '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'
-const SENDGRID_TO_EMAIL = 'web@konradullrich.com'
-const SENDGRID_FR0M_EMAIL = 'web@konradullrich.com'
+
 
 exports.handler = async (event, context, callback) => {
 
@@ -18,7 +16,7 @@ exports.handler = async (event, context, callback) => {
 
     const msg = {
         to: email,
-        from: SENDGRID_FR0M_EMAIL,
+        from: SENDGRID_TO_EMAIL,
         subject: subject ? subject : 'Contact Form Submission',
         html: body,
     };
