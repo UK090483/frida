@@ -63,6 +63,10 @@ export default function Artworks({
   const [filert, setFElements] = useState(null)
   const { setMouse } = useMouse();
 
+  fetch("/.netlify/functions/hello")
+    .then(response => response.json())
+    .then(console.log)
+
   function getArtworks() {
     let a = []
     data.allFridaArtwork.edges.forEach(artwork => {
