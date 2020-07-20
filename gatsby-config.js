@@ -38,7 +38,7 @@ module.exports = {
     {
       resolve: "gatsby-source-custom-api",
       options: {
-        url: "https://frida.konradullrich.com/wp-json/frida/v1/artworks/",
+        url: "https://fridaadmin.konradullrich.com/wp-json/frida/v1/artworks/",
         imageKeys: ["images"],
         rootKey: "fridaArtwork",
         schemas: {
