@@ -1,34 +1,28 @@
 "use strict";
 const nodemailer = require("nodemailer");
-const { SMTP_USER, SMTP_PASSWORD } = process.env
-// const { SENDGRID_API_KEY, SENDGRID_TO_EMAIL } = process.env
+const { SMTP_USER, SMTP_PASSWORD, SMTP_TO } = process.env
+
 
 exports.handler = async (event, context, callback) => {
-
 
 
     const payload = JSON.parse(event.body)
     const { email, subject, artistName, artistEmail, artworkName } = payload
 
-    // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
         host: "mail.konradullrich.com",
         port: 465,
-        secure: true, // true for 465, false for other ports
+        secure: true,
         auth: {
-            user: SMTP_USER, // generated ethereal user
-            pass: SMTP_PASSWORD, // generated ethereal password
+            user: SMTP_USER,
+            pass: SMTP_PASSWORD,
         },
     });
 
-    // send mail with defined transport object
-
-
-
     try {
         let info = await transporter.sendMail({
-            from: 'web@konradullrich.com', // sender address
-            to: "private@konradullrich.com", // list of receivers
+            from: 'meetfrida@konradullrich.com', // sender address
+            to: SMTP_TO, // list of receivers
             subject: "Kaufanfrage", // Subject line
             text: `${subject}   von   ${email}`, // plain text body
             html: `<b> Kunxtwerk:${artworkName} <br> Künstler:${artistName} - ${artistEmail}  <br> Käufer: ${email} </b>`,
@@ -39,14 +33,10 @@ exports.handler = async (event, context, callback) => {
             body: "Message sent"
         }
     } catch (e) {
-        return {
 
-            statusCode: e.code,
-            body: e.message
+        return {
+            statusCode: e.responseCode,
+            body: e.response
         }
     }
-
-
-
-
 };

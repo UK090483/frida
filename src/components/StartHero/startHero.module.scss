@@ -30,14 +30,15 @@
 
 .stoerer{
     transform: translateY(-50%);
-    right: 300px;
+    right: 7%;
     width: 400px;
     position: absolute;
     margin-bottom: 100px;
-   
+    overflow: hidden;
     z-index: 10;
 
     svg{
+        
         animation-name: spin;
         animation-duration: 10s;
         animation-timing-function: linear;
@@ -74,7 +75,7 @@
 
 @include tablet {
     .stoerer{
-        right: 100px;
+        right: 7%;
         width: 300px;
     }
     .stoererSpacer{

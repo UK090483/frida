@@ -49,19 +49,41 @@
     margin-right: auto;
 }
 
+@media (max-width: 1510px)  {
 
-@include tablet {
     .root{
         width: calc(50% - 37px);
+        margin-bottom: 80px;
      }
+    
 }
 
-@include mobile {
+@media (max-width: 980px)  {
     .root{
         width: 100%;
         padding: 0 20px;
         margin: 0;
+        margin-bottom: 80px;
      }
+}
+
+
+
+// @include medium {
+//     .root{
+//         width: calc(50% - 37px);
+//         margin-bottom: 80px;
+//      }
+
+// }
+
+
+@include tablet {
+    
+}
+
+@include mobile {
+    
      .infoRoot{
          flex-wrap: wrap;
         .dot{

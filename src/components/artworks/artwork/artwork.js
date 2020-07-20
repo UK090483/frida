@@ -14,7 +14,7 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
   const src = images.src
 
   const makeVisilbe = () => {
-    console.log('loaded')
+
     handleLoaded()
 
     setTimeout(() => {

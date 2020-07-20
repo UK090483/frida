@@ -41,7 +41,7 @@ export default function Artworks({
             images {
               local {
                 childImageSharp {
-                  fluid(maxWidth: 600, quality: 60) {
+                  fluid(maxWidth: 600, quality: 70) {
                     src
                     srcSet
                   }

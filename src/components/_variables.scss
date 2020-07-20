@@ -16,3 +16,8 @@ $lila:#F5C5D9;
       @content;
     }
   }
+  @mixin medium {
+    @media (max-width: 1110px)  {
+      @content;
+    }
+  }

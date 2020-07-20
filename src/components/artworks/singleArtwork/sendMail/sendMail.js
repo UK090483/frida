@@ -17,6 +17,8 @@ export default function SendMail({ artwork }) {
     const [buyProces, setBuyProces] = useState(false);
     const [process, setProcess] = useState('buy');
 
+    console.log(process);
+
     useEffect(() => {
         if (userEmail) {
             setEmail(userEmail)
@@ -38,9 +40,9 @@ export default function SendMail({ artwork }) {
                     email: email,
                 }),
             })
-            setProcess('loading')
+
             if (!response.ok) {
-                //not 200 response
+                setProcess('error')
                 return
             }
 
@@ -50,7 +52,7 @@ export default function SendMail({ artwork }) {
 
         } catch (e) {
             //error
-            setProcess('errror')
+
             console.log(e)
         }
     }
@@ -70,7 +72,9 @@ export default function SendMail({ artwork }) {
             setBuyProces(true)
         } else {
             if (valid) {
+                setProcess('loading')
                 setUserEmail(email)
+                console.log('submit form ')
                 submitForm()
             } else {
                 setShowError(true)
