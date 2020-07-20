@@ -17,8 +17,6 @@ export default function SendMail({ artwork }) {
     const [buyProces, setBuyProces] = useState(false);
     const [process, setProcess] = useState('buy');
 
-    console.log(process);
-
     useEffect(() => {
         if (userEmail) {
             setEmail(userEmail)
@@ -74,7 +72,6 @@ export default function SendMail({ artwork }) {
             if (valid) {
                 setProcess('loading')
                 setUserEmail(email)
-                console.log('submit form ')
                 submitForm()
             } else {
                 setShowError(true)
