@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import DropDown from "../../input/dropDown"
 import style from "./filter.module.scss"
 
+
 const preisOptions = [
   { label: "100-500", value: "100-500" },
   { label: "500-1000", value: "500-1000" },
@@ -13,6 +14,7 @@ const preisOptions = [
 export default function Filter({ artworks, setFElements }) {
   const [curentlyOpen, setCurentlyOpen] = useState("")
   const [filter, setF] = useState({})
+
 
   const getOptions = () => {
     const artists = []

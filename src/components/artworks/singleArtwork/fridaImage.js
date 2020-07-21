@@ -42,8 +42,7 @@ export default function FridaImage({ artwork }) {
     })
   }
 
-  console.log('w ' + width)
-  console.log('h ' + height)
+
 
   const srcSet = images.srcSet
   const src = images.src
