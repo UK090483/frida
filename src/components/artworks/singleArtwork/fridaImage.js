@@ -42,6 +42,9 @@ export default function FridaImage({ artwork }) {
     })
   }
 
+  console.log('w ' + width)
+  console.log('h ' + height)
+
   const srcSet = images.srcSet
   const src = images.src
 
@@ -60,7 +63,7 @@ export default function FridaImage({ artwork }) {
           setMouse('hide', false)
         }}
         onClick={handleclick}
-        className={`${style.image} ${width > height ? style.landscape : ""}`}
+        className={`${style.image} ${(width - 50) > height ? style.landscape : ""}`}
         // onLoad={() => { setLoaded(true) }}
         ref={imageRef}
         srcSet={srcSet}
