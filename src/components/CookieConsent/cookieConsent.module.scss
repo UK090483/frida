@@ -1,0 +1,70 @@
+@import '../variables';
+
+.root{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    background-color: $white;
+    position: fixed;
+    bottom: 0;
+    z-index: 888888;
+    padding:  10px 20px;
+    transition: bottom 1s;
+
+    img{
+        margin:0;
+    }
+
+    &.clicked{
+        bottom: -100%;
+    }
+
+}
+.text{
+    display: flex;
+    align-items: center;
+    width:70%;
+    padding-right: 20px;
+    
+    p{
+        font-size: 1rem;
+        margin: 0;
+        padding:0;
+    }
+}
+.buttons{
+   
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:30%;
+    min-width: 460px;
+    flex-grow: 2;
+   
+    
+}
+
+@include tablet {
+    .text{
+        width: 100%;
+        p{
+            font-size: 0.8rem;
+        }
+        
+    }
+    .buttons{
+        min-width: unset;
+        padding-top: 10px;
+        padding-bottom: 20px;
+       
+        width:100%;
+    }
+    
+}
+
+@include mobile {
+    
+     
+     
+}
+

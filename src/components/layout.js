@@ -17,6 +17,7 @@ import { isBrowser } from "react-device-detect"
 import Nav from "./nav/nav"
 import Footer from "./Footer/footer"
 import Mouse from "./Mouse/mouse"
+import CookieConsent from './CookieConsent/CookieConsent'
 
 import useMouse from './Mouse/hooks/useMouse';
 
@@ -38,6 +39,7 @@ const Layout = ({ children, title }) => {
         }}
       >
         <main>{children}</main>
+        <CookieConsent />
         <Footer title={title}></Footer>
       </div>
     </div>

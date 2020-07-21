@@ -20,11 +20,11 @@ export default function BigButtons({ label, link }) {
     >
       <BigButton
         label={"Instagram"}
-        link={"https://www.instagram.com/schwan_communications/"}
+        link={"https://www.instagram.com/meetfrida.art/"}
       ></BigButton>
       <BigButton
         label={"Facebook"}
-        link={"https://www.facebook.com/schwancomm/"}
+        link={"https://www.facebook.com/meetfrida.art"}
       ></BigButton>
     </div>
   )

@@ -56,24 +56,6 @@ overflow: auto;
     font-size: 1.9em;
     font-weight: 800;
 }
-.buyButton{
-    background-color: $red;
-    min-height:50px;
-    color:$white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
-    font-size: 1.4em;
-    font-weight: 900;
-    text-decoration: none;
-    border: $red solid 2px;
-}
-.buyButton:hover{
-    background-color: $white;
-    color:$red;
-}
-
 
 @include tablet {
     .root{

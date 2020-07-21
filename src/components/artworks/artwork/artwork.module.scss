@@ -64,6 +64,24 @@
         padding: 0 20px;
         margin: 0;
         margin-bottom: 80px;
+          
+     }
+     .image{
+        margin-bottom: 5px;
+       }
+     .artistName{
+         margin-bottom: 10px;
+         font-size: 1.2rem;
+         
+     }
+     .dot{
+         margin-top:8px;
+     }
+     .infoRoot{
+        font-size: 1rem;
+     }
+     .price{
+         margin-top: 10px;   
      }
 }
 
@@ -79,6 +97,7 @@
 
 
 @include tablet {
+   
     
 }
 
@@ -96,7 +115,7 @@
             margin:0;
         }
         .price{
-            margin-top: 20px;
+           
         }
      }
 }

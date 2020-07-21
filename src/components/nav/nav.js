@@ -37,6 +37,7 @@ export default function Nav() {
   return (
     <div>
       <div
+        className={style.icon}
         onMouseEnter={() => {
           setMouse('link', true)
           setMouse('color', true)
@@ -44,11 +45,6 @@ export default function Nav() {
         onMouseLeave={() => {
           setMouse('link', false)
           setMouse('color', false)
-        }}
-        style={{
-          width: 40,
-          transform: "translateX(10px) translateY(5px)",
-          pointerEvents: "all",
         }}
         onClick={() => {
           setOpen(!open)
@@ -72,7 +68,7 @@ export default function Nav() {
             <div></div>{" "}
             <a
               className={style.icon}
-              style={{ width: 40 }}
+
               onClick={() => setOpen(!open)}
             >
               <Kreutz

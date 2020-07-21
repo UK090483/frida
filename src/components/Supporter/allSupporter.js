@@ -9,7 +9,7 @@ const AllSuporters = () => {
       edges {
         node {
           childImageSharp {
-            resize(width: 200) {
+            resize(height: 100) {
               src
             }
           }

@@ -4,8 +4,12 @@ import BigButton from "../buttons/bigButton"
 import TextFlow from "./textFlow"
 import style from "./footer.module.scss"
 import AllSupporter from "../Supporter/allSupporter"
+import { Link } from "gatsby";
+import useMouse from '../Mouse/hooks/useMouse'
 
 export default function Footer({ title }) {
+
+  const { setMouse } = useMouse()
   return (
     <div>
       {title !== "OurSupporters" && (
@@ -34,7 +38,19 @@ export default function Footer({ title }) {
 
       <Section backgroundColor="red">
         <div className={style.sub}>
-          <p>© 2020 Schwan Studio</p> <p>Impressum</p>
+          <p>© 2020 Schwan Studio</p>
+          <Link
+            className={style.impressum}
+            to={'/impressum'}
+            onMouseEnter={() => {
+              setMouse('link', true)
+            }}
+            onMouseLeave={() => {
+              setMouse('link', false)
+            }}
+          >
+            <p>Impressum</p>
+          </Link>
         </div>
       </Section>
     </div>

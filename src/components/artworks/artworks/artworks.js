@@ -152,7 +152,7 @@ export default function Artworks({
           <div
             style={{
               width: "fit-content",
-              marginLeft: "auto",
+              margin: "0 auto",
               padding: "30px 0",
             }}
           >

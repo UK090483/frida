@@ -2,12 +2,13 @@ import React, { useState, useContext, useEffect } from 'react';
 import style from './sendMail.module.scss';
 import UiContext from '../../../../context/UiContext';
 import Loading from "../../../../assets/loading.svg";
+import useMouse from '../../../Mouse/hooks/useMouse';
 
 export default function SendMail({ artwork }) {
 
     const { artworkName, artistName, artistEmail, artworkInstagramLink } = artwork;
 
-
+    const { setMouse } = useMouse();
 
     const { userEmail, setUserEmail } = useContext(UiContext);
 
@@ -95,19 +96,55 @@ export default function SendMail({ artwork }) {
         <React.Fragment>
             {buyProces &&
                 <div className={style.group}>
-                    <input type="input" className={style.form__field} placeholder="Email" value={email} name="email" id='name' required onChange={handleInput} />
+                    <input
+                        type="input" className={style.form__field}
+                        placeholder="Email" value={email}
+                        name="email"
+                        id='name'
+                        required
+                        onChange={handleInput}
+                        onMouseEnter={() => {
+                            setMouse('link', true)
+                        }}
+                        onMouseLeave={() => {
+                            setMouse('link', false)
+                        }}
+
+
+                    />
                     <label htmlFor="email" className={style.form__label} >Email</label>
                     <div>{!valid && showError && 'Da stimmt was nicht mit der Email Adresse'}</div>
                 </div>
             }
 
             <div className={`${style.buttons} ${buyProces ? style.active : 0}`}>
-                <a href={artworkInstagramLink} className={style.buyButton} onClick={handleClick}>
+                <a
+                    href={artworkInstagramLink}
+                    className={style.buyButton}
+                    onClick={handleClick}
+                    onMouseEnter={() => {
+                        setMouse('link', true)
+                    }}
+                    onMouseLeave={() => {
+                        setMouse('link', false)
+                    }}
+
+                >
                     {buyProces ? 'Send' : 'Kaufen'}
                 </a>
-                {buyProces && <a href={artworkInstagramLink} className={style.buyButton} onClick={() => { setBuyProces(false) }} style={{ marginLeft: 20 }}>
-                    {'Abbrechen'}
-                </a>}
+                {buyProces &&
+                    <a
+                        href={artworkInstagramLink}
+                        className={style.buyButton}
+                        onMouseEnter={() => {
+                            setMouse('link', true)
+                        }}
+                        onMouseLeave={() => {
+                            setMouse('link', false)
+                        }}
+                        onClick={() => { setBuyProces(false); setMouse('link', false) }} style={{ marginLeft: 20 }}>
+                        {'Abbrechen'}
+                    </a>}
             </div>
         </React.Fragment>
     )
