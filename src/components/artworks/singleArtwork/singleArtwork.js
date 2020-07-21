@@ -2,6 +2,7 @@ import React from "react"
 import style from "./singleArtwork.module.scss"
 import Tab from "./tab"
 import FridaImage from "./fridaImage"
+import SendMail from './sendMail/sendMail'
 
 export default function Artworks({ artwork }) {
   const {
@@ -12,7 +13,6 @@ export default function Artworks({ artwork }) {
     artistDescription,
     artworkDescription,
     height,
-    artworkInstagramLink,
     medium,
     stil,
     width,
@@ -38,9 +38,8 @@ export default function Artworks({ artwork }) {
         </div>
         <div className={style.price}>{price}€</div>
 
-        <a href={artworkInstagramLink} className={style.buyButton}>
-          Kaufen
-        </a>
+        <SendMail artwork={artwork} ></SendMail>
+
       </div>
     </div>
   )

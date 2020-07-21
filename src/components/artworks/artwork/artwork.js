@@ -16,7 +16,11 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
   const makeVisilbe = () => {
 
     handleLoaded()
-    setloaded(true)
+
+    setTimeout(() => {
+      setloaded(true)
+    }, 200);
+
   }
   /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
@@ -26,12 +30,9 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
           className={`${style.root}  ${loaded ? style.loaded : ""}`}
           onClick={() => handleClick(artwork)}
           onMouseEnter={() => {
-
             setMouse('link', true)
-
           }}
           onMouseLeave={() => {
-
             setMouse('link', false)
           }}
         >

@@ -1,6 +1,18 @@
 const postCssPlugins = require("./postcss-config.js")
+const { createProxyMiddleware } = require("http-proxy-middleware")
 
 module.exports = {
+  developMiddleware: app => {
+    app.use(
+      "/.netlify/functions/",
+      createProxyMiddleware({
+        target: "http://localhost:9000",
+        pathRewrite: {
+          "/.netlify/functions/": "",
+        },
+      })
+    )
+  },
   siteMetadata: {
     title: `Frida`,
     description: ``,
@@ -26,7 +38,7 @@ module.exports = {
     {
       resolve: "gatsby-source-custom-api",
       options: {
-        url: "https://frida.konradullrich.com/wp-json/frida/v1/artworks/",
+        url: "https://fridaadmin.konradullrich.com/wp-json/frida/v1/artworks/",
         imageKeys: ["images"],
         rootKey: "fridaArtwork",
         schemas: {

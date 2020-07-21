@@ -41,7 +41,7 @@ export default function Artworks({
             images {
               local {
                 childImageSharp {
-                  fluid(maxWidth: 600, quality: 60) {
+                  fluid(maxWidth: 600, quality: 70) {
                     src
                     srcSet
                   }
@@ -62,6 +62,8 @@ export default function Artworks({
   const [artwork, setArtwork] = useState(null)
   const [filert, setFElements] = useState(null)
   const { setMouse } = useMouse();
+
+
 
   function getArtworks() {
     let a = []

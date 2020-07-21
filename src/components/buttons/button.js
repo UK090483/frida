@@ -11,10 +11,13 @@ export default function Buttons({ label, link }) {
     <Link
       className={style.root}
       to={link}
-      onMouseEnter={() => { setMouse('link', true) }}
-      onMouseLeave={() => { setMouse('link', false) }}
     >
-      <div className={style.inner}>{label}</div>
+      <div
+        className={style.inner}
+        onMouseEnter={() => { setMouse('link', true) }}
+        onMouseLeave={() => { setMouse('link', false) }}
+
+      >{label}</div>
     </Link>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import style from "./dropDown.module.scss"
 import Flip from "react-reveal/Flip"
+import useMouse from '../Mouse/hooks/useMouse';
 
 export default function Input({
   label = "no label",
@@ -11,6 +12,7 @@ export default function Input({
 }) {
   // const [open, setOpen] = useState(false);
   const [selfActive, setSelfActive] = useState(false)
+  const { setMouse } = useMouse();
 
   const setActive = i => {
     setSelfActive(i)
@@ -19,7 +21,11 @@ export default function Input({
 
   return (
     <React.Fragment>
-      <button className={`${style.root} ${open ? style.active : ""}`}>
+      <button
+        className={`${style.root} ${open ? style.active : ""}`}
+        onMouseEnter={() => { setMouse('link', true) }}
+        onMouseLeave={() => { setMouse('link', false) }}
+      >
         <div
           onClick={() => {
             open ? setOpen(false) : setOpen(label)
