@@ -21,9 +21,14 @@ const IndexPage = () => (
     <Section type={"text"} backgroundColor="red">
       <p style={{ paddingTop: 100, paddingBottom: 100 }}>
         Du hast ein abgeschlossenes Kunststudium? Oder Du arbeitest seit
-        mindestens drei Jahren als Kunstschaffende*r? Oder Du hattest schon
-        mindestens zwei Ausstellungen? Dann bewirb dich bis zum 1. August 2020
-        mit den Werken, die Du bei #MeetFrida zeigen willst.
+        mindestens drei Jahren als Kunstschaffende*r?  Oder Du hattest schon
+        mindestens zwei Ausstellungen? Dann bewirb dich jetzt mit den Werken,
+        die Du bei #MeetFrida zeigen willst.
+        <br></br>
+        Du
+        kannst bis zu fünf Arbeiten einreichen - die Preise bestimmt du. Um
+        bei #meetfrida teilzunehmen, muss aber eins deiner Werke weniger als
+        500 Euro kosten.
       </p>
     </Section>
 

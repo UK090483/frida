@@ -16,7 +16,7 @@ const IndexPage = () => (
       <h4>UNTERSTÜTZEN</h4>
       <h1>
         Unterstützen Sie <Frida /> und werden Sie teil der größten Kunstschau
-        Deutschlands
+        im öffentlichen Raum
       </h1>
     </Hero>
     <Section backgroundColor="lila" type={"text"}>
@@ -27,9 +27,7 @@ const IndexPage = () => (
           unterstützen, indem sie die Produktionskosten für diese Aktion
           übernehmen.
         </p>
-        <p style={{ paddingBottom: 50 }}>
-          Schirmherr der Aktion Carsten Brosda, Kultursenator der Stadt Hamburg
-        </p>
+
 
         <div style={{ padding: "60px 0" }}>
           <Button label={"Jetzt Unterstützen"}></Button>
