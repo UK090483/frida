@@ -71,7 +71,7 @@ export default function StartHero() {
     <React.Fragment>
       <div className={style.root}>
         <div className={style.text}>
-          <h4>500 WERKE, 200 AUSSTELLUNGSORTE, 1 HASHTAG.<br></br> Neue Werke, wechselnde Ausstellungsorte, 1 Plattform.</h4>
+          <h4> Neue Werke, wechselnde Ausstellungsorte, 1 Plattform.</h4>
           <h1>
             <Frida></Frida>-Deutschlands größte Kunstschau digital und analog
           </h1>

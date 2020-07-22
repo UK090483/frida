@@ -7,23 +7,30 @@
     flex-wrap: wrap;
     margin-top: 50px;
 
-
-img{
-    // margin-left: -38px;
-    // max-width: 200px;
-    
-    margin-right: 50px;
-     margin-bottom: 50px;
-     height: 70px;
-     width: auto;
-
-}
+    img{
+        width: 33.33%;
+    }
 }
 
+.allSupporters{
+
+    img{
+        width: 25%;
+    }
+}
 
 
 
 @include tablet {
+
+
+.allSupporters{
+
+    img{
+        width: 33.33%;
+    }
+}
+
    
 
 }
@@ -32,9 +39,7 @@ img{
 
     .root{
         img{
-            margin-right: 20px;
-            margin-bottom: 30px;
-            height: 40px;
+            width: 50%;
         }
 
     }

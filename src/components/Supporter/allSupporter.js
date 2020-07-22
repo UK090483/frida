@@ -9,7 +9,7 @@ const AllSuporters = () => {
       edges {
         node {
           childImageSharp {
-            resize(height: 100) {
+            resize(width: 500) {
               src
             }
           }
@@ -21,26 +21,10 @@ const AllSuporters = () => {
   `)
 
   return (
-    <div className={style.root}>
+    <div className={`${style.root} ${style.allSupporters}`}>
       <img
         alt={"Logo"}
-        src={data.allFile.edges[1].node.childImageSharp.resize.src}
-      ></img>
-      <img
-        alt={"Logo"}
-        src={data.allFile.edges[0].node.childImageSharp.resize.src}
-      ></img>
-      <img
-        alt={"Logo"}
-        src={data.allFile.edges[2].node.childImageSharp.resize.src}
-      ></img>
-      <img
-        alt={"Logo"}
-        src={data.allFile.edges[3].node.childImageSharp.resize.src}
-      ></img>
-      <img
-        alt={"Logo"}
-        src={data.allFile.edges[4].node.childImageSharp.resize.src}
+        src={data.allFile.edges[6].node.childImageSharp.resize.src}
       ></img>
       <img
         alt={"Logo"}
@@ -48,7 +32,27 @@ const AllSuporters = () => {
       ></img>
       <img
         alt={"Logo"}
-        src={data.allFile.edges[6].node.childImageSharp.resize.src}
+        src={data.allFile.edges[4].node.childImageSharp.resize.src}
+      ></img>
+      <img
+        alt={"Logo"}
+        src={data.allFile.edges[0].node.childImageSharp.resize.src}
+      ></img>
+      <img
+        alt={"Logo"}
+        src={data.allFile.edges[1].node.childImageSharp.resize.src}
+      ></img>
+      <img
+        alt={"Logo"}
+        src={data.allFile.edges[3].node.childImageSharp.resize.src}
+      ></img>
+      <img
+        alt={"Logo"}
+        src={data.allFile.edges[2].node.childImageSharp.resize.src}
+      ></img>
+      <img
+        alt={"Logo"}
+        src={data.allFile.edges[7].node.childImageSharp.resize.src}
       ></img>
     </div>
   )
