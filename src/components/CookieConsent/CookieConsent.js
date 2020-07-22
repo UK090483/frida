@@ -5,9 +5,9 @@ import { useStaticQuery, graphql } from "gatsby"
 
 export default function CookieConsent() {
 
-    const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
-    const data = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query CookieQuery {
         file(relativePath: {eq: "Cookie.png"}) {
           childImageSharp {
@@ -19,24 +19,24 @@ export default function CookieConsent() {
       }
       
   `)
-    const image = data.file.childImageSharp.fluid.src
+  const image = data.file.childImageSharp.fluid.src
 
-    return (
+  return (
 
-        <div className={`${style.root} ${!clicked ? '' : style.clicked}`}>
-            <div className={style.text}>
-                <img src={image} />
-                <p>
-                    Wir nutzen Cookies um Ihr Erlebnis auf unserer Website angenehm zu gestalten und steig zu verbessen!
+    <div className={`${style.root} ${!clicked ? '' : style.clicked}`}>
+      <div className={style.text}>
+        <img src={image} alt='cookie' />
+        <p>
+          Wir nutzen Cookies um Ihr Erlebnis auf unserer Website angenehm zu gestalten und steig zu verbessen!
                 </p>
-            </div>
-            <div className={style.buttons}>
-                <Button label={'Einverstanden'} onClick={() => { setClicked(true) }} />
-                <Button label={'Ablehnen'} />
-            </div>
+      </div>
+      <div className={style.buttons}>
+        <Button label={'Einverstanden'} onClick={() => { setClicked(true) }} />
+        <Button label={'Ablehnen'} />
+      </div>
 
-        </div>
+    </div>
 
-    )
+  )
 
 }

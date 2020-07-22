@@ -28,31 +28,31 @@
     padding: 0 7%;
 }
 
-.stoerer{
-    transform: translateY(-50%);
-    right: 7%;
-    width: 400px;
-    position: absolute;
-    margin-bottom: 100px;
-    overflow: hidden;
-    z-index: 10;
+// .stoerer{
+//     transform: translateY(-50%);
+//     right: 7%;
+//     width: 400px;
+//     position: absolute;
+//     margin-bottom: 100px;
+//     overflow: hidden;
+//     z-index: 10;
     
-    a{
-        cursor: none;
-    }
+//     a{
+//         cursor: none;
+//     }
 
-    svg{
+//     svg{
         
-        animation-name: spin;
-        animation-duration: 10s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-fill-mode: forwards;
-    }
-}
-.stoererSpacer{
-    height: 200px;
-}
+//         animation-name: spin;
+//         animation-duration: 10s;
+//         animation-timing-function: linear;
+//         animation-iteration-count: infinite;
+//         animation-fill-mode: forwards;
+//     }
+// }
+// .stoererSpacer{
+//     height: 200px;
+// }
 
 
 @keyframes drive{
@@ -70,21 +70,16 @@
 
 }
 
-@keyframes spin {
-    from {transform:rotate(0deg) }
-    to {transform:rotate(360deg) }
-}
-
 
 
 @include tablet {
-    .stoerer{
-        right: 7%;
-        width: 300px;
-    }
-    .stoererSpacer{
-        height: 150px;
-    }
+    // .stoerer{
+    //     right: 7%;
+    //     width: 300px;
+    // }
+    // .stoererSpacer{
+    //     height: 150px;
+    // }
     .image{
         width: 20vw;
     }
@@ -92,13 +87,13 @@
 }
 
 @include mobile {
-    .stoerer{
-        right: 30px;
-        width: 150px;
-    }
-    .stoererSpacer{
-        height: 75px;
-    }
+    // .stoerer{
+    //     right: 30px;
+    //     width: 150px;
+    // }
+    // .stoererSpacer{
+    //     height: 75px;
+    // }
     .image{
         width: 25vw;
     }

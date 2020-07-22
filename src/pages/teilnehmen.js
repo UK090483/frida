@@ -4,7 +4,8 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
-import Embet from "../components/embet/embet"
+// import Embet from "../components/embet/embet"
+import Button from '../components/buttons/externalLinkButton'
 
 const IndexPage = () => (
   <Layout title={"MeetCollectors"}>
@@ -32,7 +33,14 @@ const IndexPage = () => (
       </p>
     </Section>
 
-    <Embet></Embet>
+    <Section type={"text"} backgroundColor="red">
+
+      <div style={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Button label={'Zur Form'} link={"https://form.jotform.com/201885178999377"} />
+      </div>
+    </Section>
+
+    {/* <Embet></Embet> */}
   </Layout>
 )
 

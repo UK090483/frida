@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import Artwork from "../artwork/artwork"
 import Masonry from 'react-masonry-component';
 import style from './artworksContainer.module.scss';
-import artworkStyle from '../artwork/artwork.module.scss';
+
 
 
 
@@ -12,7 +12,7 @@ const masonryOptions = {
   percentPosition: true
 }
 
-const imagesLoadedOptions = { background: '.my-bg-image-el' }
+// const imagesLoadedOptions = { background: '.my-bg-image-el' }
 
 export default function ArtworkContainer({
   artworks,

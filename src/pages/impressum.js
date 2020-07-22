@@ -54,7 +54,7 @@ const IndexPage = () => (
                         <u>Impressum Generator</u>
                     </a>
     von AdSimple in Kooperation mit
-    <a href="https://www.hashtagbeauty.de/" rel="noreferrer" target="_blank" rel="noreferrer">
+    <a href="https://www.hashtagbeauty.de/" target="_blank" rel="noreferrer">
                         <u>hashtagbeauty.de</u>
                     </a>
                 </p>
@@ -1983,7 +1983,7 @@ const IndexPage = () => (
                 <p>
                     Wir gehen davon aus, dass bei Instagram die Datenverarbeitung gleich
                     funktioniert wie bei Facebook. Das bedeutet: wenn Sie ein Instagram-Konto
-    haben oder <a href="" target="_blank" rel="noreferrer"><u>www.instagram.com</u></a> besucht
+    haben oder <a href="https://www.instagram.com/" target="_blank" rel="noreferrer"><u>www.instagram.com</u></a> besucht
     haben, hat Instagram zumindest ein Cookie gesetzt. Wenn das der Fall ist,
     sendet Ihr Browser über das Cookie Infos an Instagram, sobald Sie mit einer
     Instagram-Funktion in Berührung kommen. Spätestens nach 90 Tagen (nach

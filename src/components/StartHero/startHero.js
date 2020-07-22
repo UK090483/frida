@@ -91,7 +91,7 @@ export default function StartHero() {
         })}
       </div>
 
-      <div
+      {/* <div
         className={style.stoerer}
         onMouseEnter={() => { setMouse('link', true) }}
         onMouseLeave={() => { setMouse('link', false) }}
@@ -103,7 +103,7 @@ export default function StartHero() {
 
       <Section>
         <div className={style.stoererSpacer}></div>
-      </Section>
+      </Section> */}
     </React.Fragment>
   )
 }
