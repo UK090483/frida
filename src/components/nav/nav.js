@@ -89,7 +89,7 @@ export default function Nav() {
 
             {fridaLink('/ausstellung/', 'AUSSTELLUNG')}
             {fridaLink('/teilnehmen/', 'TEILNEHMEN')}
-            {fridaLink('/unterstützen//', 'UNTERSTÜTZEN')}
+            {fridaLink('/unterstützen/', 'UNTERSTÜTZEN')}
             {fridaLink('/about/', 'WER IST FRIDA?')}
             {fridaLink('/kontakt/', 'KONTAKT')}
 

@@ -28,7 +28,7 @@ export default function Artworks({ artwork }) {
         <Tab text1={artistDescription} text2={artworkDescription}></Tab>
         <div className={style.nameRoot}>
           <div
-            className={`${style.dot} ${availability && style.dotSold}`}
+            className={`${style.dot} ${availability === 'sold' && style.dotSold}`}
           ></div>
           <div className={style.artworkName}> {artworkName}</div>
         </div>
