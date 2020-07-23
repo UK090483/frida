@@ -8,10 +8,18 @@ export default function CookieConsent() {
   const [clicked, setClicked] = useState(true);
 
   useEffect(() => {
-    const cookieValue = document.cookie ? document.cookie
-      .split('; ')
-      .find(row => row.startsWith('gatsby-gdpr-google-analytics'))
-      .split('=')[1] : false;
+
+    let cookieValue = false;
+    if (document.cookie) {
+      let gdbrCookie = document.cookie.split('; ').find(row => row.startsWith('gatsby-gdpr-google-analytics'))
+
+      if (gdbrCookie) {
+
+        cookieValue = gdbrCookie.split('=')[1]
+      } else {
+
+      }
+    }
 
     if (!cookieValue) {
       setClicked(false)
