@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Frida from "../frida/frida"
-import Stoerer from "../../assets/Störer_open_call.svg"
 import style from "./startHero.module.scss"
 import Button from "../buttons/button"
-import { Link } from "gatsby"
-import Section from "../container/section"
-import useMouse from '../Mouse/hooks/useMouse';
+
 
 export default function StartHero() {
   const data = useStaticQuery(graphql`
@@ -36,7 +33,6 @@ export default function StartHero() {
   const allImages = data.allFridaArtwork.edges
   const [images, setImages] = useState([])
 
-  const { setMouse } = useMouse()
 
   useEffect(() => {
     function getImageWithlocal() {
@@ -73,7 +69,7 @@ export default function StartHero() {
         <div className={style.text}>
           <h4> Neue Werke, wechselnde Ausstellungsorte, 1 Plattform.</h4>
           <h1>
-            <Frida></Frida>–Deutschlandweite Kunstschau und Online-Galerie
+            Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida>
           </h1>
           <Button label={"Mehr Erfahren"} link={"/unterstützen/"}></Button>
         </div>
