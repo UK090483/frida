@@ -73,7 +73,7 @@ export default function StartHero() {
         <div className={style.text}>
           <h4> Neue Werke, wechselnde Ausstellungsorte, 1 Plattform.</h4>
           <h1>
-            <Frida></Frida>-Deutschlands größte Kunstschau digital und analog
+            <Frida></Frida>–Deutschlandweite Kunstschau und Online-Galerie
           </h1>
           <Button label={"Mehr Erfahren"} link={"/unterstützen/"}></Button>
         </div>

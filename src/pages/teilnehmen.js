@@ -15,9 +15,9 @@ const IndexPage = () => (
       <h2 className={`text-white`}>
         Open Call: <br></br>Mitmachen und Deine Kunst in ganz Deutschland zeigen
       </h2>
-      <h2 className={`text-lila`}>
+      {/* <h2 className={`text-lila`}>
         Submissions open 15 June-Deadline 1 August
-      </h2>
+      </h2> */}
     </Hero>
     <Section type={"text"} backgroundColor="red">
       <p style={{ paddingTop: 100, paddingBottom: 100 }}>

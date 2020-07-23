@@ -19,7 +19,7 @@ export default function Footer({ title }) {
               <h4>SUPPORTER</h4>
               <h2>
                 Ohne Euch wäre diese Aktion nicht möglich.{" "}
-                <span style={{ color: "white" }}>DANKE.</span>
+                <span style={{ color: "white" }}>Danke.</span>
               </h2>
               <AllSupporter></AllSupporter>
             </div>
