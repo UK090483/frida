@@ -6,6 +6,12 @@ $lila:#F5C5D9;
 
 $borderwidth: 3px;
 
+@mixin mobileSmall {
+  @media (max-width: 374px ) {
+    @content;
+  }
+}
+
 @mixin mobile {
     @media (max-width: 700px ) {
       @content;

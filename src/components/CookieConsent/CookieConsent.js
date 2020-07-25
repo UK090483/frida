@@ -1,30 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import style from './cookieConsent.module.scss';
-import Button from '../buttons/noLinkButton';
+import Button from '../buttons/button';
 import { useStaticQuery, graphql } from "gatsby"
+import { useCookies } from 'react-cookie'
+
+
+const gdprCookie = 'gatsby-plugin-google-analytics-gdpr_cookies-enabled'
 
 export default function CookieConsent() {
 
   const [clicked, setClicked] = useState(true);
 
+  const [cookies, setCookie, removeCookie] = useCookies();
+
   useEffect(() => {
 
-    let cookieValue = false;
-    if (document.cookie) {
-      let gdbrCookie = document.cookie.split('; ').find(row => row.startsWith('gatsby-gdpr-google-analytics'))
-
-      if (gdbrCookie) {
-
-        cookieValue = gdbrCookie.split('=')[1]
-      } else {
-
-      }
-    }
-
-    if (!cookieValue) {
+    console.log(cookies)
+    if (cookies[gdprCookie] && cookies[gdprCookie] === 'false') {
       setClicked(false)
     }
-  }, []);
+
+
+
+  }, [cookies]);
 
   const data = useStaticQuery(graphql`
     query CookieQuery {
@@ -42,7 +40,7 @@ export default function CookieConsent() {
 
   const handleClick = (set) => {
     setClicked(true)
-    document.cookie = `gatsby-gdpr-google-analytics=${set}`
+    setCookie(gdprCookie, true)
   }
 
   return (
@@ -55,8 +53,8 @@ export default function CookieConsent() {
                 </p>
       </div>
       <div className={style.buttons}>
-        <Button label={'Einverstanden'} onClick={() => { handleClick(true) }} />
-        <Button label={'Ablehnen'} onClick={() => { handleClick(false) }} />
+        <Button type='clickButton' label={'Einverstanden'} onClick={() => { handleClick(true) }} />
+        <Button type='clickButton' label={'Ablehnen'} onClick={() => { handleClick(false) }} />
       </div>
 
     </div>

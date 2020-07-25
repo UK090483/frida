@@ -16,10 +16,30 @@
     border-radius: 50px;
     transition: background-color 0.4s, color 0.4s;
 
-    &:hover{
-       
-        background-color: $black;
-        color: $lila;
+    &.white{
+
+        &:hover{
+
+            background-color: $black;
+            color: $white;
+        }
+
+    }
+    &.lila{
+
+        &:hover{
+
+            background-color: $black;
+            color: $lila;
+        }
+    }
+    &.red{
+
+        &:hover{
+            background-color: $black;
+            color: $red;
+        }
+
     }
 
 }
@@ -35,12 +55,10 @@
         border: $black solid 2px ;
         border-radius: 50px;
         transition: background-color 0.4s, color 0.4s;
+
+       
     
-        &:hover{
-           
-            background-color: $black;
-            color: $lila;
-        }
+        
     
     }
 

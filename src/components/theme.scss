@@ -2,7 +2,7 @@
 
 body{
     font-family: 'Montserrat', sans-serif;
-    color:black;
+    color:$black;
 }
 
 
@@ -20,10 +20,17 @@ h1{
 
 @include mobile {
     h1{
-        font-size: 2.25rem;
+        font-size: 2.1rem;
         
     }
 }
+@include mobileSmall {
+    h1{
+        font-size: 1.5rem;
+        
+    }
+}
+
 h2{
     font-family: 'Montserrat', sans-serif;
     font-size: 3.9rem;
@@ -96,3 +103,6 @@ body::-webkit-scrollbar {
     display: none;
 }    
 
+a{
+    color:$red;
+}

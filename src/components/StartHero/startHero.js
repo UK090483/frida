@@ -71,7 +71,7 @@ export default function StartHero() {
           <h1>
             Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida>
           </h1>
-          <Button label={"Mehr Erfahren"} link={"/unterstützen/"}></Button>
+          <Button label={"Mehr Erfahren"} link={"/unterstützen/"} backgroundColor={'lila'} />
         </div>
 
         {images.map(image => {

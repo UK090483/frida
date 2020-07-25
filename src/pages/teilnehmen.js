@@ -5,7 +5,7 @@ import SEO from "../components/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
 // import Embet from "../components/embet/embet"
-import Button from '../components/buttons/externalLinkButton'
+import Button from '../components/buttons/button'
 
 const IndexPage = () => (
   <Layout title={"MeetCollectors"}>
@@ -36,7 +36,7 @@ const IndexPage = () => (
     <Section type={"text"} backgroundColor="red">
 
       <div style={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Button label={'Zur Form'} link={"https://form.jotform.com/201885178999377"} />
+        <Button type={'externalLink'} label={'Zur Form'} link={"https://form.jotform.com/201885178999377"} backgroundColor={'red'} />
       </div>
     </Section>
 

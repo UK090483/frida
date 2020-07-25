@@ -30,7 +30,7 @@ const IndexPage = () => (
 
 
         <div style={{ padding: "60px 0" }}>
-          <Button label={"Jetzt Unterstützen"}></Button>
+          <Button label={"Jetzt Unterstützen"} backgroundColor={'lila'}></Button>
         </div>
         <p>
           <span style={{ fontWeight: 800 }}>

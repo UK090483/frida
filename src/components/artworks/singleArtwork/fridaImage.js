@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import style from "./fridaImage.module.scss"
 import useMouse from '../../Mouse/hooks/useMouse'
 
@@ -10,16 +10,55 @@ export default function FridaImage({ artwork }) {
   const loupImageRef = useRef()
   const { setMouse } = useMouse();
 
+  const { artworkName, artistName, images } = artwork
+  const { width, height } = images
+
+
   // const [loaded, setLoaded] = useState(false);
   // const [resized, setResized] = useState(false);
+
+  useEffect(() => {
+
+
+    const handleImageSizing = () => {
+      if (imageRef.current && RootRef.current) {
+        let rootClientRect = RootRef.current.getBoundingClientRect()
+        let imageRatio = width / height
+
+
+
+        if (window.innerWidth > 899) {
+          if (rootClientRect.width > (rootClientRect.height * imageRatio)) {
+            imageRef.current.style.width = 'auto'
+            imageRef.current.style.height = rootClientRect.height + 'px'
+          } else {
+            imageRef.current.style.width = rootClientRect.width + 'px'
+            imageRef.current.style.height = 'auto'
+          }
+        } else {
+
+          imageRef.current.style.width = rootClientRect.width + 'px'
+          imageRef.current.style.height = 'auto'
+        }
+
+      }
+
+    }
+
+    handleImageSizing()
+    window.addEventListener('resize', handleImageSizing)
+
+    return () => {
+      window.removeEventListener('resize', handleImageSizing)
+    }
+  }, [height, imageRef, width]);
 
 
   const [showGlass, setShowGlass] = useState(false)
   const [pos, setPos] = useState({ x: 50, y: 50, pageX: 0, pageY: 0 })
   const [scale, setScale] = useState(0)
 
-  const { artworkName, artistName, images } = artwork
-  const { width, height } = images
+
 
   const handleclick = () => {
     setScale((scale + 1) % SCALE.length)
