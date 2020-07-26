@@ -20,12 +20,15 @@ export default function Nav() {
 
 
   useEffect(() => {
-    bodyRef.current = document.querySelector('html')
+
+    return () => {
+      document.querySelector('html').style.overflow = 'auto'
+    }
   }, []);
 
 
   const handleMenu = () => {
-    console.log(open)
+
     if (open) {
       setOpen(!open)
       document.querySelector('html').style.overflow = 'auto'
