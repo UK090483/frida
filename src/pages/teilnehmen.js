@@ -11,7 +11,7 @@ const IndexPage = () => (
   <Layout title={"MeetCollectors"}>
     <SEO title="Teilnehmen" />
     <Hero backgroundColor="red">
-      <h4>TEILNEHMEN</h4>
+      <h6>TEILNEHMEN</h6>
       <h2 className={`text-white`}>
         Open Call: <br></br>Mitmachen und Deine Kunst in ganz Deutschland zeigen
       </h2>

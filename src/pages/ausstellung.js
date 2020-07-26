@@ -10,7 +10,7 @@ const Ausstellung = () => (
   <Layout title={"NewArtists"}>
     <SEO title="Ausstellung" />
     <Hero backgroundColor="lila">
-      <h4>AUSSTELLUNG</h4>
+      <h6>AUSSTELLUNG</h6>
       <h1>Gute Kunst kaufen und Künstler*innen direkt unterstützen</h1>
     </Hero>
     <Section type={"text"}>

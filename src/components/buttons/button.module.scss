@@ -4,6 +4,7 @@
 .root{
     font-size: 1.2rem;
     font-weight: 800;
+     @include fluid-type($min_width, $max_width, 13px, 20px);
     text-decoration: none;
     color: $black;
     cursor: none;
@@ -47,7 +48,7 @@
 
 @include tablet {
     .root{
-        font-size: 0.8rem;
+        // font-size: 0.8rem;
      }
      .inner{
         padding: 0.8rem 1rem;
@@ -56,19 +57,9 @@
         border-radius: 50px;
         transition: background-color 0.4s, color 0.4s;
 
-       
-    
-        
     
     }
 
 }
 
-@include mobile {
-    .root{
-      
-      
-     }
-    
-}
 

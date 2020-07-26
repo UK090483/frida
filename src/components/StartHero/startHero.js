@@ -67,7 +67,7 @@ export default function StartHero() {
     <React.Fragment>
       <div className={style.root}>
         <div className={style.text}>
-          <h4> Neue Werke, wechselnde Ausstellungsorte, 1 Plattform.</h4>
+          <h6> Neue Werke, wechselnde Ausstellungsorte, 1 Plattform.</h6>
           <h1>
             Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida>
           </h1>

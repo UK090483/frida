@@ -5,8 +5,8 @@ $mod_1: 1.2;
 $mod_2: 1.5; 
 $min_width:320px;
 $max_width: 1600px;
-$max-font: 120px;
-$min_font : 16px;
+$min-font: 30px;
+$max_font : 90px;
 
 body{
     font-family: 'Montserrat', sans-serif;
@@ -22,42 +22,56 @@ h1 {
     
     font-family: 'Montserrat', sans-serif;
     font-size: $mod_1*$mod_1*$mod_1*$mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, 30px, 90px);
+    @include fluid-type($min_width, $max_width, $min-font,$max_font);
     
-  }
+}
 
-
-  h2 {  
+h2 {  
    
     font-family: 'Montserrat', sans-serif;
     font-size: $mod_1*$mod_1*$mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, 25px, 70px);
+    @include fluid-type($min_width, $max_width, $min-font *0.8, $max-font *0.8);
     
-  }
-  h3 {  
+}
+h3 {  
     
     font-family: 'Montserrat', sans-serif;
     font-size: $mod_1*$mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, 10px, 26px);
+    @include fluid-type($min_width, $max_width, $min-font *0.6, $max-font *0.6);
     
-  }
-  h4 {  
+}
+h4 {  
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
     font-size: $mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, 14px, 25px);
+    @include fluid-type($min_width, $max_width, $min-font *0.5, $max-font *0.5);
+  
+}
+
+h5 {  
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    font-size: $mod_1 *1rem; 
+    @include fluid-type($min_width, $max_width, $min-font *0.4, $max-font *0.4);
     
   }
+h6 {  
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    font-size: $mod_1 *1rem; 
+    @include fluid-type($min_width, $max_width, $min-font *0.3, $max-font *0.3);
+    
+}
 
-  p {  
+p {  
     font-weight: 500;
     font-family: 'Montserrat', sans-serif;
     font-size: $mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, 17px, 27px);
+    @include fluid-type($min_width, $max_width, $min-font *0.5, $max-font *0.4);
     line-height: 1.3em;
      padding-bottom: 20px;
     
-  }
+}
 
 
  

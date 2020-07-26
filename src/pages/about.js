@@ -10,7 +10,7 @@ const IndexPage = () => (
   <Layout title={"Frida"}>
     <SEO title="aboute" />
     <Hero backgroundColor="lila">
-      <h4>ABOUT</h4>
+      <h6>ABOUT</h6>
 
       <h1>
         Warum wir <Frida></Frida> ins Leben gerufen haben

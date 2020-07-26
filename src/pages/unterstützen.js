@@ -13,7 +13,7 @@ const IndexPage = () => (
   <Layout title={"OurSupporters"}>
     <SEO title="Teilnehmen" />
     <Hero backgroundColor="lila">
-      <h4>UNTERSTÜTZEN</h4>
+      <h6>UNTERSTÜTZEN</h6>
       <h1>
         Unterstützen Sie <Frida /> und werden Sie Teil der größten Kunstschau
         im öffentlichen Raum
