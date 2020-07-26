@@ -3,11 +3,11 @@ import style from "./frida.module.scss"
 
 export default function Frida({ text, textColor }) {
   return (
-    <React.Fragment>
+    <div className={style.root}>
       #Meet
-      <span className={style.root} style={{ color: textColor || "white" }}>
+      <span className={style.spanRoot} style={{ color: textColor || "white" }}>
         {text || "Frida"}
       </span>
-    </React.Fragment>
+    </div>
   )
 }

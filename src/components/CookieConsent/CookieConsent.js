@@ -15,7 +15,7 @@ export default function CookieConsent() {
 
   useEffect(() => {
 
-    console.log(cookies)
+    // console.log(cookies)
     if (cookies[gdprCookie] && cookies[gdprCookie] === 'false') {
       setClicked(false)
     }
