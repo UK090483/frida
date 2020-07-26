@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { Link } from "gatsby"
 import Burger from "../../assets/Menu_Burger.svg"
 import BigButton from "../buttons/bigButton"
@@ -13,6 +13,31 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
   const [counter, setCounter] = useState(false)
   const { setMouse } = useMouse()
+  const bodyRef = useRef()
+
+
+
+
+
+  useEffect(() => {
+    bodyRef.current = document.querySelector('html')
+  }, []);
+
+
+  const handleMenu = () => {
+    console.log(open)
+    if (open) {
+      setOpen(!open)
+      document.querySelector('html').style.overflow = 'auto'
+    } else {
+
+      document.querySelector('html').style.overflow = 'hidden'
+      setOpen(!open)
+      setCounter(true)
+    }
+
+
+  }
 
   const fridaLink = (link, label) => (
     <h1>
@@ -47,8 +72,7 @@ export default function Nav() {
           setMouse('color', false)
         }}
         onClick={() => {
-          setOpen(!open)
-          setCounter(true)
+          handleMenu()
         }}
       >
         <Burger></Burger>
@@ -69,7 +93,7 @@ export default function Nav() {
             <a
               className={style.icon}
 
-              onClick={() => setOpen(!open)}
+              onClick={() => handleMenu()}
             >
               <Kreutz
                 onMouseEnter={() => {

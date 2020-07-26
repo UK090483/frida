@@ -59,7 +59,7 @@ h6 {
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
     font-size: $mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, $min-font *0.3, $max-font *0.3);
+    @include fluid-type($min_width, $max_width, $min-font *0.4, $max-font *0.3);
     
 }
 
