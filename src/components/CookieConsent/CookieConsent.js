@@ -44,7 +44,9 @@ export default function CookieConsent() {
   const handleClick = (set) => {
     setClicked(true)
     if (set) {
-      setCookie(gdprCookie, true)
+      var oneYearFromNow = new Date();
+      oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+      setCookie(gdprCookie, 'true', { expires: oneYearFromNow })
     }
 
   }
