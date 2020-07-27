@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import Burger from "../../assets/Menu_Burger.svg"
 import BigButton from "../buttons/bigButton"
@@ -13,7 +13,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
   const [counter, setCounter] = useState(false)
   const { setMouse } = useMouse()
-  const bodyRef = useRef()
+
 
 
 

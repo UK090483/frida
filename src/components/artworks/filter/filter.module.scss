@@ -9,16 +9,15 @@
 
 }
 
-@include tablet {
+
+@media (max-width: 1400px ) {
     .root{
        
         flex-wrap:wrap;
         
     }
+  }
 
-  
-}
 
-@include mobile {
-    
-}
+
+

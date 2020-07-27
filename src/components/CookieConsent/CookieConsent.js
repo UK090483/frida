@@ -11,7 +11,7 @@ export default function CookieConsent() {
 
   const [clicked, setClicked] = useState(true);
 
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [cookies, setCookie] = useCookies();
 
   useEffect(() => {
 

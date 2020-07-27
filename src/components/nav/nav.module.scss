@@ -117,7 +117,7 @@ to{
 
 
 .linksRoot{
-   
+    
     width: 100%;
     padding-top: 20vh;
     padding-left: 7%;
@@ -125,6 +125,7 @@ to{
     h1{
         margin: 0;
         line-height: 2.2rem;
+       
     }
 
     a{
@@ -159,6 +160,20 @@ to{
 }
 
 
+@media (max-height  : 800px ) {
+    .root{
+    .linksRoot{
+      
+        a{
+        
+           font-size: 2rem;
+           line-height: 3rem;
+        }
+   }
+}
+}
+
+
 
 @include tablet {
     .root{
@@ -173,8 +188,13 @@ to{
      }
      .linksRoot{
          a{
+           
             font-size: 2rem;
             line-height: 3rem;
          }
     }
 }
+
+
+    
+  
