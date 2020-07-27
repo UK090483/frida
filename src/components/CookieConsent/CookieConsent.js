@@ -18,7 +18,7 @@ export default function CookieConsent() {
 
   useEffect(() => {
 
-    console.log(cookies)
+
     if (cookies[gdprCookie] && cookies[gdprCookie] === 'false') {
       setClicked(false)
     }
@@ -43,7 +43,10 @@ export default function CookieConsent() {
 
   const handleClick = (set) => {
     setClicked(true)
-    setCookie(gdprCookie, true)
+    if (set) {
+      setCookie(gdprCookie, true)
+    }
+
   }
 
   return (
