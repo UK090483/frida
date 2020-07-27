@@ -2,7 +2,6 @@
 
 .root{
     display: flex;
-    flex-wrap: wrap;
     width: 100vw;
     background-color: $white;
     position: fixed;
@@ -23,7 +22,7 @@
 .text{
     display: flex;
     align-items: center;
-    width:70%;
+    width:100%;
     padding-right: 20px;
     
     p{
@@ -37,14 +36,36 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width:30%;
-    min-width: 460px;
+    
+    min-width: 340px;
     flex-grow: 2;
    
-    
+    svg{
+        width: 60px;
+        height:60px;
+    }
 }
 
-@include tablet {
+@include  tablet {
+
+  
+    .buttons{
+ 
+       
+        min-width: 250px;
+        svg{
+            width: 40px;
+            height:40px;
+        }
+      
+    }
+
+}
+
+@include mobile {
+    .root{
+        flex-wrap: wrap;
+    }
     .text{
         width: 100%;
         p{
@@ -56,15 +77,10 @@
         min-width: unset;
         padding-top: 10px;
         padding-bottom: 20px;
-       
-        width:100%;
+       margin-left: auto;
+        max-width:210px;
     }
     
 }
 
-@include mobile {
-    
-     
-     
-}
 

@@ -3,6 +3,8 @@ import style from './cookieConsent.module.scss';
 import Button from '../buttons/button';
 import { useStaticQuery, graphql } from "gatsby"
 import { useCookies } from 'react-cookie'
+import Kreutz from "../../assets/Menu_Kreutz.svg"
+import useMouse from '../Mouse/hooks/useMouse'
 
 
 const gdprCookie = 'gatsby-plugin-google-analytics-gdpr_cookies-enabled'
@@ -12,10 +14,11 @@ export default function CookieConsent() {
   const [clicked, setClicked] = useState(true);
 
   const [cookies, setCookie] = useCookies();
+  const { setMouse } = useMouse()
 
   useEffect(() => {
 
-    // console.log(cookies)
+    console.log(cookies)
     if (cookies[gdprCookie] && cookies[gdprCookie] === 'false') {
       setClicked(false)
     }
@@ -54,7 +57,17 @@ export default function CookieConsent() {
       </div>
       <div className={style.buttons}>
         <Button type='clickButton' label={'Einverstanden'} onClick={() => { handleClick(true) }} />
-        <Button type='clickButton' label={'Ablehnen'} onClick={() => { handleClick(false) }} />
+
+        <Kreutz
+          onClick={() => { handleClick(false) }}
+          onMouseEnter={() => {
+            setMouse('link', true)
+          }}
+          onMouseLeave={() => {
+            setMouse('link', false)
+          }}
+        ></Kreutz>
+        {/* <Button type='clickButton' label={'Ablehnen'} onClick={() => { handleClick(false) }} /> */}
       </div>
 
     </div>
