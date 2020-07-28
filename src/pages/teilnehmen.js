@@ -8,7 +8,7 @@ import Section from "../components/container/section"
 import Button from '../components/buttons/button'
 
 const IndexPage = () => (
-  <Layout title={"MeetCollectors"}>
+  <Layout title={"Collectors"}>
     <SEO title="Teilnehmen" />
     <Hero backgroundColor="red">
       <h6>TEILNEHMEN</h6>
@@ -36,7 +36,7 @@ const IndexPage = () => (
     <Section type={"text"} backgroundColor="red">
 
       <div style={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Button type={'externalLink'} label={'Zur Form'} link={"https://form.jotform.com/201885178999377"} backgroundColor={'red'} />
+        <Button type={'externalLink'} label={'Zur Formular'} link={"https://form.jotform.com/201885178999377"} backgroundColor={'red'} />
       </div>
     </Section>
 

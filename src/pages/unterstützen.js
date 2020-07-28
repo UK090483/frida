@@ -15,8 +15,7 @@ const IndexPage = () => (
     <Hero backgroundColor="lila">
       <h6>UNTERSTÜTZEN</h6>
       <h1>
-        Unterstützen Sie <Frida /> und werden Sie Teil der größten Kunstschau
-        im öffentlichen Raum
+        Unterstütze Künstler*innen und mache <Frida /> zur größten Kunstschau im öffentlichen Raum
       </h1>
     </Hero>
     <Section backgroundColor="lila" type={"text"}>
