@@ -39,24 +39,40 @@ const IndexPage = () => (
 
          Bewirb dich jetzt und erreiche Tausende Menschen in ganz Deutschland!
          <br />
-        <br />
-         Du willst Teil von Deutschlands größter Ausstellung werden? Dann musst Du eine der folgenden Bedingungen erfüllen:<br />
-          · Du hast ein abgeschlossenes Kunststudium.<br />
-           · Du arbeitest seit mindestens drei Jahren als Kunstschaffende*r.<br />
-            · Oder Du hattest schon mindestens zwei Ausstellungen.<br />
+
+      </p>
+    </Section>
+    <Section type={"text"} backgroundColor="red">
+
+      <div style={{ height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Button type={'externalLink'} label={'Jetzt mitmachen'} link={"https://form.jotform.com/201885178999377"} backgroundColor={'allwhite'} />
+      </div>
+    </Section>
+    <Section type={"text"} backgroundColor="red">
+      <p style={{ paddingTop: 100, paddingBottom: 100 }}>
+        Du willst Teil von Deutschlands größter Ausstellung werden? Dann musst Du eine der folgenden Bedingungen erfüllen:<br />
+        <ul>
+          <li>Du hast ein abgeschlossenes Kunststudium.</li>
+          <li>Du arbeitest seit mindestens drei Jahren als Kunstschaffende*r.</li>
+          <li>Oder Du hattest schon mindestens zwei Ausstellungen.</li>
+        </ul>
         <br />
         <br />
         Zeig uns die Werke, die du bei #MeetFrida ausstellen und verkaufen willst und sei gespannt auf die Rückmeldung der Kurator*innen.<br />
-         · Du kannst fünf Arbeiten einreichen.<br />
-          · Du bestimmst die Preise.<br />
-           · Eines der Werke muss weniger als 500 Euro kosten.<br />
+
+        <ul>
+          <li>Du kannst fünf Arbeiten einreichen.</li>
+          <li>Du bestimmst die Preise.</li>
+          <li>Eines der Werke muss weniger als 500 Euro kosten.</li>
+        </ul>
+
       </p>
     </Section>
 
     <Section type={"text"} backgroundColor="red">
 
       <div style={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Button type={'externalLink'} label={'Jetzt mitmachen'} link={"https://form.jotform.com/201885178999377"} backgroundColor={'red'} />
+        <Button type={'externalLink'} label={'Jetzt mitmachen'} link={"https://form.jotform.com/201885178999377"} backgroundColor={'allwhite'} />
       </div>
     </Section>
 

@@ -42,6 +42,15 @@
         }
 
     }
+    &.allwhite{
+        border: $white solid $borderwidth ;
+        color: $red;
+        background-color: $white;
+        &:hover{
+            background-color: transparent;
+            color: $white;
+        }
+    }
 
 }
 

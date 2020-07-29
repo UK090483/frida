@@ -67,7 +67,7 @@ p {
     font-weight: 500;
     font-family: 'Montserrat', sans-serif;
     font-size: $mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, $min-font *0.5, $max-font *0.4);
+    @include fluid-type($min_width, $max_width, $min-font *0.5, $max-font *0.34);
     line-height: 1.3em;
      padding-bottom: 20px;
     

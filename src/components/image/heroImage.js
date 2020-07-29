@@ -40,9 +40,8 @@ const Image = () => {
       }}
     >
       <div className={style.text}>
-        <h4><Frida text={'TheMakers'}></Frida></h4>
-        <h1>
-          Wer hinter <Frida></Frida> steckt
+        <h6>KONTAKT</h6>
+        <h1> Wer hinter <br /> <Frida></Frida> steckt
 
         </h1>
       </div>

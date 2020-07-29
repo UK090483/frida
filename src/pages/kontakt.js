@@ -7,7 +7,7 @@ import Frida from "../components/frida/frida"
 import TeamImage from "../components/image/heroImage"
 
 const IndexPage = () => (
-  <Layout title={"us"}>
+  <Layout title={"TheMakers"}>
     <SEO title="Kontakt" />
     <Section backgroundColor="lila" type={"full"}>
       <TeamImage></TeamImage>

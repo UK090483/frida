@@ -153,7 +153,7 @@ export default function SendMail({ artwork }) {
             <div>
 
                 <h5>Gute Wahl 🤩!</h5>
-                <p>Wir melden schnellstmöglich bei dir - in der Regel innerhalb von 2 Tagen.</p>
+                <p>Wir melden uns schnellstmöglich bei dir - in der Regel innerhalb von 2 Tagen.</p>
             </div>
         </React.Fragment>
     )
