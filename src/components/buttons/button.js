@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import style from "./button.module.scss"
 import useMouse from '../Mouse/hooks/useMouse'
 
-export default function Buttons({ label, link, type = 'link', backgroundColor = 'allwhite', onClick = () => { } }) {
+export default function Buttons({ label, link, type = 'link', backgroundColor = 'white', onClick = () => { } }) {
 
   const { setMouse } = useMouse()
 

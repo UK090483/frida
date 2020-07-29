@@ -6,6 +6,8 @@ import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
 // import Embet from "../components/embet/embet"
 import Button from '../components/buttons/button'
+import TeilnehmennCTA from '../components/teilnemenCTA/teilnemenCta'
+
 
 const IndexPage = () => (
   <Layout title={"Collectors"}>
@@ -45,39 +47,39 @@ const IndexPage = () => (
     <Section type={"text"} backgroundColor="red">
 
       <div style={{ height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Button type={'externalLink'} label={'Jetzt mitmachen'} link={"https://form.jotform.com/201885178999377"} backgroundColor={'allwhite'} />
+        <Button type={'externalLink'} label={'Jetzt teilnehmen'} link={"https://form.jotform.com/201885178999377"} backgroundColor={'allwhite'} />
       </div>
     </Section>
     <Section type={"text"} backgroundColor="red">
-      <p style={{ paddingTop: 100, paddingBottom: 100 }}>
-        Du willst Teil von Deutschlands größter Ausstellung werden? Dann musst Du eine der folgenden Bedingungen erfüllen:<br />
-        <ul>
-          <li>Du hast ein abgeschlossenes Kunststudium.</li>
-          <li>Du arbeitest seit mindestens drei Jahren als Kunstschaffende*r.</li>
-          <li>Oder Du hattest schon mindestens zwei Ausstellungen.</li>
-        </ul>
-        <br />
-        <br />
-        Zeig uns die Werke, die du bei #MeetFrida ausstellen und verkaufen willst und sei gespannt auf die Rückmeldung der Kurator*innen.<br />
-
-        <ul>
-          <li>Du kannst fünf Arbeiten einreichen.</li>
-          <li>Du bestimmst die Preise.</li>
-          <li>Eines der Werke muss weniger als 500 Euro kosten.</li>
-        </ul>
-
+      <p style={{ paddingTop: 100 }}>
+        Du willst Teil von Deutschlands größter Ausstellung werden? Dann musst Du eine der folgenden Bedingungen erfüllen:
       </p>
+      <ul style={{ paddingBottom: 100 }}>
+        <li>Du hast ein abgeschlossenes Kunststudium.</li>
+        <li>Du arbeitest seit mindestens drei Jahren als Kunstschaffende*r.</li>
+        <li>Oder Du hattest schon mindestens zwei Ausstellungen.</li>
+      </ul>
+
+      <p>  Zeig uns die Werke, die du bei #MeetFrida ausstellen und verkaufen willst und sei gespannt auf die Rückmeldung der Kurator*innen.  </p>
+
+      <ul style={{ paddingBottom: 100, marginBottom: 0 }}>
+        <li>Du kannst fünf Arbeiten einreichen.</li>
+        <li>Du bestimmst die Preise.</li>
+        <li>Eines der Werke muss weniger als 500 Euro kosten.</li>
+      </ul>
+
+
     </Section>
 
-    <Section type={"text"} backgroundColor="red">
+    {/* <Section type={"text"} backgroundColor="red">
 
       <div style={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Button type={'externalLink'} label={'Jetzt mitmachen'} link={"https://form.jotform.com/201885178999377"} backgroundColor={'allwhite'} />
       </div>
-    </Section>
+    </Section> */}
+    <TeilnehmennCTA></TeilnehmennCTA>
 
-    {/* <Embet></Embet> */}
-  </Layout>
+  </Layout >
 )
 
 export default IndexPage
