@@ -17,13 +17,10 @@ const IndexPage = () => (
         Du willst wissen, wer hinter <Frida /> steckt?
         <br></br>
         <br></br>
-        Du willst wissen wer wir sind? Wir sind ein Creative Think Tank, der
-        Inhalte relevant und komplexe Themen zu nachhaltigen Kampagnen macht.
-        Seit 2015 denken wir täglich neu – vernetzt, digital, unabhängig.
+        Du willst wissen wer wir sind? Wir sind ein Creative Think Tank, der Inhalte relevant und komplexe Themen zu nachhaltigen Kampagnen macht. Seit 2015 denken wir täglich neu – vernetzt, digital, unabhängig.
         <br></br>
         <br></br>
-        Wir greifen aktuelle Trends auf und geben Botschaften einen Mehrwert -
-        gesellschaftlich, ökologisch, kulturell, politisch.
+        Wir greifen aktuelle Trends auf und geben Botschaften einen Mehrwert - gesellschaftlich, ökologisch, kulturell, politisch.
         <br></br>
         <br></br>
         <br></br>

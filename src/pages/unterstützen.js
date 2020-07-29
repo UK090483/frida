@@ -11,20 +11,20 @@ import Button from "../components/buttons/button"
 
 const IndexPage = () => (
   <Layout title={"OurSupporters"}>
-    <SEO title="Teilnehmen" />
+    <SEO title="Unterstützen" />
     <Hero backgroundColor="lila">
       <h6>UNTERSTÜTZEN</h6>
       <h1>
-        Unterstütze Künstler*innen und mache <Frida /> zur größten Kunstschau im öffentlichen Raum
+        Unterstütze <Frida /> und werde Teil der größten Kunstschau Deutschlands
+
       </h1>
     </Hero>
     <Section backgroundColor="lila" type={"text"}>
       <div style={{ paddingTop: 100, paddingBottom: 100 }}>
         <p>
-          Nicht nur Kunst braucht Förderer, auch unsere Kunstaktion braucht
-          Unterstützer, die das Projekt in ihre Netzwerke streuen. Oder die uns
-          unterstützen, indem sie die Produktionskosten für diese Aktion
-          übernehmen.
+          Nicht nur Kunst braucht Förderung, auch unsere Kunstaktion braucht Unterstützer*innen, die das Projekt bekannt machen.
+          Oder die uns helfen, indem sie Produktionskosten für <Frida /> übernehmen. Wenn wir mehr einnehmen,
+          können wir mehr ausstellen – die Ausstellung wird immer größer.
         </p>
 
 

@@ -151,8 +151,9 @@ export default function SendMail({ artwork }) {
     const thanks = () => (
         <React.Fragment>
             <div>
-                <h4>Danke !!!</h4>
-                <h4>wir werden uns so schnell wie möglich bei Ihnen melden</h4>
+
+                <h5>Gute Wahl 🤩!</h5>
+                <p>Wir melden schnellstmöglich bei dir - in der Regel innerhalb von 2 Tagen.</p>
             </div>
         </React.Fragment>
     )

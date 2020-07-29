@@ -16,7 +16,7 @@ export default function Stoerer() {
                 onMouseEnter={() => { setMouse('link', true) }}
                 onMouseLeave={() => { setMouse('link', false) }}
             >
-                <Link to="/unterstützen/">
+                <Link to="/teilnehmen/">
                     <StoererSVG />
                 </Link>
             </div>

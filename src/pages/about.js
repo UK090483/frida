@@ -8,7 +8,7 @@ import Frida from "../components/frida/frida"
 
 const IndexPage = () => (
   <Layout title={"Frida"}>
-    <SEO title="aboute" />
+    <SEO title="about" />
     <Hero backgroundColor="lila">
       <h6>ABOUT</h6>
 
@@ -19,46 +19,33 @@ const IndexPage = () => (
     <Section backgroundColor="lila" type="text">
       <div>
         <p>
-          Wir zeigen die kuratierten Werke von Künstler*innen in unserer
-          Online-Galerie, auf Social Media und der eigenen Website. Außerdem
-          bringen wir die Werke auf Plakatwände und digitale Werbeflächen in
-          deutschen Städten. So schaffen wir die größte Kunstschau, die es
-          im öffentlichen Raum je gab.
+          Wir zeigen die kuratierten Werke junger Künstler*innen in unserer Online-Galerie und auf Social Media. Außerdem bringen wir die Werke auf digitale Werbeflächen und Plakatwände in deutschen Städten. So schaffen wir die größte Kunstausstellung, die es im öffentlichen Raum je gab.
         </p>
         <br></br>
 
         <p>
-          Damit machen wir Kunst für alle sichtbar. Auch für die, die sonst
-          nicht ins Museum gehen. Wir ermöglichen einen Blick über den
-          Tellerrand – wir bringen Kunst zurück in den Alltag. Vor allem aber
-          bieten wir Künstler*innen ein zusätzliches
-          Einkommen. Der Rollout startet online, später kommen wir in
-          den öffentlichen Raum.
+          Damit machen wir Kunst für alle sichtbar. Auch für die, die sonst nicht ins Museum gehen. In Kooperationen mit den Werbeunternehmen Plakatunion, Ströer und HYGH zeigen wir: Kunst statt Werbung. Wir ermöglichen einen Blick über den Tellerrand – wir bringen Kunst zurück in den Alltag.
         </p>
         <br></br>
         <p>
-          Frida Kahlo ist eine Stilikone und Vorbild für viele Künstler*innen.
-          Ihre Lebensgeschichte steht aber auch für den harten Weg, den
-          Künstler*innen, insbesondere Frauen, bis heute in der (Kunst-)welt
-          gehen.
+          Vor allem aber bieten wir Künstler*innen in Zeiten von Corona ein zusätzliches Einkommen. Der Erlös der Werke geht zu 100 Prozent in die Unterstützung der Kunstschaffenden. Der Rollout startet im Juli 2020 online, später kommen wir in den öffentlichen Raum.
         </p>
         <br></br>
 
         <p>
-          Aber wir wollen hier nicht Frida Kahlo besser kennenlernen, sondern
-          alle Künstler*innen, die bei unserer Aktion mitmachen. Denn es geht um
-          sie und ihre Kunst.
+          Frida Kahlo ist eine Stilikone und Vorbild für viele Künstlerinnen. Ihre Lebensgeschichte steht aber auch für den harten Weg, den Künstlerinnen, insbesondere Frauen, bis heute in der (Kunst-)welt gehen. Gerade zu Zeiten von Corona.
         </p>
         <br></br>
         <p>
-          Kunstschaffende können ihre Werke unter dem Hashtag #MeetFrida / bei
-          #MeetFrida einreichen. Die Ausstellung – digital und analog – wird von
-          einer Jury aus internationalen Kunstexpert*innen kuratiert.
+          Aber wir wollen hier nicht Frida Kahlo besser kennenlernen, sondern alle Künstler*innen, die bei unserer Aktion mitmachen. Denn es geht um sie und ihre Kunst.
         </p>
         <br></br>
         <p>
-          Der Verkauf wird direkt auf unserer Online-Galerie abgewickelt. Die
-          Erlöse gehen zu 100% an die Kunstschaffenden.
+          Kunstschaffende können ihre Werke unter bei #MeetFrida einreichen, mindestens eins der Werke muss dabei weniger als 500 EUR kosten. Die Ausstellung – digital und analog – wird von einer Jury aus internationalen Kunstexpert*innen kuratiert.
+        </p>
+        <br></br>
+        <p>
+          Der Verkauf wird direkt zwischen Künstlerin und Käuferin abgewickelt. Die Erlöse gehen zu 100% in die Unterstützung der Kunstschaffenden.
         </p>
         <br></br>
       </div>
