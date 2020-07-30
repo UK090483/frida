@@ -7,7 +7,7 @@ import Section from "../components/container/section"
 // import Embet from "../components/embet/embet"
 import Button from '../components/buttons/button'
 import TeilnehmennCTA from '../components/teilnemenCTA/teilnemenCta'
-
+const JOTFORM = 'https://form.jotform.com/202104811201332'
 
 const IndexPage = () => (
   <Layout title={"Collectors"}>
@@ -17,9 +17,7 @@ const IndexPage = () => (
       <h2 className={`text-white`}>
         Open Call: <br></br>Mitmachen und Deine Kunst in ganz Deutschland zeigen
       </h2>
-      {/* <h2 className={`text-lila`}>
-        Submissions open 15 June-Deadline 1 August
-      </h2> */}
+
     </Hero>
     <Section type={"text"} backgroundColor="red">
       <p style={{ paddingTop: 100, paddingBottom: 100 }}>
@@ -47,7 +45,7 @@ const IndexPage = () => (
     <Section type={"text"} backgroundColor="red">
 
       <div style={{ height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Button type={'externalLink'} label={'Jetzt teilnehmen'} link={"https://form.jotform.com/201885178999377"} backgroundColor={'allwhite'} />
+        <Button type={'externalLink'} label={'Jetzt teilnehmen'} link={JOTFORM} backgroundColor={'allwhite'} />
       </div>
     </Section>
     <Section type={"text"} backgroundColor="red">
@@ -71,13 +69,7 @@ const IndexPage = () => (
 
     </Section>
 
-    {/* <Section type={"text"} backgroundColor="red">
-
-      <div style={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Button type={'externalLink'} label={'Jetzt mitmachen'} link={"https://form.jotform.com/201885178999377"} backgroundColor={'allwhite'} />
-      </div>
-    </Section> */}
-    <TeilnehmennCTA></TeilnehmennCTA>
+    <TeilnehmennCTA link={JOTFORM}></TeilnehmennCTA>
 
   </Layout >
 )

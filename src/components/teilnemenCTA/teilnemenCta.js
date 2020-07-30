@@ -3,7 +3,7 @@ import style from './teilnehmen.module.scss';
 import useMouse from '../Mouse/hooks/useMouse'
 
 
-export default function CookieConsent() {
+export default function TeilnehmenCTA({ link }) {
 
     const [show, setShow] = useState(false);
     const { setMouse } = useMouse()
@@ -20,7 +20,7 @@ export default function CookieConsent() {
         <div className={`${style.root} ${!show ? '' : style.show}`}>
             <a
                 className={`${style.link}`}
-                href={'https://form.jotform.com/201885178999377'}
+                href={link}
                 target="_blank"
                 rel="noreferrer"
                 onMouseEnter={() => { setMouse('link', true) }}

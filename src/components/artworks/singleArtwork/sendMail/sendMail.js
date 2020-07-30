@@ -152,7 +152,7 @@ export default function SendMail({ artwork }) {
         <React.Fragment>
             <div>
 
-                <h5>Gute Wahl 🤩!</h5>
+                <h5>Gute Wahl <span role="img" aria-label="Smiley">🤩</span>!</h5>
                 <p>Wir melden uns schnellstmöglich bei dir - in der Regel innerhalb von 2 Tagen.</p>
             </div>
         </React.Fragment>
