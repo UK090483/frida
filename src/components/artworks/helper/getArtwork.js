@@ -15,6 +15,7 @@ export default function getArtwork(artwork) {
     },
     height: artwork.height,
     width: artwork.width,
+    depth: artwork.depth,
     price: artwork.price,
     stil: artwork.stil,
     medium: artwork.medium,

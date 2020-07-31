@@ -16,6 +16,7 @@ export default function Artworks({ artwork }) {
     medium,
     stil,
     width,
+    depth
   } = artwork
 
   return (
@@ -34,7 +35,7 @@ export default function Artworks({ artwork }) {
         </div>
         <div className={style.props}>
           {" "}
-          {`${medium}, ${width}*${height} ${stil}`}{" "}
+          {`${medium}, ${width}*${height} ${depth ? '*' + depth : ''} ${stil}`}{" "}
         </div>
         <div className={style.price}>{price}€</div>
 

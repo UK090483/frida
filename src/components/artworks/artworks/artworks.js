@@ -37,6 +37,7 @@ export default function Artworks({
             artworkDescription
             availability
             height
+            depth
             artistEmail
             images {
               local {
@@ -80,6 +81,7 @@ export default function Artworks({
   const artworks = getArtworks()
   const bodyRef = useRef()
 
+  console.log(artworks)
   useEffect(() => {
     bodyRef.current = document.querySelector("html")
   }, [])
