@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hero renders correctly 1`] = `
+<section
+  className="default white"
+  data-color="default"
+  onMouseOver={[Function]}
+  style={Object {}}
+>
+  <div
+    className="full"
+    style={Object {}}
+  >
+    <div
+      className="root"
+    >
+      <div
+        className="default"
+        style={Object {}}
+      />
+    </div>
+  </div>
+</section>
+`;

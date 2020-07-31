@@ -13,7 +13,7 @@ import style from "./supporter.module.scss"
  * - `useStaticQuery`: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-const Image = () => {
+const Kooperations = () => {
   const data = useStaticQuery(graphql`
     query KooperationQuery {
       allFile(
@@ -33,21 +33,27 @@ const Image = () => {
   `)
 
   return (
-    <div className={style.root}>
-      <img
-        alt={"Logo"}
-        srcSet={data.allFile.edges[2].node.childImageSharp.fluid.srcSet}
-      ></img>
-      <img
-        alt={"Logo"}
-        srcSet={data.allFile.edges[0].node.childImageSharp.fluid.srcSet}
-      ></img>
-      <img
-        alt={"Logo"}
-        srcSet={data.allFile.edges[1].node.childImageSharp.fluid.srcSet}
-      ></img>
-    </div>
+    <PureKooperations data={data} />
   )
 }
 
-export default Image
+export const PureKooperations = ({ data }) => (
+  <div className={style.root}>
+    <img
+      alt={"Logo"}
+      srcSet={data.allFile.edges[2].node.childImageSharp.fluid.srcSet}
+    ></img>
+    <img
+      alt={"Logo"}
+      srcSet={data.allFile.edges[0].node.childImageSharp.fluid.srcSet}
+    ></img>
+    <img
+      alt={"Logo"}
+      srcSet={data.allFile.edges[1].node.childImageSharp.fluid.srcSet}
+    ></img>
+  </div>
+)
+
+
+
+export default Kooperations
