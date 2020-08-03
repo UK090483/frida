@@ -4,25 +4,26 @@ import BigButton from "../buttons/bigButton"
 import TextFlow from "./textFlow"
 import style from "./footer.module.scss"
 import AllSupporter from "../Supporter/allSupporter"
-import { Link } from "gatsby";
-import useMouse from '../Mouse/hooks/useMouse'
+import { Link } from "gatsby"
+import useMouse from "../Mouse/hooks/useMouse"
 
 export default function Footer({ title }) {
-
   const { setMouse } = useMouse()
   return (
     <div>
       {title !== "OurSupporters" && (
         <React.Fragment>
           <Section backgroundColor="lila">
-            <div style={{ padding: "200px 0" }}>
+            <div style={{ padding: "200px 0 50px 0" }}>
               <h4>SUPPORTER</h4>
               <h2>
                 Ohne Euch wäre diese Aktion nicht möglich.{" "}
                 <span style={{ color: "white" }}>Danke.</span>
               </h2>
-              <AllSupporter></AllSupporter>
             </div>
+          </Section>
+          <Section backgroundColor="lila" type={"full"}>
+            <AllSupporter></AllSupporter>
           </Section>
           <TextFlow></TextFlow>
         </React.Fragment>
@@ -41,12 +42,12 @@ export default function Footer({ title }) {
           <p>© 2020 Schwan Studio</p>
           <Link
             className={style.impressum}
-            to={'/impressum'}
+            to={"/impressum"}
             onMouseEnter={() => {
-              setMouse('link', true)
+              setMouse("link", true)
             }}
             onMouseLeave={() => {
-              setMouse('link', false)
+              setMouse("link", false)
             }}
           >
             <p>Impressum</p>

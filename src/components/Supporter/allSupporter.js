@@ -1,6 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import style from "./supporter.module.scss"
+import Ticker from "react-ticker"
 
 const AllSuporters = () => {
   const data = useStaticQuery(graphql`
@@ -29,14 +30,19 @@ export default AllSuporters
 
 const PureAllSupporters = ({ data }) => {
   return (
-    <div className={`${style.root} ${style.allSupporters}`}>
-      {data.allFile.edges.map(logo => (
-        <img
-          alt={"Logo"}
-          key={logo.node.id}
-          src={logo.node.childImageSharp.resize.src}
-        ></img>
-      ))}
-    </div>
+    <Ticker speed={20}>
+      {({ index }) => {
+        let i = index % data.allFile.edges.length
+        return (
+          <div className={style.logoItem}>
+            <img
+              alt={"Logo"}
+              key={data.allFile.edges[i].node.id}
+              src={data.allFile.edges[i].node.childImageSharp.resize.src}
+            ></img>
+          </div>
+        )
+      }}
+    </Ticker>
   )
 }
