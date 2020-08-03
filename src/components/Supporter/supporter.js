@@ -42,6 +42,10 @@ const Image = () => {
         alt={"Logo"}
         srcSet={data.allFile.edges[4].node.childImageSharp.fluid.srcSet}
       ></img>
+      <img
+        alt={"Logo"}
+        srcSet={data.allFile.edges[5].node.childImageSharp.fluid.srcSet}
+      ></img>
     </div>
   )
 }
