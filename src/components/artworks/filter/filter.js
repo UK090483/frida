@@ -89,7 +89,7 @@ export default function Filter({ artworks, setFElements }) {
       <DropDown
         label={"Künstler"}
         options={options.artist}
-        open={curentlyOpen === "Artist"}
+        open={curentlyOpen === "Künstler"}
         setOpen={i => handleSetOpen(i)}
         setFilter={setFilter}
       ></DropDown>
