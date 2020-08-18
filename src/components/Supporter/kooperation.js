@@ -34,6 +34,9 @@ const Image = () => {
 
   return (
     <div className={style.root}>
+      {data.allFile.edges.map(item => (
+        <img alt={"Logo"} srcSet={item.node.childImageSharp.fluid.srcSet}></img>
+      ))}
       <img
         alt={"Logo"}
         srcSet={data.allFile.edges[2].node.childImageSharp.fluid.srcSet}
