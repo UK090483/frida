@@ -14,6 +14,8 @@ export default function Filter({ artworks, setFElements }) {
   const [curentlyOpen, setCurentlyOpen] = useState("")
   const [filter, setF] = useState({})
 
+  console.log(filter)
+
   const getOptions = () => {
     const artists = []
     const ArtistsOptions = []
@@ -88,6 +90,7 @@ export default function Filter({ artworks, setFElements }) {
     <div className={style.root}>
       <DropDown
         label={"Künstler"}
+        filterName={"Artist"}
         options={options.artist}
         open={curentlyOpen === "Künstler"}
         setOpen={i => handleSetOpen(i)}
@@ -95,6 +98,7 @@ export default function Filter({ artworks, setFElements }) {
       ></DropDown>
       <DropDown
         label={"Stil"}
+        filterName={"Stil"}
         options={options.stil}
         open={curentlyOpen === "Stil"}
         setOpen={i => handleSetOpen(i)}
@@ -102,6 +106,7 @@ export default function Filter({ artworks, setFElements }) {
       ></DropDown>
       <DropDown
         label={"Medium"}
+        filterName={"Medium"}
         options={options.medium}
         open={curentlyOpen === "Medium"}
         setOpen={i => handleSetOpen(i)}
@@ -109,6 +114,7 @@ export default function Filter({ artworks, setFElements }) {
       ></DropDown>
       <DropDown
         label={"Preis"}
+        filterName={"Preis"}
         options={preisOptions}
         open={curentlyOpen === "Preis"}
         setOpen={i => handleSetOpen(i)}
