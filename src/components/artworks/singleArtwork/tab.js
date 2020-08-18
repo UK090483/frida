@@ -13,8 +13,8 @@ export default function Tab({ text1, text2 }) {
           setActive(!active)
         }}
       >
-        <div className={active ? style.active : ""}>Artist Info</div>
-        <div className={!active ? style.active : ""}>Artwork Info</div>
+        <div className={active ? style.active : ""}>Künstler Info</div>
+        <div className={!active ? style.active : ""}>Kunstwerk Info</div>
       </div>
 
       {active && (

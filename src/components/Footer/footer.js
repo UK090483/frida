@@ -39,7 +39,7 @@ export default function Footer({ title }) {
 
       <Section backgroundColor="red">
         <div className={style.sub}>
-          <p>© 2020 Schwan Studio</p>
+          <p>© 2020 Schwan Communications</p>
           <Link
             className={style.impressum}
             to={"/impressum"}

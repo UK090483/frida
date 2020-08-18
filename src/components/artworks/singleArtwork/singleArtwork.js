@@ -2,7 +2,7 @@ import React from "react"
 import style from "./singleArtwork.module.scss"
 import Tab from "./tab"
 import FridaImage from "./fridaImage"
-import SendMail from './sendMail/sendMail'
+import SendMail from "./sendMail/sendMail"
 
 export default function Artworks({ artwork }) {
   const {
@@ -16,7 +16,7 @@ export default function Artworks({ artwork }) {
     medium,
     stil,
     width,
-    depth
+    depth,
   } = artwork
 
   return (
@@ -29,18 +29,21 @@ export default function Artworks({ artwork }) {
         <Tab text1={artistDescription} text2={artworkDescription}></Tab>
         <div className={style.nameRoot}>
           <div
-            className={`${style.dot} ${availability === 'sold' && style.dotSold}`}
+            className={`${style.dot} ${
+              availability === "sold" && style.dotSold
+            }`}
           ></div>
           <div className={style.artworkName}> {artworkName}</div>
         </div>
         <div className={style.props}>
           {" "}
-          {`${medium}, ${width}*${height} ${depth ? '*' + depth : ''} ${stil}`}{" "}
+          {`${medium}, ${width}*${height} ${
+            depth ? "*" + depth : ""
+          } cm ${stil}`}{" "}
         </div>
         <div className={style.price}>{price}€</div>
 
-        <SendMail artwork={artwork} ></SendMail>
-
+        <SendMail artwork={artwork}></SendMail>
       </div>
     </div>
   )
