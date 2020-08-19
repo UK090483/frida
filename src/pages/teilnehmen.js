@@ -5,9 +5,9 @@ import SEO from "../components/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
 // import Embet from "../components/embet/embet"
-import Button from '../components/buttons/button'
-import TeilnehmennCTA from '../components/teilnemenCTA/teilnemenCta'
-const JOTFORM = 'https://form.jotform.com/202104811201332'
+import Button from "../components/buttons/button"
+import TeilnehmennCTA from "../components/teilnemenCTA/teilnemenCta"
+const JOTFORM = "https://form.jotform.com/202104811201332"
 
 const IndexPage = () => (
   <Layout title={"Collectors"}>
@@ -17,40 +17,65 @@ const IndexPage = () => (
       <h2 className={`text-white`}>
         Open Call: <br></br>Mitmachen und Deine Kunst in ganz Deutschland zeigen
       </h2>
-
     </Hero>
     <Section type={"text"} backgroundColor="red">
       <p style={{ paddingTop: 100, paddingBottom: 100 }}>
-        Wir organisieren Deutschlands größte Ausstellung #MeetFrida.
+        #MeetFrida heißt die neue Kunstschau in Deutschland. Hier wird Kunst
+        erstmals sowohl online, als auch im öffentlichen Raum gezeigt. Wir
+        nutzen Plakatflächen in vielen Städten, um Deine Kunst auszustellen. Wer
+        deine Arbeit mag, kann sie direkt kaufen. Auf unserer Website und
+        Online-Galerie lädst du dazu deine Werke hoch, stellst sie aus und
+        findest neue Käufer*innen. Du bestimmst den Preis, 100 Prozent der
+        Erlöse gehen an Dich. Teilnahmekosten gibt es nicht.
+        {/* Wir organisieren Deutschlands größte Ausstellung #MeetFrida.
         Dafür bringen wir Kunst vom digitalen in den öffentlichen Raum – ein Novum.
         Wir nutzen Plakatflächen in deutschen Städten, um Deine Kunst auszustellen.
         Und zeigen dort Kunst statt Werbung: Wer deine Arbeit mag, kann sie an Ort und Stelle in unserer Online-Galerie kaufen.
         Hier lädst du deine Werke hoch, stellst sie aus und findest neue Käufer*innen.
-        Du bestimmst den Preis, 100 Prozent davon gehen an Dich. Teilnahmekosten gibt es nicht.
+        Du bestimmst den Preis, 100 Prozent davon gehen an Dich. Teilnahmekosten gibt es nicht. */}
         <br />
         <br />
-        #MeetFrida soll die Welt bunter und schöner machen.
-         Und vor allem: #MeetFrida soll Dich und deine Arbeit unterstützen.
-         Deine Werke bekommen die Aufmerksamkeit, die sie verdienen – auch von Menschen, mit denen Du sonst nicht in Berührung kommst.
-         Denn alle Künstlerinnen werden öffentlich ausgestellt.
-         Das garantieren wir mit digitalen Werbeplakaten, die ständig aktualisiert werden. Internationale Expertinnen kuratieren unsere Ausstellung.
-         <br />
+        {/* #MeetFrida soll die Welt bunter und schöner machen. Und vor allem:
+        #MeetFrida soll Dich und deine Arbeit unterstützen. Deine Werke bekommen
+        die Aufmerksamkeit, die sie verdienen – auch von Menschen, mit denen Du
+        sonst nicht in Berührung kommst. Denn alle Künstlerinnen werden
+        öffentlich ausgestellt. Das garantieren wir mit digitalen Werbeplakaten,
+        die ständig aktualisiert werden. Internationale Expertinnen kuratieren
+        unsere Ausstellung. */}
+        #MeetFrida soll die Welt bunter und schöner machen. Und vor allem:
+        #meetfrida soll Dich und deine Arbeit unterstützen. Deine Werke bekommen
+        die Aufmerksamkeit, die sie verdienen – auch von Menschen, mit denen Du
+        sonst nicht in Berührung kommst. Dafür setzen wir neben herkömmlichen
+        Plakatflächen auch digitale Werbeplakate ein, die ständig aktualisiert
+        werden. Internationale Expert*innen kuratieren unsere Ausstellung.
         <br />
-
-         Bewirb dich jetzt und erreiche Tausende Menschen in ganz Deutschland!
-         <br />
-
+        <br />
+        Stelle jetzt deine Kunst ein und erreiche Tausende Menschen in ganz
+        Deutschland!
+        <br />
       </p>
     </Section>
     <Section type={"text"} backgroundColor="red">
-
-      <div style={{ height: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Button type={'externalLink'} label={'Jetzt teilnehmen'} link={JOTFORM} backgroundColor={'allwhite'} />
+      <div
+        style={{
+          height: 100,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Button
+          type={"externalLink"}
+          label={"Jetzt teilnehmen"}
+          link={JOTFORM}
+          backgroundColor={"allwhite"}
+        />
       </div>
     </Section>
     <Section type={"text"} backgroundColor="red">
       <p style={{ paddingTop: 100 }}>
-        Du willst Teil von Deutschlands größter Ausstellung werden? Dann musst Du eine der folgenden Bedingungen erfüllen:
+        Du willst Teil von Deutschlands größter Ausstellung werden? Dann musst
+        Du eine der folgenden Bedingungen erfüllen:
       </p>
       <ul style={{ paddingBottom: 100 }}>
         <li>Du hast ein abgeschlossenes Kunststudium.</li>
@@ -58,20 +83,21 @@ const IndexPage = () => (
         <li>Oder Du hattest schon mindestens zwei Ausstellungen.</li>
       </ul>
 
-      <p>  Zeig uns die Werke, die du bei #MeetFrida ausstellen und verkaufen willst und sei gespannt auf die Rückmeldung der Kurator*innen.  </p>
+      <p>
+        {" "}
+        Zeig uns die Werke, die du bei #MeetFrida ausstellen und verkaufen
+        willst und sei gespannt auf die Rückmeldung der Kurator*innen.{" "}
+      </p>
 
       <ul style={{ paddingBottom: 100, marginBottom: 0 }}>
         <li>Du kannst fünf Arbeiten einreichen.</li>
         <li>Du bestimmst die Preise.</li>
         <li>Eines der Werke muss weniger als 500 Euro kosten.</li>
       </ul>
-
-
     </Section>
 
     <TeilnehmennCTA link={JOTFORM}></TeilnehmennCTA>
-
-  </Layout >
+  </Layout>
 )
 
 export default IndexPage
