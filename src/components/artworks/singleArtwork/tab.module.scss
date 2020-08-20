@@ -29,9 +29,7 @@
 
 .text {
   max-height: 400px;
-  // overflow: auto;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  overflow: auto;
   margin-bottom: 20px;
   font-size: 1rem;
   font-weight: 400;
