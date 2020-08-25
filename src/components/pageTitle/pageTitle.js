@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from "react"
 import { Link } from "gatsby"
-import useMouse from '../Mouse/hooks/useMouse';
+import useMouse from "../Mouse/hooks/useMouse"
 import style from "./pageTitle.module.scss"
-
-
 
 export default function PageTitle({ title, color = "white", link = true }) {
   const interItems = useRef()
@@ -39,14 +37,14 @@ export default function PageTitle({ title, color = "white", link = true }) {
         const clientRect = element.getBoundingClientRect()
         if (clientRect.top < 60 && clientRect.bottom > 60) {
           sholdAdd = true
-          root.classList.add(style.lila)
+          root && root.classList.add(style.lila)
         }
       })
 
       if (sholdAdd) {
-        root.classList.add(style.lila)
+        root && root.classList.add(style.lila)
       } else {
-        root.classList.remove(style.lila)
+        root && root.classList.remove(style.lila)
       }
     }
   }
@@ -57,8 +55,14 @@ export default function PageTitle({ title, color = "white", link = true }) {
         <Link to="/" style={{ textDecoration: "none" }}>
           <div
             className={style.root}
-            onMouseEnter={() => { setMouse('link', true); setMouse('color', true) }}
-            onMouseLeave={() => { setMouse('link', false); setMouse('color', false) }}
+            onMouseEnter={() => {
+              setMouse("link", true)
+              setMouse("color", true)
+            }}
+            onMouseLeave={() => {
+              setMouse("link", false)
+              setMouse("color", false)
+            }}
           >
             <h1 ref={ref}>
               {" "}
@@ -70,20 +74,26 @@ export default function PageTitle({ title, color = "white", link = true }) {
           </div>
         </Link>
       ) : (
-          <div
-            className={style.root}
-            onMouseEnter={() => { setMouse('link', true); setMouse('color', true) }}
-            onMouseLeave={() => { setMouse('link', false); setMouse('color', false) }}
-          >
-            <h1>
-              {" "}
+        <div
+          className={style.root}
+          onMouseEnter={() => {
+            setMouse("link", true)
+            setMouse("color", true)
+          }}
+          onMouseLeave={() => {
+            setMouse("link", false)
+            setMouse("color", false)
+          }}
+        >
+          <h1>
+            {" "}
             #Meet
             <span className={`${style.name} ${getColorClass(color)}`}>
-                {title}
-              </span>
-            </h1>
-          </div>
-        )}
+              {title}
+            </span>
+          </h1>
+        </div>
+      )}
     </React.Fragment>
   )
 }
