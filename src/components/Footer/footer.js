@@ -39,7 +39,21 @@ export default function Footer({ title }) {
 
       <Section backgroundColor="red">
         <div className={style.sub}>
-          <p>© 2020 Schwan Communications</p>
+          <a
+            className={style.schwan}
+            href="http://schwan-communications.com/"
+            target="_blank"
+            rel="noreferrer"
+            onMouseEnter={() => {
+              setMouse("link", true)
+            }}
+            onMouseLeave={() => {
+              setMouse("link", false)
+            }}
+          >
+            <p>© 2020 Schwan Communications</p>
+          </a>
+          {/* <p>© 2020 Schwan Communications</p> */}
           <Link
             className={style.impressum}
             to={"/impressum"}
