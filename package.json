@@ -30,6 +30,7 @@
     "react-device-detect": "^1.13.1",
     "react-dom": "^16.12.0",
     "react-fitted-image": "^1.0.1",
+    "react-fittext": "^1.0.0",
     "react-helmet": "^6.1.0",
     "react-images-upload": "^1.2.8",
     "react-jotform-embed": "^1.0.4",
