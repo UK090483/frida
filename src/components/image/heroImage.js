@@ -1,7 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import style from "./heroImage.module.scss"
-import Frida from '../frida/frida'
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
@@ -41,8 +40,9 @@ const Image = () => {
     >
       <div className={style.text}>
         <h6>KONTAKT</h6>
-        <h1> Wer hinter <br /> <Frida></Frida> steckt
-
+        <h1>
+          {/* Wer hinter <br /> <Frida></Frida> steckt */}
+          Schwäne für die Kunst
         </h1>
       </div>
     </div>

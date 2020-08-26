@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import Frida from "../../frida/frida"
 import style from "./artwork.module.scss"
-import useMouse from '../../Mouse/hooks/useMouse'
+import useMouse from "../../Mouse/hooks/useMouse"
+import getPriceWithTax from "../helper/getPriceWithTax"
 
 export default function Artwork({ artwork, handleClick, handleLoaded }) {
   const { images, availability, artworkName, artistName, price } = artwork
   const [loaded, setloaded] = useState(false)
-
 
   const { setMouse } = useMouse()
 
@@ -14,13 +14,11 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
   const src = images.src
 
   const makeVisilbe = () => {
-
     handleLoaded()
 
     setTimeout(() => {
       setloaded(true)
-    }, 200);
-
+    }, 200)
   }
   /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
@@ -30,10 +28,10 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
           className={`${style.root}  ${loaded ? style.loaded : ""}`}
           onClick={() => handleClick(artwork)}
           onMouseEnter={() => {
-            setMouse('link', true)
+            setMouse("link", true)
           }}
           onMouseLeave={() => {
-            setMouse('link', false)
+            setMouse("link", false)
           }}
         >
           <img
@@ -51,10 +49,10 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
             <div
               className={`${style.dot} ${
                 availability === "sold" ? style.dotSold : ""
-                }`}
+              }`}
             ></div>
             <div className={style.artworkName}> {artworkName}</div>
-            <div className={style.price}>{price}€</div>
+            <div className={style.price}>{getPriceWithTax(price)}€</div>
           </div>
         </div>
       )}

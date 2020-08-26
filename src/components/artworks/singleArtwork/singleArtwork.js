@@ -4,6 +4,7 @@ import Tab from "./tab"
 import FridaImage from "./fridaImage"
 import SendMail from "./sendMail/sendMail"
 import ArtworkName from "./artworkName/artworkName"
+import getPriceWithTax from "../helper/getPriceWithTax"
 
 export default function Artworks({ artwork }) {
   const {
@@ -59,7 +60,7 @@ export default function Artworks({ artwork }) {
               depth ? "*" + depth : ""
             } cm ${stil}`}{" "}
           </div>
-          <div className={style.price}>{price}€</div>
+          <div className={style.price}>{getPriceWithTax(price)}€</div>
 
           <SendMail artwork={artwork}></SendMail>
         </div>

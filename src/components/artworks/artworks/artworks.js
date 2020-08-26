@@ -70,7 +70,9 @@ export default function Artworks({
       let _artwork = artwork.node
       let res = getArtwork(_artwork)
 
-      a.push(res)
+      if (res) {
+        a.push(res)
+      }
     })
     return a
   }

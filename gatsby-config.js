@@ -1,5 +1,6 @@
 const postCssPlugins = require("./postcss-config.js")
 const { createProxyMiddleware } = require("http-proxy-middleware")
+process.env.GATSBY_CONCURRENT_DOWNLOAD = 1
 
 module.exports = {
   developMiddleware: app => {
@@ -45,13 +46,13 @@ module.exports = {
         anonymizeIP: true,
         // Optional parameter (default false) - Starts google analytics with cookies enabled. In some countries (such as Germany) this is not allowed.
         autoStartWithCookiesEnabled: false,
-        // Optional parameter - Configuration for react-ga and google analytics 
+        // Optional parameter - Configuration for react-ga and google analytics
         reactGaOptions: {
           debug: false,
           gaOptions: {
-            sampleRate: 10
-          }
-        }
+            sampleRate: 10,
+          },
+        },
       },
     },
 

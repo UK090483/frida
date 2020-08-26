@@ -15,21 +15,30 @@ const IndexPage = () => (
     <Hero backgroundColor="lila">
       <h6>UNTERSTÜTZEN</h6>
       <h1>
-        Unterstütze <Frida /> und werde Teil der größten Kunstschau Deutschlands
-
+        Unterstütze <Frida /> und zeige Dein Engagement in der größten
+        Kunstschau Deutschlands
       </h1>
     </Hero>
     <Section backgroundColor="lila" type={"text"}>
       <div style={{ paddingTop: 100, paddingBottom: 100 }}>
         <p>
-          Nicht nur Kunst braucht Förderung, auch unsere Kunstaktion braucht Unterstützer*innen, die das Projekt bekannt machen.
-          Oder die uns helfen, indem sie Produktionskosten für <Frida /> übernehmen. Wenn wir mehr einnehmen,
-          können wir mehr ausstellen – die Ausstellung wird immer größer.
+          Nicht nur Kunst braucht Förderung, auch <Frida /> braucht
+          Unterstützer*innen, die das Projekt bekannt machen. Oder die uns als
+          Sponsoren unterstützen und die Produktionskosten übernehmen. Alle
+          erzielten Einnahmen kommen dem Projekt zu Gute. Je mehr wir einnehmen,
+          desto größer wird <Frida /> und desto länger können wir Künstler mit
+          unserer Aktion unterstützen.
+        </p>
+        <p>
+          Gern könnt Ihr uns auch über unsere Crowdfunding-Kampagne auf
+          Startnext unterstützen. Dazu bitte hier entlang!
         </p>
 
-
         <div style={{ padding: "60px 0" }}>
-          <Button label={"Jetzt Unterstützen"} backgroundColor={'lila'}></Button>
+          <Button
+            label={"Jetzt Unterstützen"}
+            backgroundColor={"lila"}
+          ></Button>
         </div>
         <p>
           <span style={{ fontWeight: 800 }}>

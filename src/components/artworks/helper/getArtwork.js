@@ -1,4 +1,9 @@
 export default function getArtwork(artwork) {
+  console.log(!!artwork.images[0].local)
+  if (!!!artwork.images[0].local) {
+    return null
+  }
+
   return {
     id: artwork.id,
     artistName: artwork.artistName,

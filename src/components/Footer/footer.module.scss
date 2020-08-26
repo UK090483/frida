@@ -14,7 +14,6 @@
     padding: 0;
     text-decoration: none;
     cursor: none;
-    white-space: nowrap;
   }
 }
 .schwan {
@@ -49,6 +48,7 @@
     flex-wrap: wrap;
     .schwan {
       width: 100%;
+      white-space: unset;
     }
     p {
       width: 100%;

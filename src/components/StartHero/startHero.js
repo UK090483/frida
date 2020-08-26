@@ -4,7 +4,6 @@ import Frida from "../frida/frida"
 import style from "./startHero.module.scss"
 import Button from "../buttons/button"
 
-
 export default function StartHero() {
   const data = useStaticQuery(graphql`
     query startHeroQuery {
@@ -33,10 +32,12 @@ export default function StartHero() {
   const allImages = data.allFridaArtwork.edges
   const [images, setImages] = useState([])
 
-
   useEffect(() => {
     function getImageWithlocal() {
       let item = allImages[getRandomInt(0, allImages.length)].node.images
+      if (!!!item[0].local) {
+        return getImageWithlocal()
+      }
       return item[0].local.childImageSharp.fluid.src
     }
     const int = setTimeout(() => {
@@ -71,7 +72,11 @@ export default function StartHero() {
           <h1>
             Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida>
           </h1>
-          <Button label={"Mehr Erfahren"} link={"/unterstützen/"} backgroundColor={'lila'} />
+          <Button
+            label={"Mehr Erfahren"}
+            link={"/unterstützen/"}
+            backgroundColor={"lila"}
+          />
         </div>
 
         {images.map(image => {

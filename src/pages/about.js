@@ -19,35 +19,69 @@ const IndexPage = () => (
     <Section backgroundColor="lila" type="text">
       <div>
         <p>
-          Wir zeigen die kuratierten Werke junger Künstler*innen in unserer Online-Galerie und auf Social Media. Außerdem bringen wir die Werke auf digitale Werbeflächen und Plakatwände in deutschen Städten. So schaffen wir die größte Kunstausstellung, die es im öffentlichen Raum je gab.
+          #MeetFrida ist eine neuartige Plattform, um Künstler*innen
+          Sichtbarkeit zugeben und ihnen neue Verkaufswege zu eröffnen. Die neue
+          Kunstschau zeigt junge Positionen aus Malerei, Fotografie und Skulptur
+          sowohl online, als auch im öffentlichen Raum. Neben der Ausstellung in
+          der Online-Gallery meetfrida.art und auf Instagram, sind die Arbeiten
+          mindestens bis Ende 2020 auf OOH-Plakatwänden in ganz Deutschland zu
+          sehen. Großflächige Plakatwände an Bahnhöfen und Straßen sowie
+          digitale Werbeflächen, die laufend aktualisiert werden, gehören zum
+          Portfolio. So werden die Werke – trotz der Corona-Beschränkungen in
+          der Kunst – wieder sichtbar, selbst für Menschen, die sonst nicht mit
+          Kunst in Berührung kommen. Und nebenbei entsteht die größte
+          Outdoor-Gallery, die es in Deutschland je gab.
         </p>
         <br></br>
 
         <p>
-          Damit machen wir Kunst für alle sichtbar. Auch für die, die sonst nicht ins Museum gehen. In Kooperationen mit den Werbeunternehmen Plakatunion, Ströer und HYGH zeigen wir: Kunst statt Werbung. Wir ermöglichen einen Blick über den Tellerrand – wir bringen Kunst zurück in den Alltag.
+          Das Ziel der Aktion: Die Unterstützung von Kunstschaffenden durch
+          Sichtbarkeit und neue Verkaufswege. Der Erlösder Werke fließt deshalb
+          zu100 Prozent an die Künstler*innen, die Kunst kann über die Website,
+          die Social Media-Kanäle und über die Outdoor-Gallery per QR-Code
+          direkt erworben werden.
         </p>
         <br></br>
         <p>
-          Vor allem aber bieten wir Künstler*innen in Zeiten von Corona ein zusätzliches Einkommen. Der Erlös der Werke geht zu 100 Prozent in die Unterstützung der Kunstschaffenden. Der Rollout startet im Juli 2020 online, später kommen wir in den öffentlichen Raum.
+          Qualitativ setzt #MeetFrida hohe Maßstäbe: Künstler*innen können sich
+          per Open Call an der Online-Gallery beteiligen, wenn sie ein
+          Kunststudium absolviert haben oder bereits mehrere Ausstellungen in
+          ihrem Portfolio vorweisen können. Mindestens eines der Werke muss
+          dabei unter 500 EURkosten. Die Outdoor-Gallery wird in Kooperation mit
+          der Spiegelberger Stiftung von internationalen Kunstexperten
+          kuratiert. Diese definieren gemeinsame „Viewing Rooms“ mit
+          Künstler*innen des Stiftungsprojekts PArt (www.producersart.com) und
+          #MeetFrida. Alle Werke dieser Virtuellen Räume werden dann in der
+          Outdoor-Gallery gezeigt. Den Anfang machten
         </p>
         <br></br>
 
         <p>
-          Frida Kahlo ist eine Stilikone und Vorbild für viele Künstlerinnen. Ihre Lebensgeschichte steht aber auch für den harten Weg, den Künstlerinnen, insbesondere Frauen, bis heute in der (Kunst-)welt gehen. Gerade zu Zeiten von Corona.
+          Georgie Pope, Chief Curator von Independent collectors, und Prof. Dr.
+          Thomas Girst, BMW Art Program.
         </p>
         <br></br>
         <p>
-          Aber wir wollen hier nicht Frida Kahlo besser kennenlernen, sondern alle Künstler*innen, die bei unserer Aktion mitmachen. Denn es geht um sie und ihre Kunst.
+          Warum Frida? Frida Kahlo ist Stilikone und Vorbild für viele
+          Künstler*innen. Ihre Lebensgeschichte steht aber auch für den harten
+          Weg, den Künstler*innen bis heute in der (Kunst-)Welt gehen. Gerade zu
+          Zeiten von Corona. Aber wir wollen hier nicht Frida Kahlo besser
+          kennenlernen, sondern alle Künstler*innen, die bei unserer Aktion
+          mitmachen. Denn es geht um sie und ihre Kunst.
+        </p>
+        <br></br>
+        {/* <p>
+          Kunstschaffende können ihre Werke unter bei #MeetFrida einreichen,
+          mindestens eins der Werke muss dabei weniger als 500 EUR kosten. Die
+          Ausstellung – digital und analog – wird von einer Jury aus
+          internationalen Kunstexpert*innen kuratiert.
         </p>
         <br></br>
         <p>
-          Kunstschaffende können ihre Werke unter bei #MeetFrida einreichen, mindestens eins der Werke muss dabei weniger als 500 EUR kosten. Die Ausstellung – digital und analog – wird von einer Jury aus internationalen Kunstexpert*innen kuratiert.
+          Der Verkauf wird direkt zwischen Künstlerin und Käuferin abgewickelt.
+          Die Erlöse gehen zu 100% in die Unterstützung der Kunstschaffenden.
         </p>
-        <br></br>
-        <p>
-          Der Verkauf wird direkt zwischen Künstlerin und Käuferin abgewickelt. Die Erlöse gehen zu 100% in die Unterstützung der Kunstschaffenden.
-        </p>
-        <br></br>
+        <br></br> */}
       </div>
     </Section>
   </Layout>

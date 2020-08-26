@@ -1,18 +1,17 @@
-.root{
-    white-space: nowrap;
-    display: inline;
+.root {
+  white-space: nowrap;
+  display: inline;
 }
 
-
-.spanRoot{
-    color: white;
-    position: relative;
+.spanRoot {
+  color: white;
+  position: relative;
 }
 .spanRoot:before {
-    content: '';
-    border-bottom: rgb(0, 0, 0) solid .16em;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
+  content: "";
+  border-bottom: rgb(0, 0, 0) solid 0.16em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
 }
