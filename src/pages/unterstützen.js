@@ -36,9 +36,11 @@ const IndexPage = () => (
 
         <div style={{ padding: "60px 0" }}>
           <Button
+            type={"externalLink"}
             label={"Jetzt Unterstützen"}
+            link={"https://www.startnext.com/meetfrida"}
             backgroundColor={"lila"}
-          ></Button>
+          />
         </div>
         <p>
           <span style={{ fontWeight: 800 }}>
