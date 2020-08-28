@@ -95,6 +95,7 @@ export default function Filter({ artworks, setFElements }) {
         open={curentlyOpen === "Künstler"}
         setOpen={i => handleSetOpen(i)}
         setFilter={setFilter}
+        fixedHeight={true}
       ></DropDown>
       <DropDown
         label={"Stil"}
