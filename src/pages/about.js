@@ -70,18 +70,6 @@ const IndexPage = () => (
           mitmachen. Denn es geht um sie und ihre Kunst.
         </p>
         <br></br>
-        {/* <p>
-          Kunstschaffende können ihre Werke unter bei #MeetFrida einreichen,
-          mindestens eins der Werke muss dabei weniger als 500 EUR kosten. Die
-          Ausstellung – digital und analog – wird von einer Jury aus
-          internationalen Kunstexpert*innen kuratiert.
-        </p>
-        <br></br>
-        <p>
-          Der Verkauf wird direkt zwischen Künstlerin und Käuferin abgewickelt.
-          Die Erlöse gehen zu 100% in die Unterstützung der Kunstschaffenden.
-        </p>
-        <br></br> */}
       </div>
     </Section>
   </Layout>

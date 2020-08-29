@@ -3,7 +3,12 @@ import { Link } from "gatsby"
 import useMouse from "../Mouse/hooks/useMouse"
 import style from "./pageTitle.module.scss"
 
-export default function PageTitle({ title, color = "white", link = true }) {
+export default function PageTitle({
+  title,
+  color = "white",
+  link = true,
+  checkInter = true,
+}) {
   const interItems = useRef()
   const ref = useRef()
   const { setMouse } = useMouse()
@@ -19,7 +24,7 @@ export default function PageTitle({ title, color = "white", link = true }) {
   }
 
   useEffect(() => {
-    if (link) {
+    if (checkInter) {
       interItems.current = document.querySelectorAll("[data-color=default]")
       if (interItems.current.length > 0) {
         document.addEventListener("scroll", () => {
@@ -27,7 +32,7 @@ export default function PageTitle({ title, color = "white", link = true }) {
         })
       }
     }
-  }, [link])
+  }, [checkInter])
 
   const checkInterfering = () => {
     if (interItems.current) {
@@ -74,17 +79,7 @@ export default function PageTitle({ title, color = "white", link = true }) {
           </div>
         </Link>
       ) : (
-        <div
-          className={style.root}
-          onMouseEnter={() => {
-            setMouse("link", true)
-            setMouse("color", true)
-          }}
-          onMouseLeave={() => {
-            setMouse("link", false)
-            setMouse("color", false)
-          }}
-        >
+        <div className={style.root}>
           <h1>
             {" "}
             #Meet

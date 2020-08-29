@@ -4,9 +4,25 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Poster from "../components/Poster/Poster/poster"
 import Hero from "../components/hero/hero"
+import Button from "../components/buttons/button"
 
-const IndexPage = () => (
-  <Layout title={"Frida"}>
+import Header from "../components/header/header"
+
+const StartNext = () => (
+  <Layout
+    title={"Frida"}
+    header={
+      <Header title={"Frida"} link={false}>
+        <Button
+          size={"small"}
+          type={"externalLink"}
+          label={"Jetzt Unterstützen"}
+          link={"https://www.startnext.com/meetfrida"}
+          backgroundColor={"lila"}
+        />
+      </Header>
+    }
+  >
     <SEO title="Poster" />
     <Hero backgroundColor="lila" height={"medium"}>
       <h1>It's your choise</h1>
@@ -21,4 +37,4 @@ const IndexPage = () => (
   </Layout>
 )
 
-export default IndexPage
+export default StartNext
