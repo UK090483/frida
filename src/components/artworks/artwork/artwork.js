@@ -12,7 +12,7 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
   const { setMouse } = useMouse()
 
   // const srcSet = images.srcSet
-  const src = images.src
+  // const src = images.src
 
   const makeVisilbe = () => {
     handleLoaded()
