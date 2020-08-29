@@ -42,9 +42,11 @@ export default function Artworks({
             images {
               local {
                 childImageSharp {
+                  fixed(width: 125, height: 125) {
+                    ...GatsbyImageSharpFixed
+                  }
                   fluid(maxWidth: 600, quality: 70) {
-                    src
-                    srcSet
+                    ...GatsbyImageSharpFluid
                   }
                   original {
                     height

@@ -3,6 +3,7 @@ import Frida from "../../frida/frida"
 import style from "./artwork.module.scss"
 import useMouse from "../../Mouse/hooks/useMouse"
 import getPriceWithTax from "../helper/getPriceWithTax"
+import Img from "gatsby-image"
 
 export default function Artwork({ artwork, handleClick, handleLoaded }) {
   const { images, availability, artworkName, artistName, price } = artwork
@@ -34,14 +35,21 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
             setMouse("link", false)
           }}
         >
-          <img
+          <Img
+            placeholderClassName={style.image}
+            fluid={images.fluid}
+            onLoad={() => {
+              makeVisilbe()
+            }}
+          />
+          {/* <img
             className={style.image}
             alt={`artwork ${artworkName} from ${artistName}`}
             onLoad={() => {
               makeVisilbe()
             }}
             src={src}
-          ></img>
+          ></img> */}
           <h3 className={style.artistName}>
             <Frida text={artistName} textColor="#f5c5d9"></Frida>
           </h3>

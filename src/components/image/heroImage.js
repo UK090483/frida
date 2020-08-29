@@ -1,6 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import style from "./heroImage.module.scss"
+import Img from "gatsby-image"
 
 /*
  * This component is built using `gatsby-image` to automatically serve optimized
@@ -24,6 +25,9 @@ const Image = () => {
               resize(width: 1200, jpegQuality: 100) {
                 src
               }
+              fluid(maxWidth: 1200, quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
             }
           }
         }
@@ -34,16 +38,19 @@ const Image = () => {
   return (
     <div
       className={style.root}
-      style={{
-        backgroundImage: `url(${data.allFile.edges[0].node.childImageSharp.resize.src})`,
-      }}
+      // style={{
+      //   backgroundImage: `url(${data.allFile.edges[0].node.childImageSharp.resize.src})`,
+      // }}
     >
       <div className={style.text}>
         <h6>KONTAKT</h6>
         <h1>
           {/* Wer hinter <br /> <Frida></Frida> steckt */}
-          Schwäne für die Kunst
+          Schwäne <br /> für die Kunst
         </h1>
+      </div>
+      <div className={style.image}>
+        <Img fluid={data.allFile.edges[0].node.childImageSharp.fluid} />
       </div>
     </div>
   )
