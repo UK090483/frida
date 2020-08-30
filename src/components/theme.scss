@@ -1,179 +1,93 @@
-@import './variables.scss';
+@import "./variables.scss";
 
-
-$mod_1: 1.2; 
-$mod_2: 1.5; 
-$min_width:320px;
+$mod_1: 1.2;
+$mod_2: 1.5;
+$min_width: 320px;
 $max_width: 1600px;
 $min-font: 30px;
-$max_font : 90px;
+$max_font: 90px;
 
-body{
-    font-family: 'Montserrat', sans-serif;
-    color:$black;
+body {
+  font-family: "Montserrat", sans-serif;
+  color: $black;
 }
-h1,h2,h3,h4,h5,h6{
-    font-weight: 800;
-}
-
-
-
-h1 {  
-    
-    font-family: 'Montserrat', sans-serif;
-    font-size: $mod_1*$mod_1*$mod_1*$mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, $min-font,$max_font);
-    
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
 }
 
-h2 {  
-   
-    font-family: 'Montserrat', sans-serif;
-    font-size: $mod_1*$mod_1*$mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, $min-font *0.8, $max-font *0.8);
-    
-}
-h3 {  
-    
-    font-family: 'Montserrat', sans-serif;
-    font-size: $mod_1*$mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, $min-font *0.6, $max-font *0.6);
-    
-}
-h4 {  
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    font-size: $mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, $min-font *0.5, $max-font *0.5);
-  
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: $mod_1 * $mod_1 * $mod_1 * $mod_1 * 1rem;
+  @include fluid-type($min_width, $max_width, $min-font, $max_font);
 }
 
-h5 {  
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    font-size: $mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, $min-font *0.4, $max-font *0.4);
-    
-  }
-h6 {  
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    font-size: $mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, $min-font *0.4, $max-font *0.3);
-    
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: $mod_1 * $mod_1 * $mod_1 * 1rem;
+  @include fluid-type($min_width, $max_width, $min-font * 0.8, $max-font * 0.8);
+}
+h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: $mod_1 * $mod_1 * 1rem;
+  @include fluid-type($min_width, $max_width, $min-font * 0.6, $max-font * 0.6);
+}
+h4 {
+  //   font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  font-size: $mod_1 * 1rem;
+  @include fluid-type($min_width, $max_width, $min-font * 0.5, $max-font * 0.5);
 }
 
-p,li {  
-    font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
-    font-size: $mod_1 *1rem; 
-    @include fluid-type($min_width, $max_width, $min-font *0.5, $max-font *0.34);
-    line-height: 1.3em;
-    padding-bottom: 20px;  
+h5 {
+  //   font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  font-size: $mod_1 * 1rem;
+  @include fluid-type($min_width, $max_width, $min-font * 0.4, $max-font * 0.4);
+}
+h6 {
+  //   font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  font-size: $mod_1 * 1rem;
+  @include fluid-type($min_width, $max_width, $min-font * 0.4, $max-font * 0.3);
 }
 
-
- 
-
-
-
-// h1{
-//     font-family: 'Montserrat', sans-serif;
-//     font-size: 5.75rem;
-//     font-weight: 800;
-    
-// }
-// @include tablet {
-//     h1{
-//         font-size: 4.25rem;
-//     }
-// }
-
-// @include mobile {
-//     h1{
-//         font-size: 2.1rem;
-        
-//     }
-// }
-// @include mobileSmall {
-//     h1{
-//         font-size: 1.5rem;
-        
-//     }
-// }
-
-// h2{
-//     font-family: 'Montserrat', sans-serif;
-//     font-size: 3.9rem;
-//     font-weight: 800;
-// }
-// @include tablet {
-//     h2{
-//         font-size: 4.25rem;
-//     }
-// }
-
-// @include mobile {
-//     h2{
-//         font-size: 2.25rem;
-        
-//     }
-// }
-// h3{
-//     font-family: 'Montserrat', sans-serif;
-//     font-size: 1.75rem;
-//     font-weight: 800;
-// }
-// h4{
-//     font-family: 'Montserrat', sans-serif;
-//     font-size: 1.4rem;
-//     font-weight: 700;
-// }
-// @include tablet {
-//     h4{
-//         font-size: 1rem;
-//     }
-// }
-
-// @include mobile {
-//     h4{
-//         font-size: 0.9rem; 
-//     }
-// }
-// h5{
-   
-// }
-// h6{
-   
-// }
-
-// p{
-//     font-family: 'Montserrat', sans-serif;
-//     font-size: 1.5rem;
-//     font-weight: 500;
-//     line-height: 1.3em;
-//     padding-bottom: 20px;
-//}
-
-.text-white{
-    color:white;
-    
+p,
+li {
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+  font-size: $mod_1 * 1rem;
+  @include fluid-type(
+    $min_width,
+    $max_width,
+    $min-font * 0.5,
+    $max-font * 0.34
+  );
+  line-height: 1.3em;
+  padding-bottom: 20px;
 }
-.text-black{
-    color:black;
+
+.text-white {
+  color: white;
 }
-.text-lila{
-    color:#F5C5D9;
+.text-black {
+  color: black;
 }
-.text-red{
-    color: #fa464c;
-    
+.text-lila {
+  color: #f5c5d9;
+}
+.text-red {
+  color: #fa464c;
 }
 
 body::-webkit-scrollbar {
-    display: none;
-}    
+  display: none;
+}
 
-a{
-    color:$red;
+a {
+  color: $red;
 }
