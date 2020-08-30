@@ -17,16 +17,8 @@ export default function Tab({ text1, text2 }) {
         <div className={!active ? style.active : ""}>Kunstwerk Info</div>
       </div>
 
-      {active && (
-        <div className={style.text} dangerouslySetInnerHTML={{ __html: text1 }}>
-          {/* {text1} */}
-        </div>
-      )}
-      {!active && (
-        <div className={style.text} dangerouslySetInnerHTML={{ __html: text2 }}>
-          {/* {text2} */}
-        </div>
-      )}
+      {active && <div className={style.text}>{text1}</div>}
+      {!active && <div className={style.text}>{text2}</div>}
     </div>
   )
 }

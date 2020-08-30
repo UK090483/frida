@@ -53,5 +53,8 @@
 
 @include mobile {
   .root {
+    .button {
+      text-align: center;
+    }
   }
 }
