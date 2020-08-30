@@ -1,7 +1,5 @@
 @import "../../../variables.scss";
 
-.root {
-}
 .button {
   display: flex;
   min-height: 50px;
@@ -17,6 +15,7 @@
     font-size: 1em;
     font-weight: 900;
     border-radius: 0 30px 30px 0;
+    transition: background-color 0.6s, color 0.6s;
     &:first-child {
       border-radius: 30px 0 0 30px;
     }
@@ -39,9 +38,13 @@
   }
 }
 
+.textActive {
+  animation-name: textIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
 @include tablet {
-  .root {
-  }
   .button {
     margin: 20px auto;
     width: fit-content;
@@ -56,5 +59,16 @@
     .button {
       text-align: center;
     }
+  }
+}
+
+@keyframes textIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
