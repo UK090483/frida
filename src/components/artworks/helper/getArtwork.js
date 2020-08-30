@@ -1,5 +1,6 @@
 export default function getArtwork(artwork) {
-  console.log(!!artwork.images[0].local)
+  //console.log(!!artwork.images[0].local)
+
   if (!!!artwork.images[0].local) {
     return null
   }
@@ -20,6 +21,7 @@ export default function getArtwork(artwork) {
       height: artwork.images[0].local.childImageSharp.original.height,
     },
 
+    imageUrls: artwork.imageUrls,
     height: artwork.height,
     width: artwork.width,
     depth: artwork.depth,

@@ -64,7 +64,7 @@ export default function Footer({ title }) {
               setMouse("link", false)
             }}
           >
-            <p>Impressum</p>
+            <p>Impressum & Datenschutz</p>
           </Link>
         </div>
       </Section>

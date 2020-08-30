@@ -25,6 +25,10 @@ export default function Artworks({
       allFridaArtwork {
         edges {
           node {
+            imageUrls {
+              medium
+              large
+            }
             id
             medium
             stil

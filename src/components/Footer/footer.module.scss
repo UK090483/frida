@@ -4,31 +4,26 @@
   color: white;
   display: flex;
   align-items: center;
-
   height: 100px;
 
   p {
+    font-size: 1.2em;
     color: $white;
     width: 50%;
     margin: 0;
     padding: 0;
     text-decoration: none;
     cursor: none;
+    white-space: nowrap;
   }
 }
 .schwan {
-  color: $white;
   width: 50%;
-  margin: 0;
-  padding: 0;
   text-decoration: none;
   cursor: none;
-  white-space: nowrap;
   margin-right: 10px;
 }
 .impressum {
-  color: $white;
-  width: 50%;
   text-decoration: none;
   cursor: none;
 }
@@ -36,7 +31,7 @@
 @include tablet {
   .sub {
     p {
-      font-size: 1.2em;
+      font-size: 1em;
     }
   }
 }
@@ -52,7 +47,8 @@
     }
     p {
       width: 100%;
-      font-size: 1.2em;
+      font-size: 0.9em;
+      white-space: unset;
     }
   }
 }
