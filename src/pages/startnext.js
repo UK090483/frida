@@ -25,11 +25,12 @@ const StartNext = () => (
   >
     <SEO title="Poster" />
     <Hero backgroundColor="lila" height={"medium"}>
-      <h1>It's your choise</h1>
+      <h1>Who do you wanna meet?</h1>
       <p style={{ paddingTop: 20, paddingBottom: 20 }}>
-        Wer die Qual der Wahl hat, hat die Qual der Wahl. Von den folgenden
-        Künstlern bieten wir A3 Plakate an. Bitte gib bei Startnext einfach die
-        Nummer oder den Namen des Künstlern an.
+        Eins dieser Motive kann schon bald dein Wohn-, Schlaf- oder
+        Arbeitszimmer schmücken - aber vorher hast du die Qual der Wahl. Deine
+        Auswahl kannst du uns bei StartNext mitteilen, verrate uns dafür einfach
+        im Eingabefeld den Namen des/der Künstlers*in oder des Kunstwerks.
       </p>
     </Hero>
 

@@ -32,8 +32,7 @@ const IndexPage = () => (
           Kunst in Berührung kommen. Und nebenbei entsteht die größte
           Outdoor-Gallery, die es in Deutschland je gab.
         </p>
-        <br></br>
-
+        <br />
         <p>
           Das Ziel der Aktion: Die Unterstützung von Kunstschaffenden durch
           Sichtbarkeit und neue Verkaufswege. Der Erlös der Werke fließt deshalb
@@ -41,14 +40,14 @@ const IndexPage = () => (
           die Social Media-Kanäle und über die Outdoor-Gallery per QR-Code
           direkt erworben werden.
         </p>
-        <br></br>
+        <br />
         <p>
           Qualitativ setzt #MeetFrida hohe Maßstäbe: Künstler*innen können sich
           per Open Call an der Online-Gallery beteiligen, wenn sie ein
           Kunststudium absolviert haben oder bereits mehrere Ausstellungen in
           ihrem Portfolio vorweisen können. Mindestens eines der Werke muss
-          dabei unter 500 EURkosten. Die Outdoor-Gallery wird in Kooperation mit
-          der Spiegelberger Stiftung von internationalen Kunstexperten
+          dabei unter 500 EUR kosten. Die Outdoor-Gallery wird in Kooperation
+          mit der Spiegelberger Stiftung von internationalen Kunstexperten
           kuratiert. Diese definieren gemeinsame „Viewing Rooms“ mit
           Künstler*innen des Stiftungsprojekts PArt (www.producersart.com) und
           #MeetFrida. Alle Werke dieser Virtuellen Räume werden dann in der
@@ -56,9 +55,8 @@ const IndexPage = () => (
           Curator von Independent collectors, und Prof. Dr. Thomas Girst, BMW
           Art Program.
         </p>
-        <br></br>
+        <br />
 
-        <br></br>
         <p>
           Warum Frida? Frida Kahlo ist Stilikone und Vorbild für viele
           Künstler*innen. Ihre Lebensgeschichte steht aber auch für den harten
@@ -67,7 +65,7 @@ const IndexPage = () => (
           kennenlernen, sondern alle Künstler*innen, die bei unserer Aktion
           mitmachen. Denn es geht um sie und ihre Kunst.
         </p>
-        <br></br>
+        <br />
       </div>
     </Section>
   </Layout>
