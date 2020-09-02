@@ -13,9 +13,7 @@ const Ausstellung = () => (
     <Hero backgroundColor="lila">
       <h6>AUSSTELLUNG</h6>
       <h1>
-        {/* Gute Kunst kaufen und Künstler*innen direkt unterstützen */}
-        <Frida /> – Deutschlands größte Outdoor- und Online-Gallery für junge
-        Kunst
+        Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida>
       </h1>
     </Hero>
     <Section type={"text"}>

@@ -75,6 +75,23 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-source-custom-api",
+      options: {
+        url: "https://fridaadmin.konradullrich.com/wp-json/frida/v1/poster/",
+        imageKeys: ["images"],
+        rootKey: "fridaPoster",
+        schemas: {
+          fridaPoster: `
+            images: [images]
+          `,
+          images: `
+            url: String,
+            modified: Int
+          `,
+        },
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,

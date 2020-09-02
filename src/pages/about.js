@@ -36,8 +36,8 @@ const IndexPage = () => (
 
         <p>
           Das Ziel der Aktion: Die Unterstützung von Kunstschaffenden durch
-          Sichtbarkeit und neue Verkaufswege. Der Erlösder Werke fließt deshalb
-          zu100 Prozent an die Künstler*innen, die Kunst kann über die Website,
+          Sichtbarkeit und neue Verkaufswege. Der Erlös der Werke fließt deshalb
+          zu 100 Prozent an die Künstler*innen, die Kunst kann über die Website,
           die Social Media-Kanäle und über die Outdoor-Gallery per QR-Code
           direkt erworben werden.
         </p>
@@ -52,14 +52,12 @@ const IndexPage = () => (
           kuratiert. Diese definieren gemeinsame „Viewing Rooms“ mit
           Künstler*innen des Stiftungsprojekts PArt (www.producersart.com) und
           #MeetFrida. Alle Werke dieser Virtuellen Räume werden dann in der
-          Outdoor-Gallery gezeigt. Den Anfang machten
+          Outdoor-Gallery gezeigt. Den Anfang machten Georgie Pope, Chief
+          Curator von Independent collectors, und Prof. Dr. Thomas Girst, BMW
+          Art Program.
         </p>
         <br></br>
 
-        <p>
-          Georgie Pope, Chief Curator von Independent collectors, und Prof. Dr.
-          Thomas Girst, BMW Art Program.
-        </p>
         <br></br>
         <p>
           Warum Frida? Frida Kahlo ist Stilikone und Vorbild für viele

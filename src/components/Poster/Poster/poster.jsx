@@ -7,7 +7,7 @@ import { useStaticQuery, graphql } from "gatsby"
 export default function Poster() {
   const data = useStaticQuery(graphql`
     query posterQuerry {
-      allFridaArtwork(limit: 10) {
+      allFridaPoster {
         edges {
           node {
             id
@@ -20,6 +20,7 @@ export default function Poster() {
                     src
                     srcSet
                   }
+
                   original {
                     height
                     width
@@ -47,8 +48,9 @@ export default function Poster() {
 }
 
 function normalizeData(data) {
-  return data.allFridaArtwork.edges.map(item => {
+  return data.allFridaPoster.edges.map(item => {
     const { artistName, artworkName, id, images } = item.node
+
     return {
       id,
       artistName,

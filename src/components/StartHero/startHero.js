@@ -68,13 +68,19 @@ export default function StartHero() {
     <React.Fragment>
       <div className={style.root}>
         <div className={style.text}>
-          <h6> Neue Werke, wechselnde Ausstellungsorte, 1 Plattform.</h6>
+          <h6>
+            Neue Positionen kennenlernen, Kunst in ganz Deutschland sehen und
+            dabei Kunstschaffende unterstützen.
+            {/* Neue Werke, wechselnde Ausstellungsorte, 1 Plattform. */}
+          </h6>
           <h1>
-            Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida>
+            <Frida /> – Deutschlands größte Outdoor- und Online-Gallery für
+            junge Kunst
+            {/* Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida> */}
           </h1>
           <Button
             label={"Mehr Erfahren"}
-            link={"/unterstützen/"}
+            link={"/ausstellung/"}
             backgroundColor={"lila"}
           />
         </div>

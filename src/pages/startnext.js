@@ -16,7 +16,7 @@ const StartNext = () => (
         <Button
           size={"small"}
           type={"externalLink"}
-          label={"Jetzt Unterstützen"}
+          label={"STARTNEXT"}
           link={"https://www.startnext.com/meetfrida"}
           backgroundColor={"lila"}
         />
