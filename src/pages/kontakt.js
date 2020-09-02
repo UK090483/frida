@@ -45,8 +45,11 @@ const IndexPage = () => (
         <br />
         und Mitinitiatorin <Frida></Frida>,
         <br />
-        <a style={{ color: "#fa464c" }} href="mailto:name@email.com">
-          as@schwan-communikcations.com
+        <a
+          style={{ color: "#fa464c" }}
+          href="mailto:as@schwan-communications.com"
+        >
+          as@schwan-communications.com
         </a>
         <br />
         <a

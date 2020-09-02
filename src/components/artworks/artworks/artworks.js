@@ -1,17 +1,14 @@
 import React, { useEffect, useState, useRef } from "react"
 
 import Filter from "../filter/filter"
-import Slide from "react-reveal/Slide"
-import Header from "../../header/header"
-import Kreutz from "../../../assets/Menu_Kreutz.svg"
-import SingleArtwork from "../singleArtwork/singleArtwork"
 import Section from "../../container/section"
 import Button from "../../buttons/button"
 import { useStaticQuery, graphql } from "gatsby"
-import ArtworsContainer from "./artworksContainer"
+import ArtworsContainer from "./artworksContainer/artworksContainer"
 import Frida from "../../frida/frida"
 import getArtwork from "../helper/getArtwork"
-import useMouse from "../../Mouse/hooks/useMouse"
+
+import Slider from "../slider/slider"
 
 import style from "./artworks.module.scss"
 
@@ -68,7 +65,6 @@ export default function Artworks({
   const [open, setOpen] = useState(false)
   const [artwork, setArtwork] = useState(null)
   const [filert, setFElements] = useState(null)
-  const { setMouse } = useMouse()
 
   function getArtworks() {
     let a = []
@@ -97,13 +93,14 @@ export default function Artworks({
   }
 
   const handleCloseClick = () => {
-    setArtwork(null)
+    // setArtwork(null)
     setOpen(false)
     bodyRef.current.style.overflow = "auto"
   }
   /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
     <React.Fragment>
+      <div id={"filter"} style={{ transform: "translateY(-10vh)" }}></div>
       <Section type={"full"}>
         {!filter && (
           <Section>
@@ -116,39 +113,11 @@ export default function Artworks({
           <Filter artworks={artworks} setFElements={setFElements}></Filter>
         )}
         <div className={style.root}>
-          <Slide
-            mountOnEnter={true}
-            unmountOnExit={true}
-            right
-            when={open}
-            duration={500}
-          >
-            <div
-              className={style.singleRoot}
-              style={{ pointerEvents: open ? "auto" : "none" }}
-            >
-              <Header
-                title={artwork ? artwork.artistName : ""}
-                color="lila"
-                link={false}
-              >
-                <a
-                  style={{ width: 40, pointerEvents: "all" }}
-                  onClick={handleCloseClick}
-                >
-                  <Kreutz
-                    onMouseEnter={() => {
-                      setMouse("link", true)
-                    }}
-                    onMouseLeave={() => {
-                      setMouse("link", false)
-                    }}
-                  />
-                </a>
-              </Header>
-              {artwork && <SingleArtwork artwork={artwork}></SingleArtwork>}
-            </div>
-          </Slide>
+          <Slider
+            artwork={artwork}
+            open={open}
+            handleCloseClick={handleCloseClick}
+          />
 
           <ArtworsContainer
             artworks={filert || artworks}

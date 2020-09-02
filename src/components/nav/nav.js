@@ -5,41 +5,46 @@ import BigButton from "../buttons/bigButton"
 import Header from "../header/header"
 import Kreutz from "../../assets/Menu_Kreutz.svg"
 import Fade from "react-reveal/Fade"
-import useMouse from '../Mouse/hooks/useMouse'
+import useMouse from "../Mouse/hooks/useMouse"
+import { motion, AnimatePresence } from "framer-motion"
 
 import style from "./nav.module.scss"
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.5,
+    },
+  },
+}
+
+const item = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 },
+}
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [counter, setCounter] = useState(false)
   const { setMouse } = useMouse()
 
-
-
-
-
-
   useEffect(() => {
-
     return () => {
-      document.querySelector('html').style.overflow = 'auto'
+      document.querySelector("html").style.overflow = "auto"
     }
-  }, []);
-
+  }, [])
 
   const handleMenu = () => {
-
     if (open) {
       setOpen(!open)
-      document.querySelector('html').style.overflow = 'auto'
+      document.querySelector("html").style.overflow = "auto"
     } else {
-
-      document.querySelector('html').style.overflow = 'hidden'
+      document.querySelector("html").style.overflow = "hidden"
       setOpen(!open)
       setCounter(true)
     }
-
-
   }
 
   const fridaLink = (link, label) => (
@@ -49,16 +54,15 @@ export default function Nav() {
         className={style.link}
         to={link}
         onMouseEnter={() => {
-          setMouse('link', true)
+          setMouse("link", true)
         }}
         onMouseLeave={() => {
-          setMouse('link', false)
+          setMouse("link", false)
         }}
       >
         {label}
       </Link>
     </h1>
-
   )
 
   /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -67,12 +71,12 @@ export default function Nav() {
       <div
         className={style.icon}
         onMouseEnter={() => {
-          setMouse('link', true)
-          setMouse('color', true)
+          setMouse("link", true)
+          setMouse("color", true)
         }}
         onMouseLeave={() => {
-          setMouse('link', false)
-          setMouse('color', false)
+          setMouse("link", false)
+          setMouse("color", false)
         }}
         onClick={() => {
           handleMenu()
@@ -84,7 +88,7 @@ export default function Nav() {
       <div
         className={`${style.root} ${
           open ? style.active : counter && style.onClose
-          }`}
+        }`}
         style={{ pointerEvents: open ? "auto" : "none" }}
       >
         <div className={style.aniCircle1}></div>
@@ -93,19 +97,14 @@ export default function Nav() {
         {open && (
           <Header color="#F5C5D9">
             <div></div>{" "}
-            <a
-              className={style.icon}
-
-              onClick={() => handleMenu()}
-            >
+            <a className={style.icon} onClick={() => handleMenu()}>
               <Kreutz
                 onMouseEnter={() => {
-                  setMouse('link', true)
+                  setMouse("link", true)
                 }}
                 onMouseLeave={() => {
-                  setMouse('link', false)
+                  setMouse("link", false)
                 }}
-
               ></Kreutz>
             </a>
           </Header>
@@ -113,13 +112,11 @@ export default function Nav() {
 
         <Fade right cascade when={open}>
           <div className={style.linksRoot}>
-
-            {fridaLink('/ausstellung/', 'AUSSTELLUNG')}
-            {fridaLink('/teilnehmen/', 'TEILNEHMEN')}
-            {fridaLink('/unterstützen/', 'UNTERSTÜTZEN')}
-            {fridaLink('/about/', 'WER IST FRIDA?')}
-            {fridaLink('/kontakt/', 'KONTAKT')}
-
+            {fridaLink("/ausstellung/", "AUSSTELLUNG")}
+            {fridaLink("/teilnehmen/", "TEILNEHMEN")}
+            {fridaLink("/unterstützen/", "UNTERSTÜTZEN")}
+            {fridaLink("/about/", "WER IST FRIDA?")}
+            {fridaLink("/kontakt/", "KONTAKT")}
           </div>
         </Fade>
 

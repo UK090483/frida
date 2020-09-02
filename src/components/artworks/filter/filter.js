@@ -14,8 +14,6 @@ export default function Filter({ artworks, setFElements }) {
   const [curentlyOpen, setCurentlyOpen] = useState("")
   const [filter, setF] = useState({})
 
-  // console.log(filter)
-
   const getOptions = () => {
     const artists = []
     const ArtistsOptions = []
@@ -41,8 +39,20 @@ export default function Filter({ artworks, setFElements }) {
       }
     })
 
+    const sortedArtists = [...ArtistsOptions].sort(function (a, b) {
+      var labelA = a.label.toUpperCase()
+      var labelB = b.label.toUpperCase()
+      if (labelA < labelB) {
+        return -1
+      }
+      if (labelA > labelB) {
+        return 1
+      }
+      return 0
+    })
+
     return {
-      artist: ArtistsOptions,
+      artist: sortedArtists,
       stil: StilOptions,
       medium: MediumOptions,
     }

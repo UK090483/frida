@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-
 import style from "./tab.module.scss"
+import xss from "xss"
 
 export default function Tab({ text1, text2 }) {
   const [active, setActive] = useState(true)
@@ -28,16 +28,14 @@ export default function Tab({ text1, text2 }) {
       {active && (
         <div
           className={`${style.text} ${!firstRender ? style.textActive : ""}`}
-        >
-          {text1}
-        </div>
+          dangerouslySetInnerHTML={{ __html: xss(text1) }}
+        ></div>
       )}
       {!active && (
         <div
           className={`${style.text} ${!firstRender ? style.textActive : ""}`}
-        >
-          {text2}
-        </div>
+          dangerouslySetInnerHTML={{ __html: xss(text2) }}
+        ></div>
       )}
     </div>
   )

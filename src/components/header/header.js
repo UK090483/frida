@@ -1,7 +1,6 @@
 import PropTypes from "prop-types"
 import React from "react"
 import PageTitle from "../pageTitle/pageTitle"
-
 import style from "./header.module.scss"
 
 const Header = ({
