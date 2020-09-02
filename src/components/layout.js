@@ -17,21 +17,28 @@ import { isBrowser } from "react-device-detect"
 import Nav from "./nav/nav"
 import Footer from "./Footer/footer"
 import Mouse from "./Mouse/mouse"
-import CookieConsent from './CookieConsent/CookieConsent'
+import CookieConsent from "./CookieConsent/CookieConsent"
 
-import useMouse from './Mouse/hooks/useMouse';
+import useMouse from "./Mouse/hooks/useMouse"
 
-const Layout = ({ children, title }) => {
-
+const Layout = ({ children, title, header = "default" }) => {
   const { setMouse } = useMouse()
 
-
   return (
-    <div style={{}} onMouseMove={(e) => { setMouse('move', e) }} >
+    <div
+      style={{}}
+      onMouseMove={e => {
+        setMouse("move", e)
+      }}
+    >
       {isBrowser && <Mouse></Mouse>}
-      <Header title={title}  >
-        <Nav></Nav>
-      </Header>
+      {header === "default" ? (
+        <Header title={title}>
+          <Nav></Nav>
+        </Header>
+      ) : (
+        header
+      )}
       <div
         style={{
           margin: `0 auto`,

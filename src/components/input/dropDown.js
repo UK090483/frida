@@ -10,6 +10,7 @@ export default function Input({
   setOpen,
   setFilter,
   filterName,
+  fixedHeight = false,
 }) {
   // const [open, setOpen] = useState(false);
   const [selfActive, setSelfActive] = useState(false)
@@ -45,9 +46,13 @@ export default function Input({
           when={open}
           unmountOnExit={true}
           mountOnEnter={true}
-          duration={1000}
+          duration={500}
         >
-          <div className={style.options}>
+          <div
+            className={`${style.options} ${
+              fixedHeight ? style.fixedHeight : ""
+            } `}
+          >
             <div
               className={style.option}
               onClick={() => {

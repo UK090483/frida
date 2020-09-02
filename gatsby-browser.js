@@ -6,10 +6,10 @@
 
 // You can delete this file if you're not using it
 
-import React from "react"
+// import React from "react"
 
-import { UiContextProvider } from "./src/context/UiContext"
+// import { UiContextProvider } from "./src/context/UiContext"
 
-export const wrapRootElement = ({ element }) => (
-  <UiContextProvider>{element}</UiContextProvider>
-)
+// export const wrapRootElement = ({ element }) => (
+//   <UiContextProvider>{element}</UiContextProvider>
+// )

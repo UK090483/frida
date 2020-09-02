@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import DropDown from "../../input/dropDown"
 import style from "./filter.module.scss"
+import getPriceWithTax from "../helper/getPriceWithTax"
 
 const preisOptions = [
   { label: "100-500", value: "100-500" },
@@ -13,8 +14,6 @@ const preisOptions = [
 export default function Filter({ artworks, setFElements }) {
   const [curentlyOpen, setCurentlyOpen] = useState("")
   const [filter, setF] = useState({})
-
-  // console.log(filter)
 
   const getOptions = () => {
     const artists = []
@@ -41,8 +40,20 @@ export default function Filter({ artworks, setFElements }) {
       }
     })
 
+    const sortedArtists = [...ArtistsOptions].sort(function (a, b) {
+      var labelA = a.label.toUpperCase()
+      var labelB = b.label.toUpperCase()
+      if (labelA < labelB) {
+        return -1
+      }
+      if (labelA > labelB) {
+        return 1
+      }
+      return 0
+    })
+
     return {
-      artist: ArtistsOptions,
+      artist: sortedArtists,
       stil: StilOptions,
       medium: MediumOptions,
     }
@@ -76,9 +87,10 @@ export default function Filter({ artworks, setFElements }) {
       if (f.Preis && res) {
         let range = f.Preis.split("-")
 
+        const priceWithTax = getPriceWithTax(artwork.price)
         res =
-          artwork.price >= parseInt(range[0]) &&
-          artwork.price <= parseInt(range[1])
+          priceWithTax >= parseInt(range[0]) &&
+          priceWithTax <= parseInt(range[1])
       }
       return res
     })
@@ -95,6 +107,7 @@ export default function Filter({ artworks, setFElements }) {
         open={curentlyOpen === "Künstler"}
         setOpen={i => handleSetOpen(i)}
         setFilter={setFilter}
+        fixedHeight={true}
       ></DropDown>
       <DropDown
         label={"Stil"}
