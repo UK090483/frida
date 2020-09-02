@@ -53,7 +53,7 @@ export default function Footer({ title }) {
           >
             <p>© 2020 Schwan Communications</p>
           </a>
-          {/* <p>© 2020 Schwan Communications</p> */}
+
           <Link
             className={style.impressum}
             to={"/impressum"}
@@ -65,6 +65,18 @@ export default function Footer({ title }) {
             }}
           >
             <p>Impressum & Datenschutz</p>
+          </Link>
+          <Link
+            className={style.impressum}
+            to={"/agb"}
+            onMouseEnter={() => {
+              setMouse("link", true)
+            }}
+            onMouseLeave={() => {
+              setMouse("link", false)
+            }}
+          >
+            <p>AGB</p>
           </Link>
         </div>
       </Section>

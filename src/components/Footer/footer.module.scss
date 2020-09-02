@@ -5,11 +5,12 @@
   display: flex;
   align-items: center;
   height: 100px;
+  justify-content: space-between;
 
   p {
     font-size: 1.2em;
     color: $white;
-    width: 50%;
+    width: 30%;
     margin: 0;
     padding: 0;
     text-decoration: none;
@@ -17,38 +18,15 @@
     white-space: nowrap;
   }
 }
-.schwan {
-  width: 50%;
-  text-decoration: none;
-  cursor: none;
-  margin-right: 10px;
-}
-.impressum {
-  text-decoration: none;
-  cursor: none;
-}
 
 @include tablet {
   .sub {
+    height: 200px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    flex-direction: column;
     p {
       font-size: 1em;
-    }
-  }
-}
-@include mobile {
-  .sub {
-    height: 150px;
-    padding-top: 40px;
-    padding-bottom: 20px;
-    flex-wrap: wrap;
-    .schwan {
-      width: 100%;
-      white-space: unset;
-    }
-    p {
-      width: 100%;
-      font-size: 0.9em;
-      white-space: unset;
     }
   }
 }
