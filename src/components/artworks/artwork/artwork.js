@@ -3,24 +3,17 @@ import Frida from "../../frida/frida"
 import style from "./artwork.module.scss"
 import useMouse from "../../Mouse/hooks/useMouse"
 import getPriceWithTax from "../helper/getPriceWithTax"
-// import ArtworkImage from "../../image/ArtworkImage/artworkImage"
+import ArtworkImage from "../../image/ArtworkImage/artworkImage"
 import Img from "gatsby-image"
+import { CDN } from "../../../Constants"
 
 export default function Artwork({ artwork, handleClick, handleLoaded }) {
-  const {
-    images,
-    availability,
-    artworkName,
-    artistName,
-    price,
-    // imageUrls,
-  } = artwork
+  const { images, availability, artworkName, artistName, price, cdn } = artwork
+
+  const cdnImage = cdn.url + "?tr=w-500"
   const [loaded, setloaded] = useState(false)
 
   const { setMouse } = useMouse()
-
-  // const srcSet = images.srcSet
-  // const src = images.src
 
   const makeVisilbe = () => {
     handleLoaded()
@@ -43,21 +36,24 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
             setMouse("link", false)
           }}
         >
-          <Img
-            placeholderClassName={style.image}
-            fluid={images.fluid}
-            onLoad={() => {
-              makeVisilbe()
-            }}
-          />
-          {/* <ArtworkImage
-            // className={style.image}
-            alt={`artwork ${artworkName} from ${artistName}`}
-            onLoad={() => {
-              makeVisilbe()
-            }}
-            src={imageUrls.large}
-          ></ArtworkImage> */}
+          {!CDN && (
+            <Img
+              placeholderClassName={style.image}
+              fluid={images.fluid}
+              onLoad={() => {
+                makeVisilbe()
+              }}
+            />
+          )}
+          {CDN && (
+            <ArtworkImage
+              alt={`artwork ${artworkName} from ${artistName}`}
+              onLoad={() => {
+                makeVisilbe()
+              }}
+              src={cdnImage}
+            ></ArtworkImage>
+          )}
           <h3 className={style.artistName}>
             <Frida text={artistName} textColor="#f5c5d9"></Frida>
           </h3>

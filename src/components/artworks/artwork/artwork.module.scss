@@ -1,7 +1,8 @@
 @import "../../variables";
 
 .root {
-  width: calc(33.3% - 47px);
+  width: 100%;
+  // width: calc(33.3% - 47px);
   margin-bottom: 80px;
   opacity: 1;
   transition: opacity 1s;
@@ -14,6 +15,7 @@
 
 .image {
   width: 100%;
+  min-width: 100%;
 }
 
 .artistName {
@@ -49,15 +51,14 @@
 
 @media (max-width: 1379px) {
   .root {
-    width: calc(50% - 37px);
-    margin-bottom: 80px;
+    // width: calc(50% - 37px);
   }
 }
 
 @media (max-width: 980px) {
   .root {
     width: 100%;
-    padding: 0 20px;
+    // padding: 0 20px;
     margin: 0;
     margin-bottom: 80px;
   }

@@ -81,80 +81,10 @@ export default function ArtworkContainer({
       />
 
       <div ref={gridRef}>
-        <CustMasonry
-          artworks={[...artworks].slice(0, postCount)}
-          handleLoaded={handleLoaded}
-          handleClick={handleClick}
-        ></CustMasonry>
-        {/* <Masonry className={style.root} options={masonryOptions}>
+        <Masonry className={style.root} options={masonryOptions}>
           {getArtworks()}
-        </Masonry> */}
+        </Masonry>
       </div>
     </React.Fragment>
-  )
-}
-
-const CustMasonry = props => {
-  const maxWidth = 1600
-  const [columns, setColumns] = useState(3)
-  const { artworks = [], handleLoaded, handleClick } = props
-
-  useEffect(() => {
-    const handleSize = () => {
-      console.log(window.innerWidth)
-      if (window.innerWidth < 630) {
-        setColumns(1)
-      } else if (window.innerWidth < 1200) {
-        setColumns(2)
-      } else {
-        setColumns(3)
-      }
-    }
-    handleSize()
-    window.addEventListener("resize", handleSize)
-    return () => {
-      window.removeEventListener("resize", handleSize)
-    }
-  })
-
-  const getArtworks = artworks => {
-    let col = []
-    for (let i = 0; i < columns; i++) {
-      col.push([])
-    }
-    return artworks.reduce((p, c, i) => {
-      p[i % columns].push(
-        <Artwork
-          key={c.id}
-          artwork={c}
-          handleLoaded={handleLoaded}
-          handleClick={() => {
-            handleClick(c)
-          }}
-          index={i}
-        ></Artwork>
-      )
-      return p
-    }, col)
-  }
-
-  const col = getArtworks(artworks)
-
-  return (
-    <div style={{ display: "flex", maxWidth: maxWidth, margin: "0 auto" }}>
-      {col.map((column, index) => {
-        return (
-          <div
-            key={index}
-            style={{
-              width: `${100 / columns}%`,
-              margin: "0 40px",
-            }}
-          >
-            {column}
-          </div>
-        )
-      })}
-    </div>
   )
 }

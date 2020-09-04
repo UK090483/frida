@@ -40,6 +40,11 @@ export default function Artworks({
             height
             depth
             artistEmail
+            cdn {
+              url
+              width
+              height
+            }
             images {
               local {
                 childImageSharp {
@@ -81,6 +86,29 @@ export default function Artworks({
 
   const artworks = getArtworks()
   const bodyRef = useRef()
+
+  const getRatios = () => {
+    let hoch = 0
+    let quer = 0
+    let same = 0
+    artworks.forEach(a => {
+      if (a.images.width === a.images.height) {
+        same++
+      } else if (a.images.width / a.images.height > 1) {
+        quer++
+      } else {
+        hoch++
+      }
+    })
+
+    console.log({
+      hoch,
+      quer,
+      same,
+    })
+  }
+
+  getRatios()
 
   useEffect(() => {
     bodyRef.current = document.querySelector("html")

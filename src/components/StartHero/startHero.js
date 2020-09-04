@@ -3,6 +3,9 @@ import { useStaticQuery, graphql } from "gatsby"
 import Frida from "../frida/frida"
 import style from "./startHero.module.scss"
 import Button from "../buttons/button"
+import { CDN } from "../../Constants"
+
+const cdnImageParams = "?tr=w-100,q=10"
 
 export default function StartHero() {
   const data = useStaticQuery(graphql`
@@ -18,6 +21,9 @@ export default function StartHero() {
                   }
                 }
               }
+            }
+            cdn {
+              url
             }
           }
         }
@@ -40,13 +46,20 @@ export default function StartHero() {
       }
       return item[0].local.childImageSharp.fluid.src
     }
+    function getImage() {
+      return (
+        allImages[getRandomInt(0, allImages.length)].node.cdn.url +
+        cdnImageParams
+      )
+    }
+
     const int = setTimeout(() => {
       const nextImages = [...images]
       if (nextImages.length > 10) {
         nextImages.shift()
       }
 
-      let src = getImageWithlocal()
+      let src = CDN ? getImage() : getImageWithlocal()
 
       const NextImage = {
         key: Date.now(),
@@ -97,20 +110,6 @@ export default function StartHero() {
           )
         })}
       </div>
-
-      {/* <div
-        className={style.stoerer}
-        onMouseEnter={() => { setMouse('link', true) }}
-        onMouseLeave={() => { setMouse('link', false) }}
-      >
-        <Link to="/unterstützen/">
-          <Stoerer></Stoerer>
-        </Link>
-      </div>
-
-      <Section>
-        <div className={style.stoererSpacer}></div>
-      </Section> */}
     </React.Fragment>
   )
 }

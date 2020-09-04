@@ -35,6 +35,11 @@ export const query = graphql`
       price
       stil
       width
+      cdn {
+        url
+        width
+        height
+      }
       images {
         local {
           childImageSharp {

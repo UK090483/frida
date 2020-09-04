@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react"
 import style from "./fridaImage.module.scss"
 import useMouse from "../../../Mouse/hooks/useMouse"
+import { CDN } from "../../../../Constants"
 
 const SCALE = [2, 3]
 
@@ -10,11 +11,8 @@ export default function FridaImage({ artwork }) {
   const loupImageRef = useRef()
   const { setMouse } = useMouse()
 
-  const { artworkName, artistName, images } = artwork
-  const { width, height } = images
-
-  // const [loaded, setLoaded] = useState(false);
-  // const [resized, setResized] = useState(false);
+  const { artworkName, artistName, images, cdn } = artwork
+  const { width, height } = cdn
 
   useEffect(() => {
     const handleImageSizing = () => {
@@ -94,7 +92,7 @@ export default function FridaImage({ artwork }) {
         // onLoad={() => { setLoaded(true) }}
         ref={imageRef}
         srcSet={srcSet}
-        src={src}
+        src={CDN ? `${cdn.url}?tr=w-600` : src}
         alt={`Kunstwerk ${artworkName} von ${artistName}`}
       ></img>
       <div
@@ -110,7 +108,7 @@ export default function FridaImage({ artwork }) {
             height: `${pos.height * SCALE[scale]}px`,
             transform: ` translateX(${pos.x}%) translateY(${pos.y}%)`,
           }}
-          src={src}
+          src={CDN ? `${cdn.url}?tr=w-600` : src}
           alt={`Kunstwerk ${artworkName} von ${artistName}`}
         ></img>
       </div>

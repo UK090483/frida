@@ -20,7 +20,7 @@ export default function getArtwork(artwork) {
       width: artwork.images[0].local.childImageSharp.original.width,
       height: artwork.images[0].local.childImageSharp.original.height,
     },
-
+    cdn: artwork.cdn,
     imageUrls: artwork.imageUrls,
     height: artwork.height,
     width: artwork.width,
