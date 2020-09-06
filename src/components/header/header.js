@@ -7,12 +7,16 @@ const Header = ({
   children,
   siteTitle,
   title = "",
+  titleElement = false,
   color = "white",
   link = true,
 }) => (
   <header className={style.root}>
     <div className={style.inner}>
-      {title && <PageTitle title={title} color={color} link={link}></PageTitle>}
+      {title && !!!titleElement && (
+        <PageTitle title={title} color={color} link={link}></PageTitle>
+      )}
+      {titleElement && titleElement}
 
       {children}
     </div>

@@ -5,6 +5,8 @@ import Kreutz from "../../../assets/Menu_Kreutz.svg"
 import SingleArtwork from "../singleArtwork/singleArtwork"
 import style from "./slider.module.scss"
 import useMouse from "../../Mouse/hooks/useMouse"
+import useFitText from "../../../hooks/useFitText"
+import Frida from "../../frida/frida"
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function Slider({ artwork, open, handleCloseClick }) {
@@ -22,7 +24,9 @@ export default function Slider({ artwork, open, handleCloseClick }) {
           style={{ pointerEvents: open ? "auto" : "none" }}
         >
           <Header
-            title={artwork ? artwork.artistName : ""}
+            titleElement={
+              <TitleElement name={artwork.artistName}>Bla</TitleElement>
+            }
             color="lila"
             link={false}
           >
@@ -44,5 +48,28 @@ export default function Slider({ artwork, open, handleCloseClick }) {
         </motion.div>
       )}
     </AnimatePresence>
+  )
+}
+
+function TitleElement({ name }) {
+  return (
+    <React.Fragment>
+      <WithTextFit name={name} />
+    </React.Fragment>
+  )
+}
+
+const WithTextFit = ({ name }) => {
+  const { ref } = useFitText()
+  return (
+    <h5
+      ref={ref}
+      style={{
+        maxWidth: "calc(100vw - 100px)",
+        margin: 0,
+      }}
+    >
+      <Frida text={name} textColor="#f5c5d9"></Frida>
+    </h5>
   )
 }

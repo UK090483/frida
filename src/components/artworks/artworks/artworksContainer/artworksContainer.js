@@ -1,15 +1,9 @@
 import React, { useEffect, useState, useRef } from "react"
 import Artwork from "../../artwork/artwork"
-import Masonry from "react-masonry-component"
+// import Masonry from "react-masonry-component"
 import style from "./artworksContainer.module.scss"
 import scrollTo from "gatsby-plugin-smoothscroll"
 import ArrowUp from "../../../../assets/arrow_up.svg"
-
-const masonryOptions = {
-  transitionDuration: 0,
-  gutter: 80,
-  percentPosition: true,
-}
 
 export default function ArtworkContainer({
   artworks,
@@ -20,8 +14,8 @@ export default function ArtworkContainer({
   const scrollRef = useRef(false)
 
   const [showScrollup, setShowScrollup] = useState(false)
-
   const [postCount, setPostCount] = useState(9)
+
   useEffect(() => {
     if (infinite) {
       window.addEventListener("scroll", handleScroll)
@@ -57,20 +51,6 @@ export default function ArtworkContainer({
     scrollRef.current = false
   }
 
-  const getArtworks = () => {
-    const initPosts = [...artworks].slice(0, postCount)
-    return initPosts.map((artwork, index) => (
-      <Artwork
-        key={artwork.id}
-        artwork={artwork}
-        handleLoaded={handleLoaded}
-        handleClick={() => {
-          handleClick(artwork)
-        }}
-        index={index}
-      ></Artwork>
-    ))
-  }
   return (
     <React.Fragment>
       <ArrowUp
@@ -86,28 +66,25 @@ export default function ArtworkContainer({
           handleLoaded={handleLoaded}
           handleClick={handleClick}
         ></CustMasonry>
-        {/* <Masonry className={style.root} options={masonryOptions}>
-          {getArtworks()}
-        </Masonry> */}
       </div>
     </React.Fragment>
   )
 }
 
 const CustMasonry = props => {
-  const maxWidth = 1600
+  const ContainerWidth = [500, 1000, 1600]
+
   const [columns, setColumns] = useState(3)
   const { artworks = [], handleLoaded, handleClick } = props
 
   useEffect(() => {
     const handleSize = () => {
-      console.log(window.innerWidth)
-      if (window.innerWidth < 630) {
-        setColumns(1)
-      } else if (window.innerWidth < 1200) {
-        setColumns(2)
+      if (window.innerWidth < 950) {
+        columns !== 1 && setColumns(1)
+      } else if (window.innerWidth < 1405) {
+        columns !== 2 && setColumns(2)
       } else {
-        setColumns(3)
+        columns !== 3 && setColumns(3)
       }
     }
     handleSize()
@@ -125,6 +102,7 @@ const CustMasonry = props => {
     return artworks.reduce((p, c, i) => {
       p[i % columns].push(
         <Artwork
+          columns={columns}
           key={c.id}
           artwork={c}
           handleLoaded={handleLoaded}
@@ -141,14 +119,20 @@ const CustMasonry = props => {
   const col = getArtworks(artworks)
 
   return (
-    <div style={{ display: "flex", maxWidth: maxWidth, margin: "0 auto" }}>
+    <div
+      style={{
+        display: "flex",
+        maxWidth: ContainerWidth[columns - 1],
+        margin: "0 auto",
+      }}
+    >
       {col.map((column, index) => {
         return (
           <div
             key={index}
             style={{
               width: `${100 / columns}%`,
-              margin: "0 40px",
+              margin: `0 ${columns === 1 ? 20 : 40}px`,
             }}
           >
             {column}

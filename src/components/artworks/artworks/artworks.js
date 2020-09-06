@@ -2,21 +2,13 @@ import React, { useEffect, useState, useRef } from "react"
 
 import Filter from "../filter/filter"
 import Section from "../../container/section"
-import Button from "../../buttons/button"
 import { useStaticQuery, graphql } from "gatsby"
 import ArtworsContainer from "./artworksContainer/artworksContainer"
-import Frida from "../../frida/frida"
 import getArtwork from "../helper/getArtwork"
-
 import Slider from "../slider/slider"
-
 import style from "./artworks.module.scss"
 
-export default function Artworks({
-  postCount = 9,
-  filter = false,
-  infinite = false,
-}) {
+export default function Artworks({ filter = false, infinite = false }) {
   const data = useStaticQuery(graphql`
     query MyQuery {
       allFridaArtwork {
@@ -87,29 +79,6 @@ export default function Artworks({
   const artworks = getArtworks()
   const bodyRef = useRef()
 
-  const getRatios = () => {
-    let hoch = 0
-    let quer = 0
-    let same = 0
-    artworks.forEach(a => {
-      if (a.images.width === a.images.height) {
-        same++
-      } else if (a.images.width / a.images.height > 1) {
-        quer++
-      } else {
-        hoch++
-      }
-    })
-
-    console.log({
-      hoch,
-      quer,
-      same,
-    })
-  }
-
-  getRatios()
-
   useEffect(() => {
     bodyRef.current = document.querySelector("html")
   }, [])
@@ -121,7 +90,6 @@ export default function Artworks({
   }
 
   const handleCloseClick = () => {
-    // setArtwork(null)
     setOpen(false)
     bodyRef.current.style.overflow = "auto"
   }
@@ -130,13 +98,6 @@ export default function Artworks({
     <React.Fragment>
       <div id={"filter"} style={{ transform: "translateY(-10vh)" }}></div>
       <Section type={"full"}>
-        {!filter && (
-          <Section>
-            <h3>
-              <Frida text={"NewArtists"} textColor="#F5C5D9"></Frida>
-            </h3>
-          </Section>
-        )}
         {filter && (
           <Filter artworks={artworks} setFElements={setFElements}></Filter>
         )}
@@ -154,19 +115,6 @@ export default function Artworks({
           ></ArtworsContainer>
         </div>
       </Section>
-      {!filter && (
-        <Section>
-          <div
-            style={{
-              width: "fit-content",
-              margin: "0 auto",
-              padding: "30px 0",
-            }}
-          >
-            <Button label={"mehr Kunst"} link={"/ausstellung/"}></Button>
-          </div>
-        </Section>
-      )}
     </React.Fragment>
   )
 }

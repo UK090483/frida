@@ -2,7 +2,8 @@
 
 .root {
   width: 100%;
-  // width: calc(33.3% - 47px);
+  max-width: calc(100vw - 40px);
+  overflow: hidden;
   margin-bottom: 80px;
   opacity: 1;
   transition: opacity 1s;
@@ -15,12 +16,6 @@
 
 .image {
   width: 100%;
-  min-width: 100%;
-}
-
-.artistName {
-  margin-top: 10px;
-  font-size: 1.35rem;
 }
 
 .infoRoot {
@@ -67,7 +62,7 @@
   }
   .artistName {
     margin-bottom: 10px;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
   .dot {
     margin-top: 8px;
@@ -92,10 +87,6 @@
 }
 
 @include mobile {
-  .artistName {
-    font-size: 1.05rem;
-    // border: red solid 1px;
-  }
   .infoRoot {
     flex-wrap: wrap;
     .dot {
