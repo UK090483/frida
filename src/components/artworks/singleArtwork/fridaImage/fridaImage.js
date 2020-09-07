@@ -11,8 +11,10 @@ export default function FridaImage({ artwork }) {
   const loupImageRef = useRef()
   const { setMouse } = useMouse()
 
-  const { artworkName, artistName, images, cdn } = artwork
-  const { width, height } = cdn
+  const { artworkName, artistName, images, cdn, imageUrls } = artwork
+  let { width, height, url } = cdn
+
+  url = imageUrls.large
 
   useEffect(() => {
     const handleImageSizing = () => {
@@ -91,8 +93,8 @@ export default function FridaImage({ artwork }) {
         }`}
         // onLoad={() => { setLoaded(true) }}
         ref={imageRef}
-        srcSet={srcSet}
-        src={CDN ? `${cdn.url}?tr=w-600` : src}
+        // srcSet={srcSet}
+        src={CDN ? `${url}?tr=w-600` : src}
         alt={`Kunstwerk ${artworkName} von ${artistName}`}
       ></img>
       <div
@@ -102,13 +104,13 @@ export default function FridaImage({ artwork }) {
         <img
           className={style.glassImg}
           ref={loupImageRef}
-          srcSet={srcSet}
+          // srcSet={srcSet}
           style={{
             width: `${pos.width * SCALE[scale]}px`,
             height: `${pos.height * SCALE[scale]}px`,
             transform: ` translateX(${pos.x}%) translateY(${pos.y}%)`,
           }}
-          src={CDN ? `${cdn.url}?tr=w-600` : src}
+          src={CDN ? `${url}?tr=w-600` : src}
           alt={`Kunstwerk ${artworkName} von ${artistName}`}
         ></img>
       </div>

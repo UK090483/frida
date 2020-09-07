@@ -126,6 +126,7 @@ module.exports = {
         },
       },
     },
+    `gatsby-plugin-transition-link`,
     `gatsby-plugin-smoothscroll`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,

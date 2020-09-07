@@ -8,9 +8,20 @@ import Img from "gatsby-image"
 import { CDN } from "../../../Constants"
 
 export default function Artwork({ artwork, handleClick, handleLoaded }) {
-  let { images, availability, artworkName, artistName, price, cdn } = artwork
+  let {
+    images,
+    availability,
+    artworkName,
+    artistName,
+    price,
+    cdn,
+    imageUrls,
+  } = artwork
 
-  const cdnImage = cdn.url + "?tr=w-500"
+  let cdnImage = cdn.url + "?tr=w-500"
+
+  cdnImage = imageUrls.large
+
   const [loaded, setloaded] = useState(false)
 
   const { setMouse } = useMouse()
@@ -23,8 +34,6 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
     }, 200)
   }
   /* eslint-disable jsx-a11y/anchor-is-valid */
-
-  // artistName = "AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
   return (
     <React.Fragment>

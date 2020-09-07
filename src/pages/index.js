@@ -15,7 +15,7 @@ const IndexPage = () => (
     <StartHero></StartHero>
     <Stoerer></Stoerer>
     <Section>
-      <h3>
+      <h3 style={{ paddingBottom: 30, marginBottom: 0 }}>
         <Frida text={"NewArtists"} textColor="#F5C5D9"></Frida>
       </h3>
     </Section>
