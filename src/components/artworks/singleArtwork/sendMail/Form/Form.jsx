@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import style from "./form.module.scss"
 import useMouse from "../../../../Mouse/hooks/useMouse"
-import { useForm } from "react-hook-form"
-import { motion, useAnimation, AnimatePresence } from "framer-motion"
+
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function Form({ show, register, errors, trigger }) {
   const { setMouse } = useMouse()

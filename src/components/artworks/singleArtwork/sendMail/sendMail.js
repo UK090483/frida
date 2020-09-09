@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useContext } from "react"
 import style from "./sendMail.module.scss"
 import UiContext from "../../../../context/UiContext"
 import Loading from "../../../../assets/loading.svg"
@@ -7,7 +7,7 @@ import Form from "./Form/Form"
 import { useForm } from "react-hook-form"
 
 export default function SendMail({ artwork }) {
-  const { artworkName, artistName, artistEmail, artworkInstagramLink } = artwork
+  const { artworkName, artistName, artistEmail } = artwork
   const { userData, setUserData } = useContext(UiContext)
 
   const { watch, register, errors, formState, getValues, trigger } = useForm({
@@ -59,11 +59,6 @@ export default function SendMail({ artwork }) {
         trigger()
       }
     }
-  }
-
-  const sub = (a, b) => {
-    console.log(a)
-    console.log(b)
   }
 
   const byProcess = () => (
