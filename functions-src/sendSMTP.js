@@ -1,10 +1,6 @@
 "use strict"
 const nodemailer = require("nodemailer")
-// const { SMTP_USER, SMTP_PASSWORD, SMTP_TO } = process.env
-
-const SMTP_PASSWORD = "o@eMjLL93t+z"
-const SMTP_TO = "private@konradullrich.com"
-const SMTP_USER = "meetfrida@konradullrich.com"
+const { SMTP_USER, SMTP_PASSWORD, SMTP_TO } = process.env
 
 exports.handler = async (event, context, callback) => {
   const payload = JSON.parse(event.body)
