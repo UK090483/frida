@@ -35,6 +35,8 @@ export default function Artworks({
             artworkName
             artistName
             artistDescription
+            artistWebLink
+            instagramLink
             artworkDescription
             availability
             height
@@ -93,7 +95,6 @@ export default function Artworks({
   }
 
   const handleCloseClick = () => {
-    // setArtwork(null)
     setOpen(false)
     bodyRef.current.style.overflow = "auto"
   }
