@@ -34,6 +34,7 @@
     "react-fitted-image": "^1.0.1",
     "react-fittext": "^1.0.0",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^6.7.2",
     "react-images-upload": "^1.2.8",
     "react-jotform-embed": "^1.0.4",
     "react-magic-grid": "^1.1.0",

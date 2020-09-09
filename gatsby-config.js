@@ -1,5 +1,11 @@
 const postCssPlugins = require("./postcss-config.js")
 const { createProxyMiddleware } = require("http-proxy-middleware")
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
+console.log(process.env.NODE_ENV)
+
 process.env.GATSBY_CONCURRENT_DOWNLOAD = 1
 
 module.exports = {

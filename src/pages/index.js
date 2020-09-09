@@ -4,11 +4,9 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Artworks from "../components/artworks/artworks/artworks"
 import StartHero from "../components/StartHero/startHero"
-import Stoerer from '../components/StartHero/stoerer';
+import Stoerer from "../components/StartHero/stoerer"
 
 const IndexPage = () => (
-
-
   <Layout title={"Frida"}>
     <SEO title="Home" />
     <StartHero></StartHero>

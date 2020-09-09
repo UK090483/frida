@@ -11,7 +11,7 @@ const UiContext = React.createContext(defaultState)
 function UiContextProvider({ children }) {
   const [mouseStyle, setMouseStyle] = useState(null)
   const [mouseColor, setMouseColor] = useState("red")
-  const [userEmail, setUserEmail] = useState(null)
+  const [userData, setUserData] = useState({ name: "", email: "" })
 
   return (
     <UiContext.Provider
@@ -22,8 +22,8 @@ function UiContextProvider({ children }) {
         setMouseStyle,
         isMobile,
         isBrowser,
-        userEmail,
-        setUserEmail,
+        userData,
+        setUserData,
       }}
     >
       {children}
