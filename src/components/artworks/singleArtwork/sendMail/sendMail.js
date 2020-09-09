@@ -15,8 +15,8 @@ export default function SendMail({ artwork }) {
     reValidateMode: "onChange",
     validateCriteriaMode: "firstErrorDetected",
     defaultValues: {
-      name: userData.name || "",
-      email: userData.email || "",
+      name: userData?.name || "",
+      email: userData?.email || "",
     },
   })
   const { isValid } = formState
