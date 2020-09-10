@@ -68,12 +68,12 @@ export default function StartHero() {
     <React.Fragment>
       <div className={style.root}>
         <div className={style.text}>
-          <h6>
+          <h6 style={{ fontWeight: 800 }}>
             Neue Positionen kennenlernen, Kunst in ganz Deutschland sehen und
             dabei Kunstschaffende unterstützen.
             {/* Neue Werke, wechselnde Ausstellungsorte, 1 Plattform. */}
           </h6>
-          <h1>
+          <h1 style={{ fontWeight: 800 }}>
             <Frida /> – Deutschlands größte Outdoor- und Online-Gallery für
             junge Kunst
             {/* Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida> */}

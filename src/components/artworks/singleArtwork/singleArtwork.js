@@ -14,12 +14,16 @@ export default function Artworks({ artwork }) {
     price,
     artistDescription,
     artworkDescription,
+    instagramLink,
+    artistWebLink,
     height,
     medium,
     stil,
     width,
     depth,
   } = artwork
+
+  console.log(artwork)
 
   return (
     <div className={style.root}>
@@ -29,7 +33,12 @@ export default function Artworks({ artwork }) {
         </div>
 
         <div className={style.infoRoot}>
-          <Tab text1={artistDescription} text2={artworkDescription}></Tab>
+          <Tab
+            text1={artistDescription}
+            text2={artworkDescription}
+            artistWebLink={artistWebLink}
+            instagramLink={instagramLink}
+          ></Tab>
           <div className={style.nameRoot}>
             <ArtworkName
               artworkName={artworkName}

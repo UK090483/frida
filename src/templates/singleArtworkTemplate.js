@@ -25,6 +25,8 @@ export const query = graphql`
       artistDescription
       artistEmail
       artistName
+      artistWebLink
+      instagramLink
       artworkDescription
       artworkName
       availability

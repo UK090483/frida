@@ -10,9 +10,9 @@ const IndexPage = () => (
   <Layout title={"Frida"}>
     <SEO title="about" />
     <Hero backgroundColor="lila">
-      <h6>ABOUT</h6>
+      <h6 style={{ fontWeight: 800 }}>ABOUT</h6>
 
-      <h1>
+      <h1 style={{ fontWeight: 800 }}>
         Warum wir <Frida></Frida> ins Leben gerufen haben
       </h1>
     </Hero>

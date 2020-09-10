@@ -10,6 +10,7 @@ export default function getArtwork(artwork) {
     artistName: artwork.artistName,
     artistEmail: artwork.artistEmail,
     artistDescription: artwork.artistDescription,
+    artistWebLink: artwork.artistWebLink,
     artworkName: artwork.artworkName,
     artworkDescription: artwork.artworkDescription,
     availability: artwork.availability,
