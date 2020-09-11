@@ -1,6 +1,6 @@
 import React from "react"
 import style from "./form.module.scss"
-import useMouse from "../../../../Mouse/hooks/useMouse"
+import useMouse from "../../../../generic/Mouse/hooks/useMouse"
 
 import { motion, AnimatePresence } from "framer-motion"
 

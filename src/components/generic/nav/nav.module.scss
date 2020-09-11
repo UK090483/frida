@@ -1,0 +1,173 @@
+@import "../../variables.scss";
+
+.root {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  padding: 200;
+  background-color: transparent;
+  opacity: 0;
+  transition: opacity 0.5s 1s;
+
+  .link {
+    cursor: none;
+  }
+
+  &.active {
+    transition: opacity 0.5s;
+    opacity: 1;
+
+    .aniCircle1 {
+      position: absolute;
+      background-color: $black;
+      right: 0;
+      width: 0px;
+      height: 0px;
+      border-radius: 50%;
+      animation-name: scaleUp;
+      animation-duration: 1.2s;
+      animation-fill-mode: forwards;
+    }
+    .aniCircle2 {
+      transform: scale(1.2) translateY(-50px);
+      position: absolute;
+      background-color: $black;
+      opacity: 0.5;
+      right: 0px;
+      top: 0px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      animation-name: scaleUp;
+      animation-duration: 1.2s;
+      animation-fill-mode: forwards;
+    }
+  }
+  &.onClose {
+    opacity: 1;
+    .aniCircle1 {
+      position: absolute;
+      background-color: $black;
+      right: 0;
+      width: 1000px;
+      height: 1000px;
+      border-radius: 50%;
+      animation-name: scaleDown;
+      animation-duration: 1.2s;
+      animation-fill-mode: forwards;
+    }
+    .aniCircle2 {
+      transform: scale(1.2) translateY(-50px);
+      position: absolute;
+      background-color: $black;
+      opacity: 0.5;
+      right: 0px;
+      top: 0px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      animation-name: scaleDown;
+      animation-duration: 1.2s;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    top: 0;
+    right: 0;
+    width: 0vw;
+    height: 0vh;
+  }
+  to {
+    top: -50vw;
+    right: -50vw;
+    width: 200vw;
+    height: 200vw;
+  }
+}
+@keyframes scaleDown {
+  from {
+    opacity: 1;
+    top: -50vw;
+    right: -50vw;
+    width: 200vw;
+    height: 200vw;
+  }
+  to {
+    opacity: 0;
+    top: 0;
+    right: 0;
+    width: 0vw;
+    height: 0vh;
+  }
+}
+
+.linksRoot {
+  width: 100%;
+  padding-top: 20vh;
+  padding-left: 7%;
+
+  h1 {
+    margin: 0;
+    line-height: 2.2rem;
+  }
+
+  a {
+    color: white;
+    font-size: 3.9rem;
+    line-height: 5.2rem;
+    text-decoration: none;
+    font-weight: 800;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-color: white;
+    -webkit-text-stroke-width: 0.02em;
+
+    &.active {
+      -webkit-text-fill-color: white;
+      -webkit-text-stroke-color: white;
+      -webkit-text-stroke-width: 0.02em;
+    }
+  }
+  a:hover {
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-color: white;
+    -webkit-text-stroke-width: 0.02em;
+  }
+}
+
+.icon {
+  width: 40px;
+  pointer-events: all;
+  transform: translateY(5px);
+}
+
+@media (max-height: 800px) {
+  .root {
+    .linksRoot {
+      a {
+        font-size: 2rem;
+        line-height: 3rem;
+      }
+    }
+  }
+}
+
+@include tablet {
+  .root {
+  }
+}
+
+@include mobile {
+  .root {
+  }
+  .linksRoot {
+    a {
+      font-size: 2rem;
+      line-height: 3rem;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@import "../../variables.scss";
+
+.mouse {
+  width: 30px;
+  height: 30px;
+
+  z-index: 99999999;
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+
+  div {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+    background-color: $red;
+    transition: all 0.3s;
+    &::before {
+      content: "";
+      position: absolute;
+
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: $red solid 0px;
+      transition: border-width 0.2s, transform 0.2s;
+    }
+  }
+
+  &.hide {
+    opacity: 0;
+  }
+  &.mouseOut {
+    opacity: 0;
+  }
+  &.black {
+    div {
+      background-color: $black;
+      &::before {
+        border: $black solid 0px;
+      }
+    }
+  }
+  &.mousedown {
+    div {
+      &::before {
+        transform: scale(2);
+        border-width: 1px;
+      }
+    }
+  }
+
+  &.linkhover {
+    div {
+      background-color: transparent;
+      &::before {
+        transform: scale(2);
+        border-width: 1px;
+      }
+    }
+  }
+}

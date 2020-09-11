@@ -1,21 +1,18 @@
 import React from "react"
 import style from "./bigButtons.module.scss"
-import useMouse from '../Mouse/hooks/useMouse';
+import useMouse from "../generic/Mouse/hooks/useMouse"
 
 export default function BigButtons({ label, link }) {
-
-  const { setMouse } = useMouse();
+  const { setMouse } = useMouse()
 
   return (
     <div
       className={style.root}
       onMouseEnter={() => {
-        setMouse('link', true)
-
+        setMouse("link", true)
       }}
       onMouseLeave={() => {
-        setMouse('link', false)
-
+        setMouse("link", false)
       }}
     >
       <BigButton

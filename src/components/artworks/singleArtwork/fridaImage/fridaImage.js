@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react"
 import style from "./fridaImage.module.scss"
-import useMouse from "../../../Mouse/hooks/useMouse"
+import useMouse from "../../../generic/Mouse/hooks/useMouse"
 
 const SCALE = [2, 3]
 

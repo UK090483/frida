@@ -1,32 +1,24 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
 import PropTypes from "prop-types"
 
-import Header from "./header/header"
+import Header from "../header/header"
 import "./layout.scss"
-import "./theme.scss"
+import "../theme.scss"
 
 import { isBrowser } from "react-device-detect"
 
-import Nav from "./nav/nav"
-import Footer from "./Footer/footer"
-import Mouse from "./Mouse/mouse"
-import CookieConsent from "./CookieConsent/CookieConsent"
+import Nav from "../nav/nav"
+import Footer from "../Footer/footer"
+import Mouse from "../Mouse/mouse"
+import CookieConsent from "../../CookieConsent/CookieConsent"
 
-import useMouse from "./Mouse/hooks/useMouse"
+import useMouse from "../Mouse/hooks/useMouse"
 
 const Layout = ({ children, title, header = "default" }) => {
   const { setMouse } = useMouse()
 
   return (
     <div
-      style={{}}
       onMouseMove={e => {
         setMouse("move", e)
       }}

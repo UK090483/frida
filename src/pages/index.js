@@ -1,6 +1,6 @@
 import React from "react"
 
-import Layout from "../components/layout"
+import Layout from "../components/generic/layout/layout"
 import SEO from "../components/seo"
 import Artworks from "../components/artworks/artworks/artworks"
 import StartHero from "../components/StartHero/startHero"

@@ -1,6 +1,6 @@
 import React from "react"
 
-import Layout from "../components/layout"
+import Layout from "../components/generic/layout/layout"
 import SEO from "../components/seo"
 import Section from "../components/container/section"
 import Frida from "../components/frida/frida"

@@ -3,7 +3,7 @@ import style from "./tab.module.scss"
 import xss from "xss"
 import InstagramIcon from "../../../../assets/instagram_icon.svg"
 import LinkIcon from "../../../../assets/link_icon.svg"
-import useMouse from "../../../Mouse/hooks/useMouse"
+import useMouse from "../../../generic/Mouse/hooks/useMouse"
 
 export default function Tab({ text1, text2, instagramLink, artistWebLink }) {
   const [active, setActive] = useState(true)
