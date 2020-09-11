@@ -1,9 +1,9 @@
 import React from "react"
-import Section from "../container/section"
-import BigButton from "../buttons/bigButton"
+import Section from "../../container/section"
+import BigButton from "../../buttons/bigButton"
 import TextFlow from "./textFlow"
 import style from "./footer.module.scss"
-import AllSupporter from "../Supporter/allSupporter"
+import AllSupporter from "../../Supporter/allSupporter"
 import { Link } from "gatsby"
 import useMouse from "../Mouse/hooks/useMouse"
 

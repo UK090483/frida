@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import style from "./button.module.scss"
-import useMouse from "../Mouse/hooks/useMouse"
+import useMouse from "../generic/Mouse/hooks/useMouse"
 
 export default function Buttons({
   label,

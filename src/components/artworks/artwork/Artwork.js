@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Frida from "../../frida/frida"
 import style from "./artwork.module.scss"
-import useMouse from "../../Mouse/hooks/useMouse"
+import useMouse from "../../generic/Mouse/hooks/useMouse"
 import getPriceWithTax from "../helper/getPriceWithTax"
 // import ArtworkImage from "../../image/ArtworkImage/artworkImage"
 import Img from "gatsby-image"

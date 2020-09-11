@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react"
-import Artwork from "../../artwork/artwork"
+import Artwork from "../../artwork/Artwork"
 import Masonry from "react-masonry-component"
 import style from "./artworksContainer.module.scss"
 import scrollTo from "gatsby-plugin-smoothscroll"

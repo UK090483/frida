@@ -1,10 +1,10 @@
 import React from "react"
 // import Slide from "react-reveal/Slide"
-import Header from "../../header/header"
+import Header from "../../generic/header/header"
 import Kreutz from "../../../assets/Menu_Kreutz.svg"
 import SingleArtwork from "../singleArtwork/singleArtwork"
 import style from "./slider.module.scss"
-import useMouse from "../../Mouse/hooks/useMouse"
+import useMouse from "../../generic/Mouse/hooks/useMouse"
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function Slider({ artwork, open, handleCloseClick }) {

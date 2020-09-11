@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import style from "./dropDown.module.scss"
 import Flip from "react-reveal/Flip"
-import useMouse from "../Mouse/hooks/useMouse"
+import useMouse from "../generic/Mouse/hooks/useMouse"
 
 export default function Input({
   label = "no label",

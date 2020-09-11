@@ -1,7 +1,7 @@
 import React from "react"
 import Container from "./container"
 import style from "./section.module.scss"
-import useMouse from '../Mouse/hooks/useMouse';
+import useMouse from "../generic/Mouse/hooks/useMouse"
 
 export default function Section({
   children,
@@ -10,7 +10,6 @@ export default function Section({
   type,
   space,
 }) {
-
   const { setMouse } = useMouse()
 
   const extraStyle = {}
@@ -48,7 +47,11 @@ export default function Section({
 
   return (
     <section
-      onMouseOver={() => { backgroundColor === 'red' ? setMouse('color', true) : setMouse('color', false) }}
+      onMouseOver={() => {
+        backgroundColor === "red"
+          ? setMouse("color", true)
+          : setMouse("color", false)
+      }}
       data-color={backgroundColor}
       className={`${getTypeClass(type)} ${getColorClass(backgroundColor)}`}
       style={extraStyle}

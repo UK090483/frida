@@ -1,12 +1,12 @@
 import React from "react"
 
-import Layout from "../components/layout"
+import Layout from "../components/generic/layout/layout"
 import SEO from "../components/seo"
 import Poster from "../components/Poster/Poster/poster"
 import Hero from "../components/hero/hero"
 import Button from "../components/buttons/button"
 
-import Header from "../components/header/header"
+import Header from "../components/generic/header/header"
 
 const StartNext = () => (
   <Layout
