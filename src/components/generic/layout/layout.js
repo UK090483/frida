@@ -14,7 +14,7 @@ import CookieConsent from "../../CookieConsent/CookieConsent"
 
 import useMouse from "../Mouse/hooks/useMouse"
 
-const Layout = ({ children, title, header = "default" }) => {
+const Layout = ({ children, title, header = "default", color }) => {
   const { setMouse } = useMouse()
 
   return (
@@ -25,7 +25,7 @@ const Layout = ({ children, title, header = "default" }) => {
     >
       {isBrowser && <Mouse></Mouse>}
       {header === "default" ? (
-        <Header title={title}>
+        <Header title={title} color={color}>
           <Nav></Nav>
         </Header>
       ) : (

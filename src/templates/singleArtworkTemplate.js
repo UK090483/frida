@@ -10,7 +10,7 @@ export default function SingleArtworkTemplate({ data }) {
   const artwork = getArtwork(data.fridaArtwork)
 
   return (
-    <Layout title={artwork.artistName}>
+    <Layout title={artwork.artistName} color={"lila"}>
       <SEO title="aboute" />
       <Section>
         {data.fridaArtwork && <SingleArtwork artwork={artwork}></SingleArtwork>}

@@ -1,7 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import style from "./supporter.module.scss"
-import Ticker from "react-ticker"
+// import Ticker from "react-ticker"
+import Marquee from "react-marquee-slider"
 
 const AllSuporters = () => {
   const data = useStaticQuery(graphql`
@@ -19,8 +20,6 @@ const AllSuporters = () => {
       }
     }
   }
-  
-  
   `)
 
   return <PureAllSupporters data={data} />
@@ -30,19 +29,14 @@ export default AllSuporters
 
 const PureAllSupporters = ({ data }) => {
   return (
-    <Ticker speed={20}>
-      {({ index }) => {
-        let i = index % data.allFile.edges.length
+    <Marquee velocity={80}>
+      {data.allFile.edges.map(item => {
         return (
-          <div className={style.logoItem}>
-            <img
-              alt={"Logo"}
-              key={data.allFile.edges[i].node.id}
-              src={data.allFile.edges[i].node.childImageSharp.resize.src}
-            ></img>
+          <div key={item.node.id} className={style.logoItem}>
+            <img alt={"Logo"} src={item.node.childImageSharp.resize.src}></img>
           </div>
         )
-      }}
-    </Ticker>
+      })}
+    </Marquee>
   )
 }
