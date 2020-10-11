@@ -1,29 +1,37 @@
 const postCssPlugins = require("./postcss-config.js")
 const { createProxyMiddleware } = require("http-proxy-middleware")
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+// require("dotenv").config({
+//   path: `.env.${process.env.NODE_ENV}`,
+// })
 
-process.env.GATSBY_CONCURRENT_DOWNLOAD = 1
+//process.env.GATSBY_CONCURRENT_DOWNLOAD = 1
 
 module.exports = {
-  developMiddleware: app => {
-    app.use(
-      "/.netlify/functions/",
-      createProxyMiddleware({
-        target: "http://localhost:9000",
-        pathRewrite: {
-          "/.netlify/functions/": "",
-        },
-      })
-    )
-  },
+  // developMiddleware: app => {
+  //   app.use(
+  //     "/.netlify/functions/",
+  //     createProxyMiddleware({
+  //       target: "http://localhost:9000",
+  //       pathRewrite: {
+  //         "/.netlify/functions/": "",
+  //       },
+  //     })
+  //   )
+  // },
+  
   siteMetadata: {
     title: `Frida`,
     description: ``,
     author: ``,
   },
   plugins: [
+    // {
+    //   resolve: 'gatsby-plugin-snipcartv3',
+    //   options: {
+    //     apiKey: 'MDQ0ODFjNTYtNDY4Mi00MDkwLWJjNjYtMzhlYzUzMTdkNmZlNjM3Mzc5MzIyODc1OTQyODk2',
+    //     autopop: false
+    //   }
+    // },
     `gatsby-plugin-react-helmet`,
 
     {
@@ -60,31 +68,56 @@ module.exports = {
       },
     },
 
+    // {
+    //   resolve: "gatsby-source-custom-api",
+    //   options: {
+    //     url:
+    //       "https://fridaadmin.konradullrich.com/wp-json/frida/v1/artworks_smaler/",
+    //     imageKeys: ["images"],
+    //     rootKey: "fridaArtwork",
+    //     schemas: {
+    //       fridaArtwork: `
+    //         images: [images]
+    //       `,
+    //       images: `
+    //         url: String,
+    //         modified: Int
+    //       `,
+    //       imageUrls: `
+    //         large: String,
+    //         medium: String,
+    //         medium_large: String
+    //       `,
+    //       cdn: `
+    //       width: Int,
+    //       height: Int,
+    //       url: String
+    //       `,
+    //     },
+    //   },
+    // },
     {
-      resolve: "gatsby-source-custom-api",
+      resolve: "gatsby-source-storyblok",
       options: {
-        url:
-          "https://fridaadmin.konradullrich.com/wp-json/frida/v1/artworks_smaler/",
-        imageKeys: ["images"],
-        rootKey: "fridaArtwork",
-        schemas: {
-          fridaArtwork: `
-            images: [images]
-          `,
-          images: `
-            url: String,
-            modified: Int
-          `,
-          imageUrls: `
-            large: String,
-            medium: String,
-            medium_large: String
-          `,
-          cdn: `
-          width: Int,
-          height: Int,
-          url: String
-          `,
+        accessToken: "ObvzIeHZVi9TkIUctkrfHQtt",
+        homeSlug: "home",
+        version: process.env.NODE_ENV === "production" ? "published" : "draft",
+        resolveRelations: ["artist", "stil", "medium"],
+      },
+    },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // Arbitrary name for the remote schema Query type
+        typeName: "StoryQL",
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: "storyQL",
+        // Url to query from
+        url: "https://gapi.storyblok.com/v1/api",
+
+        headers: {
+          // Learn about environment variables: https://gatsby.dev/env-vars
+          Token: `ObvzIeHZVi9TkIUctkrfHQtt`,
         },
       },
     },

@@ -21,7 +21,8 @@ export default function () {
       setMouseIn(false)
     })
 
-    document.querySelector("body").style.cursor = "none"
+    // document.querySelector("body").style.cursor = "none"
+    document.querySelector("body").classList.add('frida_mouse_active')
   }, [UI])
 
   const setMouseDown = direction => {

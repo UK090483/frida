@@ -1,0 +1,29 @@
+@import "../../../variables";
+
+.buttons {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.buyButton {
+  overflow: hidden;
+  outline: none;
+  transition: color 0.3s, background-color 0.3s;
+  background-color: $red;
+  min-height: 70px;
+  color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  font-size: 1.4em;
+  font-weight: 900;
+  text-decoration: none;
+  border: $red solid 2px;
+  width: 100%;
+}
+.buyButton:hover {
+  background-color: $white;
+  color: $red;
+}

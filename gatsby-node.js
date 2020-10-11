@@ -18,9 +18,13 @@ exports.createPages = ({ graphql, actions }) => {
     // for example, let say you use your data from Contentful using its associated source plugin
     graphql(`
       query MyQuery {
-        allFridaArtwork {
+        allStoryblokEntry(
+          filter: { full_slug: { regex: "/artwork/" } }
+          sort: { fields: field_randSort_number, order: ASC }
+        ) {
           edges {
             node {
+              id
               slug
             }
           }
@@ -34,7 +38,7 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       // if no errors, you can map into the data and create your static pages
-      result.data.allFridaArtwork.edges.forEach(artwork => {
+      result.data.allStoryblokEntry.edges.forEach(artwork => {
         // create page according to the fetched data
 
         createPage({
@@ -48,7 +52,6 @@ exports.createPages = ({ graphql, actions }) => {
           },
         })
       })
-
       resolve()
     })
   })

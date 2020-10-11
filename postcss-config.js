@@ -1,4 +1,4 @@
-"use strict"
+
 
 const lost = require("lost")
 const pxtorem = require("postcss-pxtorem")

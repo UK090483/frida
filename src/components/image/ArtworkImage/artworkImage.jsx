@@ -4,6 +4,14 @@ export default function ArtworkImage({ src, alt, onLoad }) {
   const [hasMounted, setHasMounted] = useState(false)
   const [show, setShow] = useState(false)
 
+  function transformImage(image, option) {
+    var imageService = "https://img2.storyblok.com/"
+    var path = image.replace("https://a.storyblok.com", "")
+    return imageService + option + "/" + path
+  }
+
+  const resizeSrc = transformImage(src, "500x0")
+
   useEffect(() => {
     setHasMounted(true)
   }, [])
@@ -25,7 +33,7 @@ export default function ArtworkImage({ src, alt, onLoad }) {
           onLoad()
           handleLoad()
         }}
-        src={src}
+        src={resizeSrc}
       ></img>
     )
   )

@@ -7,16 +7,12 @@ import Button from "../buttons/button"
 export default function StartHero() {
   const data = useStaticQuery(graphql`
     query startHeroQuery {
-      allFridaArtwork {
-        edges {
-          node {
-            images {
-              local {
-                childImageSharp {
-                  fluid(maxWidth: 150) {
-                    src
-                  }
-                }
+      storyQL {
+        ArtworkItems(per_page: 100) {
+          items {
+            content {
+              Image {
+                filename
               }
             }
           }
@@ -29,7 +25,7 @@ export default function StartHero() {
     return Math.floor(Math.random() * (max - min) + min)
   }
 
-  const allImages = data.allFridaArtwork.edges
+  const allImages = data.storyQL.ArtworkItems.items
   const [images, setImages] = useState([])
 
   useEffect(() => {
@@ -40,13 +36,28 @@ export default function StartHero() {
       }
       return item[0].local.childImageSharp.fluid.src
     }
+    function transformImage(image, option) {
+      var imageService = "https://img2.storyblok.com/"
+      var path = image.replace("https://a.storyblok.com", "")
+      return imageService + option + "/" + path
+    }
+
+    function getNext() {
+      let item = allImages[getRandomInt(0, allImages.length)]
+      return transformImage(
+        item.content.Image.filename,
+        "150x0/filters:quality(60)"
+      )
+    }
+
     const int = setTimeout(() => {
       const nextImages = [...images]
       if (nextImages.length > 10) {
         nextImages.shift()
       }
 
-      let src = getImageWithlocal()
+      // let src = getImageWithlocal()
+      let src = getNext()
 
       const NextImage = {
         key: Date.now(),

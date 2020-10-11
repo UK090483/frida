@@ -3,7 +3,7 @@ import React from "react"
 import Layout from "../components/generic/layout/layout"
 import SEO from "../components/seo"
 import Hero from "../components/hero/hero"
-import Artworks from "../components/artworks/artworks/artworks"
+import Artworks from "../components/artworks2/artworks/artworks"
 import Section from "../components/container/section"
 import Frida from "../components/frida/frida"
 

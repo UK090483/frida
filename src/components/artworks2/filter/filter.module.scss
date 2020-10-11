@@ -1,0 +1,23 @@
+@import '../../variables.scss';
+
+.root{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+
+}
+
+
+@media (max-width: 1400px ) {
+    .root{
+       
+        flex-wrap:wrap;
+        
+    }
+  }
+
+
+
+

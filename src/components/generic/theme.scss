@@ -91,3 +91,25 @@ body::-webkit-scrollbar {
 a {
   color: $red;
 }
+
+.page-layout {
+  transition: opacity 1s;
+  opacity: 1;
+}
+.frida_mouse_active {
+  cursor: none;
+}
+
+.snipcart-cart--opened {
+  .page-layout {
+    transition: opacity 1s;
+    opacity: 0;
+  }
+  .frida_mouse_active {
+    cursor: auto;
+  }
+}
+
+.snipcart-item-line__container {
+  border: red solid 1px;
+}

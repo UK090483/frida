@@ -1,0 +1,113 @@
+@import "../../variables";
+
+.root {
+  width: calc(33.3% - 47px);
+  margin-bottom: 80px;
+  opacity: 1;
+  transition: opacity 1s;
+
+  &.loaded {
+    transition: opacity 1s;
+    opacity: 1;
+  }
+}
+
+.image {
+  width: 100%;
+}
+
+.artistName {
+  margin-top: 10px;
+  font-size: 1.35rem;
+}
+
+.infoRoot {
+  display: flex;
+  align-items: center;
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+.dot {
+  align-self: flex-start;
+  margin-top: 4px;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 50%;
+}
+
+.dot {
+  background-color: $green;
+}
+.dotSold {
+  background-color: $red;
+}
+
+.artworkName {
+  padding-left: 10px;
+  margin-right: auto;
+}
+
+@media (max-width: 1379px) {
+  .root {
+    width: calc(50% - 37px);
+    margin-bottom: 80px;
+  }
+}
+
+@media (max-width: 980px) {
+  .root {
+    width: 100%;
+    padding: 0 20px;
+    margin: 0;
+    margin-bottom: 80px;
+  }
+  .image {
+    margin-bottom: 5px;
+  }
+  .artistName {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+  .dot {
+    margin-top: 8px;
+  }
+  .infoRoot {
+    font-size: 1rem;
+  }
+  .price {
+    margin-top: 10px;
+  }
+}
+
+// @include medium {
+//     .root{
+//         width: calc(50% - 37px);
+//         margin-bottom: 80px;
+//      }
+
+// }
+
+@include tablet {
+}
+
+@include mobile {
+  .artistName {
+    font-size: 1.05rem;
+    // border: red solid 1px;
+  }
+  .infoRoot {
+    flex-wrap: wrap;
+    .dot {
+      align-self: flex-start;
+      margin-top: 3px;
+    }
+
+    .artworkName {
+      width: calc(100% - 30px);
+      padding-left: 10px;
+      margin: 0;
+    }
+    .price {
+    }
+  }
+}
