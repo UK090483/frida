@@ -6,6 +6,7 @@ import Header from "../header/header"
 import Kreutz from "../../../assets/Menu_Kreutz.svg"
 import Fade from "react-reveal/Fade"
 import useMouse from "../Mouse/hooks/useMouse"
+import CheckoutLink from "../../shopcomponents/checkoutLink"
 
 import style from "./nav.module.scss"
 
@@ -52,21 +53,26 @@ export default function Nav() {
   /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
     <div>
-      <div
-        className={style.icon}
-        onMouseEnter={() => {
-          setMouse("link", true)
-          setMouse("color", true)
-        }}
-        onMouseLeave={() => {
-          setMouse("link", false)
-          setMouse("color", false)
-        }}
-        onClick={() => {
-          handleMenu()
-        }}
-      >
-        <Burger></Burger>
+      <div className={style.icon}>
+        <div
+          onMouseEnter={() => {
+            setMouse("link", true)
+            setMouse("color", true)
+          }}
+          onMouseLeave={() => {
+            setMouse("link", false)
+            setMouse("color", false)
+          }}
+          onClick={() => {
+            handleMenu()
+          }}
+        >
+          <Burger></Burger>
+        </div>
+
+        <div style={{ position: "absolute", transform: "translateX(-3px)" }}>
+          <CheckoutLink></CheckoutLink>
+        </div>
       </div>
 
       <div
