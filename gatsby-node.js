@@ -18,15 +18,31 @@ exports.createPages = ({ graphql, actions }) => {
     // for example, let say you use your data from Contentful using its associated source plugin
     graphql(`
       query MyQuery {
-        allStoryblokEntry(
+        pages: allStoryblokEntry(filter: { full_slug: { regex: "/pages/" } }) {
+          ...StoryblokPages
+        }
+        artworks: allStoryblokEntry(
           filter: { full_slug: { regex: "/artwork/" } }
           sort: { fields: field_randSort_number, order: ASC }
         ) {
-          edges {
-            node {
-              id
-              slug
-            }
+          ...StoryblokArtworks
+        }
+      }
+
+      fragment StoryblokPages on StoryblokEntryConnection {
+        edges {
+          node {
+            slug
+            content
+          }
+        }
+      }
+
+      fragment StoryblokArtworks on StoryblokEntryConnection {
+        edges {
+          node {
+            slug
+            id
           }
         }
       }
@@ -38,7 +54,7 @@ exports.createPages = ({ graphql, actions }) => {
       }
 
       // if no errors, you can map into the data and create your static pages
-      result.data.allStoryblokEntry.edges.forEach(artwork => {
+      result.data.artworks.edges.forEach(artwork => {
         // create page according to the fetched data
 
         createPage({
@@ -48,7 +64,24 @@ exports.createPages = ({ graphql, actions }) => {
             // optional,
             // data here will be passed as props to the component ``,
             // as well as to the graphql query as graphql arguments.
+
             slug: artwork.node.slug,
+          },
+        })
+      })
+
+      result.data.pages.edges.forEach(page => {
+        // create page according to the fetched data
+
+        createPage({
+          path: `/${page.node.slug}`, // your url -> /categories/animals
+          component: path.resolve("./src/templates/pages-template.js"), // your template component
+          context: {
+            // optional,
+            // data here will be passed as props to the component ``,
+            // as well as to the graphql query as graphql arguments.
+            content: page.node.content,
+            slug: page.node.slug,
           },
         })
       })

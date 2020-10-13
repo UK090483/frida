@@ -16,7 +16,11 @@ export default function Buttons({
   return (
     <React.Fragment>
       {type === "link" && (
-        <Link className={`${style.root} ${style[size]}`} to={link}>
+        <Link
+          className={`${style.root} ${style[size]}`}
+          to={link}
+          style={style}
+        >
           <div
             className={`${style.inner} ${style[backgroundColor]}`}
             onMouseEnter={() => {

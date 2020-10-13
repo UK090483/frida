@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react"
-// // import Components from "../components/components.js"
+import React from "react"
 import SbEditable from "storyblok-react"
-import SingleArtwork from "../components/artworks2/singleArtwork/singleArtwork"
-import getArtwork from "../components/artworks2/helper/getArtwork"
 import config from "../../gatsby-config"
+import Components from "../storyblock/components"
 
 let sbConfigs = config.plugins.filter(item => {
   return item.resolve === "gatsby-source-storyblok"
@@ -55,7 +53,7 @@ class StoryblokEntry extends React.Component {
       },
       data => {
         this.setState({ story: data.story })
-        this.loadGlovalNavi(data.story.lang)
+        // this.loadGlovalNavi(data.story.lang)
       }
     )
   }
@@ -89,14 +87,10 @@ class StoryblokEntry extends React.Component {
           payload.story.id
         )
 
-        console.log(this.state.story)
-        console.log(payload.story)
-
         const nextStory = {
           ...payload.story,
         }
-        ;(nextStory.content.artist = this.state.story.content.artist),
-          console.log(nextStory)
+
         this.setState({ story: nextStory })
       }
     })
@@ -112,14 +106,19 @@ class StoryblokEntry extends React.Component {
     if (this.state.story == null) {
       return <div></div>
     }
-    console.log(this.state.story.content)
+
+    console.log(this.state)
+
     let content = this.state.story.content
     // let globalNavi = this.state.globalNavi.content
 
     return (
       <React.Fragment>
         <SbEditable content={content}>
-          <SingleArtwork artwork={getArtwork(this.state.story)}></SingleArtwork>
+          {React.createElement(Components(content.component), {
+            key: content._uid,
+            blok: content,
+          })}
         </SbEditable>
       </React.Fragment>
     )

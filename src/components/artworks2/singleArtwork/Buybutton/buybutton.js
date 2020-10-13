@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import style from "./buyButton.module.scss"
 import getPriceWithTax from "../../helper/getPriceWithTax"
 import transformImage from "../../helper/transformImage"

@@ -2,10 +2,10 @@ import React from "react"
 import style from "./singleArtwork.module.scss"
 import Tab from "./tab/tab"
 import FridaImage from "./fridaImage/fridaImage"
-import SendMail from "./sendMail/sendMail"
+// import SendMail from "./sendMail/sendMail"
 import ArtworkName from "./artworkName/artworkName"
 import getPriceWithTax from "../helper/getPriceWithTax"
-import transformImage from "../helper/transformImage"
+// import transformImage from "../helper/transformImage"
 import BuyButton from "./Buybutton/buybutton"
 
 export default function Artworks({ artwork }) {
@@ -23,7 +23,7 @@ export default function Artworks({ artwork }) {
     stil,
     width,
     depth,
-    imageUrl,
+    // imageUrl,
   } = artwork
 
   return (

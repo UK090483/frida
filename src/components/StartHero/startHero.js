@@ -4,7 +4,7 @@ import Frida from "../frida/frida"
 import style from "./startHero.module.scss"
 import Button from "../buttons/button"
 
-export default function StartHero() {
+export default function StartHero({ children }) {
   const data = useStaticQuery(graphql`
     query startHeroQuery {
       storyQL {
@@ -29,13 +29,13 @@ export default function StartHero() {
   const [images, setImages] = useState([])
 
   useEffect(() => {
-    function getImageWithlocal() {
-      let item = allImages[getRandomInt(0, allImages.length)].node.images
-      if (!!!item[0].local) {
-        return getImageWithlocal()
-      }
-      return item[0].local.childImageSharp.fluid.src
-    }
+    // function getImageWithlocal() {
+    //   let item = allImages[getRandomInt(0, allImages.length)].node.images
+    //   if (!!!item[0].local) {
+    //     return getImageWithlocal()
+    //   }
+    //   return item[0].local.childImageSharp.fluid.src
+    // }
     function transformImage(image, option) {
       var imageService = "https://img2.storyblok.com/"
       var path = image.replace("https://a.storyblok.com", "")
@@ -79,21 +79,28 @@ export default function StartHero() {
     <React.Fragment>
       <div className={style.root}>
         <div className={style.text}>
-          <h6 style={{ fontWeight: 800 }}>
-            Neue Positionen kennenlernen, Kunst in ganz Deutschland sehen und
-            dabei Kunstschaffende unterstützen.
-            {/* Neue Werke, wechselnde Ausstellungsorte, 1 Plattform. */}
-          </h6>
-          <h1 style={{ fontWeight: 800 }}>
-            <Frida /> – Deutschlands größte Outdoor- und Online-Gallery für
-            junge Kunst
-            {/* Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida> */}
-          </h1>
-          <Button
-            label={"Mehr Erfahren"}
-            link={"/ausstellung/"}
-            backgroundColor={"lila"}
-          />
+          {children ? (
+            children
+          ) : (
+            <React.Fragment>
+              {" "}
+              <h6 style={{ fontWeight: 800 }}>
+                Neue Positionen kennenlernen, Kunst in ganz Deutschland sehen
+                und dabei Kunstschaffende unterstützen.
+                {/* Neue Werke, wechselnde Ausstellungsorte, 1 Plattform. */}
+              </h6>
+              <h1 style={{ fontWeight: 800 }}>
+                <Frida /> – Deutschlands größte Outdoor- und Online-Gallery für
+                junge Kunst
+                {/* Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida> */}
+              </h1>
+              <Button
+                label={"Mehr Erfahren"}
+                link={"/ausstellung/"}
+                backgroundColor={"lila"}
+              />
+            </React.Fragment>
+          )}
         </div>
 
         {images.map(image => {
@@ -108,20 +115,6 @@ export default function StartHero() {
           )
         })}
       </div>
-
-      {/* <div
-        className={style.stoerer}
-        onMouseEnter={() => { setMouse('link', true) }}
-        onMouseLeave={() => { setMouse('link', false) }}
-      >
-        <Link to="/unterstützen/">
-          <Stoerer></Stoerer>
-        </Link>
-      </div>
-
-      <Section>
-        <div className={style.stoererSpacer}></div>
-      </Section> */}
     </React.Fragment>
   )
 }

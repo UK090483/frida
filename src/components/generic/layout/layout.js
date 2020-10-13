@@ -11,7 +11,6 @@ import Nav from "../nav/nav"
 import Footer from "../Footer/footer"
 import Mouse from "../Mouse/mouse"
 import CookieConsent from "../../CookieConsent/CookieConsent"
-import CheckoutLink from "../../shopcomponents/checkoutLink"
 
 import useMouse from "../Mouse/hooks/useMouse"
 
@@ -23,6 +22,10 @@ const Layout = ({ children, title, header = "default", color }) => {
       className={"page-layout"}
       onMouseMove={e => {
         setMouse("move", e)
+      }}
+      style={{
+        margin: `0 auto`,
+        maxWidth: 2600,
       }}
     >
       {isBrowser && <Mouse></Mouse>}
@@ -36,7 +39,7 @@ const Layout = ({ children, title, header = "default", color }) => {
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 2000,
+          maxWidth: 2600,
         }}
       >
         <main>{children}</main>

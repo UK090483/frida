@@ -10,7 +10,7 @@ export default function FridaImage({ artwork }) {
   const loupImageRef = useRef()
   const { setMouse } = useMouse()
 
-  const { artworkName, artistName, images, imageUrl } = artwork
+  const { artworkName, artistName, imageUrl } = artwork
   // const { width, height } = images
 
   // const [loaded, setLoaded] = useState(false);
@@ -80,8 +80,8 @@ export default function FridaImage({ artwork }) {
     })
   }
 
-  const srcSet = images.srcSet
-  const src = images.src
+  // const srcSet = images.srcSet
+  // const src = images.src
 
   return (
     <div ref={RootRef} className={style.root}>
@@ -98,8 +98,9 @@ export default function FridaImage({ artwork }) {
           setMouse("hide", false)
         }}
         onClick={handleclick}
-        className={`${style.image} ${width - 50 > height ? style.landscape : ""
-          }`}
+        className={`${style.image} ${
+          width - 50 > height ? style.landscape : ""
+        }`}
         // onLoad={() => { setLoaded(true) }}
         ref={imageRef}
         // srcSet={srcSet}

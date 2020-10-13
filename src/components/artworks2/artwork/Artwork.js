@@ -4,17 +4,9 @@ import style from "./artwork.module.scss"
 import useMouse from "../../generic/Mouse/hooks/useMouse"
 import getPriceWithTax from "../helper/getPriceWithTax"
 import ArtworkImage from "../../image/ArtworkImage/artworkImage"
-import Img from "gatsby-image"
 
 export default function Artwork({ artwork, handleClick, handleLoaded }) {
-  const {
-    images,
-    availability,
-    artworkName,
-    artistName,
-    price,
-    imageUrl,
-  } = artwork
+  const { availability, artworkName, artistName, price, imageUrl } = artwork
   const [loaded, setloaded] = useState(false)
 
   const { setMouse } = useMouse()

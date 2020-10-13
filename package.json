@@ -46,7 +46,9 @@
     "react-masonry-component": "^6.2.1",
     "react-masonry-layout": "^0.4.0",
     "react-reveal": "^1.2.2",
+    "react-string-replace": "^0.4.4",
     "slugify": "^1.4.4",
+    "storyblok-js-client": "^3.1.0",
     "storyblok-react": "^0.1.1",
     "styled-components": "^5.2.0"
   },
