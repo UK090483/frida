@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Frida renders correctly 1`] = `
+<span
+  className="sc-bdnylx kKa-dPu"
+>
+  #Meet
+  <span
+    className="sc-gtssRu fGCCyX"
+  >
+    Frida
+  </span>
+</span>
+`;
+
+exports[`Frida renders correctly with props 1`] = `
+<span
+  className="sc-bdnylx kKa-dPu"
+>
+  #Meet
+  <span
+    className="sc-gtssRu fGCCyX"
+  >
+    test
+  </span>
+</span>
+`;

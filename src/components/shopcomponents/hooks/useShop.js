@@ -15,7 +15,23 @@ export default function useShop(id) {
     window.Snipcart.api.theme.cart.open()
   }
 
+  const addSnipcart = cb => {
+    console.log("print shop script")
+    let script = document.createElement("script")
+    script.id = "snipcartJs"
+    script.onload = () => {
+      cb()
+    }
+
+    script.src = "https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.js"
+    document.body.append(script)
+  }
+
   useEffect(() => {
+    if (!document.querySelector("#snipcartJs")) {
+      addSnipcart()
+    }
+
     const checkonCard = () => {
       const items = window.Snipcart.store.getState().cart.items.items
       setOnCard(items.find(item => id === item.id))
@@ -30,7 +46,6 @@ export default function useShop(id) {
     if (id) {
       checkonCard()
     }
-
     return () => {
       unspscribe()
     }

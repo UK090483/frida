@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import Burger from "../../../assets/Menu_Burger.svg"
-import BigButton from "../../buttons/bigButton"
+import BigButton from "../../buttons/bigButton/bigButton"
 import Header from "../header/header"
 import Kreutz from "../../../assets/Menu_Kreutz.svg"
 import Fade from "react-reveal/Fade"

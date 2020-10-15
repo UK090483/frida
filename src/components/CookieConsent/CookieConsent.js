@@ -71,7 +71,6 @@ export default function CookieConsent() {
             setMouse("link", false)
           }}
         ></Kreutz>
-        {/* <Button type='clickButton' label={'Ablehnen'} onClick={() => { handleClick(false) }} /> */}
       </div>
     </div>
   )

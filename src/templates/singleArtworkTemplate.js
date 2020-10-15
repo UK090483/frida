@@ -1,15 +1,13 @@
 import React from "react"
 import Layout from "../components/generic/layout/layout"
 import SEO from "../components/seo"
-import SingleArtwork from "../components/artworks2/singleArtwork/singleArtwork"
+import SingleArtwork from "../components/artworks/singleArtwork/singleArtwork"
 // import Section from "../components/container/section"
 import { graphql } from "gatsby"
-import getArtwork from "../components/artworks2/helper/getArtwork"
+import getArtwork from "../components/artworks/helper/getArtwork"
 
 export default function SingleArtworkTemplate({ data }) {
   const artwork = parseArtwork(data.allStoryblokEntry.edges[0].node)
-
-  //   console.log(data.allStoryblokEntry.edges[0].node)
 
   function parseArtwork(artwork) {
     const t = {

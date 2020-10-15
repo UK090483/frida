@@ -8,7 +8,7 @@ export default function Section(props) {
 
   return (
     <SbEditable content={props.blok}>
-      <DSection type={type} backgroundColor={color}>
+      <DSection type={type} backgroundColor={color || "default"}>
         <React.Fragment>
           {body.map(blok =>
             React.createElement(Components(blok.component), {

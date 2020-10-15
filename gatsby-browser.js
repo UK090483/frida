@@ -9,7 +9,11 @@
 import React from "react"
 
 import { UiContextProvider } from "./src/context/UiContext"
+import { ThemeProvider } from "styled-components"
+import theme from "./src/theme"
 
 export const wrapRootElement = ({ element }) => (
-  <UiContextProvider>{element}</UiContextProvider>
+  <ThemeProvider theme={theme}>
+    <UiContextProvider>{element}</UiContextProvider>
+  </ThemeProvider>
 )

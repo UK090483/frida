@@ -25,13 +25,6 @@ module.exports = {
     author: ``,
   },
   plugins: [
-    // {
-    //   resolve: 'gatsby-plugin-snipcartv3',
-    //   options: {
-    //     apiKey: 'MDQ0ODFjNTYtNDY4Mi00MDkwLWJjNjYtMzhlYzUzMTdkNmZlNjM3Mzc5MzIyODc1OTQyODk2',
-    //     autopop: false
-    //   }
-    // },
     `gatsby-plugin-react-helmet`,
 
     {
@@ -67,35 +60,6 @@ module.exports = {
         },
       },
     },
-
-    // {
-    //   resolve: "gatsby-source-custom-api",
-    //   options: {
-    //     url:
-    //       "https://fridaadmin.konradullrich.com/wp-json/frida/v1/artworks_smaler/",
-    //     imageKeys: ["images"],
-    //     rootKey: "fridaArtwork",
-    //     schemas: {
-    //       fridaArtwork: `
-    //         images: [images]
-    //       `,
-    //       images: `
-    //         url: String,
-    //         modified: Int
-    //       `,
-    //       imageUrls: `
-    //         large: String,
-    //         medium: String,
-    //         medium_large: String
-    //       `,
-    //       cdn: `
-    //       width: Int,
-    //       height: Int,
-    //       url: String
-    //       `,
-    //     },
-    //   },
-    // },
     {
       resolve: "gatsby-source-storyblok",
       options: {

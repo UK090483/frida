@@ -2,7 +2,7 @@ import React from "react"
 
 import Layout from "../components/generic/layout/layout"
 import SEO from "../components/seo"
-import Artworks from "../components/artworks2/artworks/artworks"
+import Artworks from "../components/artworks"
 import StartHero from "../components/StartHero/startHero"
 import Stoerer from "../components/StartHero/stoerer"
 

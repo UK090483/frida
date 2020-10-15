@@ -1,27 +1,36 @@
 import React from "react"
-import style from "./container.module.scss"
+import PropTypes from "prop-types"
+import styled from "styled-components"
 
 export default function Container({ children, maxWidth, type }) {
   const extraStyle = {}
   if (maxWidth) {
     extraStyle.maxWidth = maxWidth
   }
+  return <Root type={type}>{children}</Root>
+}
 
-  const getTypeClass = type => {
-    switch (type) {
+const Root = styled.div`
+  width: 100%;
+  max-width: ${({ type }) => (type === "text" ? "900px" : "2600px")};
+  padding: ${props => {
+    switch (props.type) {
       case "text":
-        return style.text
+        return "0 20px"
       case "full":
-        return style.full
-
+        return "0"
       default:
-        return style.default
+        return "0 7%"
     }
+  }};
+  margin: 0 auto;
+  p {
+    margin: 0;
   }
+`
 
-  return (
-    <div className={getTypeClass(type)} style={extraStyle}>
-      {children}
-    </div>
-  )
+Container.propTypes = {
+  maxWidth: PropTypes.number,
+  type: PropTypes.string,
+  children: PropTypes.node,
 }

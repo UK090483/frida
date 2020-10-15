@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import style from "./dropDown.module.scss"
-import Flip from "react-reveal/Flip"
+// import Flip from "react-reveal/Flip"
 import useMouse from "../generic/Mouse/hooks/useMouse"
-
+import { motion, AnimatePresence } from "framer-motion"
 export default function Input({
   label = "no label",
   options,
@@ -40,7 +40,16 @@ export default function Input({
         >
           {label} {selfActive ? " : " + selfActive : ""}
         </div>
-        <Flip
+        <MList
+          options={options}
+          open={open}
+          setActive={setActive}
+          setOpen={setOpen}
+          fixedHeight={fixedHeight}
+        >
+          {" "}
+        </MList>
+        {/* <Flip
           top
           cascade
           when={open}
@@ -77,8 +86,79 @@ export default function Input({
               </div>
             ))}
           </div>
-        </Flip>
+        </Flip> */}
       </button>
+    </React.Fragment>
+  )
+}
+
+const MList = ({ options, open, setActive, setOpen, fixedHeight }) => {
+  const list = {
+    visible: {
+      opacity: 1,
+      transition: {
+        delay: 0,
+        when: "beforeChildren",
+        staggerChildren: 0.01,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+      },
+    },
+    exit: {
+      opacity: 0,
+    },
+  }
+
+  const item = {
+    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, x: -10 },
+  }
+
+  return (
+    <React.Fragment>
+      <div
+        className={`${style.options} ${fixedHeight ? style.fixedHeight : ""} `}
+      >
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={list}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div
+                variants={item}
+                className={style.option}
+                onClick={() => {
+                  setActive(false)
+                  setOpen(false)
+                }}
+              >
+                {"Kein Filter"}
+              </motion.div>
+              {options.map(option => (
+                <motion.div
+                  variants={item}
+                  exit={{ opacity: 0 }}
+                  key={option.value}
+                  className={style.option}
+                  onClick={() => {
+                    setActive(option.label)
+                    setOpen(false)
+                  }}
+                >
+                  {option.label}
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </React.Fragment>
   )
 }

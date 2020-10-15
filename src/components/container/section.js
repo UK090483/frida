@@ -56,9 +56,7 @@ export default function Section({
       className={`${getTypeClass(type)} ${getColorClass(backgroundColor)}`}
       style={extraStyle}
     >
-      <Container maxWidth={maxWidth} type={type}>
-        {children}
-      </Container>
+      <Container type={type}>{children}</Container>
     </section>
   )
 }

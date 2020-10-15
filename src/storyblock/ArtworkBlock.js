@@ -1,5 +1,5 @@
 import React from "react"
-import Artworks from "../components/artworks2/artworks/artworks"
+import Artworks from "../components/artworks"
 import SbEditable from "storyblok-react"
 
 export default function ArtworksBlock(props) {

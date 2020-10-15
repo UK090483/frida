@@ -1,8 +1,6 @@
 import React from "react"
 import Components from "../storyblock/components"
 export default function PageTemplate(pros) {
-  console.log(pros)
-
   const content = JSON.parse(pros.pageContext.content)
   return (
     <React.Fragment>

@@ -70,7 +70,6 @@ export default function PageTitle({
             }}
           >
             <h1 ref={ref}>
-              {" "}
               #Meet
               <span className={`${style.name} ${getColorClass(color)}`}>
                 {title}
@@ -81,7 +80,6 @@ export default function PageTitle({
       ) : (
         <div className={style.root}>
           <h1>
-            {" "}
             #Meet
             <span className={`${style.name} ${getColorClass(color)}`}>
               {title}

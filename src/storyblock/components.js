@@ -11,7 +11,9 @@ import ArtworksBlock from "./ArtworkBlock"
 import Artwork from "./Artwork"
 import Hero from "./Hero"
 import Spacer from "./spacer"
+import Störer from "../components/StartHero/stoerer"
 import ComponentNotFound from "./component_not_found"
+import Poster from "../components/Poster/Poster/poster"
 
 const ComponentList = {
   page: Page,
@@ -22,6 +24,8 @@ const ComponentList = {
   text: Text,
   button: Button,
   spacer: Spacer,
+  störer: Störer,
+  poster: Poster,
   //   teaser: Teaser,
   //   feature: Feature,
   //   nav_item: NavItem,

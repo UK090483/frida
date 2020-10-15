@@ -10,11 +10,21 @@ export default function FridaImage({ artwork }) {
   const loupImageRef = useRef()
   const { setMouse } = useMouse()
 
-  const { artworkName, artistName, images } = artwork
-  const { width, height } = images
+  const { artworkName, artistName, imageUrl } = artwork
+  // const { width, height } = images
 
   // const [loaded, setLoaded] = useState(false);
   // const [resized, setResized] = useState(false);
+
+  function transformImage(image, option) {
+    var imageService = "https://img2.storyblok.com/"
+    var path = image.replace("https://a.storyblok.com", "")
+    return imageService + option + "/" + path
+  }
+
+  const sizes = imageUrl.split("/")[5].split("x")
+  const width = sizes[0]
+  const height = sizes[1]
 
   useEffect(() => {
     const handleImageSizing = () => {
@@ -70,8 +80,8 @@ export default function FridaImage({ artwork }) {
     })
   }
 
-  const srcSet = images.srcSet
-  const src = images.src
+  // const srcSet = images.srcSet
+  // const src = images.src
 
   return (
     <div ref={RootRef} className={style.root}>
@@ -93,8 +103,8 @@ export default function FridaImage({ artwork }) {
         }`}
         // onLoad={() => { setLoaded(true) }}
         ref={imageRef}
-        srcSet={srcSet}
-        src={src}
+        // srcSet={srcSet}
+        src={transformImage(imageUrl, "500x0")}
         alt={`Kunstwerk ${artworkName} von ${artistName}`}
       ></img>
       <div
@@ -104,13 +114,13 @@ export default function FridaImage({ artwork }) {
         <img
           className={style.glassImg}
           ref={loupImageRef}
-          srcSet={srcSet}
+          // srcSet={srcSet}
           style={{
             width: `${pos.width * SCALE[scale]}px`,
             height: `${pos.height * SCALE[scale]}px`,
             transform: ` translateX(${pos.x}%) translateY(${pos.y}%)`,
           }}
-          src={src}
+          src={transformImage(imageUrl, "1000x0")}
           alt={`Kunstwerk ${artworkName} von ${artistName}`}
         ></img>
       </div>

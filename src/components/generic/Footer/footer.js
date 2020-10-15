@@ -1,6 +1,6 @@
 import React from "react"
 import Section from "../../container/section"
-import BigButton from "../../buttons/bigButton"
+import BigButton from "../../buttons/bigButton/bigButton"
 import TextFlow from "./textFlow"
 import style from "./footer.module.scss"
 import AllSupporter from "../../Supporter/allSupporter"
@@ -15,9 +15,9 @@ export default function Footer({ title }) {
         <React.Fragment>
           <Section backgroundColor="lila">
             <div style={{ padding: "200px 0 50px 0" }}>
-              <h4>SUPPORTER</h4>
+              <h6>SUPPORTER</h6>
               <h2>
-                Ohne Euch wäre diese Aktion nicht möglich.{" "}
+                Ohne Euch wäre diese Aktion nicht möglich.
                 <span style={{ color: "white" }}>Danke.</span>
               </h2>
             </div>
