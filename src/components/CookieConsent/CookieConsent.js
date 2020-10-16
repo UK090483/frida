@@ -10,7 +10,6 @@ const gdprCookie = "gatsby-plugin-google-analytics-gdpr_cookies-enabled"
 
 export default function CookieConsent() {
   const [clicked, setClicked] = useState(true)
-
   const [cookies, setCookie] = useCookies()
   const { setMouse } = useMouse()
 

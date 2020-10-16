@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Img from "gatsby-image"
 import { getFluidGatsbyImage } from "gatsby-storyblok-image"
+
 const ArtworkImage = ({ src, alt, onLoad }) => {
   const fluidProps = getFluidGatsbyImage(src, {
     maxWidth: 400,

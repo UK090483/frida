@@ -1,13 +1,14 @@
 import React from "react"
 import Frida from "../../frida/frida"
-import style from "./artwork.module.scss"
+import styled from "styled-components"
+import PropTypes from "prop-types"
 
 import getPriceWithTax from "../helper/getPriceWithTax"
 import Container from "./container/artworkContainer"
 import ArtworkImage from "./artworkImage/artworkImage"
 import ArtworkInfo from "./artworkInfo/ArtworkInfo"
 
-export default function Artwork({ artwork, handleClick, handleLoaded }) {
+function Artwork({ artwork, handleClick, handleLoaded }) {
   const { availability, artworkName, artistName, price, imageUrl } = artwork
 
   // const [loaded, setloaded] = useState(false)
@@ -28,24 +29,32 @@ export default function Artwork({ artwork, handleClick, handleLoaded }) {
         src={imageUrl}
       />
 
-      <h3 className={style.artistName}>
+      <ArtistName>
         <Frida text={artistName} textColor="#f5c5d9"></Frida>
-      </h3>
+      </ArtistName>
 
       <ArtworkInfo
         availability={availability}
         price={getPriceWithTax(price)}
         artworkName={artworkName}
       />
-      {/* <div className={style.infoRoot}>
-        <div
-          className={`${style.dot} ${
-            availability === "sold" ? style.dotSold : ""
-          }`}
-        ></div>
-        <div className={style.artworkName}> {artworkName}</div>
-        <div className={style.price}>{getPriceWithTax(price)}€</div>
-      </div> */}
     </Container>
   )
 }
+
+const ArtistName = styled.h3`
+  margin-top: 10px;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 1.35rem;
+  }
+`
+
+Artwork.propTypes = {
+  artwork: PropTypes.object,
+  handleClick: PropTypes.func,
+  handleLoaded: PropTypes.func,
+}
+
+export default Artwork

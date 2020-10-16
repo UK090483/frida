@@ -12,7 +12,7 @@ export default function Container({ children, maxWidth, type }) {
 
 const Root = styled.div`
   width: 100%;
-  max-width: ${({ type }) => (type === "text" ? "900px" : "2600px")};
+  max-width: ${({ type }) => (type === "text" ? "1000px" : "2600px")};
   padding: ${props => {
     switch (props.type) {
       case "text":

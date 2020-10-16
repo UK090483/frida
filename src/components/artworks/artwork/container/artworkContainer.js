@@ -1,10 +1,9 @@
 import React from "react"
-import useMouse from "../../../generic/Mouse/hooks/useMouse"
 import styled, { withTheme } from "styled-components"
 import PropTypes from "prop-types"
+import { setMouse } from "../../../generic/Mouse/mouseRemote"
 
 function ArtworkContainer({ children, onClick, loaded, artwork }) {
-  const { setMouse } = useMouse()
   return (
     <RootCSS
       loaded={loaded}

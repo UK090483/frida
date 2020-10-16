@@ -56,7 +56,8 @@ const IndexPage = () => (
           type={"externalLink"}
           label={"Jetzt teilnehmen"}
           link={JOTFORM}
-          backgroundColor={"allwhite"}
+          backgroundColor={"red"}
+          color={"white"}
         />
       </div>
     </Section>

@@ -1,5 +1,8 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useState } from "react"
+import styled from "styled-components"
+import PropTypes from "prop-types"
 
+import useBodyScrollStop from "./helper/useBodyScrollStop"
 import Filter from "./filter/filter"
 import Section from "../container/section"
 import Button from "../buttons/button"
@@ -8,59 +11,24 @@ import ArtworsContainer from "./artworksContainer/artworksContainer"
 import Frida from "../frida/frida"
 import getArtwork from "./helper/getArtwork"
 import Slider from "./slider/slider"
-import style from "./artworks.module.scss"
 
-export default function Artworks({ filter = false, infinite = false }) {
-  const data = useStaticQuery(graphql`
-    query MyQuery {
-      allStoryblokEntry(
-        filter: { full_slug: { regex: "/artwork/" } }
-        sort: { fields: field_randSort_number, order: ASC }
-      ) {
-        edges {
-          node {
-            id
-            content
-            slug
-          }
-        }
-      }
-    }
-  `)
-
+function Artworks({ filter = false, infinite = false }) {
   const [open, setOpen] = useState(false)
   const [artwork, setArtwork] = useState(null)
   const [filert, setFElements] = useState(null)
+  const { stopBodyScroll, enableBodySroll } = useBodyScrollStop()
 
-  function getArtworks() {
-    let b = []
-    data.allStoryblokEntry.edges.forEach(artwork => {
-      const t = {
-        content: { ...JSON.parse(artwork.node.content) },
-      }
-      t.id = artwork.node.id
-      t.slug = artwork.node.slug
-      b.push(getArtwork(t))
-    })
-    return b
-  }
-
-  const artworks = getArtworks()
-  const bodyRef = useRef()
-
-  useEffect(() => {
-    bodyRef.current = document.querySelector("html")
-  }, [])
+  const artworks = usePreparedData()
 
   const handleClick = artwork => {
     setArtwork(artwork)
     setOpen(true)
-    bodyRef.current.style.overflow = "hidden"
+    stopBodyScroll()
   }
 
   const handleCloseClick = () => {
     setOpen(false)
-    bodyRef.current.style.overflow = "auto"
+    enableBodySroll()
   }
   /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
@@ -77,7 +45,7 @@ export default function Artworks({ filter = false, infinite = false }) {
         {filter && (
           <Filter artworks={artworks} setFElements={setFElements}></Filter>
         )}
-        <div className={style.root}>
+        <Root>
           <Slider
             artwork={artwork}
             open={open}
@@ -89,7 +57,7 @@ export default function Artworks({ filter = false, infinite = false }) {
             handleClick={handleClick}
             infinite={infinite}
           ></ArtworsContainer>
-        </div>
+        </Root>
       </Section>
       {!filter && (
         <Section>
@@ -107,3 +75,47 @@ export default function Artworks({ filter = false, infinite = false }) {
     </React.Fragment>
   )
 }
+
+const Root = styled.div`
+  padding-top: 50px;
+  padding-bottom: 50px;
+`
+
+Artworks.propTypes = {
+  filter: PropTypes.bool,
+  infinite: PropTypes.bool,
+}
+
+function usePreparedData() {
+  const data = useStaticQuery(graphql`
+    query MyQuery {
+      allStoryblokEntry(
+        filter: { full_slug: { regex: "/artwork/" } }
+        sort: { fields: field_randSort_number, order: ASC }
+      ) {
+        edges {
+          node {
+            id
+            content
+            slug
+          }
+        }
+      }
+    }
+  `)
+  function getArtworks() {
+    let b = []
+    data.allStoryblokEntry.edges.forEach(artwork => {
+      const t = {
+        content: { ...JSON.parse(artwork.node.content) },
+      }
+      t.id = artwork.node.id
+      t.slug = artwork.node.slug
+      b.push(getArtwork(t))
+    })
+    return b
+  }
+
+  return getArtworks()
+}
+export default Artworks

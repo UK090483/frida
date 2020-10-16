@@ -156,14 +156,7 @@
   }
 }
 
-@include tablet {
-  .root {
-  }
-}
-
 @include mobile {
-  .root {
-  }
   .linksRoot {
     a {
       font-size: 2rem;

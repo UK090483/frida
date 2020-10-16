@@ -1,102 +1,56 @@
-@import '../variables.scss';
+@import "../variables.scss";
 
-.root{
-    position: relative;
-    overflow: hidden;
-    min-height: 100vh;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    background-color: $lila;
-    
+.root {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: $lila;
 }
 
-.image{
-    position: absolute;
-    width: 9vw;
-    z-index: 0;
-    animation-name: drive;
-    animation-duration: 10s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
+.image {
+  position: absolute;
+  //   top: 0;
+  width: 9vw;
+  z-index: 0;
+  animation-name: drive;
+  animation-duration: 10s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  opacity: 1;
+}
+
+.text {
+  margin-top: 100px;
+  z-index: 1;
+  padding: 0 7%;
+}
+
+@keyframes drive {
+  0% {
+    transform: translate3d(0, 100vh, 0);
+  }
+  5% {
     opacity: 0;
-}
-
-.text{
-    margin-top: 100px;
-    z-index: 1;
-    padding: 0 7%;
-}
-
-// .stoerer{
-//     transform: translateY(-50%);
-//     right: 7%;
-//     width: 400px;
-//     position: absolute;
-//     margin-bottom: 100px;
-//     overflow: hidden;
-//     z-index: 10;
-    
-//     a{
-//         cursor: none;
-//     }
-
-//     svg{
-        
-//         animation-name: spin;
-//         animation-duration: 10s;
-//         animation-timing-function: linear;
-//         animation-iteration-count: infinite;
-//         animation-fill-mode: forwards;
-//     }
-// }
-// .stoererSpacer{
-//     height: 200px;
-// }
-
-
-@keyframes drive{
-0%{
-    top: 100vh;
-    
-}
-5%{opacity: 0;}
-15%{
+  }
+  15% {
     opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -100vh, 0);
+  }
 }
-100%{
-    top: -100vh;
-}
-
-}
-
-
 
 @include tablet {
-    // .stoerer{
-    //     right: 7%;
-    //     width: 300px;
-    // }
-    // .stoererSpacer{
-    //     height: 150px;
-    // }
-    .image{
-        width: 20vw;
-    }
-
+  .image {
+    width: 20vw;
+  }
 }
 
 @include mobile {
-    // .stoerer{
-    //     right: 30px;
-    //     width: 150px;
-    // }
-    // .stoererSpacer{
-    //     height: 75px;
-    // }
-    .image{
-        width: 25vw;
-    }
-    
+  .image {
+    width: 25vw;
+  }
 }
-

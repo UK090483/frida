@@ -33,7 +33,11 @@ const PureAllSupporters = ({ data }) => {
       {data.allFile.edges.map(item => {
         return (
           <div key={item.node.id} className={style.logoItem}>
-            <img alt={"Logo"} src={item.node.childImageSharp.resize.src}></img>
+            <img
+              style={{ maxWidth: "100%" }}
+              alt={"Logo"}
+              src={item.node.childImageSharp.resize.src}
+            ></img>
           </div>
         )
       })}

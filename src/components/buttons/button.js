@@ -1,10 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
 import style from "./button.module.scss"
-import useMouse from "../generic/Mouse/hooks/useMouse"
 import PropTypes from "prop-types"
-import { withTheme } from "styled-components"
-
+import styled, { withTheme } from "styled-components"
+import { setMouse } from "../generic/Mouse/mouseRemote"
 function Button(props) {
   const {
     label,
@@ -12,13 +11,14 @@ function Button(props) {
     size = "default",
     type = "link",
     backgroundColor = "white",
+    color = "black",
     onClick = () => {},
   } = props
 
-  const { setMouse } = useMouse()
   const inner = (
-    <div
-      className={`${style.inner} ${style[backgroundColor]}`}
+    <Inner
+      bgColor={backgroundColor}
+      color={color}
       onMouseEnter={() => {
         setMouse("link", true)
       }}
@@ -27,17 +27,13 @@ function Button(props) {
       }}
     >
       {label}
-    </div>
+    </Inner>
   )
 
   return (
     <React.Fragment>
       {type === "link" && (
-        <Link
-          className={`${style.root} ${style[size]}`}
-          to={link}
-          style={style}
-        >
+        <Link className={`${style.root} ${style[size]}`} to={link}>
           {inner}
         </Link>
       )}
@@ -69,6 +65,34 @@ function Button(props) {
       )}
     </React.Fragment>
   )
+}
+
+const Inner = styled.div`
+  padding: 1.2rem 2rem;
+  width: fit-content;
+  border: ${({ theme }) => theme.colors.black + " solid " + theme.borderWidth};
+  border-color: ${({ theme, color }) => getColor(theme, color)};
+  color: ${({ theme, color }) => getColor(theme, color)};
+  border-radius: 50px;
+  transition: background-color 0.4s, color 0.4s;
+  &:hover {
+    background-color: ${({ theme, color }) => getColor(theme, color)};
+    color: ${({ theme, bgColor }) => getColor(theme, bgColor)};
+  }
+`
+const getColor = (theme, c) => {
+  switch (c) {
+    case "black":
+      return theme.colors.black
+    case "white":
+      return theme.colors.white
+    case "lila":
+      return theme.colors.pink
+    case "red":
+      return theme.colors.red
+    default:
+      break
+  }
 }
 
 Button.propTypes = {

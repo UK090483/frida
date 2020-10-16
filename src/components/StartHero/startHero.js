@@ -29,13 +29,6 @@ export default function StartHero({ children }) {
   const [images, setImages] = useState([])
 
   useEffect(() => {
-    // function getImageWithlocal() {
-    //   let item = allImages[getRandomInt(0, allImages.length)].node.images
-    //   if (!!!item[0].local) {
-    //     return getImageWithlocal()
-    //   }
-    //   return item[0].local.childImageSharp.fluid.src
-    // }
     function transformImage(image, option) {
       var imageService = "https://img2.storyblok.com/"
       var path = image.replace("https://a.storyblok.com", "")
@@ -56,7 +49,6 @@ export default function StartHero({ children }) {
         nextImages.shift()
       }
 
-      // let src = getImageWithlocal()
       let src = getNext()
 
       const NextImage = {
@@ -69,7 +61,7 @@ export default function StartHero({ children }) {
         nextImages.push(NextImage)
       }
       setImages(nextImages)
-    }, 500)
+    }, 800)
     return () => {
       clearTimeout(int)
     }
@@ -84,12 +76,12 @@ export default function StartHero({ children }) {
           ) : (
             <React.Fragment>
               {" "}
-              <h6 style={{ fontWeight: 800 }}>
+              <h6>
                 Neue Positionen kennenlernen, Kunst in ganz Deutschland sehen
                 und dabei Kunstschaffende unterstützen.
                 {/* Neue Werke, wechselnde Ausstellungsorte, 1 Plattform. */}
               </h6>
-              <h1 style={{ fontWeight: 800 }}>
+              <h1>
                 <Frida /> – Deutschlands größte Outdoor- und Online-Gallery für
                 junge Kunst
                 {/* Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida> */}

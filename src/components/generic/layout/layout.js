@@ -19,35 +19,37 @@ const Layout = ({ children, title, header = "default", color }) => {
   const { setMouse } = useMouse()
 
   return (
-    <div
-      className={"page-layout"}
-      onMouseMove={e => {
-        setMouse("move", e)
-      }}
-      style={{
-        margin: `0 auto`,
-        maxWidth: 2600,
-      }}
-    >
-      {isBrowser && <Mouse></Mouse>}
-      {header === "default" ? (
-        <Header title={title} color={color}>
-          <Nav></Nav>
-        </Header>
-      ) : (
-        header
-      )}
+    <React.Fragment>
       <div
+        className={"page-layout"}
+        onMouseMove={e => {
+          setMouse("move", e)
+        }}
         style={{
           margin: `0 auto`,
           maxWidth: 2600,
         }}
       >
-        <main>{children}</main>
-        <CookieConsent />
-        <Footer title={title}></Footer>
+        {header === "default" ? (
+          <Header title={title} color={color}>
+            <Nav></Nav>
+          </Header>
+        ) : (
+          header
+        )}
+        <div
+          style={{
+            margin: `0 auto`,
+            maxWidth: 2600,
+          }}
+        >
+          <main>{children}</main>
+          <CookieConsent />
+          <Footer title={title}></Footer>
+        </div>
       </div>
-    </div>
+      {isBrowser && <Mouse></Mouse>}
+    </React.Fragment>
   )
 }
 

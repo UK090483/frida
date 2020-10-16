@@ -1,11 +1,13 @@
 // import React from 'react';
 import { useEffect, useRef } from "react"
-import style from "../mouse.module.scss"
+import MouseClassNames from "../classNames"
+import tester from "../../../../testPonycode/testPony"
 
+export { tester }
 export default function Mouse() {
   const mouse = useRef()
-
   useEffect(() => {
+    console.log("mouuussssssseee")
     mouse.current = document.querySelector("#mouse")
   }, [])
 
@@ -18,20 +20,20 @@ export default function Mouse() {
           break
         case "link":
           e
-            ? mouse.current.classList.add(style.linkhover)
-            : mouse.current.classList.remove(style.linkhover)
+            ? mouse.current.classList.add(MouseClassNames.linkHover)
+            : mouse.current.classList.remove(MouseClassNames.linkHover)
 
           break
         case "color":
           e
-            ? mouse.current.classList.add(style.black)
-            : mouse.current.classList.remove(style.black)
+            ? mouse.current.classList.add(MouseClassNames.black)
+            : mouse.current.classList.remove(MouseClassNames.black)
           break
 
         case "hide":
           e
-            ? mouse.current.classList.add(style.hide)
-            : mouse.current.classList.remove(style.hide)
+            ? mouse.current.classList.add(MouseClassNames.hide)
+            : mouse.current.classList.remove(MouseClassNames.hide)
           break
 
         default:
