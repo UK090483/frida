@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react"
-import style from "./fridaImage.module.scss"
 import useMouse from "../../../generic/Mouse/hooks/useMouse"
+import styled from "styled-components"
 
 const SCALE = [2, 3]
 
@@ -84,8 +84,8 @@ export default function FridaImage({ artwork }) {
   // const src = images.src
 
   return (
-    <div ref={RootRef} className={style.root}>
-      <img
+    <Root ref={RootRef}>
+      <Image
         onMouseMove={e => {
           handleMouseMove(e)
         }}
@@ -98,23 +98,17 @@ export default function FridaImage({ artwork }) {
           setMouse("hide", false)
         }}
         onClick={handleclick}
-        className={`${style.image} ${
-          width - 50 > height ? style.landscape : ""
-        }`}
-        // onLoad={() => { setLoaded(true) }}
         ref={imageRef}
-        // srcSet={srcSet}
         src={transformImage(imageUrl, "500x0")}
         alt={`Kunstwerk ${artworkName} von ${artistName}`}
-      ></img>
-      <div
-        className={`${style.magni} ${showGlass ? style.showGalss : ""}`}
+      ></Image>
+      <Magni
+        show={showGlass}
+        // className={`${style.magni} ${showGlass ? style.showGalss : ""}`}
         style={{ left: `${pos.pageX}px`, top: `${pos.pageY}px` }}
       >
-        <img
-          className={style.glassImg}
+        <GlassImg
           ref={loupImageRef}
-          // srcSet={srcSet}
           style={{
             width: `${pos.width * SCALE[scale]}px`,
             height: `${pos.height * SCALE[scale]}px`,
@@ -122,8 +116,43 @@ export default function FridaImage({ artwork }) {
           }}
           src={transformImage(imageUrl, "1000x0")}
           alt={`Kunstwerk ${artworkName} von ${artistName}`}
-        ></img>
-      </div>
-    </div>
+        ></GlassImg>
+      </Magni>
+    </Root>
   )
 }
+
+const Root = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const Image = styled.img`
+  transition: opacity 0.3s;
+  margin: 0;
+`
+
+const Magni = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: ${({ show }) => (show ? "200px" : "0")};
+  height: ${({ show }) => (show ? "200px" : "0")};
+  overflow: hidden;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translateX(-100px) translateY(-100px);
+  opacity: ${({ show }) => (show ? 1 : 0)};
+  border: ${({ theme }) => theme.colors.red} solid 2px;
+  transition: width 0.3s, height 0.3s;
+`
+
+const GlassImg = styled.img`
+  max-width: 1000% !important;
+  position: absolute;
+  top: 98.5px;
+  left: 98.5px;
+  transition: width 0.3s, height 0.3s;
+`

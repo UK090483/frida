@@ -1,14 +1,12 @@
 import React from "react"
 import Section from "../../container/section"
 import BigButton from "../../buttons/bigButton/bigButton"
-import TextFlow from "./textFlow"
-import style from "./footer.module.scss"
+import TextFlow from "./TextFlow/textFlow"
 import AllSupporter from "../../Supporter/allSupporter"
-import { Link } from "gatsby"
-import useMouse from "../Mouse/hooks/useMouse"
+import Infos from "./Infos/infos"
+import styled from "styled-components"
 
 export default function Footer({ title }) {
-  const { setMouse } = useMouse()
   return (
     <div>
       {title !== "OurSupporters" && (
@@ -31,55 +29,15 @@ export default function Footer({ title }) {
 
       <Section backgroundColor="red">
         <div style={{ padding: "50px 0" }}>
-          <h1 className={"text-white"}>GET IN TOUCH WITH FRIDA</h1>
+          <GetInTouch>GET IN TOUCH WITH FRIDA</GetInTouch>
         </div>
       </Section>
-
       <BigButton></BigButton>
-
-      <Section backgroundColor="red">
-        <div className={style.sub}>
-          <a
-            className={style.schwan}
-            href="http://schwan-communications.com/"
-            target="_blank"
-            rel="noreferrer"
-            onMouseEnter={() => {
-              setMouse("link", true)
-            }}
-            onMouseLeave={() => {
-              setMouse("link", false)
-            }}
-          >
-            <p>© 2020 Schwan Communications</p>
-          </a>
-
-          <Link
-            className={style.impressum}
-            to={"/impressum"}
-            onMouseEnter={() => {
-              setMouse("link", true)
-            }}
-            onMouseLeave={() => {
-              setMouse("link", false)
-            }}
-          >
-            <p>Impressum & Datenschutz</p>
-          </Link>
-          <Link
-            className={style.impressum}
-            to={"/agb"}
-            onMouseEnter={() => {
-              setMouse("link", true)
-            }}
-            onMouseLeave={() => {
-              setMouse("link", false)
-            }}
-          >
-            <p>AGB</p>
-          </Link>
-        </div>
-      </Section>
+      <Infos />
     </div>
   )
 }
+
+const GetInTouch = styled.h1`
+  color: ${({ theme }) => theme.colors.white};
+`

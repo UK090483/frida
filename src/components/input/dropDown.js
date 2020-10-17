@@ -1,8 +1,7 @@
 import React, { useState } from "react"
-import style from "./dropDown.module.scss"
-// import Flip from "react-reveal/Flip"
+// import style from "./dropDown.module.scss"
+import styled from "styled-components"
 import useMouse from "../generic/Mouse/hooks/useMouse"
-import { motion, AnimatePresence } from "framer-motion"
 export default function Input({
   label = "no label",
   options,
@@ -23,8 +22,9 @@ export default function Input({
 
   return (
     <React.Fragment>
-      <button
-        className={`${style.root} ${open ? style.active : ""}`}
+      <Root
+        active={open}
+        // className={`${style.root} ${open ? style.active : ""}`}
         onMouseEnter={() => {
           setMouse("link", true)
         }}
@@ -32,14 +32,14 @@ export default function Input({
           setMouse("link", false)
         }}
       >
-        <div
+        <Label
           onClick={() => {
             open ? setOpen(false) : setOpen(label)
           }}
-          className={style.label}
+          // className={style.label}
         >
           {label} {selfActive ? " : " + selfActive : ""}
-        </div>
+        </Label>
         <MList
           options={options}
           open={open}
@@ -49,116 +49,91 @@ export default function Input({
         >
           {" "}
         </MList>
-        {/* <Flip
-          top
-          cascade
-          when={open}
-          unmountOnExit={true}
-          mountOnEnter={true}
-          duration={500}
-        >
-          <div
-            className={`${style.options} ${
-              fixedHeight ? style.fixedHeight : ""
-            } `}
-          >
-            <div
-              className={style.option}
-              onClick={() => {
-                setActive(false)
-                setOpen(false)
-              }}
-            >
-              {" "}
-              {"Kein Filter"}{" "}
-            </div>
-            {options.map(option => (
-              <div
-                key={option.value}
-                className={style.option}
-                onClick={() => {
-                  setActive(option.label)
-                  setOpen(false)
-                }}
-              >
-                {" "}
-                {option.label}{" "}
-              </div>
-            ))}
-          </div>
-        </Flip> */}
-      </button>
+      </Root>
     </React.Fragment>
   )
 }
 
+const Option = styled.div`
+  transform: ${({ open }) =>
+    open ? "translate3d(0, 0, 0)" : "translate3d(0, -100vw, 0)"};
+  height: 50px;
+  width: 300px;
+  display: flex;
+  background-color: ${({ theme }) => theme.colors.pink};
+  align-items: center;
+  color: white;
+  padding-left: 20px;
+  opacity: ${({ open }) => (open ? "1" : "0")};
+  z-index: ${({ index }) => index * -1};
+  transition: background-color 0.3s, color 0.3s, padding-left 0.5s, opacity 0.3s,
+    transform 0.3s ${({ index }) => index * 0.02 + "s"};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.pink};
+    padding-left: 40px;
+  }
+`
+const Options = styled.div`
+  overflow: hidden;
+`
+const Label = styled.div`
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+`
+const Root = styled.button`
+  width: 300px;
+  margin: 0 auto;
+  height: 50px;
+  max-height: 50px;
+  position: relative;
+  z-index: 10;
+  font-weight: 600;
+  background-color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.pink};
+  border: none;
+  border-bottom: ${({ theme }) => theme.colors.pink} 3px solid;
+  outline: none;
+  padding: 0;
+  margin: 0 20px;
+  font-size: 17px;
+  /* border: red solid 1px; */
+  cursor: none;
+  z-index: ${({ active }) => (active ? 10 : 0)};
+`
+
 const MList = ({ options, open, setActive, setOpen, fixedHeight }) => {
-  const list = {
-    visible: {
-      opacity: 1,
-      transition: {
-        delay: 0,
-        when: "beforeChildren",
-        staggerChildren: 0.01,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      transition: {
-        when: "afterChildren",
-      },
-    },
-    exit: {
-      opacity: 0,
-    },
-  }
-
-  const item = {
-    visible: { opacity: 1, x: 0 },
-    hidden: { opacity: 0, x: -10 },
-  }
-
   return (
     <React.Fragment>
-      <div
-        className={`${style.options} ${fixedHeight ? style.fixedHeight : ""} `}
-      >
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={list}
-              exit={{ opacity: 0 }}
-            >
-              <motion.div
-                variants={item}
-                className={style.option}
-                onClick={() => {
-                  setActive(false)
-                  setOpen(false)
-                }}
-              >
-                {"Kein Filter"}
-              </motion.div>
-              {options.map(option => (
-                <motion.div
-                  variants={item}
-                  exit={{ opacity: 0 }}
-                  key={option.value}
-                  className={style.option}
-                  onClick={() => {
-                    setActive(option.label)
-                    setOpen(false)
-                  }}
-                >
-                  {option.label}
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+      <Options>
+        <Option
+          open={open}
+          index={0}
+          onClick={() => {
+            setActive(false)
+            setOpen(false)
+          }}
+        >
+          {"Kein Filter"}
+        </Option>
+        {options.map((option, index) => (
+          <Option
+            open={open}
+            index={index + 1}
+            key={option.value}
+            onClick={() => {
+              setActive(option.label)
+              setOpen(false)
+            }}
+          >
+            {option.label}
+          </Option>
+        ))}
+      </Options>
     </React.Fragment>
   )
 }

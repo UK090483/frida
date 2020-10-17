@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 import Masonry from "react-masonry-css"
-import { breackingpoints } from "../../../theme"
+import { breackingpoints } from "../../../Styles/theme"
 
 const breakpointColumnsObj = {
   default: 3,

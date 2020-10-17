@@ -44,7 +44,7 @@ function Artwork({ artwork, handleClick, handleLoaded }) {
 
 const ArtistName = styled.h3`
   margin-top: 10px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 5px;
   @media ${({ theme }) => theme.device.tablet} {
     font-size: 1.35rem;

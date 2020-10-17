@@ -1,16 +1,15 @@
 import React from "react"
-import Container from "./container"
-import useMouse from "../generic/Mouse/hooks/useMouse"
 import PropTypes from "prop-types"
 import styled from "styled-components"
+
+import Container from "./container"
+import { setMouse } from "../generic/Mouse/mouseRemote"
 
 export default function Section({
   children,
   backgroundColor = "default",
   type,
 }) {
-  const { setMouse } = useMouse()
-
   return (
     <Root
       onMouseOver={() => {

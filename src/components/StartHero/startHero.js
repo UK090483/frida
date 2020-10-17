@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Frida from "../frida/frida"
-import style from "./startHero.module.scss"
 import Button from "../buttons/button"
+import styled, { keyframes } from "styled-components"
+import axios from "axios"
 
 export default function StartHero({ children }) {
   const data = useStaticQuery(graphql`
     query startHeroQuery {
       storyQL {
-        ArtworkItems(per_page: 100) {
+        ArtworkItems(per_page: 10) {
           items {
             content {
               Image {
@@ -27,6 +28,24 @@ export default function StartHero({ children }) {
 
   const allImages = data.storyQL.ArtworkItems.items
   const [images, setImages] = useState([])
+
+  useEffect(() => {
+    // axios
+    //   .get(
+    //     "https://api.storyblok.com/v1/cdn/stories?token=Hw2k511Rg3irS6QTDvxrewtt"
+    //   )
+    //   .then(function (response) {
+    //     // handle success
+    //     console.log(response)
+    //   })
+    //   .catch(function (error) {
+    //     // handle error
+    //     console.log(error)
+    //   })
+    //   .then(function () {
+    //     // always executed
+    //   })
+  }, [])
 
   useEffect(() => {
     function transformImage(image, option) {
@@ -69,8 +88,8 @@ export default function StartHero({ children }) {
 
   return (
     <React.Fragment>
-      <div className={style.root}>
-        <div className={style.text}>
+      <Root>
+        <Text>
           {children ? (
             children
           ) : (
@@ -93,20 +112,64 @@ export default function StartHero({ children }) {
               />
             </React.Fragment>
           )}
-        </div>
+        </Text>
 
         {images.map(image => {
           return (
-            <img
+            <Image
               alt={"flying "}
-              className={style.image}
+              //   className={style.image}
               style={{ left: image.left, zIndex: image.zIndex }}
               key={image.key}
               src={image.src}
-            ></img>
+            ></Image>
           )
         })}
-      </div>
+      </Root>
     </React.Fragment>
   )
 }
+
+const Root = styled.div`
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.pink};
+`
+const Text = styled.div`
+  margin-top: 100px;
+  z-index: 1;
+  padding: 0 7%;
+`
+
+const drive = keyframes`
+   0% {
+    transform: translate3d(0, 100vh, 0);
+  }
+  5% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -100vh, 0);
+  }
+`
+
+const Image = styled.img`
+  position: absolute;
+  width: 25vw;
+  z-index: 0;
+  animation-name: ${drive};
+  animation-duration: 10s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 9vw;
+  }
+`

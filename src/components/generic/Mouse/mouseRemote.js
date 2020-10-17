@@ -1,8 +1,8 @@
 import MouseClassNames from "./classNames"
 
-const mouse = document.querySelector("#mouse")
-
 const setMouse = (type, e) => {
+  const mouse = window.FridaMouse
+
   if (mouse) {
     switch (type) {
       case "move":

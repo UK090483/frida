@@ -2,13 +2,13 @@ import React from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
-export default function ArtworkName({ availability, artworkName }) {
+export default function ArtworkName({ availability, artworkName, size }) {
   const stringArray = [...artworkName.split(" ")]
   const firstWord = stringArray.shift()
   const rest = stringArray.join(" ")
 
   return (
-    <Root>
+    <Root as={size === "big" ? "h5" : ""}>
       <Span sold={availability !== "availabil"}>{firstWord + " "}</Span>
       {rest}
     </Root>

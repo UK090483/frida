@@ -12,9 +12,9 @@ const Ausstellung = () => (
     <SEO title="Ausstellung" />
     <Hero backgroundColor="lila">
       <h6>AUSSTELLUNG</h6>
-      <h1>
+      <h2>
         Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida>
-      </h1>
+      </h2>
     </Hero>
     <Section type={"text"}>
       <div style={{ paddingTop: 100 }}>

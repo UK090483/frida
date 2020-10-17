@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "axios": "^0.20.0",
     "babel-plugin-styled-components": "^1.11.1",
     "framer-motion": "^2.6.5",
     "fs": "0.0.1-security",
@@ -54,6 +55,7 @@
     "eslint-config-react-app": "^5.2.1",
     "eslint-loader": "^4.0.2",
     "gatsby-plugin-eslint": "^2.0.8",
+    "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.13",
     "http-proxy-middleware": "^1.0.5",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.5.3",

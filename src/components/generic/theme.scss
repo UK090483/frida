@@ -9,7 +9,7 @@ $max_font: 90px;
 
 body {
   font-family: "Montserrat", sans-serif;
-  color: $black;
+  color: #000000;
 }
 h1,
 h2,
@@ -80,25 +80,25 @@ li {
   padding-bottom: 20px;
 }
 
-.text-white {
-  color: white;
-}
-.text-black {
-  color: black;
-}
-.text-lila {
-  color: #f5c5d9;
-}
-.text-red {
-  color: #fa464c;
-}
+// .text-white {
+//   color: white;
+// }
+// .text-black {
+//   color: black;
+// }
+// .text-lila {
+//   color: #f5c5d9;
+// }
+// .text-red {
+//   color: #fa464c;
+// }
 
 body::-webkit-scrollbar {
   display: none;
 }
 
 a {
-  color: $red;
+  color: #fa464c;
 }
 
 .page-layout {

@@ -3,7 +3,6 @@ import Header from "../../generic/header/header"
 import Kreutz from "../../../assets/Menu_Kreutz.svg"
 import SingleArtwork from "../singleArtwork/singleArtwork"
 import useMouse from "../../generic/Mouse/hooks/useMouse"
-import { motion, AnimatePresence } from "framer-motion"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
@@ -11,15 +10,9 @@ function Slider({ artwork, open, handleCloseClick }) {
   const { setMouse } = useMouse()
 
   return (
-    <AnimatePresence>
-      {open && (
-        <Root
-          initial={{ x: "100vw" }}
-          animate={{ x: 0 }}
-          exit={{ x: "100vw" }}
-          transition={{ type: "tween", duration: 0.3 }}
-          style={{ pointerEvents: open ? "auto" : "none" }}
-        >
+    <React.Fragment>
+      <Root open={open} style={{ pointerEvents: open ? "auto" : "none" }}>
+        <React.Fragment>
           <Header
             title={artwork ? artwork.artistName : ""}
             color="lila"
@@ -40,13 +33,13 @@ function Slider({ artwork, open, handleCloseClick }) {
             </div>
           </Header>
           {artwork && <SingleArtwork artwork={artwork}></SingleArtwork>}
-        </Root>
-      )}
-    </AnimatePresence>
+        </React.Fragment>
+      </Root>
+    </React.Fragment>
   )
 }
 
-const Root = styled(motion.div)`
+const Root = styled.div`
   position: fixed;
   z-index: 9999999;
   width: 100vw;
@@ -55,6 +48,10 @@ const Root = styled(motion.div)`
   left: 0;
   padding: 200;
   background-color: white;
+  opacity: ${({ open }) => (open ? "1" : "0")};
+  transform: ${({ open }) =>
+    open ? "translate3d(0,0,0)" : "translate3d(100%,0,0)"};
+  transition: transform 0.5s, opacity 0.5s;
 `
 
 Slider.propTypes = {

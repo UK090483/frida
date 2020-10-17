@@ -18,6 +18,7 @@ const Root = styled.div`
   flex-wrap: wrap;
   align-items: center;
   font-size: 1.35rem;
+
   font-weight: 500;
 `
 

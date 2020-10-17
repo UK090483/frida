@@ -1,14 +1,12 @@
 import React from "react"
 import { Link } from "gatsby"
-import style from "./button.module.scss"
 import PropTypes from "prop-types"
-import styled, { withTheme } from "styled-components"
+import styled from "styled-components"
 import { setMouse } from "../generic/Mouse/mouseRemote"
 function Button(props) {
   const {
     label,
     link,
-    size = "default",
     type = "link",
     backgroundColor = "white",
     color = "black",
@@ -33,23 +31,28 @@ function Button(props) {
   return (
     <React.Fragment>
       {type === "link" && (
-        <Link className={`${style.root} ${style[size]}`} to={link}>
+        <Root
+          as={Link}
+          //  className={`${style.root} ${style[size]}`}
+          to={link}
+        >
           {inner}
-        </Link>
+        </Root>
       )}
       {type === "externalLink" && (
-        <a
-          className={`${style.root} ${style[size]}`}
+        <Root
+          // className={`${style.root} ${style[size]}`}
           href={link}
           target="_blank"
           rel="noreferrer"
         >
           {inner}
-        </a>
+        </Root>
       )}
       {type === "clickButton" && (
-        <div
-          className={style.root}
+        <Root
+          as="div"
+          // className={style.root}
           onClick={onClick}
           onMouseEnter={() => {
             setMouse("link", true)
@@ -58,17 +61,31 @@ function Button(props) {
             setMouse("link", false)
           }}
         >
-          <div className={`${style.inner} ${style[backgroundColor]}`}>
+          <Inner bgColor={backgroundColor} color={color}>
             {label}
-          </div>
-        </div>
+          </Inner>
+        </Root>
       )}
     </React.Fragment>
   )
 }
 
+const Root = styled.a`
+  font-weight: 800;
+  text-decoration: none;
+  cursor: none;
+  pointer-events: all;
+  font-size: 0.8rem;
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 1rem;
+  }
+`
+
 const Inner = styled.div`
-  padding: 1.2rem 2rem;
+  padding: 0.8rem 1.5rem;
+  @media ${({ theme }) => theme.device.tablet} {
+    padding: 1.2rem 2rem;
+  }
   width: fit-content;
   border: ${({ theme }) => theme.colors.black + " solid " + theme.borderWidth};
   border-color: ${({ theme, color }) => getColor(theme, color)};
@@ -107,4 +124,4 @@ Button.defaultProps = {
   },
 }
 
-export default withTheme(Button)
+export default Button

@@ -1,7 +1,7 @@
 import React from "react"
 
 import { ThemeProvider } from "styled-components"
-import theme from "./src/theme"
+import theme from "./src/Styles/theme"
 
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider theme={theme}>{element}</ThemeProvider>
@@ -32,6 +32,15 @@ const postBody = [
     data-api-key="MDQ0ODFjNTYtNDY4Mi00MDkwLWJjNjYtMzhlYzUzMTdkNmZlNjM3Mzc5MzIyODc1OTQyODk2"
     data-config-add-product-behavior="none"
   ></div>,
+  <div key="fridaMouse" id={"mouse"} className={`frida_mouse`}>
+    <div></div>
+  </div>,
+  <script
+    key="fridaMouseJS"
+    dangerouslySetInnerHTML={{
+      __html: `window.FridaMouse = document.querySelector("#mouse");`,
+    }}
+  />,
 ]
 
 const BodyAttributes = {

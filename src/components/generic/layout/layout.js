@@ -1,25 +1,21 @@
 import React from "react"
 import PropTypes from "prop-types"
-
 import Header from "../header/header"
-// import "./normalize.scss"
-//import "./layout.scss"
-import "../theme.scss"
-
-import { isBrowser } from "react-device-detect"
+import GlobalStyle from "../../../Styles/globalStyle"
+import NormalizeCss from "../../../Styles/normalize"
 
 import Nav from "../nav/nav"
 import Footer from "../Footer/footer"
 import Mouse from "../Mouse/mouse"
 import CookieConsent from "../../CookieConsent/CookieConsent"
-
-import useMouse from "../Mouse/hooks/useMouse"
+import { setMouse } from "../Mouse/mouseRemote"
+// import "../../../fonts/webfonts/styles.css"
 
 const Layout = ({ children, title, header = "default", color }) => {
-  const { setMouse } = useMouse()
-
   return (
     <React.Fragment>
+      {/* <NormalizeCss></NormalizeCss> */}
+      <GlobalStyle></GlobalStyle>
       <div
         className={"page-layout"}
         onMouseMove={e => {
@@ -28,6 +24,7 @@ const Layout = ({ children, title, header = "default", color }) => {
         style={{
           margin: `0 auto`,
           maxWidth: 2600,
+          overflow: "hidden",
         }}
       >
         {header === "default" ? (
@@ -48,7 +45,7 @@ const Layout = ({ children, title, header = "default", color }) => {
           <Footer title={title}></Footer>
         </div>
       </div>
-      {isBrowser && <Mouse></Mouse>}
+      <Mouse></Mouse>
     </React.Fragment>
   )
 }

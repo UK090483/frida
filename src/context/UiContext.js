@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { isBrowser, isMobile } from "react-device-detect"
+// import { isBrowser, isMobile } from "react-device-detect"
 
 const defaultState = {
   dark: false,
@@ -20,8 +20,6 @@ function UiContextProvider({ children }) {
         mouseColor,
         setMouseColor,
         setMouseStyle,
-        isMobile,
-        isBrowser,
         userData,
         setUserData,
       }}

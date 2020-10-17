@@ -1,17 +1,10 @@
-// import React from 'react';
-import { useEffect, useRef } from "react"
+//import React from "react"
+// import { useEffect, useRef } from "react"
 import MouseClassNames from "../classNames"
-import tester from "../../../../testPonycode/testPony"
 
-export { tester }
 export default function Mouse() {
-  const mouse = useRef()
-  useEffect(() => {
-    console.log("mouuussssssseee")
-    mouse.current = document.querySelector("#mouse")
-  }, [])
-
   const setMouse = (type, e) => {
+    const mouse = { current: window.FridaMouse }
     if (mouse.current) {
       switch (type) {
         case "move":
@@ -42,5 +35,5 @@ export default function Mouse() {
     }
   }
 
-  return { mouse: mouse.current, setMouse: setMouse }
+  return { setMouse: setMouse }
 }

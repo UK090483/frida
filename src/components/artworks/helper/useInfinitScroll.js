@@ -4,10 +4,12 @@ export default function useInfenitScroll(
   gridRef,
   artworks,
   scrollRef,
-  infinite
+  infinite,
+  loadMore
 ) {
   const [postCount, setPostCount] = useState(30)
   const [showScrollup, setShowScrollup] = useState(false)
+  const [loading, setloading] = useState(false)
 
   useEffect(() => {
     if (infinite) {
@@ -23,12 +25,18 @@ export default function useInfenitScroll(
         const clientRef = gridRef.current.getBoundingClientRect()
 
         if (clientRef.bottom - window.innerHeight < 300) {
+          if (!loading) {
+            setloading(true)
+            loadMore(setloading)
+          }
+
           if (postCount < artworks.length) {
             const ADD = 9
             const nextPostcount =
               postCount + ADD > artworks.length
                 ? artworks.length
                 : postCount + ADD
+
             setPostCount(nextPostcount)
           }
         }
@@ -39,7 +47,7 @@ export default function useInfenitScroll(
         window.removeEventListener("scroll", handleScroll)
       }
     }
-  }, [artworks.length, gridRef, infinite, postCount, showScrollup])
+  }, [artworks.length, gridRef, infinite, loadMore, loading, postCount, showScrollup])
 
-  return { postCount, showScrollup }
+  return { postCount, showScrollup, loading }
 }

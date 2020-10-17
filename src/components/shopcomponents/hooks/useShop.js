@@ -31,7 +31,6 @@ export default function useShop(id) {
     if (!document.querySelector("#snipcartJs")) {
       addSnipcart()
     }
-
     const checkonCard = () => {
       const items = window.Snipcart.store.getState().cart.items.items
       setOnCard(items.find(item => id === item.id))

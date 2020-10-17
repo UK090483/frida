@@ -10,7 +10,7 @@ import React from "react"
 
 import { UiContextProvider } from "./src/context/UiContext"
 import { ThemeProvider } from "styled-components"
-import theme from "./src/theme"
+import theme from "./src/Styles/theme"
 
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider theme={theme}>

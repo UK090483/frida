@@ -6,7 +6,7 @@ export default function Frida({ text, textColor }) {
   return (
     <Root>
       #Meet
-      <Inner color={textColor}>{text || "Frida"}</Inner>
+      <Inner color={textColor}>{text}</Inner>
     </Root>
   )
 }
@@ -16,13 +16,19 @@ Frida.propTypes = {
   textColor: PropTypes.string,
 }
 
+Frida.defaultProps = {
+  text: "Frida",
+  textColor: "white",
+}
+
 const Root = styled.span`
   white-space: nowrap;
   display: inline;
 `
 const Inner = styled.span`
   position: relative;
-  color: ${props => (props.color ? props.color : "white")};
+  color: ${({ color, theme }) =>
+    color === "white" ? theme.colors.white : theme.colors.pink};
   &:before {
     content: "";
     border-bottom: rgb(0, 0, 0) solid 0.16em;

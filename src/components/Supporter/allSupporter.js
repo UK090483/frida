@@ -1,8 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import style from "./supporter.module.scss"
-// import Ticker from "react-ticker"
 import Marquee from "react-marquee-slider"
+import styled from "styled-components"
 
 const AllSuporters = () => {
   const data = useStaticQuery(graphql`
@@ -32,15 +31,27 @@ const PureAllSupporters = ({ data }) => {
     <Marquee velocity={80}>
       {data.allFile.edges.map(item => {
         return (
-          <div key={item.node.id} className={style.logoItem}>
+          <LogoItem key={item.node.id}>
             <img
               style={{ maxWidth: "100%" }}
               alt={"Logo"}
               src={item.node.childImageSharp.resize.src}
             ></img>
-          </div>
+          </LogoItem>
         )
       })}
     </Marquee>
   )
 }
+
+const LogoItem = styled.div`
+  height: 150px;
+  width: 30vw;
+  img {
+    object-fit: contain;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    height: 300px;
+    width: 20vw;
+  }
+`

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react"
-import style from "./fridaImage.module.scss"
+import styled from "styled-components"
 
 export default function FridaImage({ alt, width, height, src }) {
   const imageRef = useRef()
@@ -30,16 +30,28 @@ export default function FridaImage({ alt, width, height, src }) {
   }, [height, imageRef, width])
 
   return (
-    <div ref={RootRef} className={style.root}>
-      <img
-        className={`${style.image} ${
-          width - 50 > height ? style.landscape : ""
-        }`}
+    <Root ref={RootRef}>
+      <Image
+        // className={`${style.image} ${
+        //   width - 50 > height ? style.landscape : ""
+        // }`}
         // onLoad={() => { setLoaded(true) }}
         ref={imageRef}
         src={src}
         alt={alt}
-      ></img>
-    </div>
+      ></Image>
+    </Root>
   )
 }
+
+const Root = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const Image = styled.img`
+  transition: opacity 0.3s;
+  margin: 0;
+`
