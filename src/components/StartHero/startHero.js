@@ -81,6 +81,7 @@ export default function StartHero({ children }) {
       }
       setImages(nextImages)
     }, 800)
+
     return () => {
       clearTimeout(int)
     }

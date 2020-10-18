@@ -92,7 +92,6 @@ function usePreparedData() {
       allStoryblokEntry(
         filter: { full_slug: { regex: "/artwork/" } }
         sort: { fields: field_randSort_number, order: ASC }
-        limit: 10
       ) {
         edges {
           node {

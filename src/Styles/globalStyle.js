@@ -27,7 +27,7 @@ h6 {
 
 h1 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(6, 40, 100)}
+  ${flexUnit(6, 30, 100)}
 }
 h2 {
   font-family: "Montserrat", sans-serif;

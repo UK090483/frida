@@ -1,13 +1,21 @@
 import MouseClassNames from "./classNames"
-
+let mouseNeeded = false
+let ListenerItems = []
+let mouse
 const setMouse = (type, e) => {
-  const mouse = window.FridaMouse
-
+  !mouse && (mouse = window.FridaMouse)
+  const initMouse = () => {
+    mouseNeeded = true
+    document.querySelector("body").classList.add("frida_mouse_active")
+    getLinks()
+  }
   if (mouse) {
     switch (type) {
       case "move":
+        !mouseNeeded && initMouse()
         mouse.style.left = e.pageX - 15 + "px"
         mouse.style.top = e.pageY - 15 + "px"
+
         break
       case "link":
         e
@@ -31,6 +39,34 @@ const setMouse = (type, e) => {
         break
     }
   }
+}
+
+function getLinks() {
+  const links = document.querySelectorAll(".mouse_link")
+
+  links.forEach(link => {
+    link.addEventListener("mouseenter", setMouseLinkIn)
+    link.addEventListener("mouseleave", setMouseLinkOut)
+  })
+}
+
+const setMouseDown = () => {
+  mouse.classList.add(MouseClassNames.mouseDown)
+}
+const setMouseUp = () => {
+  mouse.classList.remove(MouseClassNames.mouseDown)
+}
+const setMouseIn = () => {
+  mouse.classList.remove(MouseClassNames.mouseOut)
+}
+const setMouseOut = () => {
+  mouse.classList.add(MouseClassNames.mouseOut)
+}
+const setMouseLinkIn = () => {
+  mouse.classList.add(MouseClassNames.linkHover)
+}
+const setMouseLinkOut = () => {
+  mouse.classList.remove(MouseClassNames.linkHover)
 }
 
 export { setMouse }

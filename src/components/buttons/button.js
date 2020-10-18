@@ -17,12 +17,13 @@ function Button(props) {
     <Inner
       bgColor={backgroundColor}
       color={color}
-      onMouseEnter={() => {
-        setMouse("link", true)
-      }}
-      onMouseLeave={() => {
-        setMouse("link", false)
-      }}
+      className={"mouse_link"}
+      // onMouseEnter={() => {
+      //   setMouse("link", true)
+      // }}
+      // onMouseLeave={() => {
+      //   setMouse("link", false)
+      // }}
     >
       {label}
     </Inner>
