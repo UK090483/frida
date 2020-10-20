@@ -2,7 +2,7 @@ import React, { useState } from "react"
 // import style from "./dropDown.module.scss"
 import styled from "styled-components"
 import useMouse from "../generic/Mouse/hooks/useMouse"
-export default function Input({
+function Input({
   label = "no label",
   options,
   open,
@@ -16,15 +16,14 @@ export default function Input({
   const { setMouse } = useMouse()
 
   const setActive = i => {
-    setSelfActive(i)
-    setFilter(filterName, i)
+    setSelfActive(i.label)
+    setFilter(filterName, i.value)
   }
 
   return (
     <React.Fragment>
       <Root
         active={open}
-        // className={`${style.root} ${open ? style.active : ""}`}
         onMouseEnter={() => {
           setMouse("link", true)
         }}
@@ -36,7 +35,6 @@ export default function Input({
           onClick={() => {
             open ? setOpen(false) : setOpen(label)
           }}
-          // className={style.label}
         >
           {label} {selfActive ? " : " + selfActive : ""}
         </Label>
@@ -53,7 +51,7 @@ export default function Input({
     </React.Fragment>
   )
 }
-
+export default React.memo(Input)
 const Option = styled.div`
   transform: ${({ open }) =>
     open ? "translate3d(0, 0, 0)" : "translate3d(0, -100vw, 0)"};
@@ -113,6 +111,7 @@ const MList = ({ options, open, setActive, setOpen, fixedHeight }) => {
         <Option
           open={open}
           index={0}
+          key={"no option"}
           onClick={() => {
             setActive(false)
             setOpen(false)
@@ -120,19 +119,21 @@ const MList = ({ options, open, setActive, setOpen, fixedHeight }) => {
         >
           {"Kein Filter"}
         </Option>
-        {options.map((option, index) => (
-          <Option
-            open={open}
-            index={index + 1}
-            key={option.value}
-            onClick={() => {
-              setActive(option.label)
-              setOpen(false)
-            }}
-          >
-            {option.label}
-          </Option>
-        ))}
+        {options.map((option, index) => {
+          return (
+            <Option
+              open={open}
+              index={index + 1}
+              key={option.value}
+              onClick={() => {
+                setActive(option)
+                setOpen(false)
+              }}
+            >
+              {option.label}
+            </Option>
+          )
+        })}
       </Options>
     </React.Fragment>
   )

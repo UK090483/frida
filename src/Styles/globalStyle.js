@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components"
-import { flexUnit } from "./theme"
+import { fluidFont } from "./theme"
 
 const Global = createGlobalStyle`
 
@@ -27,30 +27,29 @@ h6 {
 
 h1 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(6, 30, 100)}
+  ${fluidFont(30, 100, 320, 1920)}
 }
 h2 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(5, 32, 80)}
+  ${fluidFont(32, 80, 320, 1920)}
 }
 h3 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(4, 24, 60)}
+  ${fluidFont(24, 60, 320, 1920)}
 }
 h4 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(3, 20, 50)}
+  ${fluidFont(20, 50, 320, 1920)}
 }
 
 h5 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(2, 16, 40)}
+  ${fluidFont(16, 40, 320, 1920)}
 }
 h6 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(2, 15, 30)}
+  ${fluidFont(15, 30, 320, 1920)}
 }
-
 p,
 li {
   font-weight: 500;

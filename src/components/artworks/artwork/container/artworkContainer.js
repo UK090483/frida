@@ -1,5 +1,5 @@
 import React from "react"
-import styled, { withTheme } from "styled-components"
+import styled from "styled-components"
 import PropTypes from "prop-types"
 import { setMouse } from "../../../generic/Mouse/mouseRemote"
 
@@ -32,4 +32,4 @@ ArtworkContainer.propTypes = {
   loaded: PropTypes.bool,
 }
 
-export default withTheme(ArtworkContainer)
+export default React.memo(ArtworkContainer)

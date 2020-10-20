@@ -53,4 +53,4 @@ ArtworkInfo.propTypes = {
   artworkName: PropTypes.string,
   price: PropTypes.number,
 }
-export default ArtworkInfo
+export default React.memo(ArtworkInfo)

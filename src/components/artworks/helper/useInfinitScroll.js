@@ -11,43 +11,30 @@ export default function useInfenitScroll(
   const [showScrollup, setShowScrollup] = useState(false)
   const [loading, setloading] = useState(false)
 
+  const _loader = e => {
+    console.log(entries[0].isIntersecting)
+  }
   useEffect(() => {
-    if (infinite) {
-      window.addEventListener("scroll", handleScroll)
-    }
-    function handleScroll() {
-      if (gridRef.current) {
-        if (!showScrollup && window.scrollY > 1800) {
-          setShowScrollup(true)
-        } else if (showScrollup && window.scrollY < 1800) {
-          setShowScrollup(false)
-        }
-        const clientRef = gridRef.current.getBoundingClientRect()
+    console.log("init observer")
 
-        if (clientRef.bottom - window.innerHeight < 300) {
-          if (!loading) {
-            setloading(true)
-            loadMore(setloading)
-          }
-
-          if (postCount < artworks.length) {
-            const ADD = 9
-            const nextPostcount =
-              postCount + ADD > artworks.length
-                ? artworks.length
-                : postCount + ADD
-
-            setPostCount(nextPostcount)
-          }
-        }
-      }
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.25,
     }
-    return () => {
-      if (infinite) {
-        window.removeEventListener("scroll", handleScroll)
-      }
-    }
-  }, [artworks.length, gridRef, infinite, loadMore, loading, postCount, showScrollup])
+
+    const observer = new IntersectionObserver(_loader, options)
+
+    // if (gridRef.current) {
+    //   observer.observe(gridRef.current)
+    // }
+
+    // return () => {
+    //   if (gridRef.current) {
+    //     observer.unobserve(gridRef.current)
+    //   }
+    // }
+  }, [gridRef])
 
   return { postCount, showScrollup, loading }
 }

@@ -9,7 +9,22 @@ import styled from "styled-components"
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
+  const [animation, setAnimation] = useState(false)
   const [initialRender, setInitialRender] = useState(true)
+
+  useEffect(() => {
+    if (open) {
+      setAnimation("in")
+      setTimeout(() => {
+        setAnimation(false)
+      }, 1000)
+    } else {
+      setAnimation("out")
+      setTimeout(() => {
+        setAnimation(false)
+      }, 1000)
+    }
+  }, [open])
 
   useEffect(() => {
     return () => {
@@ -42,7 +57,7 @@ export default function Nav() {
         <Circle open={open} initialRender={initialRender} />
 
         {open && <Header onClick={() => handleMenu()} />}
-        <Links open={open} />
+        <Links open={open} animation={animation} />
         <BigButtons open={open}></BigButtons>
       </Root>
     </React.Fragment>

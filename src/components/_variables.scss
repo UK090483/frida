@@ -1,59 +1,59 @@
-$black: #000000;
-$green: #75f9d5;
-$red: #fa464c;
-$white: white;
-$lila: #f5c5d9;
+// $black: #000000;
+// $green: #75f9d5;
+// $red: #fa464c;
+// $white: white;
+// $lila: #f5c5d9;
 
-$min_width: 320px;
-$max_width: 1600px;
+// $min_width: 320px;
+// $max_width: 1600px;
 
-$borderwidth: 3px;
+// $borderwidth: 3px;
 
-@mixin mobileSmall {
-  @media (max-width: 374px) {
-    @content;
-  }
-}
+// @mixin mobileSmall {
+//   @media (max-width: 374px) {
+//     @content;
+//   }
+// }
 
-@mixin mobile {
-  @media (max-width: 700px) {
-    @content;
-  }
-}
+// @mixin mobile {
+//   @media (max-width: 700px) {
+//     @content;
+//   }
+// }
 
-@mixin tablet {
-  @media (max-width: 900px) {
-    @content;
-  }
-}
-@mixin medium {
-  @media (max-width: 1110px) {
-    @content;
-  }
-}
+// @mixin tablet {
+//   @media (max-width: 900px) {
+//     @content;
+//   }
+// }
+// @mixin medium {
+//   @media (max-width: 1110px) {
+//     @content;
+//   }
+// }
 
-@function strip-unit($value) {
-  @return $value / ($value * 0 + 1);
-}
+// @function strip-unit($value) {
+//   @return $value / ($value * 0 + 1);
+// }
 
-@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
-  $u1: unit($min-vw);
-  $u2: unit($max-vw);
-  $u3: unit($min-font-size);
-  $u4: unit($max-font-size);
+// @mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+//   $u1: unit($min-vw);
+//   $u2: unit($max-vw);
+//   $u3: unit($min-font-size);
+//   $u4: unit($max-font-size);
 
-  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
-    & {
-      font-size: $min-font-size;
-      @media screen and (min-width: $min-vw) {
-        font-size: calc(
-          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
-            ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
-        );
-      }
-      @media screen and (min-width: $max-vw) {
-        font-size: $max-font-size;
-      }
-    }
-  }
-}
+//   @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+//     & {
+//       font-size: $min-font-size;
+//       @media screen and (min-width: $min-vw) {
+//         font-size: calc(
+//           #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+//             ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+//         );
+//       }
+//       @media screen and (min-width: $max-vw) {
+//         font-size: $max-font-size;
+//       }
+//     }
+//   }
+// }

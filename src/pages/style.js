@@ -4,16 +4,18 @@ import SEO from "../components/seo"
 import Section from "../components/container/section"
 import Frida from "../components/frida/frida"
 
-const IndexPage = () => (
-  <Layout title={"MeetCollectors"}>
-    <SEO title="Teilnehmen" />
+import styled from "styled-components"
 
-    <Section backgroundColor="red">
-      <div style={{ paddingTop: 300, paddingBottom: 100 }}>
-        <h1>
-          H1 <Frida />
-        </h1>
-        <h2>
+const StylePage = () => (
+  // <Layout title={"MeetCollectors"}>
+  //   <SEO title="Teilnehmen" />
+
+  <Section backgroundColor="red">
+    <div style={{ paddingTop: 300, paddingBottom: 100 }}>
+      <H1>
+        H1 <Frida />
+      </H1>
+      {/* <h2>
           H2 <Frida />
         </h2>
         <h3>
@@ -39,11 +41,39 @@ const IndexPage = () => (
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
           et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
           takimata sanctus est Lorem ipsum dolor sit amet.
-        </p>
-      </div>
-      //{" "}
-    </Section>
-  </Layout>
+        </p> */}
+    </div>
+  </Section>
+  // </Layout>
 )
+export default StylePage
 
-export default IndexPage
+const data = {
+  min: {
+    vp: "320",
+    fontsize: "50",
+  },
+  max: {
+    vp: "1920",
+    fontsize: "80",
+  },
+}
+
+const fluidFont = (min_font, max_font, min_vp, max_vp) => {
+  return `
+  font-size: ${min_font}px;
+  @media screen and (min-width: ${min_vp}px) {
+    font-size: calc(
+      ${min_font}px + ${max_font - min_font} *
+        ((100vw - ${min_vp}px) / (${max_vp - min_vp}))
+    );
+  }
+  @media screen and (min-width: ${max_vp}px) {
+    font-size: ${max_font}px;
+  }
+  `
+}
+
+const H1 = styled.h1`
+  ${fluidFont(30, 100, 320, 1920)}
+`

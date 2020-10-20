@@ -3,10 +3,23 @@ import React from "react"
 import PageTitle from "../pageTitle/pageTitle"
 import styled from "styled-components"
 
-const Header = ({ children, title = "", color = "white", link = true }) => (
+const Header = ({
+  children,
+  title = "",
+  color = "white",
+  link = true,
+  checkInter,
+}) => (
   <Root>
     <Inner>
-      {title && <PageTitle title={title} color={color} link={link}></PageTitle>}
+      {title && (
+        <PageTitle
+          title={title}
+          color={color}
+          link={link}
+          checkInter={checkInter}
+        ></PageTitle>
+      )}
 
       {children}
     </Inner>
@@ -16,6 +29,7 @@ const Header = ({ children, title = "", color = "white", link = true }) => (
 const Root = styled.header`
   background: transparent;
   position: fixed;
+  max-width: ${({ theme }) => theme.pageWidth};
   top: 0;
   width: 100%;
   z-index: 100;
@@ -26,7 +40,6 @@ const Root = styled.header`
 `
 const Inner = styled.div`
   margin: 0 auto;
-  max-width: 2000;
   width: 100%;
   height: 80px;
   display: flex;

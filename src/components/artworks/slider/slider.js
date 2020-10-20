@@ -17,6 +17,7 @@ function Slider({ artwork, open, handleCloseClick }) {
             title={artwork ? artwork.artistName : ""}
             color="lila"
             link={false}
+            checkInter={false}
           >
             <div
               style={{ width: 40, pointerEvents: "all" }}

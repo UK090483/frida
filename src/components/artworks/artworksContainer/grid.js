@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect, useRef } from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 import Masonry from "react-masonry-css"
@@ -10,14 +10,45 @@ const breakpointColumnsObj = {
   [breackingpoints.tablet]: 1,
 }
 
-export default function Grid({ children }) {
+const observerOptions = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.25,
+}
+
+export default function Grid({ children, loadMore, page, infinite, loading }) {
+  const loader = useRef(null)
+
+  const _loadMore = entries => {
+    if (entries[0].isIntersecting) {
+      // console.log(entries[0])
+      loadMore()
+    }
+  }
+  useEffect(() => {
+    if (infinite && loader.current) {
+      const observer = new IntersectionObserver(_loadMore, observerOptions)
+
+      observer.observe(loader.current)
+
+      return () => {
+        observer.unobserve(loader.current)
+      }
+    }
+  }, [loader.current, page])
+
   return (
-    <StyledMasoury
-      breakpointCols={breakpointColumnsObj}
-      columnClassName="my-masonry-grid_column"
-    >
-      {children}
-    </StyledMasoury>
+    <React.Fragment>
+      <StyledMasoury
+        breakpointCols={breakpointColumnsObj}
+        columnClassName="my-masonry-grid_column"
+        style={{ border: loading ? "red solid 1px" : "" }}
+      >
+        {children}
+      </StyledMasoury>
+
+      <div ref={loader} style={{ transform: "translateY(-150vh)" }}></div>
+    </React.Fragment>
   )
 }
 const StyledMasoury = styled(Masonry)`
@@ -46,3 +77,28 @@ const StyledMasoury = styled(Masonry)`
 Grid.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node),
 }
+
+const StyledArrow = styled.div`
+  box-shadow: 0px 0px 22px -2px rgba(71, 71, 71, 0.5);
+  position: fixed;
+  z-index: 50;
+  bottom: 20px;
+  right: ${({ showScrollup }) => (showScrollup ? "20px" : "-50px")};
+  width: 30px;
+  height: 30px;
+
+  background-color: ${({ theme }) => theme.colors.pink};
+  border-radius: 50%;
+  transform: ${({ showScrollup }) => (showScrollup ? "scale(1)" : "scale(0)")};
+  transition: right 0.5s, transform 0.5s, box-shadow 1s;
+  box-shadow: 0px 0px 22px -2px rgba(71, 71, 71, 0.5);
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 50px;
+    height: 50px;
+  }
+`

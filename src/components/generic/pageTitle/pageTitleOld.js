@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState, useCallback } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Link } from "gatsby"
 import { setMouse } from "../Mouse/mouseRemote"
 import style from "./pageTitle.module.scss"
 import styled from "styled-components"
 import Frida from "../../frida/frida"
 import { flexUnit } from "../../../Styles/theme"
-import throttle from "lodash/throttle"
+import { useThrottleFn } from "react-use"
 
 export default function PageTitle({
   title,
@@ -19,27 +19,26 @@ export default function PageTitle({
 
   let finalColor = colorShift ? "pink" : "white"
 
-  const checkInterfering = throttle(() => {
-    if (interItems.current) {
-      const root = document.querySelector("." + style.name)
-      let sholdAdd = false
-      interItems.current.forEach(element => {
-        const clientRect = element.getBoundingClientRect()
-        if (clientRect.top < 60 && clientRect.bottom > 60) {
-          sholdAdd = true
-          root && root.classList.add(style.lila)
-        }
-      })
+  useEffect(() => {
+    const checkInterfering = () => {
+      if (interItems.current) {
+        const root = document.querySelector("." + style.name)
+        let sholdAdd = false
+        interItems.current.forEach(element => {
+          const clientRect = element.getBoundingClientRect()
+          if (clientRect.top < 60 && clientRect.bottom > 60) {
+            sholdAdd = true
+            root && root.classList.add(style.lila)
+          }
+        })
 
-      if (sholdAdd) {
-        !colorShift && setColorShift(true)
-      } else {
-        colorShift && setColorShift(false)
+        if (sholdAdd) {
+          !colorShift && setColorShift(true)
+        } else {
+          colorShift && setColorShift(false)
+        }
       }
     }
-  }, 100)
-
-  useEffect(() => {
     if (checkInter) {
       interItems.current = document.querySelectorAll("[data-color=default]")
       if (interItems.current.length > 0) {
@@ -49,7 +48,7 @@ export default function PageTitle({
     return () => {
       document.removeEventListener("scroll", checkInterfering)
     }
-  }, [checkInter])
+  }, [checkInter, colorShift])
 
   return (
     <React.Fragment>

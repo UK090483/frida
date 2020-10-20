@@ -13,18 +13,29 @@ const HtmlAttributes = {
 
 const HeadComponents = [
   <link
-    key="snipcartCss"
-    rel="stylesheet"
+    rel="preload"
     href="https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
   />,
 ]
 const postBody = [
-  <script
-    id="snipcartJs"
-    defer
-    key="snipcartJs"
-    src="https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.js"
+  <link
+    key="snipcartPreApp"
+    rel="preconnect"
+    href="https://app.snipcart.com"
   />,
+  <link
+    key="snipcartPreCdn"
+    rel="preconnect"
+    href="https://cdn.snipcart.com"
+  />,
+  // <script
+  //   id="snipcartJs"
+  //   async
+  //   key="snipcartJs"
+  //   src="https://cdn.snipcart.com/themes/v3.0.22/default/snipcart.js"
+  // />,
   <div
     hidden
     key="snipcart"

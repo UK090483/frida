@@ -29,8 +29,24 @@ const theme = {
     desktop: `(min-width: ${breackingpoints.desktop})`,
     desktopL: `(min-width: ${breackingpoints.desktop})`,
   },
+  pageWidth: "1920px",
 }
 export default theme
+
+const fluidFont = (min_font, max_font, min_vp, max_vp) => {
+  return `
+  font-size: ${min_font}px;
+  @media screen and (min-width: ${min_vp}px) {
+    font-size: calc(
+      ${min_font}px + ${max_font - min_font} *
+        ((100vw - ${min_vp}px) / (${max_vp - min_vp}))
+    );
+  }
+  @media screen and (min-width: ${max_vp}px) {
+    font-size: ${max_font}px;
+  }
+  `
+}
 
 function flexUnit(amount, min, max, unit = "vw", prop = "font-size") {
   const minBreakpoint = (min / amount) * 100
@@ -56,4 +72,4 @@ function flexUnit(amount, min, max, unit = "vw", prop = "font-size") {
   `
 }
 
-export { breackingpoints, flexUnit }
+export { breackingpoints, flexUnit, fluidFont }

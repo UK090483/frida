@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useCallback, useState, useMemo } from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
@@ -15,21 +15,54 @@ import Slider from "./slider/slider"
 function Artworks({ filter = false, infinite = false }) {
   const [open, setOpen] = useState(false)
   const [artwork, setArtwork] = useState(null)
-  const [filert, setFElements] = useState(null)
+  const [filterQuery, setFilterQuery] = useState(null)
   const { stopBodyScroll, enableBodySroll } = useBodyScrollStop()
 
-  const artworks = usePreparedData()
+  const data = useStaticQuery(graphql`
+    query ArtworkQuery {
+      allStoryblokEntry(
+        filter: { full_slug: { regex: "/artwork/" } }
+        sort: { fields: field_randSort_number, order: ASC }
+        limit: 9
+      ) {
+        edges {
+          node {
+            id
+            content
+            slug
+          }
+        }
+      }
+    }
+  `)
 
-  const handleClick = artwork => {
+  function getArtworks() {
+    let b = []
+    data.allStoryblokEntry.edges.forEach(artwork => {
+      const t = {
+        content: { ...JSON.parse(artwork.node.content) },
+      }
+      t.id = artwork.node.id
+      t.slug = artwork.node.slug
+      b.push(getArtwork(t))
+    })
+    return b
+  }
+
+  // console.log("print")
+
+  const artworks = getArtworks()
+
+  const handleClick = useCallback(artwork => {
     setArtwork(artwork)
     setOpen(true)
     stopBodyScroll()
-  }
+  })
 
-  const handleCloseClick = () => {
+  const handleCloseClick = useCallback(() => {
     setOpen(false)
     enableBodySroll()
-  }
+  })
   /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
     <React.Fragment>
@@ -43,7 +76,10 @@ function Artworks({ filter = false, infinite = false }) {
           </Section>
         )}
         {filter && (
-          <Filter artworks={artworks} setFElements={setFElements}></Filter>
+          <Filter
+            filterQuery={filterQuery}
+            setFilterQuery={setFilterQuery}
+          ></Filter>
         )}
         <Root>
           <Slider
@@ -53,9 +89,10 @@ function Artworks({ filter = false, infinite = false }) {
           />
 
           <ArtworsContainer
-            artworks={filert || artworks}
+            artworks={artworks}
             handleClick={handleClick}
             infinite={infinite}
+            filterQuery={filterQuery}
           ></ArtworsContainer>
         </Root>
       </Section>
@@ -86,36 +123,4 @@ Artworks.propTypes = {
   infinite: PropTypes.bool,
 }
 
-function usePreparedData() {
-  const data = useStaticQuery(graphql`
-    query MyQuery {
-      allStoryblokEntry(
-        filter: { full_slug: { regex: "/artwork/" } }
-        sort: { fields: field_randSort_number, order: ASC }
-      ) {
-        edges {
-          node {
-            id
-            content
-            slug
-          }
-        }
-      }
-    }
-  `)
-  function getArtworks() {
-    let b = []
-    data.allStoryblokEntry.edges.forEach(artwork => {
-      const t = {
-        content: { ...JSON.parse(artwork.node.content) },
-      }
-      t.id = artwork.node.id
-      t.slug = artwork.node.slug
-      b.push(getArtwork(t))
-    })
-    return b
-  }
-
-  return getArtworks()
-}
-export default Artworks
+export default React.memo(Artworks)

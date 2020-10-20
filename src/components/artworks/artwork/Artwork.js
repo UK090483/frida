@@ -8,14 +8,9 @@ import Container from "./container/artworkContainer"
 import ArtworkImage from "./artworkImage/artworkImage"
 import ArtworkInfo from "./artworkInfo/ArtworkInfo"
 
-function Artwork({ artwork, handleClick, handleLoaded }) {
+function Artwork({ artwork, handleClick }) {
   const { availability, artworkName, artistName, price, imageUrl } = artwork
 
-  // const [loaded, setloaded] = useState(false)
-
-  const makeVisilbe = () => {
-    handleLoaded()
-  }
   /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
     <Container
@@ -25,13 +20,10 @@ function Artwork({ artwork, handleClick, handleLoaded }) {
     >
       <ArtworkImage
         alt={`artwork ${artworkName} from ${artistName}`}
-        onLoad={makeVisilbe}
         src={imageUrl}
       />
 
-      <ArtistName>
-        <Frida text={artistName} textColor="#f5c5d9"></Frida>
-      </ArtistName>
+      <ArtistName artistName={artistName}></ArtistName>
 
       <ArtworkInfo
         availability={availability}
@@ -42,7 +34,15 @@ function Artwork({ artwork, handleClick, handleLoaded }) {
   )
 }
 
-const ArtistName = styled.h3`
+Artwork.propTypes = {
+  artwork: PropTypes.object,
+  handleClick: PropTypes.func,
+  handleLoaded: PropTypes.func,
+}
+
+export default React.memo(Artwork)
+
+const StyledArtistName = styled.h3`
   margin-top: 10px;
   font-size: 1rem;
   margin-bottom: 5px;
@@ -51,10 +51,8 @@ const ArtistName = styled.h3`
   }
 `
 
-Artwork.propTypes = {
-  artwork: PropTypes.object,
-  handleClick: PropTypes.func,
-  handleLoaded: PropTypes.func,
-}
-
-export default Artwork
+const ArtistName = React.memo(({ artistName }) => (
+  <StyledArtistName>
+    <Frida text={artistName} textColor="#f5c5d9"></Frida>
+  </StyledArtistName>
+))

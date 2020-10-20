@@ -1,6 +1,6 @@
 import MouseClassNames from "./classNames"
 let mouseNeeded = false
-let ListenerItems = []
+
 let mouse
 const setMouse = (type, e) => {
   !mouse && (mouse = window.FridaMouse)
@@ -50,18 +50,18 @@ function getLinks() {
   })
 }
 
-const setMouseDown = () => {
-  mouse.classList.add(MouseClassNames.mouseDown)
-}
-const setMouseUp = () => {
-  mouse.classList.remove(MouseClassNames.mouseDown)
-}
-const setMouseIn = () => {
-  mouse.classList.remove(MouseClassNames.mouseOut)
-}
-const setMouseOut = () => {
-  mouse.classList.add(MouseClassNames.mouseOut)
-}
+// const setMouseDown = () => {
+//   mouse.classList.add(MouseClassNames.mouseDown)
+// }
+// const setMouseUp = () => {
+//   mouse.classList.remove(MouseClassNames.mouseDown)
+// }
+// const setMouseIn = () => {
+//   mouse.classList.remove(MouseClassNames.mouseOut)
+// }
+// const setMouseOut = () => {
+//   mouse.classList.add(MouseClassNames.mouseOut)
+// }
 const setMouseLinkIn = () => {
   mouse.classList.add(MouseClassNames.linkHover)
 }

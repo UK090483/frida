@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Frida from "../frida/frida"
 import Button from "../buttons/button"
 import styled, { keyframes } from "styled-components"
-import axios from "axios"
+// import axios from "axios"
 
 export default function StartHero({ children }) {
   const data = useStaticQuery(graphql`

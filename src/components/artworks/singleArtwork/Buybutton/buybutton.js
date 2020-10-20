@@ -1,17 +1,13 @@
 import React from "react"
 import getPriceWithTax from "../../helper/getPriceWithTax"
 import transformImage from "../../helper/transformImage"
-import useMouse from "../../../generic/Mouse/hooks/useMouse"
+import { setMouse } from "../../../generic/Mouse/mouseRemote"
 import useShop from "../../../shopcomponents/hooks/useShop"
 import styled from "styled-components"
 
 export default function Buybutton({ artwork }) {
   const { artworkName, price, artistDescription, imageUrl, slug } = artwork
-
   const { openCard, onCard, eraseItem } = useShop(artworkName)
-
-  console.log(onCard)
-  const { setMouse } = useMouse()
 
   return (
     <Root>

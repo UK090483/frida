@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef } from "react"
 import { Link } from "gatsby"
 import { setMouse } from "../Mouse/mouseRemote"
-import style from "./pageTitle.module.scss"
 import styled from "styled-components"
 import Frida from "../../frida/frida"
 import { flexUnit } from "../../../Styles/theme"
-import { useThrottleFn } from "react-use"
+import throttle from "lodash/throttle"
 
 export default function PageTitle({
   title,
@@ -15,30 +14,30 @@ export default function PageTitle({
 }) {
   const interItems = useRef()
   const ref = useRef()
-  const [colorShift, setColorShift] = useState(false)
 
-  let finalColor = colorShift ? "pink" : "white"
-
-  useEffect(() => {
-    const checkInterfering = () => {
-      if (interItems.current) {
-        const root = document.querySelector("." + style.name)
-        let sholdAdd = false
-        interItems.current.forEach(element => {
-          const clientRect = element.getBoundingClientRect()
-          if (clientRect.top < 60 && clientRect.bottom > 60) {
-            sholdAdd = true
-            root && root.classList.add(style.lila)
-          }
-        })
-
-        if (sholdAdd) {
-          !colorShift && setColorShift(true)
-        } else {
-          colorShift && setColorShift(false)
+  const checkInterfering = throttle(() => {
+    if (interItems.current) {
+      let sholdAdd = false
+      interItems.current.forEach(element => {
+        const clientRect = element.getBoundingClientRect()
+        if (clientRect.top < 60 && clientRect.bottom > 60) {
+          sholdAdd = true
         }
+      })
+
+      if (sholdAdd) {
+        ref.current &&
+          !ref.current.classList.contains("pageHeader_pink") &&
+          ref.current.classList.add("pageHeader_pink")
+      } else {
+        ref.current &&
+          ref.current.classList.contains("pageHeader_pink") &&
+          ref.current.classList.remove("pageHeader_pink")
       }
     }
+  }, 300)
+
+  useEffect(() => {
     if (checkInter) {
       interItems.current = document.querySelectorAll("[data-color=default]")
       if (interItems.current.length > 0) {
@@ -48,14 +47,14 @@ export default function PageTitle({
     return () => {
       document.removeEventListener("scroll", checkInterfering)
     }
-  }, [checkInter, colorShift])
+  }, [checkInter, checkInterfering])
 
   return (
     <React.Fragment>
       {link ? (
         <Link to="/" style={{ textDecoration: "none" }}>
           <Root
-            // className={style.root}
+            ref={ref}
             onMouseEnter={() => {
               setMouse("link", true)
               setMouse("color", true)
@@ -65,17 +64,15 @@ export default function PageTitle({
               setMouse("color", false)
             }}
           >
-            <h1 ref={ref}>
-              <Frida text={title} textColor={finalColor}></Frida>
+            <h1>
+              <Frida text={title} textColor={color}></Frida>
             </h1>
           </Root>
         </Link>
       ) : (
-        <Root
-        //  className={style.root}
-        >
+        <Root>
           <h1>
-            <Frida text={title} textColor={finalColor}></Frida>
+            <Frida text={title} textColor={color}></Frida>
           </h1>
         </Root>
       )}
@@ -96,5 +93,12 @@ const Root = styled.div`
     font-family: "Montserrat", sans-serif;
     font-size: 250px;
     ${flexUnit(6, 20, 60)}
+  }
+  &.pageHeader_pink {
+    span {
+      span {
+        color: ${({ theme }) => theme.colors.pink};
+      }
+    }
   }
 `

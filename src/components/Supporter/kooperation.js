@@ -10,6 +10,7 @@ const Image = () => {
       ) {
         edges {
           node {
+            id
             childImageSharp {
               fluid {
                 srcSet
@@ -24,7 +25,11 @@ const Image = () => {
   return (
     <Root>
       {data.allFile.edges.map(item => (
-        <img alt={"Logo"} srcSet={item.node.childImageSharp.fluid.srcSet}></img>
+        <img
+          alt={"Logo"}
+          key={item.node.id}
+          srcSet={item.node.childImageSharp.fluid.srcSet}
+        ></img>
       ))}
     </Root>
   )

@@ -76,3 +76,23 @@ const StyledLink = styled(Link)`
       cubic-bezier(0.47, 0.71, 0.42, 1.12);
   }
 `
+
+// h2 {
+//   ${({ animation, index, open }) => {
+//     switch (animation) {
+//       case "in":
+//         return `transform: translate3d(0, 0, 0); transition: transform 0.5s ${
+//           index * 0.1 + 0.3
+//         }s cubic-bezier(0.47, 0.71, 0.42, 1.12)`
+//       case "out":
+//         return `transform: translate3d(100vw, 0, 0); transition: transform 0.5s ${
+//           index * 0.1 + 0.3
+//         }s cubic-bezier(0.47, 0.71, 0.42, 1.12)`
+
+//       default:
+//         return open
+//           ? `transform: translate3d(0, 0, 0); transition: unset`
+//           : `transform: translate3d(100vw, 0, 0); transition: unset`
+//     }
+//   }}
+// }
