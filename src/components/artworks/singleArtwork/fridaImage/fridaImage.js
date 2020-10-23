@@ -1,6 +1,9 @@
 import React, { useRef, useState, useEffect } from "react"
 import useMouse from "../../../generic/Mouse/hooks/useMouse"
 import styled from "styled-components"
+import { getFluidGatsbyImage } from "gatsby-storyblok-image"
+import transformImage from "../../helper/transformImage"
+import Img from "gatsby-image"
 
 const SCALE = [2, 3]
 
@@ -25,6 +28,16 @@ export default function FridaImage({ artwork }) {
   const sizes = imageUrl.split("/")[5].split("x")
   const width = sizes[0]
   const height = sizes[1]
+  // console.log(width)
+  // console.log(height)
+
+  // const fluidProps = getFluidGatsbyImage(src, {
+  //   maxWidth: 400,
+  //   quality: 60,
+  //   smartCrop: false,
+  //   base64: transformImage(src, "10x0/filters:quality(10)"),
+  //   useBase64: true,
+  // })
 
   useEffect(() => {
     const handleImageSizing = () => {
@@ -99,7 +112,7 @@ export default function FridaImage({ artwork }) {
         }}
         onClick={handleclick}
         ref={imageRef}
-        src={transformImage(imageUrl, "500x0")}
+        src={transformImage(imageUrl, "500x0/filters:quality(80)")}
         alt={`Kunstwerk ${artworkName} von ${artistName}`}
       ></Image>
       <Magni

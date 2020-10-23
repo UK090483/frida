@@ -7,7 +7,7 @@ export default function useInfenitScroll(
   infinite,
   loadMore
 ) {
-  const [postCount, setPostCount] = useState(30)
+  const [postCount, setPostCount] = useState(9)
   const [showScrollup, setShowScrollup] = useState(false)
   const [loading, setloading] = useState(false)
 
@@ -24,7 +24,7 @@ export default function useInfenitScroll(
         }
         const clientRef = gridRef.current.getBoundingClientRect()
 
-        if (clientRef.bottom - window.innerHeight < 300) {
+        if (clientRef.bottom - window.innerHeight < 1200) {
           if (!loading) {
             setloading(true)
             loadMore(setloading)
@@ -47,7 +47,15 @@ export default function useInfenitScroll(
         window.removeEventListener("scroll", handleScroll)
       }
     }
-  }, [artworks.length, gridRef, infinite, loadMore, loading, postCount, showScrollup])
+  }, [
+    artworks.length,
+    gridRef,
+    infinite,
+    loadMore,
+    loading,
+    postCount,
+    showScrollup,
+  ])
 
   return { postCount, showScrollup, loading }
 }

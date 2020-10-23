@@ -31,5 +31,5 @@ export default function Icon({ onClick }) {
 const Root = styled.div`
   width: 40px;
   pointer-events: all;
-  transform: translateY(5px);
+  transform: translate3d(6px, 5px, 0);
 `

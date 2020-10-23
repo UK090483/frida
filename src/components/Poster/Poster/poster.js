@@ -7,58 +7,23 @@ import { useStaticQuery, graphql } from "gatsby"
 export default function Poster() {
   const data = useStaticQuery(graphql`
     query posterQuerry {
-      allFridaPoster {
-        edges {
-          node {
-            id
-            artworkName
-            artistName
-            images {
-              local {
-                childImageSharp {
-                  fluid(maxWidth: 600, quality: 70) {
-                    src
-                    srcSet
-                  }
-
-                  original {
-                    height
-                    width
-                  }
-                }
-              }
-            }
-          }
+      allFriiidaPoster {
+        nodes {
+          artistName
+          artworkName
+          imageUrl
         }
       }
     }
   `)
 
-  const posters = normalizeData(data)
-
   return (
     <Section>
       <PosterGrid>
-        {posters.map(posterItem => (
+        {data.allFriiidaPoster.nodes.map(posterItem => (
           <PosterItem key={posterItem.id} poster={posterItem}></PosterItem>
         ))}
       </PosterGrid>
     </Section>
   )
-}
-
-function normalizeData(data) {
-  return data.allFridaPoster.edges.map(item => {
-    const { artistName, artworkName, id, images } = item.node
-    return {
-      id,
-      artistName,
-      artworkName,
-      image: {
-        src: images[0].local.childImageSharp.fluid.src,
-        width: images[0].local.childImageSharp.original.width,
-        height: images[0].local.childImageSharp.original.height,
-      },
-    }
-  })
 }

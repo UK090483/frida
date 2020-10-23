@@ -1,8 +1,8 @@
 const postCssPlugins = require("./postcss-config.js")
 // const { createProxyMiddleware } = require("http-proxy-middleware")
-// require("dotenv").config({
-//   path: `.env.${process.env.NODE_ENV}`,
-// })
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 //process.env.GATSBY_CONCURRENT_DOWNLOAD = 1
 
@@ -70,39 +70,39 @@ module.exports = {
         resolveRelations: ["artist", "stil", "medium"],
       },
     },
-    {
-      resolve: "gatsby-source-graphql",
-      options: {
-        // Arbitrary name for the remote schema Query type
-        typeName: "StoryQL",
-        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
-        fieldName: "storyQL",
-        // Url to query from
-        url: "https://gapi.storyblok.com/v1/api",
+    // {
+    //   resolve: "gatsby-source-graphql",
+    //   options: {
+    //     // Arbitrary name for the remote schema Query type
+    //     typeName: "StoryQL",
+    //     // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+    //     fieldName: "storyQL",
+    //     // Url to query from
+    //     url: "https://gapi.storyblok.com/v1/api",
 
-        headers: {
-          // Learn about environment variables: https://gatsby.dev/env-vars
-          Token: `ObvzIeHZVi9TkIUctkrfHQtt`,
-        },
-      },
-    },
-    {
-      resolve: "gatsby-source-custom-api",
-      options: {
-        url: "https://fridaadmin.konradullrich.com/wp-json/frida/v1/poster/",
-        imageKeys: ["images"],
-        rootKey: "fridaPoster",
-        schemas: {
-          fridaPoster: `
-            images: [images]
-          `,
-          images: `
-            url: String,
-            modified: Int
-          `,
-        },
-      },
-    },
+    //     headers: {
+    //       // Learn about environment variables: https://gatsby.dev/env-vars
+    //       Token: `ObvzIeHZVi9TkIUctkrfHQtt`,
+    //     },
+    //   },
+    // },
+    // {
+    //   resolve: "gatsby-source-custom-api",
+    //   options: {
+    //     url: "https://fridaadmin.konradullrich.com/wp-json/frida/v1/poster/",
+    //     imageKeys: ["images"],
+    //     rootKey: "fridaPoster",
+    //     schemas: {
+    //       fridaPoster: `
+    //         images: [images]
+    //       `,
+    //       images: `
+    //         url: String,
+    //         modified: Int
+    //       `,
+    //     },
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

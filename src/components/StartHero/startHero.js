@@ -6,17 +6,26 @@ import styled, { keyframes } from "styled-components"
 import axios from "axios"
 
 export default function StartHero({ children }) {
+  // const data = useStaticQuery(graphql`
+  //   query startHeroQuery {
+  //     storyQL {
+  //       ArtworkItems(per_page: 10) {
+  //         items {
+  //           content {
+  //             Image {
+  //               filename
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
   const data = useStaticQuery(graphql`
     query startHeroQuery {
-      storyQL {
-        ArtworkItems(per_page: 10) {
-          items {
-            content {
-              Image {
-                filename
-              }
-            }
-          }
+      allFridaArtworks {
+        nodes {
+          imageUrl
         }
       }
     }
@@ -26,26 +35,8 @@ export default function StartHero({ children }) {
     return Math.floor(Math.random() * (max - min) + min)
   }
 
-  const allImages = data.storyQL.ArtworkItems.items
+  const allImages = data.allFridaArtworks.nodes
   const [images, setImages] = useState([])
-
-  useEffect(() => {
-    // axios
-    //   .get(
-    //     "https://api.storyblok.com/v1/cdn/stories?token=Hw2k511Rg3irS6QTDvxrewtt"
-    //   )
-    //   .then(function (response) {
-    //     // handle success
-    //     console.log(response)
-    //   })
-    //   .catch(function (error) {
-    //     // handle error
-    //     console.log(error)
-    //   })
-    //   .then(function () {
-    //     // always executed
-    //   })
-  }, [])
 
   useEffect(() => {
     function transformImage(image, option) {
@@ -56,10 +47,7 @@ export default function StartHero({ children }) {
 
     function getNext() {
       let item = allImages[getRandomInt(0, allImages.length)]
-      return transformImage(
-        item.content.Image.filename,
-        "150x0/filters:quality(60)"
-      )
+      return transformImage(item.imageUrl, "150x0/filters:quality(60)")
     }
 
     const int = setTimeout(() => {

@@ -1,9 +1,19 @@
 import React, { useRef, useEffect } from "react"
 import styled from "styled-components"
 
-export default function FridaImage({ alt, width, height, src }) {
+export default function FridaImage({ alt, imageUrl }) {
   const imageRef = useRef()
   const RootRef = useRef()
+
+  function transformImage(image, option) {
+    var imageService = "https://img2.storyblok.com/"
+    var path = image.replace("https://a.storyblok.com", "")
+    return imageService + option + "/" + path
+  }
+
+  const sizes = imageUrl.split("/")[5].split("x")
+  const width = sizes[0]
+  const height = sizes[1]
 
   useEffect(() => {
     const handleImageSizing = () => {
@@ -32,12 +42,8 @@ export default function FridaImage({ alt, width, height, src }) {
   return (
     <Root ref={RootRef}>
       <Image
-        // className={`${style.image} ${
-        //   width - 50 > height ? style.landscape : ""
-        // }`}
-        // onLoad={() => { setLoaded(true) }}
         ref={imageRef}
-        src={src}
+        src={transformImage(imageUrl, "500x0")}
         alt={alt}
       ></Image>
     </Root>

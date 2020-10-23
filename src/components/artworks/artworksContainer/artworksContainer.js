@@ -6,7 +6,6 @@ import useInfinitScroll from "../helper/useInfinitScroll"
 import styled, { withTheme } from "styled-components"
 import PropTypes from "prop-types"
 import Grid from "./grid"
-// import useStoryblok from "../../hooks/useStoryblock"
 
 function ArtworkContainer({ artworks, handleClick, infinite = false }) {
   const gridRef = useRef(false)
@@ -15,19 +14,6 @@ function ArtworkContainer({ artworks, handleClick, infinite = false }) {
 
   const loadMore = setloading => {
     console.log("loadmore")
-    // Storyblok.get("cdn/stories/", {
-    //   per_page: 10,
-    //   page: 2,
-    //   starts_with: "artwork/",
-    //   resolve_relations: "artist,stil,medium",
-    // })
-    //   .then(response => {
-    //     console.log(response)
-    //     setloading(false)
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
   }
 
   const { postCount, showScrollup } = useInfinitScroll(

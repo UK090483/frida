@@ -8,9 +8,10 @@ import styled from "styled-components"
 export default function Buybutton({ artwork }) {
   const { artworkName, price, artistDescription, imageUrl, slug } = artwork
 
+  // console.log(artworkName)
   const { openCard, onCard, eraseItem } = useShop(artworkName)
 
-  console.log(onCard)
+  // console.log(onCard)
   const { setMouse } = useMouse()
 
   return (
@@ -22,11 +23,10 @@ export default function Buybutton({ artwork }) {
           data-item-id={artworkName}
           data-item-min-quantity={1}
           data-item-max-quantity={1}
-          // onClick={handleClick}
           data-item-price={getPriceWithTax(price)}
           data-item-url={"/artwork/" + slug}
           data-item-description={artistDescription}
-          data-item-image={transformImage(imageUrl, "500x0")}
+          data-item-image={transformImage(imageUrl, "200x0")}
           data-item-name={artworkName}
           onMouseEnter={() => {
             setMouse("link", true)

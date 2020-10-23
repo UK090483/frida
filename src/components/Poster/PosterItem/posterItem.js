@@ -4,16 +4,16 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 
 function PosterItem({ poster }) {
-  const { src, width, height } = poster.image
+  const { imageUrl, artistName, artworkName } = poster
 
   return (
     <Root>
       <ImageWrap>
-        <FridaImage src={src} width={width} height={height}></FridaImage>
+        <FridaImage alt={"src"} imageUrl={imageUrl}></FridaImage>
       </ImageWrap>
       <InfoWrap>
-        <h6>{poster.artistName}</h6>
-        <h6>{poster.artworkName}</h6>
+        <h6>{artistName}</h6>
+        <h6>{artworkName}</h6>
       </InfoWrap>
     </Root>
   )

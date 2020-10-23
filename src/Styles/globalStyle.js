@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components"
-import { flexUnit } from "./theme"
+import { flexUnit, fluidFont } from "./theme"
 
 const Global = createGlobalStyle`
 
@@ -25,30 +25,31 @@ h6 {
   margin-bottom: 1.45rem;
 }
 
+
+
 h1 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(6, 40, 100)}
+  ${fluidFont(30, 100, 320, 1920)}
 }
 h2 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(5, 32, 80)}
+  ${fluidFont(29, 80, 320, 1920)}
 }
 h3 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(4, 24, 60)}
+  ${fluidFont(24, 60, 320, 1920)}
 }
 h4 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(3, 20, 50)}
+  ${fluidFont(20, 50, 320, 1920)}
 }
-
 h5 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(2, 16, 40)}
+  ${fluidFont(16, 40, 320, 1920)}
 }
 h6 {
   font-family: "Montserrat", sans-serif;
-  ${flexUnit(2, 15, 30)}
+  ${fluidFont(15, 30, 320, 1920)}
 }
 
 p,
@@ -85,9 +86,7 @@ a {
   transition: opacity 1s;
   opacity: 1;
 }
-.frida_mouse_active {
-  cursor: none;
-}
+
 
 @media only screen and (max-width: 480px) {
   html {
@@ -114,6 +113,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media ${({ theme }) => theme.device.tablet} {
+  .frida_mouse_active {
+  cursor: none;
+}
+  
+}
+
+
+
 .snipcart-cart--opened {
   .page-layout {
     transition: opacity 1s;
@@ -121,6 +129,9 @@ body {
   }
   .frida_mouse_active {
     cursor: auto;
+    #mouse{
+      display:none;
+    }
   }
 }
 

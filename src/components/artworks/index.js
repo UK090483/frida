@@ -89,34 +89,28 @@ Artworks.propTypes = {
 function usePreparedData() {
   const data = useStaticQuery(graphql`
     query MyQuery {
-      allStoryblokEntry(
-        filter: { full_slug: { regex: "/artwork/" } }
-        sort: { fields: field_randSort_number, order: ASC }
-        limit: 10
-      ) {
-        edges {
-          node {
-            id
-            content
-            slug
-          }
+      allFridaArtworks {
+        nodes {
+          id
+          availability
+          width
+          artworkName
+          height
+          slug
+          imageUrl
+          depth
+          artistName
+          artistWeblink
+          instagramLink
+          medium
+          stil
+          price
+          artistDescription
         }
       }
     }
   `)
-  function getArtworks() {
-    let b = []
-    data.allStoryblokEntry.edges.forEach(artwork => {
-      const t = {
-        content: { ...JSON.parse(artwork.node.content) },
-      }
-      t.id = artwork.node.id
-      t.slug = artwork.node.slug
-      b.push(getArtwork(t))
-    })
-    return b
-  }
 
-  return getArtworks()
+  return data.allFridaArtworks.nodes
 }
 export default Artworks
