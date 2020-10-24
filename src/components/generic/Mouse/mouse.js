@@ -29,8 +29,6 @@ export default function () {
     document.addEventListener("mouseenter", setMouseIn)
     document.addEventListener("mouseleave", setMouseOut)
 
-    document.querySelector("body").classList.add("frida_mouse_active")
-
     return () => {
       document.removeEventListener("mousedown", setMouseDown)
       document.removeEventListener("mouseup", setMouseUp)
@@ -43,6 +41,12 @@ export default function () {
 }
 
 const MouseStyle = createGlobalStyle`
+
+.frida_mouse_active{
+
+  
+   
+  
   #mouse {
     width: 30px;
     height: 30px;
@@ -104,4 +108,5 @@ const MouseStyle = createGlobalStyle`
       }
     }
   }
+}
 `

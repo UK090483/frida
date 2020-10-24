@@ -18,9 +18,12 @@ const Layout = ({ children, title, header = "default", color }) => {
       <GlobalStyle></GlobalStyle>
       <div
         className={"page-layout"}
-        onMouseMove={e => {
+        onPointerMove={e => {
           setMouse("move", e)
         }}
+        // onMouseMove={e => {
+        //   setMouse("move", e)
+        // }}
         style={{
           margin: `0 auto`,
           maxWidth: 2600,

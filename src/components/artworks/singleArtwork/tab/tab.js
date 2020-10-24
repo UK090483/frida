@@ -169,10 +169,16 @@ const Switch = styled.div`
       !active ? theme.colors.pink : "transparent"};
     color: ${({ active, theme }) =>
       !active ? theme.colors.white : theme.colors.pink};
-    font-size: 1em;
+    font-size: 0.8em;
+    text-align: center;
     font-weight: 900;
     border-radius: 0 30px 30px 0;
     transition: background-color 0.6s, color 0.6s;
+
+    @media ${({ theme }) => theme.device.tablet} {
+      font-size: 1em;
+      text-align: center;
+    }
     &:first-child {
       border-radius: 30px 0 0 30px;
       background-color: ${({ active, theme }) =>

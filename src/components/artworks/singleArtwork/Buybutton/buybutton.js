@@ -13,9 +13,10 @@ export default function Buybutton({ artwork }) {
     imageUrl,
     slug,
     availability,
+    id,
   } = artwork
 
-  const { openCard, onCard, eraseItem } = useShop(artworkName)
+  const { openCard, onCard, eraseItem } = useShop(id)
 
   const { setMouse } = useMouse()
 
@@ -41,7 +42,7 @@ export default function Buybutton({ artwork }) {
               key="snipcart-add-item"
               show={true}
               className={"snipcart-add-item"}
-              data-item-id={artworkName}
+              data-item-id={id}
               data-item-min-quantity={1}
               data-item-max-quantity={1}
               data-item-price={getPriceWithTax(price)}
@@ -102,6 +103,11 @@ const Root = styled.div`
   width: 100%;
   display: flex;
   overflow: hidden;
+  flex-wrap: wrap-reverse;
+
+  @media ${({ theme }) => theme.device.tablet} {
+    flex-wrap: nowrap;
+  }
 `
 
 const BuyButton = styled.div`
@@ -126,7 +132,12 @@ const BuyButton = styled.div`
   white-space: nowrap;
   border-width: ${({ show }) => (show ? "3px" : "0")};
   padding: ${({ show }) => (show ? "1px 6px" : "0")};
-  margin-left: ${({ margin, show }) => (margin && show ? "20px" : "0")};
+  margin-top: 10px;
+
+  @media ${({ theme }) => theme.device.tablet} {
+    margin-left: ${({ margin, show }) => (margin && show ? "20px" : "0")};
+    margin-top: 0;
+  }
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.white};
