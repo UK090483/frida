@@ -6,16 +6,20 @@ import SingleArtwork from "../components/artworks/singleArtwork/singleArtwork"
 import { graphql } from "gatsby"
 import getArtwork from "../components/artworks/helper/getArtwork"
 
-export default function SingleArtworkTemplate({ data }) {
-  const artwork = parseArtwork(data.allStoryblokEntry.edges[0].node)
+export default function SingleArtworkTemplate(props) {
+  const { pageContext } = props
+  const { content: artwork } = pageContext
 
-  function parseArtwork(artwork) {
-    const t = {
-      content: { ...JSON.parse(artwork.content) },
-    }
-    t.id = artwork.id
-    return getArtwork(t)
-  }
+  console.log(pageContext)
+  // const artwork = parseArtwork(data.allStoryblokEntry.edges[0].node)
+
+  // function parseArtwork(artwork) {
+  //   const t = {
+  //     content: { ...JSON.parse(artwork.content) },
+  //   }
+  //   t.id = artwork.id
+  //   return getArtwork(t)
+  // }
 
   return (
     <Layout title={artwork.artistName} color={"lila"}>
@@ -27,17 +31,17 @@ export default function SingleArtworkTemplate({ data }) {
   )
 }
 
-export const query = graphql`
-  query($slug: String!) {
-    allStoryblokEntry(
-      filter: { full_slug: { regex: "/artwork/" }, slug: { eq: $slug } }
-    ) {
-      edges {
-        node {
-          id
-          content
-        }
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   query($slug: String!) {
+//     allStoryblokEntry(
+//       filter: { full_slug: { regex: "/artwork/" }, slug: { eq: $slug } }
+//     ) {
+//       edges {
+//         node {
+//           id
+//           content
+//         }
+//       }
+//     }
+//   }
+// `

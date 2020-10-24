@@ -187,6 +187,7 @@ exports.createPages = ({ graphql, actions }) => {
       query MyQuery {
         allFridaArtworks {
           nodes {
+            id
             artworkName
             availability
             width
