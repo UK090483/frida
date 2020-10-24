@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { createGlobalStyle } from "styled-components"
 import MouseClassNames from "./classNames"
+import { isBrowser } from "react-device-detect"
 
 export default function () {
   // const MouseRef = useRef()
@@ -37,16 +38,15 @@ export default function () {
     }
   }, [])
 
-  return <MouseStyle></MouseStyle>
+  return (
+    <React.Fragment>{isBrowser && <MouseStyle></MouseStyle>}</React.Fragment>
+  )
 }
 
 const MouseStyle = createGlobalStyle`
 
 .frida_mouse_active{
 
-  
-   
-  
   #mouse {
     width: 30px;
     height: 30px;
