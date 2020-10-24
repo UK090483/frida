@@ -45,6 +45,9 @@ export default function () {
 
 const MouseStyle = createGlobalStyle`
 
+
+@media (pointer: fine) {
+
 .frida_mouse_active{
 
   #mouse {
@@ -108,5 +111,6 @@ const MouseStyle = createGlobalStyle`
       }
     }
   }
+}
 }
 `
