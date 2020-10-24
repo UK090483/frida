@@ -23,6 +23,7 @@
     "gatsby-plugin-sass": "^2.3.10",
     "gatsby-plugin-sharp": "^2.6.43",
     "gatsby-plugin-smoothscroll": "^1.2.0",
+    "gatsby-plugin-snipcart-advanced": "^1.0.1",
     "gatsby-plugin-styled-components": "^3.3.10",
     "gatsby-source-custom-api": "^2.1.4",
     "gatsby-source-filesystem": "^2.3.14",

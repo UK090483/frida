@@ -3,7 +3,7 @@ import ShopIcon from "../../assets/shop_icon.svg"
 import useShop from "./hooks/useShop"
 import useMouse from "../../components/generic/Mouse/hooks/useMouse"
 export default function CheckOutLink() {
-  const { openCard, itemCount } = useShop()
+  const { openCard, itemCount, cartQuantity } = useShop()
   const { setMouse } = useMouse()
   const onClick = () => {
     openCard()
@@ -11,7 +11,7 @@ export default function CheckOutLink() {
 
   return (
     <React.Fragment>
-      {itemCount > 0 && (
+      {cartQuantity > 0 && (
         <div
           style={{
             pointerEvents: "auto",
@@ -40,7 +40,7 @@ export default function CheckOutLink() {
               alignItems: "center",
             }}
           >
-            {itemCount}
+            {cartQuantity}
           </div>
         </div>
       )}

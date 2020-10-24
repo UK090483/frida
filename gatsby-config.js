@@ -61,6 +61,21 @@ module.exports = {
     //   },
     // },
     {
+      resolve: `gatsby-plugin-snipcart-advanced`,
+      options: {
+        version: "3.0.22",
+        publicApiKey: "#####", // use public api key here or in environment variable
+        defaultLang: "de",
+        currency: "eur",
+        openCartOnAdd: false,
+
+        innerHTML: `
+          <billing section="bottom">
+              <!-- Customization goes here -->
+          </billing>`,
+      },
+    },
+    {
       resolve: "gatsby-source-storyblok",
       options: {
         accessToken: "ObvzIeHZVi9TkIUctkrfHQtt",

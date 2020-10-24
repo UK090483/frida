@@ -1,43 +1,40 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
+import { SnipcartContext } from "gatsby-plugin-snipcart-advanced/context"
 
 export default function useShop(id) {
-  const [itemCount, setItemCount] = useState(1)
+  const { state } = useContext(SnipcartContext)
+  const { cartQuantity, ready } = state
   const [onCard, setOnCard] = useState(false)
 
   const checkonCard = () => {
-    const items = Snipcart.store.getState().cart.items.items
-    setOnCard(!!items.find(item => id === item.id))
-  }
-  const eraseItem = () => {
-    if (window.Snipcart) {
+    if (ready) {
       const items = Snipcart.store.getState().cart.items.items
+      setOnCard(!!items.find(item => id === item.id))
+    }
+  }
+
+  const eraseItem = () => {
+    if (ready) {
+      const items = window.Snipcart.store.getState().cart.items.items
       const item = items.find(item => id === item.id)
       window.Snipcart.api.cart.items.remove(item.uniqueId)
       setOnCard(false)
     }
   }
   const openCard = () => {
-    if (window.Snipcart) {
+    if (ready) {
       window.Snipcart.api.session.setLanguage("de")
       window.Snipcart.api.theme.cart.open()
     }
   }
 
   useEffect(() => {
-    const unspscribe = window.Snipcart.store.subscribe(() => {
-      setItemCount(Snipcart.store.getState().cart.items.count)
+    if (ready) {
       if (id) {
         checkonCard()
       }
-    })
-    setItemCount(Snipcart.store.getState().cart.items.count)
-    if (id) {
-      checkonCard()
     }
-    return () => {
-      unspscribe()
-    }
-  }, [checkonCard, id])
+  }, [checkonCard, id, ready])
 
-  return { openCard, itemCount, onCard, eraseItem }
+  return { openCard, cartQuantity, onCard, eraseItem }
 }

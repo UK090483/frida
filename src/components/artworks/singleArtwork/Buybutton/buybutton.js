@@ -6,39 +6,63 @@ import useShop from "../../../shopcomponents/hooks/useShop"
 import styled from "styled-components"
 
 export default function Buybutton({ artwork }) {
-  const { artworkName, price, artistDescription, imageUrl, slug } = artwork
+  const {
+    artworkName,
+    price,
+    artistDescription,
+    imageUrl,
+    slug,
+    availability,
+  } = artwork
 
-  // console.log(artworkName)
   const { openCard, onCard, eraseItem } = useShop(artworkName)
 
-  // console.log(onCard)
   const { setMouse } = useMouse()
 
   return (
     <Root>
       {!onCard ? (
-        <BuyButton
-          show={true}
-          className={"snipcart-add-item "}
-          data-item-id={artworkName}
-          data-item-min-quantity={1}
-          data-item-max-quantity={1}
-          data-item-price={getPriceWithTax(price)}
-          data-item-url={"/artwork/" + slug}
-          data-item-description={artistDescription}
-          data-item-image={transformImage(imageUrl, "200x0")}
-          data-item-name={artworkName}
-          onMouseEnter={() => {
-            setMouse("link", true)
-          }}
-          onMouseLeave={() => {
-            setMouse("link", false)
-          }}
-        >
-          {"In den Warenkorb"}
-        </BuyButton>
+        <React.Fragment>
+          {availability === "sold" ? (
+            <BuyButton
+              show={true}
+              sold={true}
+              onMouseEnter={() => {
+                setMouse("link", true)
+              }}
+              onMouseLeave={() => {
+                setMouse("link", false)
+              }}
+            >
+              {"Leider Verkauft"}
+            </BuyButton>
+          ) : (
+            <BuyButton
+              key="snipcart-add-item"
+              show={true}
+              className={"snipcart-add-item"}
+              data-item-id={artworkName}
+              data-item-min-quantity={1}
+              data-item-max-quantity={1}
+              data-item-price={getPriceWithTax(price)}
+              data-item-url={"/artwork/" + slug}
+              data-item-description={artistDescription}
+              data-item-image={transformImage(imageUrl, "200x0")}
+              data-item-name={artworkName}
+              onMouseEnter={() => {
+                setMouse("link", true)
+              }}
+              onMouseLeave={() => {
+                setMouse("link", false)
+              }}
+            >
+              {"In den Warenkorb"}
+            </BuyButton>
+          )}
+        </React.Fragment>
       ) : (
         <BuyButton
+          key="snipcart-erase"
           show={true}
           onMouseEnter={() => {
             setMouse("link", true)
@@ -55,6 +79,7 @@ export default function Buybutton({ artwork }) {
       )}
 
       <BuyButton
+        key="snipcart-show"
         show={onCard}
         margin
         onMouseEnter={() => {
@@ -84,6 +109,7 @@ const BuyButton = styled.div`
   outline: none;
   transition: color 0.3s, background-color 0.3s;
   background-color: ${({ theme }) => theme.colors.red};
+  opacity: ${({ sold }) => (sold ? "0.8" : "1")};
   min-height: 70px;
   color: ${({ theme }) => theme.colors.white};
   display: flex;
