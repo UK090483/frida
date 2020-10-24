@@ -1,34 +1,51 @@
 export default function getArtwork(artwork) {
-  //console.log(!!artwork.images[0].local)
-
-  if (!!!artwork.images[0].local) {
-    return null
-  }
-
+  const {
+    Image: { filename: imageUrl },
+    stil: { name: stil },
+    medium: { name: medium },
+    artist: {
+      content: {
+        anzeige_name: artistName,
+        artist_instagram_link: instagramLink,
+        description: artistDescription,
+        email: artistEmail,
+        web_link: artistWebLink,
+      },
+    },
+    description: artworkDescription,
+    name: artworkName,
+    depth,
+    width,
+    height,
+    price,
+    availability,
+  } = artwork.content
   return {
+    slug: artwork.slug,
     id: artwork.id,
-    artistName: artwork.artistName,
-    artistEmail: artwork.artistEmail,
-    artistDescription: artwork.artistDescription,
-    artistWebLink: artwork.artistWebLink,
-    artworkName: artwork.artworkName,
-    artworkDescription: artwork.artworkDescription,
-    availability: artwork.availability,
+    artistName,
+    artistEmail,
+    artistDescription,
+    artistWebLink,
+    artworkName,
+    artworkDescription,
+    availability,
     images: {
-      fluid: artwork.images[0].local.childImageSharp.fluid,
-      src: artwork.images[0].local.childImageSharp.fluid.src,
-      srcSet: artwork.images[0].local.childImageSharp.fluid.srcSet,
-      width: artwork.images[0].local.childImageSharp.original.width,
-      height: artwork.images[0].local.childImageSharp.original.height,
+      fluid: "",
+      src: "",
+      srcSet: "",
+      width: "",
+      height: "",
     },
 
-    imageUrls: artwork.imageUrls,
-    height: artwork.height,
-    width: artwork.width,
-    depth: artwork.depth,
-    price: artwork.price,
-    stil: artwork.stil,
-    medium: artwork.medium,
-    instagramLink: artwork.instagramLink,
+    imageUrls: "artwork.imageUrls",
+    imageUrl,
+    height,
+    width,
+    depth,
+    price,
+    stil,
+    medium,
+    instagramLink,
   }
 }

@@ -1,15 +1,10 @@
-// import React from 'react';
-import { useEffect, useRef } from "react"
-import style from "../mouse.module.scss"
+//import React from "react"
+// import { useEffect, useRef } from "react"
+import MouseClassNames from "../classNames"
 
 export default function Mouse() {
-  const mouse = useRef()
-
-  useEffect(() => {
-    mouse.current = document.querySelector("#mouse")
-  }, [])
-
   const setMouse = (type, e) => {
+    const mouse = { current: window.FridaMouse }
     if (mouse.current) {
       switch (type) {
         case "move":
@@ -18,20 +13,20 @@ export default function Mouse() {
           break
         case "link":
           e
-            ? mouse.current.classList.add(style.linkhover)
-            : mouse.current.classList.remove(style.linkhover)
+            ? mouse.current.classList.add(MouseClassNames.linkHover)
+            : mouse.current.classList.remove(MouseClassNames.linkHover)
 
           break
         case "color":
           e
-            ? mouse.current.classList.add(style.black)
-            : mouse.current.classList.remove(style.black)
+            ? mouse.current.classList.add(MouseClassNames.black)
+            : mouse.current.classList.remove(MouseClassNames.black)
           break
 
         case "hide":
           e
-            ? mouse.current.classList.add(style.hide)
-            : mouse.current.classList.remove(style.hide)
+            ? mouse.current.classList.add(MouseClassNames.hide)
+            : mouse.current.classList.remove(MouseClassNames.hide)
           break
 
         default:
@@ -40,5 +35,5 @@ export default function Mouse() {
     }
   }
 
-  return { mouse: mouse.current, setMouse: setMouse }
+  return { setMouse: setMouse }
 }

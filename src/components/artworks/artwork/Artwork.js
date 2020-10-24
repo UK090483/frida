@@ -1,77 +1,60 @@
-import React, { useState } from "react"
+import React from "react"
 import Frida from "../../frida/frida"
-import style from "./artwork.module.scss"
-import useMouse from "../../generic/Mouse/hooks/useMouse"
+import styled from "styled-components"
+import PropTypes from "prop-types"
+
 import getPriceWithTax from "../helper/getPriceWithTax"
-// import ArtworkImage from "../../image/ArtworkImage/artworkImage"
-import Img from "gatsby-image"
+import Container from "./container/artworkContainer"
+import ArtworkImage from "./artworkImage/artworkImage"
+import ArtworkInfo from "./artworkInfo/ArtworkInfo"
 
-export default function Artwork({ artwork, handleClick, handleLoaded }) {
-  const {
-    images,
-    availability,
-    artworkName,
-    artistName,
-    price,
-    // imageUrls,
-  } = artwork
-  const [loaded, setloaded] = useState(false)
+function Artwork({ artwork, handleClick, handleLoaded }) {
+  const { availability, artworkName, artistName, price, imageUrl } = artwork
 
-  const { setMouse } = useMouse()
-
-  // const srcSet = images.srcSet
-  // const src = images.src
+  // const [loaded, setloaded] = useState(false)
 
   const makeVisilbe = () => {
     handleLoaded()
-
-    setTimeout(() => {
-      setloaded(true)
-    }, 200)
   }
   /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
-    <React.Fragment>
-      {images && (
-        <div
-          className={`${style.root}  ${loaded ? style.loaded : ""}`}
-          onClick={() => handleClick(artwork)}
-          onMouseEnter={() => {
-            setMouse("link", true)
-          }}
-          onMouseLeave={() => {
-            setMouse("link", false)
-          }}
-        >
-          <Img
-            placeholderClassName={style.image}
-            fluid={images.fluid}
-            onLoad={() => {
-              makeVisilbe()
-            }}
-          />
-          {/* <ArtworkImage
-            // className={style.image}
-            alt={`artwork ${artworkName} from ${artistName}`}
-            onLoad={() => {
-              makeVisilbe()
-            }}
-            src={imageUrls.large}
-          ></ArtworkImage> */}
-          <h3 className={style.artistName}>
-            <Frida text={artistName} textColor="#f5c5d9"></Frida>
-          </h3>
-          <div className={style.infoRoot}>
-            <div
-              className={`${style.dot} ${
-                availability === "sold" ? style.dotSold : ""
-              }`}
-            ></div>
-            <div className={style.artworkName}> {artworkName}</div>
-            <div className={style.price}>{getPriceWithTax(price)}€</div>
-          </div>
-        </div>
-      )}
-    </React.Fragment>
+    <Container
+      onClick={() => handleClick(artwork)}
+      loaded={true}
+      artwork={artwork}
+    >
+      <ArtworkImage
+        alt={`artwork ${artworkName} from ${artistName}`}
+        onLoad={makeVisilbe}
+        src={imageUrl}
+      />
+
+      <ArtistName>
+        <Frida text={artistName} textColor="#f5c5d9"></Frida>
+      </ArtistName>
+
+      <ArtworkInfo
+        availability={availability}
+        price={getPriceWithTax(price)}
+        artworkName={artworkName}
+      />
+    </Container>
   )
 }
+
+const ArtistName = styled.h3`
+  margin-top: 10px;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  @media ${({ theme }) => theme.device.tablet} {
+    font-size: 1.35rem;
+  }
+`
+
+Artwork.propTypes = {
+  artwork: PropTypes.object,
+  handleClick: PropTypes.func,
+  handleLoaded: PropTypes.func,
+}
+
+export default Artwork

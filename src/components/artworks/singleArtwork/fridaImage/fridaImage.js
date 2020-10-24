@@ -1,6 +1,9 @@
 import React, { useRef, useState, useEffect } from "react"
-import style from "./fridaImage.module.scss"
 import useMouse from "../../../generic/Mouse/hooks/useMouse"
+import styled from "styled-components"
+import { getFluidGatsbyImage } from "gatsby-storyblok-image"
+import transformImage from "../../helper/transformImage"
+import Img from "gatsby-image"
 
 const SCALE = [2, 3]
 
@@ -10,11 +13,31 @@ export default function FridaImage({ artwork }) {
   const loupImageRef = useRef()
   const { setMouse } = useMouse()
 
-  const { artworkName, artistName, images } = artwork
-  const { width, height } = images
+  const { artworkName, artistName, imageUrl } = artwork
+  // const { width, height } = images
 
   // const [loaded, setLoaded] = useState(false);
   // const [resized, setResized] = useState(false);
+
+  function transformImage(image, option) {
+    var imageService = "https://img2.storyblok.com/"
+    var path = image.replace("https://a.storyblok.com", "")
+    return imageService + option + "/" + path
+  }
+
+  const sizes = imageUrl.split("/")[5].split("x")
+  const width = sizes[0]
+  const height = sizes[1]
+  // console.log(width)
+  // console.log(height)
+
+  // const fluidProps = getFluidGatsbyImage(src, {
+  //   maxWidth: 400,
+  //   quality: 60,
+  //   smartCrop: false,
+  //   base64: transformImage(src, "10x0/filters:quality(10)"),
+  //   useBase64: true,
+  // })
 
   useEffect(() => {
     const handleImageSizing = () => {
@@ -70,12 +93,12 @@ export default function FridaImage({ artwork }) {
     })
   }
 
-  const srcSet = images.srcSet
-  const src = images.src
+  // const srcSet = images.srcSet
+  // const src = images.src
 
   return (
-    <div ref={RootRef} className={style.root}>
-      <img
+    <Root ref={RootRef}>
+      <Image
         onMouseMove={e => {
           handleMouseMove(e)
         }}
@@ -88,32 +111,61 @@ export default function FridaImage({ artwork }) {
           setMouse("hide", false)
         }}
         onClick={handleclick}
-        className={`${style.image} ${
-          width - 50 > height ? style.landscape : ""
-        }`}
-        // onLoad={() => { setLoaded(true) }}
         ref={imageRef}
-        srcSet={srcSet}
-        src={src}
+        src={transformImage(imageUrl, "500x0/filters:quality(80)")}
         alt={`Kunstwerk ${artworkName} von ${artistName}`}
-      ></img>
-      <div
-        className={`${style.magni} ${showGlass ? style.showGalss : ""}`}
+      ></Image>
+      <Magni
+        show={showGlass}
+        // className={`${style.magni} ${showGlass ? style.showGalss : ""}`}
         style={{ left: `${pos.pageX}px`, top: `${pos.pageY}px` }}
       >
-        <img
-          className={style.glassImg}
+        <GlassImg
           ref={loupImageRef}
-          srcSet={srcSet}
           style={{
             width: `${pos.width * SCALE[scale]}px`,
             height: `${pos.height * SCALE[scale]}px`,
             transform: ` translateX(${pos.x}%) translateY(${pos.y}%)`,
           }}
-          src={src}
+          src={transformImage(imageUrl, "1000x0")}
           alt={`Kunstwerk ${artworkName} von ${artistName}`}
-        ></img>
-      </div>
-    </div>
+        ></GlassImg>
+      </Magni>
+    </Root>
   )
 }
+
+const Root = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const Image = styled.img`
+  transition: opacity 0.3s;
+  margin: 0;
+`
+
+const Magni = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: ${({ show }) => (show ? "200px" : "0")};
+  height: ${({ show }) => (show ? "200px" : "0")};
+  overflow: hidden;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translateX(-100px) translateY(-100px);
+  opacity: ${({ show }) => (show ? 1 : 0)};
+  border: ${({ theme }) => theme.colors.red} solid 2px;
+  transition: width 0.3s, height 0.3s;
+`
+
+const GlassImg = styled.img`
+  max-width: 1000% !important;
+  position: absolute;
+  top: 98.5px;
+  left: 98.5px;
+  transition: width 0.3s, height 0.3s;
+`

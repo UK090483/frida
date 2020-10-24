@@ -1,23 +1,24 @@
 const postCssPlugins = require("./postcss-config.js")
-const { createProxyMiddleware } = require("http-proxy-middleware")
+// const { createProxyMiddleware } = require("http-proxy-middleware")
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-process.env.GATSBY_CONCURRENT_DOWNLOAD = 1
+//process.env.GATSBY_CONCURRENT_DOWNLOAD = 1
 
 module.exports = {
-  developMiddleware: app => {
-    app.use(
-      "/.netlify/functions/",
-      createProxyMiddleware({
-        target: "http://localhost:9000",
-        pathRewrite: {
-          "/.netlify/functions/": "",
-        },
-      })
-    )
-  },
+  // developMiddleware: app => {
+  //   app.use(
+  //     "/.netlify/functions/",
+  //     createProxyMiddleware({
+  //       target: "http://localhost:9000",
+  //       pathRewrite: {
+  //         "/.netlify/functions/": "",
+  //       },
+  //     })
+  //   )
+  // },
+
   siteMetadata: {
     title: `Frida`,
     description: ``,
@@ -26,90 +27,108 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
 
+    // {
+    //   resolve: "gatsby-plugin-eslint",
+    //   options: {
+    //     test: /\.js$|\.jsx$/,
+    //     exclude: /(node_modules|.cache|public)/,
+    //     stages: ["develop"],
+    //     options: {
+    //       emitWarning: true,
+    //       failOnError: false,
+    //       fix: true,
+    //     },
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-plugin-google-analytics-gdpr`,
+    //   options: {
+    //     // The property ID; the tracking code won't be generated without it.
+    //     trackingId: "UA-173386755-1",
+    //     // Optional parameter (default false) - Enable analytics in development mode.
+    //     enableDevelopment: true, // default false
+    //     // Optional parameter (default true) - Some countries (such as Germany) require you to use the _anonymizeIP function for Google Analytics. Otherwise you are not allowed to use it.
+    //     anonymizeIP: true,
+    //     // Optional parameter (default false) - Starts google analytics with cookies enabled. In some countries (such as Germany) this is not allowed.
+    //     autoStartWithCookiesEnabled: false,
+    //     // Optional parameter - Configuration for react-ga and google analytics
+    //     reactGaOptions: {
+    //       debug: false,
+    //       gaOptions: {
+    //         sampleRate: 10,
+    //       },
+    //     },
+    //   },
+    // },
     {
-      resolve: "gatsby-plugin-eslint",
+      resolve: `gatsby-plugin-snipcart-advanced`,
       options: {
-        test: /\.js$|\.jsx$/,
-        exclude: /(node_modules|.cache|public)/,
-        stages: ["develop"],
-        options: {
-          emitWarning: true,
-          failOnError: false,
-          fix: true,
-        },
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-analytics-gdpr`,
-      options: {
-        // The property ID; the tracking code won't be generated without it.
-        trackingId: "UA-173386755-1",
-        // Optional parameter (default false) - Enable analytics in development mode.
-        enableDevelopment: true, // default false
-        // Optional parameter (default true) - Some countries (such as Germany) require you to use the _anonymizeIP function for Google Analytics. Otherwise you are not allowed to use it.
-        anonymizeIP: true,
-        // Optional parameter (default false) - Starts google analytics with cookies enabled. In some countries (such as Germany) this is not allowed.
-        autoStartWithCookiesEnabled: false,
-        // Optional parameter - Configuration for react-ga and google analytics
-        reactGaOptions: {
-          debug: false,
-          gaOptions: {
-            sampleRate: 10,
-          },
-        },
-      },
-    },
+        version: "3.0.22",
+        publicApiKey: "#####", // use public api key here or in environment variable
+        defaultLang: "de",
+        currency: "eur",
+        openCartOnAdd: false,
 
-    {
-      resolve: "gatsby-source-custom-api",
-      options: {
-        url:
-          "https://fridaadmin.konradullrich.com/wp-json/frida/v1/artworks_smaler/",
-        imageKeys: ["images"],
-        rootKey: "fridaArtwork",
-        schemas: {
-          fridaArtwork: `
-            images: [images]
-          `,
-          images: `
-            url: String,
-            modified: Int
-          `,
-          imageUrls: `
-            large: String,
-            medium: String,
-            medium_large: String
-          `,
-          cdn: `
-          width: Int,
-          height: Int,
-          url: String
-          `,
-        },
+        innerHTML: `
+          <billing section="bottom">
+              <!-- Customization goes here -->
+          </billing>`,
       },
     },
     {
-      resolve: "gatsby-source-custom-api",
+      resolve: "gatsby-source-storyblok",
       options: {
-        url: "https://fridaadmin.konradullrich.com/wp-json/frida/v1/poster/",
-        imageKeys: ["images"],
-        rootKey: "fridaPoster",
-        schemas: {
-          fridaPoster: `
-            images: [images]
-          `,
-          images: `
-            url: String,
-            modified: Int
-          `,
-        },
+        accessToken: "ObvzIeHZVi9TkIUctkrfHQtt",
+        homeSlug: "home",
+        version: process.env.NODE_ENV === "production" ? "published" : "draft",
+        // version: "published",
+        resolveRelations: ["artist", "stil", "medium"],
       },
     },
+    // {
+    //   resolve: "gatsby-source-graphql",
+    //   options: {
+    //     // Arbitrary name for the remote schema Query type
+    //     typeName: "StoryQL",
+    //     // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+    //     fieldName: "storyQL",
+    //     // Url to query from
+    //     url: "https://gapi.storyblok.com/v1/api",
+
+    //     headers: {
+    //       // Learn about environment variables: https://gatsby.dev/env-vars
+    //       Token: `ObvzIeHZVi9TkIUctkrfHQtt`,
+    //     },
+    //   },
+    // },
+    // {
+    //   resolve: "gatsby-source-custom-api",
+    //   options: {
+    //     url: "https://fridaadmin.konradullrich.com/wp-json/frida/v1/poster/",
+    //     imageKeys: ["images"],
+    //     rootKey: "fridaPoster",
+    //     schemas: {
+    //       fridaPoster: `
+    //         images: [images]
+    //       `,
+    //       images: `
+    //         url: String,
+    //         modified: Int
+    //       `,
+    //     },
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
+      options: {
+        devMode: true,
       },
     },
     {

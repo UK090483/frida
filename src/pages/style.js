@@ -1,5 +1,4 @@
 import React from "react"
-
 import Layout from "../components/generic/layout/layout"
 import SEO from "../components/seo"
 import Section from "../components/container/section"
@@ -42,6 +41,7 @@ const IndexPage = () => (
           takimata sanctus est Lorem ipsum dolor sit amet.
         </p>
       </div>
+      //{" "}
     </Section>
   </Layout>
 )

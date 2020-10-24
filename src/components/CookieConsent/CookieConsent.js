@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react"
-import style from "./cookieConsent.module.scss"
 import Button from "../buttons/button"
 import { useStaticQuery, graphql } from "gatsby"
 import { useCookies } from "react-cookie"
 import Kreutz from "../../assets/Menu_Kreutz.svg"
-import useMouse from "../generic/Mouse/hooks/useMouse"
+import styled from "styled-components"
+
+import { setMouse } from "../generic/Mouse/mouseRemote"
 
 const gdprCookie = "gatsby-plugin-google-analytics-gdpr_cookies-enabled"
 
 export default function CookieConsent() {
   const [clicked, setClicked] = useState(true)
-
   const [cookies, setCookie] = useCookies()
-  const { setMouse } = useMouse()
 
   useEffect(() => {
     if (cookies[gdprCookie] && cookies[gdprCookie] === "false") {
@@ -43,15 +42,15 @@ export default function CookieConsent() {
   }
 
   return (
-    <div className={`${style.root} ${!clicked ? "" : style.clicked}`}>
-      <div className={style.text}>
+    <Root clicked={clicked}>
+      <Text>
         <img src={image} alt="cookie" />
         <p>
           Wir nutzen Cookies um Ihr Erlebnis auf unserer Website angenehm zu
           gestalten und steig zu verbessen!
         </p>
-      </div>
-      <div className={style.buttons}>
+      </Text>
+      <Buttons>
         <Button
           type="clickButton"
           label={"Einverstanden"}
@@ -71,8 +70,59 @@ export default function CookieConsent() {
             setMouse("link", false)
           }}
         ></Kreutz>
-        {/* <Button type='clickButton' label={'Ablehnen'} onClick={() => { handleClick(false) }} /> */}
-      </div>
-    </div>
+      </Buttons>
+    </Root>
   )
 }
+
+const Root = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  background-color: ${({ theme }) => theme.colors.white};
+  position: fixed;
+  bottom: ${({ clicked }) => (clicked ? "-100%" : "0")};
+  z-index: 888888;
+  padding: 10px 20px;
+  transition: bottom 1s;
+  @media ${({ theme }) => theme.device.tablet} {
+    flex-wrap: nowrap;
+  }
+  img {
+    margin: 0;
+  }
+  border: red solid 1px;
+`
+const Text = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-right: 20px;
+
+  p {
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media ${({ theme }) => theme.device.tablet} {
+    p {
+      font-size: 1rem;
+    }
+  }
+`
+const Buttons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-grow: 2;
+
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    min-width: 340px;
+  }
+`

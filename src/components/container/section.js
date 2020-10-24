@@ -1,64 +1,50 @@
 import React from "react"
+import PropTypes from "prop-types"
+import styled from "styled-components"
+
 import Container from "./container"
-import style from "./section.module.scss"
-import useMouse from "../generic/Mouse/hooks/useMouse"
+import { setMouse } from "../generic/Mouse/mouseRemote"
 
 export default function Section({
   children,
   backgroundColor = "default",
-  maxWidth,
   type,
-  space,
 }) {
-  const { setMouse } = useMouse()
-
-  const extraStyle = {}
-  if (maxWidth) {
-    extraStyle.maxWidth = extraStyle
-  }
-  if (backgroundColor) {
-    // extraStyle.backgroundColor = backgroundColor;
-  }
-
-  const getTypeClass = type => {
-    switch (type) {
-      case "text":
-        return style.text
-
-      default:
-        return style.default
-    }
-  }
-  const getColorClass = backgroundColor => {
-    switch (backgroundColor) {
-      case "red":
-        return style.red
-
-      case "lila":
-        return style.lila
-
-      case "black":
-        return style.black
-
-      default:
-        return style.white
-    }
-  }
-
   return (
-    <section
+    <Root
       onMouseOver={() => {
         backgroundColor === "red"
           ? setMouse("color", true)
           : setMouse("color", false)
       }}
       data-color={backgroundColor}
-      className={`${getTypeClass(type)} ${getColorClass(backgroundColor)}`}
-      style={extraStyle}
+      brColor={backgroundColor}
     >
-      <Container maxWidth={maxWidth} type={type}>
-        {children}
-      </Container>
-    </section>
+      <Container type={type}>{children}</Container>
+    </Root>
   )
+}
+
+const getColor = (theme, c) => {
+  switch (c) {
+    case "black":
+      return theme.colors.black
+    case "white":
+      return theme.colors.white
+    case "lila":
+      return theme.colors.pink
+    case "red":
+      return theme.colors.red
+    default:
+      return "transparent"
+  }
+}
+const Root = styled.section`
+  background-color: ${({ theme, brColor }) => getColor(theme, brColor)};
+`
+
+Section.propTypes = {
+  type: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  children: PropTypes.node,
 }

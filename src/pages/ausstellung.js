@@ -3,7 +3,7 @@ import React from "react"
 import Layout from "../components/generic/layout/layout"
 import SEO from "../components/seo"
 import Hero from "../components/hero/hero"
-import Artworks from "../components/artworks/artworks/artworks"
+import Artworks from "../components/artworks"
 import Section from "../components/container/section"
 import Frida from "../components/frida/frida"
 
@@ -12,9 +12,9 @@ const Ausstellung = () => (
     <SEO title="Ausstellung" />
     <Hero backgroundColor="lila">
       <h6>AUSSTELLUNG</h6>
-      <h1>
+      <h2>
         Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida>
-      </h1>
+      </h2>
     </Hero>
     <Section type={"text"}>
       <div style={{ paddingTop: 100 }}>

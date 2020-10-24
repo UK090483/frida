@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Artwork Info renders correctly 1`] = `
+<div
+  className="sc-dlnjPT ceOMDB"
+>
+  <div
+    className="sc-hKFyIo gAJMfD"
+  >
+    <div
+      className="sc-bdnylx hRWysm"
+    >
+      <span
+        className="sc-gtssRu PXoN"
+      >
+        prop 
+      </span>
+      artworkName is missing
+    </div>
+    <div
+      className="sc-eCApGN hKxwXc"
+    >
+      0
+      €
+    </div>
+  </div>
+</div>
+`;

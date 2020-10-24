@@ -20,17 +20,17 @@ const IndexPage = () => (
       <div>
         <p>
           #MeetFrida ist eine neuartige Plattform, um Künstler*innen
-          Sichtbarkeit zugeben und ihnen neue Verkaufswege zu eröffnen. Die neue
-          Kunstschau zeigt junge Positionen aus Malerei, Fotografie und Skulptur
-          sowohl online, als auch im öffentlichen Raum. Neben der Ausstellung in
-          der Online-Gallery meetfrida.art und auf Instagram, sind die Arbeiten
-          mindestens bis Ende 2020 auf OOH-Plakatwänden in ganz Deutschland zu
-          sehen. Großflächige Plakatwände an Bahnhöfen und Straßen sowie
-          digitale Werbeflächen, die laufend aktualisiert werden, gehören zum
-          Portfolio. So werden die Werke – trotz der Corona-Beschränkungen in
-          der Kunst – wieder sichtbar, selbst für Menschen, die sonst nicht mit
-          Kunst in Berührung kommen. Und nebenbei entsteht die größte
-          Outdoor-Gallery, die es in Deutschland je gab.
+          Sichtbarkeit zu geben und ihnen neue Verkaufswege zu eröffnen. Die
+          neue Kunstschau zeigt junge Positionen aus Malerei, Fotografie und
+          Skulptur sowohl online, als auch im öffentlichen Raum. Neben der
+          Ausstellung in der Online-Gallery meetfrida.art und auf Instagram,
+          sind die Arbeiten mindestens bis Ende 2020 auf OOH-Plakatwänden in
+          ganz Deutschland zu sehen. Großflächige Plakatwände an Bahnhöfen und
+          Straßen sowie digitale Werbeflächen, die laufend aktualisiert werden,
+          gehören zum Portfolio. So werden die Werke – trotz der
+          Corona-Beschränkungen in der Kunst – wieder sichtbar, selbst für
+          Menschen, die sonst nicht mit Kunst in Berührung kommen. Und nebenbei
+          entsteht die größte Outdoor-Gallery, die es in Deutschland je gab.
         </p>
         <br />
         <p>

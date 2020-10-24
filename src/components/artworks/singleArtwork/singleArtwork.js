@@ -1,10 +1,13 @@
 import React from "react"
-import style from "./singleArtwork.module.scss"
 import Tab from "./tab/tab"
 import FridaImage from "./fridaImage/fridaImage"
-import SendMail from "./sendMail/sendMail"
-import ArtworkName from "./artworkName/artworkName"
+// import SendMail from "./sendMail/sendMail"
+import ArtworkName from "../shared/artworkName"
 import getPriceWithTax from "../helper/getPriceWithTax"
+// import transformImage from "../helper/transformImage"
+import BuyButton from "./Buybutton/buybutton"
+
+import styled from "styled-components"
 
 export default function Artworks({ artwork }) {
   const {
@@ -23,38 +26,87 @@ export default function Artworks({ artwork }) {
     depth,
   } = artwork
 
-  console.log(artwork)
-
   return (
-    <div className={style.root}>
-      <div className={style.inner}>
-        <div className={style.imageRoot}>
+    <Root>
+      <Inner>
+        <ImageRoot>
           <FridaImage images={images} artwork={artwork}></FridaImage>
-        </div>
+        </ImageRoot>
 
-        <div className={style.infoRoot}>
+        <InfoRoot>
           <Tab
             text1={artistDescription}
             text2={artworkDescription}
             artistWebLink={artistWebLink}
             instagramLink={instagramLink}
           ></Tab>
-          <div className={style.nameRoot}>
-            <ArtworkName
-              artworkName={artworkName}
-              availability={availability}
-            ></ArtworkName>
-          </div>
-          <div className={style.props}>
+          {/* <div className={style.nameRoot}> */}
+          <ArtworkName
+            size="big"
+            artworkName={artworkName}
+            availability={availability}
+          ></ArtworkName>
+          {/* </div> */}
+          <Props>
             {`${medium}, ${width}*${height} ${
               depth ? "*" + depth : ""
             } cm ${stil}`}
-          </div>
-          <div className={style.price}>{getPriceWithTax(price)}€</div>
+          </Props>
+          <Price>{getPriceWithTax(price)}€</Price>
 
-          <SendMail artwork={artwork}></SendMail>
-        </div>
-      </div>
-    </div>
+          <BuyButton artwork={artwork}></BuyButton>
+
+          {/* <SendMail artwork={artwork}></SendMail> */}
+        </InfoRoot>
+      </Inner>
+    </Root>
   )
 }
+
+const Price = styled.div`
+  margin-bottom: 20px;
+  font-size: 1.9em;
+  font-weight: 800;
+`
+
+const Props = styled.div`
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  @media ${({ theme }) => theme.device.laptop} {
+    font-size: 1rem;
+  }
+`
+
+const Root = styled.div`
+  padding: 100px 20px 60px 20px;
+  height: 100vh;
+  overflow: auto;
+  @media ${({ theme }) => theme.device.laptop} {
+    padding: 100px 30px 30px 30px;
+  }
+`
+const Inner = styled.div`
+  min-height: 750px;
+  @media ${({ theme }) => theme.device.laptop} {
+    display: flex;
+    height: calc(100vh - 130px);
+  }
+`
+const ImageRoot = styled.div`
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 50%;
+    padding-right: 20px;
+  }
+`
+const InfoRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 20px;
+  @media ${({ theme }) => theme.device.laptop} {
+    width: 50%;
+    padding-top: 0;
+    padding-left: 20px;
+  }
+`

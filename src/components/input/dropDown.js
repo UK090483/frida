@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import style from "./dropDown.module.scss"
 import Flip from "react-reveal/Flip"
 import useMouse from "../generic/Mouse/hooks/useMouse"
+import styled from "styled-components"
 
 export default function Input({
   label = "no label",
@@ -32,14 +33,14 @@ export default function Input({
           setMouse("link", false)
         }}
       >
-        <div
+        <Label
           onClick={() => {
             open ? setOpen(false) : setOpen(label)
           }}
-          className={style.label}
+          // className={style.label}
         >
           {label} {selfActive ? " : " + selfActive : ""}
-        </div>
+        </Label>
         <Flip
           top
           cascade
@@ -82,3 +83,12 @@ export default function Input({
     </React.Fragment>
   )
 }
+
+const Label = styled.div`
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  font-size: 18px;
+`
