@@ -10,7 +10,7 @@ export default function SingleArtworkTemplate(props) {
   const { pageContext } = props
   const { content: artwork } = pageContext
 
-  console.log(pageContext)
+  // console.log(pageContext)
   // const artwork = parseArtwork(data.allStoryblokEntry.edges[0].node)
 
   // function parseArtwork(artwork) {

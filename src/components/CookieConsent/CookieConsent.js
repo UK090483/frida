@@ -91,7 +91,6 @@ const Root = styled.div`
   img {
     margin: 0;
   }
-  border: red solid 1px;
 `
 const Text = styled.div`
   display: flex;

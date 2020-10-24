@@ -13,7 +13,7 @@ function ArtworkContainer({ artworks, handleClick, infinite = false }) {
   // const { Storyblok } = useStoryblok()
 
   const loadMore = setloading => {
-    console.log("loadmore")
+    // console.log("loadmore")
   }
 
   const { postCount, showScrollup } = useInfinitScroll(
