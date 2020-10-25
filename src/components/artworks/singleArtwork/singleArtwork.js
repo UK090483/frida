@@ -87,7 +87,7 @@ const Root = styled.div`
   }
 `
 const Inner = styled.div`
-  min-height: 750px;
+  min-height: 650px;
   @media ${({ theme }) => theme.device.laptop} {
     display: flex;
     height: calc(100vh - 130px);
