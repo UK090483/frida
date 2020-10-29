@@ -1,6 +1,8 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import Frida from "./frida"
+import "jest-styled-components"
+
 describe("Frida", () => {
   it("renders correctly", () => {
     const tree = renderer.create(<Frida />).toJSON()

@@ -1,24 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Artwork Info renders correctly 1`] = `
+.c2 {
+  padding-top: 15px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-height: 10px;
+  margin-left: 29px;
+}
+
+.c3 {
+  position: relative;
+}
+
+.c3::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%) translateX(-30px);
+  -ms-transform: translateY(-50%) translateX(-30px);
+  transform: translateY(-50%) translateX(-30px);
+  border-radius: 50%;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: green;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.c1 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.c4 {
+  padding-left: 10px;
+  padding-top: 15px;
+  margin-left: auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: right;
+}
+
 <div
-  className="sc-dlnjPT ceOMDB"
+  className="c0"
 >
   <div
-    className="sc-hKFyIo gAJMfD"
+    className="c1"
   >
     <div
-      className="sc-bdnylx hRWysm"
+      className="c2"
     >
       <span
-        className="sc-gtssRu PXoN"
+        className="c3"
       >
         prop 
       </span>
       artworkName is missing
     </div>
     <div
-      className="sc-eCApGN hKxwXc"
+      className="c4"
     >
       0
       €

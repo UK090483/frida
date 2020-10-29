@@ -1,5 +1,4 @@
 import React from "react"
-
 import Layout from "../components/generic/layout/layout"
 import SEO from "../components/seo"
 import Section from "../components/container/section"
@@ -8,9 +7,9 @@ import Hero from "../components/hero/hero"
 
 const Booking = () => {
   return (
-    <Layout title={"Booking"}>
-      <SEO title="Booking" />
-      <Hero backgroundColor="lila">
+    <Layout title={"PopUpArtFair"}>
+      <SEO title="PopUpArtFair" />
+      <Hero backgroundColor="lila" height={"medium"}>
         <h1>Terminbuchung</h1>
         <br />
         <br />

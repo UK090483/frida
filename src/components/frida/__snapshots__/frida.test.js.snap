@@ -1,12 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Frida renders correctly 1`] = `
+.c0 {
+  white-space: nowrap;
+  display: inline;
+}
+
+.c1 {
+  position: relative;
+  color: white;
+}
+
+.c1:before {
+  content: "";
+  border-bottom: rgb(0,0,0) solid 0.16em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
 <span
-  className="sc-bdnylx kKa-dPu"
+  className="c0"
 >
   #Meet
   <span
-    className="sc-gtssRu fGCCyX"
+    className="c1"
+    color="white"
   >
     Frida
   </span>
@@ -14,12 +34,32 @@ exports[`Frida renders correctly 1`] = `
 `;
 
 exports[`Frida renders correctly with props 1`] = `
+.c0 {
+  white-space: nowrap;
+  display: inline;
+}
+
+.c1 {
+  position: relative;
+  color: white;
+}
+
+.c1:before {
+  content: "";
+  border-bottom: rgb(0,0,0) solid 0.16em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
 <span
-  className="sc-bdnylx kKa-dPu"
+  className="c0"
 >
   #Meet
   <span
-    className="sc-gtssRu fGCCyX"
+    className="c1"
+    color="white"
   >
     test
   </span>

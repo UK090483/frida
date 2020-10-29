@@ -2,6 +2,8 @@ import React from "react"
 import renderer from "react-test-renderer"
 import ArtworkInfo from "./ArtworkInfo"
 import { ThemeProvider } from "styled-components"
+import "jest-styled-components"
+
 const theme = {
   colors: {
     green: "green",
