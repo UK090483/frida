@@ -3,14 +3,13 @@ import Artwork from "../artwork/Artwork"
 import scrollTo from "gatsby-plugin-smoothscroll"
 import ArrowUp from "../../../assets/arrow_up.svg"
 import useInfinitScroll from "../helper/useInfinitScroll"
-import styled, { withTheme } from "styled-components"
+import styled from "styled-components"
 import PropTypes from "prop-types"
 import Grid from "./grid"
 
 function ArtworkContainer({ artworks, handleClick, infinite = false }) {
   const gridRef = useRef(false)
   const scrollRef = useRef(null)
-  // const { Storyblok } = useStoryblok()
 
   const loadMore = setloading => {
     // console.log("loadmore")
@@ -81,9 +80,20 @@ const StyledArrow = styled.div`
   }
 `
 
+StyledArrow.defaultProps = {
+  theme: {
+    device: {
+      tablet: 100,
+    },
+    colors: {
+      green: "green",
+      red: "red",
+    },
+  },
+}
 ArtworkContainer.propTypes = {
   handleClick: PropTypes.func,
   artwork: PropTypes.array,
   infinite: PropTypes.bool,
 }
-export default withTheme(ArtworkContainer)
+export default ArtworkContainer

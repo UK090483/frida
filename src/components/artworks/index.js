@@ -100,12 +100,13 @@ function usePreparedData() {
           imageUrl
           depth
           artistName
-          artistWeblink
+          artistWebLink
           instagramLink
           medium
           stil
           price
           artistDescription
+          artworkDescription: description
         }
       }
     }

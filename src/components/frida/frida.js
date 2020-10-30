@@ -19,6 +19,7 @@ Frida.propTypes = {
 Frida.defaultProps = {
   text: "Frida",
   textColor: "white",
+  theme: { colors: { white: "white", pink: "pink" } },
 }
 
 const Root = styled.span`
@@ -38,3 +39,6 @@ const Inner = styled.span`
     position: absolute;
   }
 `
+Inner.defaultProps = {
+  theme: { colors: { white: "white", pink: "pink" } },
+}

@@ -11,8 +11,6 @@ import ArtworkInfo from "./artworkInfo/ArtworkInfo"
 function Artwork({ artwork, handleClick, handleLoaded }) {
   const { availability, artworkName, artistName, price, imageUrl } = artwork
 
-  // const [loaded, setloaded] = useState(false)
-
   const makeVisilbe = () => {
     handleLoaded()
   }
@@ -50,11 +48,22 @@ const ArtistName = styled.h3`
     font-size: 1.35rem;
   }
 `
+ArtistName.defaultProps = {
+  theme: {
+    device: { tablet: 100 },
+  },
+}
 
 Artwork.propTypes = {
   artwork: PropTypes.object,
   handleClick: PropTypes.func,
   handleLoaded: PropTypes.func,
+}
+
+Artwork.defaultProps = {
+  artwork: { price: 99999999999999 },
+  handleClick: () => {},
+  handleLoaded: () => {},
 }
 
 export default Artwork

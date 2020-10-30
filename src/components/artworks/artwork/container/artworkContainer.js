@@ -1,11 +1,12 @@
 import React from "react"
-import styled, { withTheme } from "styled-components"
+import styled from "styled-components"
 import PropTypes from "prop-types"
 import { setMouse } from "../../../generic/Mouse/mouseRemote"
 
 function ArtworkContainer({ children, onClick, loaded, artwork }) {
   return (
-    <RootCSS
+    <Root
+      role="button"
       loaded={loaded}
       onClick={() => onClick(artwork)}
       onMouseEnter={() => {
@@ -16,11 +17,11 @@ function ArtworkContainer({ children, onClick, loaded, artwork }) {
       }}
     >
       {children}
-    </RootCSS>
+    </Root>
   )
 }
 
-const RootCSS = styled.div`
+const Root = styled.div`
   width: 100%;
   background-clip: padding-box;
   margin-bottom: 80px;
@@ -32,4 +33,4 @@ ArtworkContainer.propTypes = {
   loaded: PropTypes.bool,
 }
 
-export default withTheme(ArtworkContainer)
+export default ArtworkContainer
