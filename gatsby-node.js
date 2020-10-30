@@ -52,7 +52,7 @@ exports.sourceNodes = async ({
         artist: {
           content: {
             anzeige_name: artistName,
-            web_link: artistWeblink,
+            web_link: artistWebLink,
             description: artistDescription,
             artist_instagram_link: instagramLink,
           },
@@ -67,7 +67,7 @@ exports.sourceNodes = async ({
       availability: cleanAvailability,
       description,
       artistName,
-      artistWeblink,
+      artistWebLink,
       artistDescription,
       instagramLink,
       medium,
@@ -195,12 +195,13 @@ exports.createPages = ({ graphql, actions }) => {
             slug
             depth
             artistName
-            artistWeblink
+            artistWebLink
             instagramLink
             medium
             stil
             price
             artistDescription
+            artworkDescription: description
             imageUrl
           }
         }

@@ -41,16 +41,20 @@ const Span = styled.span`
       sold ? theme.colors.red : theme.colors.green};
   }
 `
+
+Span.defaultProps = {
+  theme: {
+    colors: {
+      green: "green",
+      red: "red",
+    },
+  },
+}
+
 ArtworkName.defaultProps = {
   availability: "availabil",
   artworkName: "prop artworkName is missing",
   price: 0,
-  // theme: {
-  //   colors: {
-  //     green: "green",
-  //     red: "red",
-  //   },
-  // },
 }
 
 ArtworkName.propTypes = {

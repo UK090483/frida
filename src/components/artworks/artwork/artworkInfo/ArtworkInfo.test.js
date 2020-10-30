@@ -12,13 +12,7 @@ const theme = {
 }
 describe("Artwork Info", () => {
   it("renders correctly", () => {
-    const tree = renderer
-      .create(
-        <ThemeProvider theme={theme}>
-          <ArtworkInfo />
-        </ThemeProvider>
-      )
-      .toJSON()
+    const tree = renderer.create(<ArtworkInfo />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

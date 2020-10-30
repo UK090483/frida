@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArtworkContainer  renders correctly 1`] = `
+.c0 {
+  width: 100%;
+  background-clip: padding-box;
+  margin-bottom: 80px;
+}
+
+<div
+  className="c0"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  role="button"
+/>
+`;
