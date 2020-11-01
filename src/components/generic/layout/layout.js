@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Header from "../header/header"
 import GlobalStyle from "../../../Styles/globalStyle"
-import NormalizeCss from "../../../Styles/normalize"
+// import NormalizeCss from "../../../Styles/normalize"
 
 import Nav from "../nav/nav"
 import Footer from "../Footer/footer"

@@ -16,6 +16,7 @@ function Links({ open }) {
     <Root open={open}>
       {Routes.map((route, index) => (
         <StyledLink
+          id={"navigation_link"}
           open={open}
           key={index}
           index={index}

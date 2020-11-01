@@ -56,6 +56,8 @@
     "autoprefixer": "9.8.5",
     "babel-jest": "^26.6.1",
     "babel-preset-gatsby": "^0.5.14",
+    "cypress": "^5.5.0",
+    "cypress-react-unit-test": "^4.16.9",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^7.4.0",
@@ -71,7 +73,8 @@
     "npm-run-all": "^4.1.5",
     "postcss-pxtorem": "5.1.1",
     "prettier": "2.0.5",
-    "react-test-renderer": "^16.14.0"
+    "react-test-renderer": "^16.14.0",
+    "start-server-and-test": "^1.11.5"
   },
   "keywords": [
     "gatsby"
@@ -88,7 +91,9 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "cy:open": "cypress open",
+    "test:e2e": "start-server-and-test develop http://localhost:8000 cy:open"
   },
   "repository": {
     "type": "git",

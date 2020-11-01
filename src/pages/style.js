@@ -41,7 +41,6 @@ const IndexPage = () => (
           takimata sanctus est Lorem ipsum dolor sit amet.
         </p>
       </div>
-      //{" "}
     </Section>
   </Layout>
 )

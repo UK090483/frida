@@ -14,6 +14,7 @@ export default function Slider({ artwork, open, handleCloseClick }) {
     <AnimatePresence>
       {open && (
         <motion.div
+          data-testid={"artwork-slider"}
           initial={{ x: "100vw" }}
           animate={{ x: 0 }}
           exit={{ x: "100vw" }}

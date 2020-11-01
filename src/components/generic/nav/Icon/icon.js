@@ -6,7 +6,7 @@ import styled from "styled-components"
 
 export default function Icon({ onClick }) {
   return (
-    <Root>
+    <Root aria-haspopup="true" aria-controls="main-menu" role="button">
       <div
         onMouseEnter={() => {
           setMouse("link", true)

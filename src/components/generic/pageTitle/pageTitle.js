@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import { setMouse } from "../Mouse/mouseRemote"
 import styled from "styled-components"
 import Frida from "../../frida/frida"
-import { fluidFont, breackingpoints } from "../../../Styles/theme"
+import { fluidFont } from "../../../Styles/theme"
 import throttle from "lodash/throttle"
 
 export default function PageTitle({

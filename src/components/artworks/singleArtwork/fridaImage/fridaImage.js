@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from "react"
 import useMouse from "../../../generic/Mouse/hooks/useMouse"
 import styled from "styled-components"
-import { getFluidGatsbyImage } from "gatsby-storyblok-image"
-import transformImage from "../../helper/transformImage"
-import Img from "gatsby-image"
+// import { getFluidGatsbyImage } from "gatsby-storyblok-image"
+// import transformImage from "../../helper/transformImage"
+// import Img from "gatsby-image"
 
 const SCALE = [2, 3]
 

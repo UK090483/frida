@@ -6,6 +6,7 @@ import { setMouse } from "../components/generic/Mouse/mouseRemote"
 import Hero from "../components/hero/hero"
 
 const Booking = () => {
+  /* eslint-disable  jsx-a11y/no-noninteractive-element-interactions */
   return (
     <Layout title={"PopUpArtFair"}>
       <SEO title="PopUpArtFair" />
@@ -24,6 +25,7 @@ const Booking = () => {
       </Hero>
       <Section backgroundColor="lila">
         <div
+          role="application"
           style={{
             display: "flex",
             alignContent: "center",

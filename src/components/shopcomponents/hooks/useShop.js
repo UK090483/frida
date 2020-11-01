@@ -8,7 +8,7 @@ export default function useShop(id) {
 
   const checkonCard = () => {
     if (ready) {
-      const items = Snipcart.store.getState().cart.items.items
+      const items = window.Snipcart.store.getState().cart.items.items
       setOnCard(!!items.find(item => id === item.id))
     }
   }

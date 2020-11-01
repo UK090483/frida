@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components"
-import { flexUnit, fluidFont } from "./theme"
+import { fluidFont } from "./theme"
 
 const Global = createGlobalStyle`
 

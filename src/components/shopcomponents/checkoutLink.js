@@ -3,7 +3,7 @@ import ShopIcon from "../../assets/shop_icon.svg"
 import useShop from "./hooks/useShop"
 import useMouse from "../../components/generic/Mouse/hooks/useMouse"
 export default function CheckOutLink() {
-  const { openCard, itemCount, cartQuantity } = useShop()
+  const { openCard, cartQuantity } = useShop()
   const { setMouse } = useMouse()
   const onClick = () => {
     openCard()
