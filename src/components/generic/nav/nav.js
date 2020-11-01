@@ -37,7 +37,11 @@ export default function Nav() {
         }}
       ></Burger>
 
-      <Root open={open} style={{ pointerEvents: open ? "auto" : "none" }}>
+      <Root
+        open={open}
+        style={{ pointerEvents: open ? "auto" : "none" }}
+        id="main-menu"
+      >
         <Circle type={"big"} open={open} initialRender={initialRender} />
         <Circle open={open} initialRender={initialRender} />
 

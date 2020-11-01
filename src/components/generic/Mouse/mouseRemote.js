@@ -1,10 +1,9 @@
 import MouseClassNames from "./classNames"
 
 let mouseNeeded = false
-let mouse
 
 const setMouse = (type, e) => {
-  const mouse = window.FridaMouse
+  let mouse = window.FridaMouse
   !mouse && (mouse = window.FridaMouse)
   const initMouse = () => {
     mouseNeeded = true

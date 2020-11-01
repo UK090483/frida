@@ -9,7 +9,6 @@ import Button from "../buttons/button"
 import { useStaticQuery, graphql } from "gatsby"
 import ArtworsContainer from "./artworksContainer/artworksContainer"
 import Frida from "../frida/frida"
-import getArtwork from "./helper/getArtwork"
 import Slider from "./slider/slider"
 
 function Artworks({ filter = false, infinite = false }) {

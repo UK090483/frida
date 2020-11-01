@@ -6,6 +6,7 @@ import { setMouse } from "../../../generic/Mouse/mouseRemote"
 function ArtworkContainer({ children, onClick, loaded, artwork }) {
   return (
     <Root
+      data-testid={"artwork-prev"}
       role="button"
       loaded={loaded}
       onClick={() => onClick(artwork)}

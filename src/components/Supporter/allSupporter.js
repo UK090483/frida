@@ -4,6 +4,7 @@ import Marquee from "react-marquee-slider"
 import styled from "styled-components"
 
 const AllSuporters = () => {
+  /* eslint-disable graphql/template-strings*/
   const data = useStaticQuery(graphql`
   query AllSupportersQuery {
     allFile(filter: {relativeDirectory: {regex: "/AllSupporter/\\w+/"}}, sort: {order: ASC, fields: childImageSharp___original___src}) {

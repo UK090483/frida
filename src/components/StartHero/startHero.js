@@ -3,24 +3,8 @@ import { useStaticQuery, graphql } from "gatsby"
 import Frida from "../frida/frida"
 import Button from "../buttons/button"
 import styled, { keyframes } from "styled-components"
-import axios from "axios"
 
 export default function StartHero({ children }) {
-  // const data = useStaticQuery(graphql`
-  //   query startHeroQuery {
-  //     storyQL {
-  //       ArtworkItems(per_page: 10) {
-  //         items {
-  //           content {
-  //             Image {
-  //               filename
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
   const data = useStaticQuery(graphql`
     query startHeroQuery {
       allFridaArtworks {
