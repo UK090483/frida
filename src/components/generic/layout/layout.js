@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import Header from "../header/header"
 import GlobalStyle from "../../../Styles/globalStyle"
 // import NormalizeCss from "../../../Styles/normalize"
+import CheckOut from "../../shopcomponents/checkOut"
 
 import Nav from "../nav/nav"
 import Footer from "../Footer/footer"
@@ -46,8 +47,10 @@ const Layout = ({ children, title, header = "default", color }) => {
           <main>{children}</main>
           <CookieConsent />
           <Footer title={title}></Footer>
+          <CheckOut></CheckOut>
         </div>
       </div>
+
       <Mouse></Mouse>
     </React.Fragment>
   )

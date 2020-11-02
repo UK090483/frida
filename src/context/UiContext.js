@@ -15,14 +15,16 @@ function UiContextProvider({ children }) {
 
   return (
     <UiContext.Provider
-      value={{
-        mouseStyle,
-        mouseColor,
-        setMouseColor,
-        setMouseStyle,
-        userData,
-        setUserData,
-      }}
+      value={
+        {
+          // mouseStyle,
+          // mouseColor,
+          // setMouseColor,
+          // setMouseStyle,
+          // userData,
+          // setUserData,
+        }
+      }
     >
       {children}
     </UiContext.Provider>

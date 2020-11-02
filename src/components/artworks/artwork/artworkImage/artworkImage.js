@@ -1,9 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Img from "gatsby-image"
-// import { getFluidGatsbyImage } from "gatsby-storyblok-image"
 import { getFluidGatsbyImage } from "../../../helper/storyBlockImagetoGatsby"
 import transformImage from "../../helper/transformImage"
+
 const ArtworkImage = props => {
   const { src, alt, onLoad } = props
   const fluidProps = getFluidGatsbyImage(src, {

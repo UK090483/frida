@@ -1,5 +1,5 @@
 const postCssPlugins = require("./postcss-config.js")
-// const { createProxyMiddleware } = require("http-proxy-middleware")
+const { createProxyMiddleware } = require("http-proxy-middleware")
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })

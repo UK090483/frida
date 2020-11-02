@@ -16,9 +16,11 @@ export default function Buybutton({ artwork }) {
     id,
   } = artwork
 
-  const { openCard, onCard, eraseItem } = useShop(id)
+  const { openCard, isOnCard, eraseItem, setInCart } = useShop()
 
   const { setMouse } = useMouse()
+
+  const onCard = isOnCard(id)
 
   return (
     <Root>
@@ -56,6 +58,9 @@ export default function Buybutton({ artwork }) {
               onMouseLeave={() => {
                 setMouse("link", false)
               }}
+              onClick={() => {
+                setInCart(id)
+              }}
             >
               {"In den Warenkorb"}
             </BuyButton>
@@ -72,7 +77,7 @@ export default function Buybutton({ artwork }) {
             setMouse("link", false)
           }}
           onClick={() => {
-            eraseItem()
+            eraseItem(id)
           }}
         >
           Entfernen

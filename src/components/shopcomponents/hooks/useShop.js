@@ -1,40 +1,53 @@
-import { useEffect, useState, useContext } from "react"
-import { SnipcartContext } from "gatsby-plugin-snipcart-advanced/context"
+import { useEffect, useState } from "react"
+import { singletonHook } from "react-singleton-hook"
+const init = { loading: true }
 
-export default function useShop(id) {
-  const { state } = useContext(SnipcartContext)
-  const { cartQuantity, ready } = state
-  const [onCard, setOnCard] = useState(false)
+function useShop() {
+  const [checkoutOpen, setCheckoutOpen] = useState(false)
+  const [items, setItems] = useState(null)
+  const [itemCount, setItemCount] = useState(0)
 
-  const checkonCard = () => {
-    if (ready) {
-      const items = window.Snipcart.store.getState().cart.items.items
-      setOnCard(!!items.find(item => id === item.id))
-    }
+  const eraseItem = id => {
+    const nextItems = [...items].filter(_id => id !== _id)
+    setItems(nextItems)
   }
-
-  const eraseItem = () => {
-    if (ready) {
-      const items = window.Snipcart.store.getState().cart.items.items
-      const item = items.find(item => id === item.id)
-      window.Snipcart.api.cart.items.remove(item.uniqueId)
-      setOnCard(false)
-    }
+  const isOnCard = id => {
+    return items && id ? items.find(_id => id === _id) : false
   }
   const openCard = () => {
-    if (ready) {
-      window.Snipcart.api.session.setLanguage("de")
-      window.Snipcart.api.theme.cart.open()
+    setCheckoutOpen(true)
+  }
+  const addToCart = () => {}
+  const setInCart = id => {
+    if (items) {
+      setItems([...items, id])
+    } else {
+      setItems([id])
     }
   }
 
   useEffect(() => {
-    if (ready) {
-      if (id) {
-        checkonCard()
-      }
+    const localStorageItems = localStorage.getItem("shopItems")
+    if (localStorageItems && !items) {
+      setItems(JSON.parse(localStorageItems))
+    } else {
+      localStorage.setItem("shopItems", JSON.stringify(items))
     }
-  }, [checkonCard, id, ready])
 
-  return { openCard, cartQuantity, onCard, eraseItem }
+    const nextItemCount = items ? items.length : 0
+    setItemCount(nextItemCount)
+  }, [items])
+
+  return {
+    setInCart,
+    openCard,
+    itemCount,
+    isOnCard,
+    eraseItem,
+    addToCart,
+    checkoutOpen,
+    setCheckoutOpen,
+  }
 }
+
+export default singletonHook(init, useShop)
