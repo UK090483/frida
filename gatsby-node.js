@@ -33,6 +33,7 @@ exports.sourceNodes = async ({
   artworks.forEach(story => {
     const {
       slug,
+      uuid,
       content: {
         name: artworkName,
         availability,
@@ -41,7 +42,6 @@ exports.sourceNodes = async ({
         height,
         depth,
         price,
-        _uid: id,
         Image: { filename: imageUrl },
         stil: {
           content: { name: stil },
@@ -64,6 +64,7 @@ exports.sourceNodes = async ({
       typeof availability === "object" ? availability[0] : availability
 
     const data = {
+      uuid,
       availability: cleanAvailability,
       description,
       artistName,
@@ -83,7 +84,7 @@ exports.sourceNodes = async ({
 
     const nodeContent = JSON.stringify(data)
     const nodeMeta = {
-      id: createNodeId(`my-data-${id}`),
+      id: createNodeId(`my-data-${uuid}`),
       parent: null,
       children: [],
       internal: {

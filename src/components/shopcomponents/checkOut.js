@@ -6,7 +6,7 @@ import useBodyScrollStop from "../helper/useBodyScrollStop"
 import SendMail from "../artworks/singleArtwork/sendMail/sendMail"
 
 export default function CheckOutLink() {
-  const { openCard, checkoutOpen, setCheckoutOpen } = useShop()
+  const { openCard, checkoutOpen, setCheckoutOpen, items } = useShop()
   const lasteState = useRef(false)
   const [animate, setAnimate] = useState("out")
   const { stopBodyScroll, enableBodySroll } = useBodyScrollStop()
@@ -41,13 +41,17 @@ export default function CheckOutLink() {
     }
   }, [checkoutOpen])
 
-  const handleCheckout = async () => {
-    const response = await fetch("/.netlify/functions/stripe", {
+  const handleCheckout = () => {
+    fetch("/.netlify/functions/stripe", {
       method: "POST",
       body: JSON.stringify({
-        subject: "test",
+        items,
       }),
     })
+      .then(async response => {
+        const r = await response.json()
+      })
+      .catch(err => alert(err.message))
   }
 
   return (

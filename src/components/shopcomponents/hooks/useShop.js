@@ -39,6 +39,7 @@ function useShop() {
   }, [items])
 
   return {
+    items,
     setInCart,
     openCard,
     itemCount,

@@ -45,10 +45,12 @@
     "react-marquee-slider": "^1.1.2",
     "react-masonry-css": "^1.0.14",
     "react-reveal": "^1.2.2",
+    "react-singleton-hook": "^3.0.142",
     "react-string-replace": "^0.4.4",
     "react-use": "^15.3.4",
     "storyblok-js-client": "^3.1.0",
     "storyblok-react": "^0.1.1",
+    "stripe": "^8.119.0",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
@@ -82,12 +84,9 @@
   "license": "0BSD",
   "scripts": {
     "develop": "gatsby develop",
-    "start": "run-p start:**",
-    "start:app": "npm run develop",
-    "start:lambda": "netlify-lambda serve functions-src",
-    "build": "cd functions-src &&  npm install && cd .. && gatsby build && netlify-lambda build functions-src",
+    "start": "npm run develop",
+    "build": "gatsby build",
     "build:app": "gatsby build",
-    "build:lambda": "netlify-lambda build functions-src",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "serve": "gatsby serve",
     "clean": "gatsby clean",

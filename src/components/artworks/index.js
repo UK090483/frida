@@ -90,6 +90,7 @@ function usePreparedData() {
     query MyQuery {
       allFridaArtworks {
         nodes {
+          uuid
           id
           availability
           width

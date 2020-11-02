@@ -14,13 +14,14 @@ export default function Buybutton({ artwork }) {
     slug,
     availability,
     id,
+    uuid,
   } = artwork
 
   const { openCard, isOnCard, eraseItem, setInCart } = useShop()
 
   const { setMouse } = useMouse()
 
-  const onCard = isOnCard(id)
+  const onCard = isOnCard(uuid)
 
   return (
     <Root>
@@ -59,7 +60,7 @@ export default function Buybutton({ artwork }) {
                 setMouse("link", false)
               }}
               onClick={() => {
-                setInCart(id)
+                setInCart(uuid)
               }}
             >
               {"In den Warenkorb"}
