@@ -15,6 +15,7 @@ const Image = () => {
                 srcSet
               }
             }
+            id
           }
         }
       }
@@ -23,9 +24,15 @@ const Image = () => {
 
   return (
     <Root>
-      {data.allFile.edges.map(item => (
-        <img alt={"Logo"} srcSet={item.node.childImageSharp.fluid.srcSet}></img>
-      ))}
+      {data.allFile.edges.map(item => {
+        return (
+          <img
+            key={item.node.id}
+            alt={"Logo"}
+            srcSet={item.node.childImageSharp.fluid.srcSet}
+          ></img>
+        )
+      })}
     </Root>
   )
 }
