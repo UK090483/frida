@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import ShopIcon from "../../assets/shop_icon.svg"
-import useShop from "./hooks/useShop"
 import useMouse from "../../components/generic/Mouse/hooks/useMouse"
+import UiContext from "../../context/UiContext"
+
 export default function CheckOutLink() {
-  const { openCard, itemCount } = useShop()
+  const { openCard, itemCount } = useContext(UiContext)
   const { setMouse } = useMouse()
   const onClick = () => {
     openCard()

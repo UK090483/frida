@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import getPriceWithTax from "../../helper/getPriceWithTax"
 import transformImage from "../../helper/transformImage"
 import useMouse from "../../../generic/Mouse/hooks/useMouse"
 import useShop from "../../../shopcomponents/hooks/useShop"
 import styled from "styled-components"
+import UiContext from "../../../../context/UiContext"
 
 export default function Buybutton({ artwork }) {
   const {
@@ -16,8 +17,7 @@ export default function Buybutton({ artwork }) {
     id,
     uuid,
   } = artwork
-
-  const { openCard, isOnCard, eraseItem, setInCart } = useShop()
+  const { openCard, isOnCard, eraseItem, setInCart } = useContext(UiContext)
 
   const { setMouse } = useMouse()
 
@@ -78,7 +78,7 @@ export default function Buybutton({ artwork }) {
             setMouse("link", false)
           }}
           onClick={() => {
-            eraseItem(id)
+            eraseItem(uuid)
           }}
         >
           Entfernen

@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Header from "../header/header"
 import GlobalStyle from "../../../Styles/globalStyle"
 // import NormalizeCss from "../../../Styles/normalize"
-import CheckOut from "../../shopcomponents/checkOut"
+import CheckOut from "../../shopcomponents/checkOut/checkOut"
 
 import Nav from "../nav/nav"
 import Footer from "../Footer/footer"

@@ -54,7 +54,7 @@ const MouseStyle = createGlobalStyle`
     width: 30px;
     height: 30px;
 
-    z-index: 99999999;
+    z-index: 10000;
     position: absolute;
     pointer-events: none;
     border-radius: 50%;
