@@ -20,9 +20,9 @@ module.exports = {
   // },
 
   siteMetadata: {
-    title: `Frida`,
-    description: ``,
-    author: ``,
+    title: `MeetFrida.Art`,
+    description: `Deutschlands größte Outdoor- und Online-Gallery für junge Kunst`,
+    author: `schwan-communications.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

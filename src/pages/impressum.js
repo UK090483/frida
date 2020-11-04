@@ -8,7 +8,7 @@ const IndexPage = () => (
     <SEO title="Impressum" />
 
     <Section backgroundColor={"lila"}>
-      {/* <div style={{ paddingTop: "30vh" }}>
+      <div style={{ paddingTop: "30vh" }}>
         <p>
           <strong>Impressum</strong>
         </p>
@@ -2432,8 +2432,8 @@ const IndexPage = () => (
           sind nicht gestattet, soweit dies nicht gesetzlich zugelassen ist. Sie
           k&ouml;nnen den Abzug jedoch weiterverkaufen.
         </p>
-        <p>Stand: 25. August 2020</p> 
-      </div>*/}
+        <p>Stand: 25. August 2020</p>
+      </div>
     </Section>
   </Layout>
 )
