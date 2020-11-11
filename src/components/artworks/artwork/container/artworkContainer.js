@@ -2,14 +2,21 @@ import React from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 import { setMouse } from "../../../generic/Mouse/mouseRemote"
+import { navigate } from "gatsby"
 
-function ArtworkContainer({ children, onClick, loaded, artwork }) {
+function ArtworkContainer({ children, loaded, artwork }) {
   return (
     <Root
       data-testid={"artwork-prev"}
       role="button"
       loaded={loaded}
-      onClick={() => onClick(artwork)}
+      onClick={() =>
+        navigate(`/artwork/${artwork.slug}`, {
+          state: {
+            modal: true,
+          },
+        })
+      }
       onMouseEnter={() => {
         setMouse("link", true)
       }}

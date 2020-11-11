@@ -1,13 +1,27 @@
-import React, { useState, useEffect } from "react"
-
+import React, { useState, useEffect, useRef } from "react"
+import { navigate } from "gatsby"
 const defaultState = {}
 
 const UiContext = React.createContext(defaultState)
 
 function UiContextProvider({ children }) {
+  const loadingRef = useRef(null)
+
   const [checkoutOpen, setCheckoutOpen] = useState(false)
   const [items, setItems] = useState(null)
   const [itemCount, setItemCount] = useState(0)
+  const [clientToken, setClientToken] = useState(null)
+
+  const requestClientToken = () => {
+    if (!clientToken && !loadingRef.current) {
+      loadingRef.current = true
+      getToken().then(token => {
+        loadingRef.current = false
+        console.log("requestClientToken ausgeführt")
+        setClientToken(token)
+      })
+    }
+  }
 
   const eraseItem = id => {
     const nextItems = [...items].filter(_id => id !== _id)
@@ -17,7 +31,11 @@ function UiContextProvider({ children }) {
     return items && id ? items.find(_id => id === _id) : false
   }
   const openCard = () => {
-    setCheckoutOpen(true)
+    navigate("/checkout/", {
+      state: {
+        modal: true,
+      },
+    })
   }
   const addToCart = () => {}
   const setInCart = id => {
@@ -43,6 +61,8 @@ function UiContextProvider({ children }) {
   return (
     <UiContext.Provider
       value={{
+        clientToken,
+        requestClientToken,
         items,
         setInCart,
         openCard,
@@ -62,3 +82,19 @@ function UiContextProvider({ children }) {
 export { UiContextProvider }
 
 export default UiContext
+
+const getToken = async () => {
+  let token = null
+  await fetch("/.netlify/functions/braintreeGetToken", {
+    method: "POST",
+    body: JSON.stringify({
+      items: "bla",
+    }),
+  })
+    .then(async response => {
+      const r = await response.json()
+      token = r.token
+    })
+    .catch(err => console.log(err))
+  return token
+}

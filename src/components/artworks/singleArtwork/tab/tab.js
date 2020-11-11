@@ -5,6 +5,30 @@ import LinkIcon from "../../../../assets/link_icon.svg"
 import useMouse from "../../../generic/Mouse/hooks/useMouse"
 import styled, { keyframes } from "styled-components"
 
+// import {
+//   EmailShareButton,
+//   FacebookShareButton,
+//   FacebookIcon,
+//   HatenaShareButton,
+//   InstapaperShareButton,
+//   InstapaperIcon,
+//   LineShareButton,
+//   LinkedinShareButton,
+//   LivejournalShareButton,
+//   MailruShareButton,
+//   OKShareButton,
+//   PinterestShareButton,
+//   PocketShareButton,
+//   RedditShareButton,
+//   TelegramShareButton,
+//   TumblrShareButton,
+//   TwitterShareButton,
+//   ViberShareButton,
+//   VKShareButton,
+//   WhatsappShareButton,
+//   WorkplaceShareButton,
+// } from "react-share"
+
 export default function Tab({ text1, text2, instagramLink, artistWebLink }) {
   const [active, setActive] = useState(true)
 
@@ -38,6 +62,24 @@ export default function Tab({ text1, text2, instagramLink, artistWebLink }) {
         <LinkIconWrap
         // className={style.linkIconWrap}
         >
+          {/* <FacebookShareButton url={"https://meetfrida.art/"}>
+            <FacebookIcon
+              size={32}
+              round={true}
+              borderRadius={3}
+              bgStyle={{ fill: "#f5c5d9" }}
+              iconFillColor={"white"}
+            ></FacebookIcon>
+          </FacebookShareButton>
+          <InstapaperShareButton url={"https://meetfrida.art/"}>
+            <InstapaperIcon
+              size={32}
+              round={true}
+              borderRadius={3}
+              bgStyle={{ fill: "#f5c5d9" }}
+              iconFillColor={"white"}
+            ></InstapaperIcon>
+          </InstapaperShareButton> */}
           {artistWebLink && (
             <Icon
               target="_blank"

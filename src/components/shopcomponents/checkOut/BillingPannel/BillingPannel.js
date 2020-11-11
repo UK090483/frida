@@ -1,60 +1,43 @@
-import React, { useContext } from "react"
-import PropTypes from "prop-types"
+import React, { useEffect, useState, useContext } from "react"
 import styled from "styled-components"
-import UiContext from "../../../../context/UiContext"
+import Form from "./Form"
+import UiContext from "~context/UiContext"
+import Summary from "./Summary"
 
-export default function BillingPannel({ artikel }) {
-  const { items } = useContext(UiContext)
-  const getSum = () => {
-    let sum = 0
-    artikel.forEach(element => {
-      sum = sum + parseInt(element.price)
-    })
-    let tax = Math.round(sum * 0.16 * 100) / 100
-    return { sum, tax }
-  }
+export default function BillingPannel({ artikel, nextStep, back }) {
+  const [isFormValid, setIsFormValid] = useState(false)
 
-  const { sum, tax } = getSum()
+  const { requestClientToken } = useContext(UiContext)
 
-  const handleCheckout = () => {
-    fetch("/.netlify/functions/stripe", {
-      method: "POST",
-      body: JSON.stringify({
-        items,
-      }),
-    })
-      .then(async response => {
-        const r = await response.json()
-        console.log(r)
-      })
-      .catch(err => alert(err.message))
-  }
+  useEffect(() => {
+    requestClientToken()
+  }, [requestClientToken])
 
   return (
     <Root>
-      <Sum>
-        <span>MwSt(16%):</span> <span>{tax}€</span>
-      </Sum>
-      <Sum>
-        <span>GESAMTBETRAG: </span> <span>{sum}€</span>
-      </Sum>
-      <Button
-        key="buy"
-        onClick={() => {
-          handleCheckout()
-        }}
-      >
-        Checkout
-      </Button>
+      <Box>
+        <Summary artikel={artikel}></Summary>
+      </Box>
+      <Box>
+        <Form isFormValid={isFormValid} setIsFormValid={setIsFormValid}></Form>
+      </Box>
     </Root>
   )
 }
-const Button = styled.button`
-  width: 400px;
-`
-const Root = styled.div``
-const Sum = styled.div`
+
+const Root = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  padding: 0 20px;
+  padding-bottom: 100px;
+
+  @media ${({ theme }) => theme.device.tablet} {
+    display: flex;
+    padding: 0 200px;
+  }
+`
+const Box = styled.div`
+  width: 100%;
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 50%;
+  }
 `

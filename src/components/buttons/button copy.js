@@ -34,31 +34,30 @@ function Button(props) {
   )
 
   return (
-    // <StyledButton
-    //   onMouseEnter={() => {
-    //     setMouse("link", true)
-    //   }}
-    //   onMouseLeave={() => {
-    //     setMouse("link", false)
-    //   }}
-    // >
-    //   {label}
-    // </StyledButton>
     <React.Fragment>
       {type === "link" && (
-        <Root as={Link} to={link}>
+        <Root
+          as={Link}
+          //  className={`${style.root} ${style[size]}`}
+          to={link}
+        >
           {inner}
         </Root>
       )}
       {type === "externalLink" && (
-        <Root href={link} target="_blank" rel="noreferrer">
+        <Root
+          // className={`${style.root} ${style[size]}`}
+          href={link}
+          target="_blank"
+          rel="noreferrer"
+        >
           {inner}
         </Root>
       )}
       {type === "clickButton" && (
         <Root
           as="div"
-          role="button"
+          // className={style.root}
           onClick={onClick}
           onMouseEnter={() => {
             setMouse("link", true)
@@ -75,28 +74,6 @@ function Button(props) {
     </React.Fragment>
   )
 }
-
-// const StyledButton = styled.button`
-//   font-weight: 800;
-//   padding: 0.8rem 1.5rem;
-//   border-color: ${({ theme, color }) => getColor(theme, color)};
-//   border-radius: 50px;
-//   color: ${({ theme, color }) => getColor(theme, color)};
-//   font-size: 0.8rem;
-//   background-color: transparent;
-//   border-color: ${({ theme }) => theme.colors.black};
-//   border-width: ${({ theme }) => theme.borderWidth};
-
-//   &:hover {
-//     background-color: ${({ theme, color }) => getColor(theme, color)};
-//     color: ${({ theme, bgColor }) => getColor(theme, bgColor)};
-//   }
-
-//   @media ${({ theme }) => theme.device.tablet} {
-//     font-size: 1rem;
-//     padding: 1.2rem 2rem;
-//   }
-// `
 
 const Root = styled.a`
   font-weight: 800;

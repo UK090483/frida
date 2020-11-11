@@ -6,13 +6,15 @@ import Artworks from "../components/artworks"
 import StartHero from "../components/StartHero/startHero"
 import Stoerer from "../components/StartHero/stoerer"
 
-const IndexPage = () => (
-  <Layout title={"Frida"}>
-    <SEO title="Home" />
-    <StartHero></StartHero>
-    <Stoerer></Stoerer>
-    <Artworks></Artworks>
-  </Layout>
-)
+const IndexPage = props => {
+  return (
+    <Layout title={"Frida"}>
+      <SEO title="Home" />
+      <StartHero></StartHero>
+      <Stoerer></Stoerer>
+      <Artworks></Artworks>
+    </Layout>
+  )
+}
 
 export default IndexPage

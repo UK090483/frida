@@ -139,23 +139,49 @@ function shuffleArray(array) {
   }
 }
 
+// const loadArtworks = async () => {
+//   let artworks = null,
+//     page = 0,
+//     results = [],
+//     per_page = 100
+//   do {
+//     artworks = await Storyblok.get("cdn/stories/", {
+//       per_page: per_page,
+//       page: page++,
+//       starts_with: "artwork/",
+//       resolve_relations: "artist,stil,medium",
+//     })
+
+//     results = results.concat(artworks.data.stories)
+//   } while (artworks.total > per_page * (page - 1))
+
+//   return results
+// }
+
 const loadArtworks = async () => {
-  let artworks = null,
-    page = 0,
-    results = [],
-    per_page = 100
-  do {
-    artworks = await Storyblok.get("cdn/stories/", {
-      per_page: per_page,
-      page: page++,
+  const perpage = 100
+  const count = await Storyblok.get("cdn/stories/", {
+    per_page: 1,
+    page: 1,
+    starts_with: "artwork/",
+  }).then(res => res.total)
+
+  const run = async p => {
+    return Storyblok.get("cdn/stories/", {
+      per_page: perpage,
+      page: p,
       starts_with: "artwork/",
       resolve_relations: "artist,stil,medium",
-    })
+    }).then(res => res.data.stories)
+  }
 
-    results = results.concat(artworks.data.stories)
-  } while (artworks.total > per_page * (page - 1))
-
-  return results
+  const testArray = new Array(Math.ceil(count / perpage))
+  testArray.fill(1)
+  const tasks = testArray.map((item, index) => {
+    return run(index + 1)
+  })
+  const results = await Promise.all(tasks)
+  return results.flat()
 }
 
 const loadPoster = async () => {
@@ -188,6 +214,7 @@ exports.createPages = ({ graphql, actions }) => {
       query MyQuery {
         allFridaArtworks {
           nodes {
+            uuid
             id
             artworkName
             availability

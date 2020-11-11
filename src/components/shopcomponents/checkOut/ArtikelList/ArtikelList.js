@@ -1,9 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import Artikel from "../Artikel/Artikel"
+import Artikel from "./Artikel/Artikel"
 
-export default function ArtikelList({ artikel }) {
+export default function ArtikelList({ artikel, nextStep }) {
   return (
     <Root>
       {artikel.map(item => (
@@ -13,9 +13,21 @@ export default function ArtikelList({ artikel }) {
   )
 }
 
-const BillinPanel = styled.div``
-const Root = styled.div`
-  border: red solid 1px;
+const Root = styled.ul`
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  padding-bottom: 100px;
+
+  li {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-bottom: black solid 1px;
+  }
+  li:last-child {
+    border-bottom: none;
+  }
 `
 
 ArtikelList.propTypes = {

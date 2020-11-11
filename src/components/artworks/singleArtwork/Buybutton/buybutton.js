@@ -1,27 +1,23 @@
-import React, { useContext } from "react"
-import getPriceWithTax from "../../helper/getPriceWithTax"
-import transformImage from "../../helper/transformImage"
+import React, { useContext, useEffect, useState } from "react"
+// import getPriceWithTax from "../../helper/getPriceWithTax"
+// import transformImage from "../../helper/transformImage"
 import useMouse from "../../../generic/Mouse/hooks/useMouse"
-import useShop from "../../../shopcomponents/hooks/useShop"
 import styled from "styled-components"
 import UiContext from "../../../../context/UiContext"
 
 export default function Buybutton({ artwork }) {
-  const {
-    artworkName,
-    price,
-    artistDescription,
-    imageUrl,
-    slug,
-    availability,
-    id,
-    uuid,
-  } = artwork
-  const { openCard, isOnCard, eraseItem, setInCart } = useContext(UiContext)
+  const { availability, uuid } = artwork
+  const [onCard, setOnCart] = useState(false)
+
+  const { openCard, isOnCard, eraseItem, setInCart, items } = useContext(
+    UiContext
+  )
+
+  useEffect(() => {
+    setOnCart(!!isOnCard(uuid))
+  }, [isOnCard, items, onCard, uuid])
 
   const { setMouse } = useMouse()
-
-  const onCard = isOnCard(uuid)
 
   return (
     <Root>
@@ -42,17 +38,8 @@ export default function Buybutton({ artwork }) {
             </BuyButton>
           ) : (
             <BuyButton
-              key="snipcart-add-item"
+              data-testid="add-to-cart-button"
               show={true}
-              className={"snipcart-add-item"}
-              data-item-id={id}
-              data-item-min-quantity={1}
-              data-item-max-quantity={1}
-              data-item-price={getPriceWithTax(price)}
-              data-item-url={"/artwork/" + slug}
-              data-item-description={artistDescription}
-              data-item-image={transformImage(imageUrl, "200x0")}
-              data-item-name={artworkName}
               onMouseEnter={() => {
                 setMouse("link", true)
               }}
@@ -69,7 +56,6 @@ export default function Buybutton({ artwork }) {
         </React.Fragment>
       ) : (
         <BuyButton
-          key="snipcart-erase"
           show={true}
           onMouseEnter={() => {
             setMouse("link", true)
@@ -86,7 +72,7 @@ export default function Buybutton({ artwork }) {
       )}
 
       <BuyButton
-        key="snipcart-show"
+        data-testid="got-to-cart-button"
         show={onCard}
         margin
         onMouseEnter={() => {

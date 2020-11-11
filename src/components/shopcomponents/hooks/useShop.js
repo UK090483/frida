@@ -6,6 +6,19 @@ function useShop() {
   const [checkoutOpen, setCheckoutOpen] = useState(false)
   const [items, setItems] = useState(null)
   const [itemCount, setItemCount] = useState(0)
+  const [clientToken, setClientToken] = useState(null)
+  const [loadingToken, setLoadingToken] = useState(false)
+
+  const requestClientToken = () => {
+    if (!clientToken && !loadingToken) {
+      setLoadingToken(true)
+      getToken().then(token => {
+        setLoadingToken(false)
+        console.log("requestClientToken ausgeführt")
+        setClientToken(token)
+      })
+    }
+  }
 
   const eraseItem = id => {
     const nextItems = [...items].filter(_id => id !== _id)
@@ -39,6 +52,8 @@ function useShop() {
   }, [items])
 
   return {
+    clientToken,
+    requestClientToken,
     items,
     setInCart,
     openCard,
@@ -52,3 +67,19 @@ function useShop() {
 }
 
 export default singletonHook(init, useShop)
+
+const getToken = async () => {
+  let token = null
+  await fetch("/.netlify/functions/braintreeGetToken", {
+    method: "POST",
+    body: JSON.stringify({
+      items: "bla",
+    }),
+  })
+    .then(async response => {
+      const r = await response.json()
+      token = r.token
+    })
+    .catch(err => console.log(err))
+  return token
+}

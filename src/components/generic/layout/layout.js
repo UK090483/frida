@@ -3,28 +3,23 @@ import PropTypes from "prop-types"
 import Header from "../header/header"
 import GlobalStyle from "../../../Styles/globalStyle"
 // import NormalizeCss from "../../../Styles/normalize"
-import CheckOut from "../../shopcomponents/checkOut/checkOut"
+// import CheckOut from "../../shopcomponents/checkOut/checkOut"
 
 import Nav from "../nav/nav"
 import Footer from "../Footer/footer"
 import Mouse from "../Mouse/mouse"
 import CookieConsent from "../../CookieConsent/CookieConsent"
-import { setMouse } from "../Mouse/mouseRemote"
+// import { setMouse } from "../Mouse/mouseRemote"
 // import "../../../fonts/webfonts/styles.css"
 
-const Layout = ({ children, title, header = "default", color }) => {
+const Layout = props => {
+  const { children, title, header = "default", color } = props
   return (
     <React.Fragment>
       {/* <NormalizeCss></NormalizeCss> */}
       <GlobalStyle></GlobalStyle>
       <div
         className={"page-layout"}
-        onPointerMove={e => {
-          setMouse("move", e)
-        }}
-        // onMouseMove={e => {
-        //   setMouse("move", e)
-        // }}
         style={{
           margin: `0 auto`,
           maxWidth: 2600,
@@ -47,7 +42,6 @@ const Layout = ({ children, title, header = "default", color }) => {
           <main>{children}</main>
           <CookieConsent />
           <Footer title={title}></Footer>
-          <CheckOut></CheckOut>
         </div>
       </div>
 

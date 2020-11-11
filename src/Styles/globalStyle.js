@@ -120,8 +120,6 @@ body {
   
 }
 
-
-
 .snipcart-cart--opened {
   .page-layout {
     transition: opacity 1s;
@@ -147,20 +145,43 @@ body {
   opacity: 0;
 }
 
-// .snipcart-cart-header {
-//   border: red solid 1px;
-//   .snipcart-cart-header__close-button {
-//     border: red solid 1px;
-//     max-width: fit-content;
-//     min-width: fit-content;
-//   }
-//   div {
-//     width: 100%;
-//     h3 {
-//       border: green solid 1px;
-//       width: 100%;
-//     }
-//   }
-// }
+
+.Frida_ReactModalPortal{
+  .ReactModal__Overlay {
+    z-index:3000;
+    transform:translate3d(100%,0,0);
+    opacity:0;
+    transition: transform 300ms ease-in-out, opacity 300ms;
+}
+
+.ReactModal__Overlay--after-open{
+  transform:translate3d(0,0,0);
+  opacity:1;
+  
+    
+}
+
+.ReactModal__Overlay--before-close{
+  transform:translate3d(100%,0,0);
+  opacity:0;
+}
+  .ReactModal__Overlay{
+  
+  .ReactModal__Content{
+    left:0 !important;
+    right:0 !important;
+    top:0 !important;
+    bottom:0 !important;
+    border-width:0 !important;
+    padding:0 !important;
+   
+  }
+}
+}
+
+.Frida_no_scroll{
+  overflow: hidden ;
+}
+
 `
 export default Global

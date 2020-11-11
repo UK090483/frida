@@ -1,5 +1,5 @@
 const postCssPlugins = require("./postcss-config.js")
-const { createProxyMiddleware } = require("http-proxy-middleware")
+// const { createProxyMiddleware } = require("http-proxy-middleware")
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
@@ -26,27 +26,50 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: { "~components": "src/components", "~context": "src/context" },
+        extensions: ["js"],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-modal-routing`,
+      options: {
+        // A selector to set react-modal's app root to, default is `#___gatsby`
+        // See http://reactcommunity.org/react-modal/accessibility/#app-element
+        appElement: "#___gatsby",
 
-    // {
-    //   resolve: "gatsby-plugin-eslint",
-    //   options: {
-    //     test: /\.js$|\.jsx$/,
-    //     exclude: /(node_modules|.cache|public)/,
-    //     stages: ["develop"],
-    //     options: {
-    //       emitWarning: true,
-    //       failOnError: false,
-    //       fix: true,
-    //     },
-    //   },
-    // },
+        // Object of props that will be passed to the react-modal container
+        // See http://reactcommunity.org/react-modal/#usage
+        modalProps: {
+          htmlOpenClassName: "Frida_no_scroll",
+          portalClassName: "Frida_ReactModalPortal",
+          closeTimeoutMS: 300,
+        },
+      },
+    },
+
+    {
+      resolve: "gatsby-plugin-eslint",
+      options: {
+        test: /\.js$|\.jsx$/,
+        exclude: /(node_modules|.cache|public)/,
+        stages: ["develop"],
+        options: {
+          emitWarning: true,
+          failOnError: false,
+          fix: true,
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-google-analytics-gdpr`,
       options: {
         // The property ID; the tracking code won't be generated without it.
         trackingId: "UA-173386755-1",
         // Optional parameter (default false) - Enable analytics in development mode.
-        enableDevelopment: true, // default false
+        enableDevelopment: false, // default false
         // Optional parameter (default true) - Some countries (such as Germany) require you to use the _anonymizeIP function for Google Analytics. Otherwise you are not allowed to use it.
         anonymizeIP: true,
         // Optional parameter (default false) - Starts google analytics with cookies enabled. In some countries (such as Germany) this is not allowed.

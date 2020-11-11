@@ -6,9 +6,6 @@ import UiContext from "../../context/UiContext"
 export default function CheckOutLink() {
   const { openCard, itemCount } = useContext(UiContext)
   const { setMouse } = useMouse()
-  const onClick = () => {
-    openCard()
-  }
 
   return (
     <React.Fragment>
@@ -19,7 +16,7 @@ export default function CheckOutLink() {
             width: 50,
             height: 50,
           }}
-          onClick={onClick}
+          onClick={() => openCard()}
           onMouseEnter={() => {
             setMouse("link", true)
           }}
@@ -28,6 +25,7 @@ export default function CheckOutLink() {
           }}
         >
           <ShopIcon></ShopIcon>
+
           <div
             style={{
               position: "absolute",

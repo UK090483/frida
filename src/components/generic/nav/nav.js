@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import Burger from "./Icon/icon"
 import Header from "./header/header"
 import Circle from "./Circle/circle"
 import Links from "./Links/links"
 import BigButtons from "./BigButtons/bigButtons"
+import useBodyScrollStop from "../../helper/useBodyScrollStop"
 
 import styled from "styled-components"
 
@@ -11,18 +12,20 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
   const [initialRender, setInitialRender] = useState(true)
 
-  useEffect(() => {
-    return () => {
-      document.querySelector("html").style.overflow = "auto"
-    }
-  }, [])
+  const { stopBodyScroll, enableBodySroll } = useBodyScrollStop()
+
+  // useEffect(() => {
+  //   return () => {
+  //     enableBodySroll()
+  //   }
+  // }, [enableBodySroll])
 
   const handleMenu = () => {
     if (open) {
       setOpen(!open)
-      document.querySelector("html").style.overflow = "auto"
+      enableBodySroll()
     } else {
-      document.querySelector("html").style.overflow = "hidden"
+      stopBodyScroll()
       setOpen(!open)
       setInitialRender(false)
     }
