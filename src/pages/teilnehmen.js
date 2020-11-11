@@ -62,8 +62,8 @@ const IndexPage = () => (
     </Section>
     <Section type={"text"} backgroundColor="red">
       <p style={{ paddingTop: 100 }}>
-        Du willst Teil von Deutschlands größter Outdoor-Gallery werden? Dann
-        solltest Du eine der folgenden Bedingungen erfüllen:
+        Du willst Teil von Deutschlands größter Outdoor- und Online-Gallery
+        werden? Dann müsstest Du folgende Bedingungen erfüllen:
       </p>
       <ul style={{ paddingBottom: 100 }}>
         <li>Du hast ein abgeschlossenes Kunststudium.</li>
@@ -75,7 +75,16 @@ const IndexPage = () => (
           Du hattest schon mindestens zwei Ausstellungen in Galerien oder
           Museen.
         </li>
+        <li>
+          Du reichst ein Empfehlungsschreiben eines Kurators, Professors oder
+          Sammlers mit ein.
+        </li>
       </ul>
+      <p style={{ paddingBottom: 100 }}>
+        Alle eingereichten Arbeiten werden von unserer unabhängigen Jury aus
+        Kunstexperten geprüft. Sobald die Entscheidung gefallen ist,
+        kontaktieren wir Dich und laden Deine Werke hoch.
+      </p>
 
       <p>
         Zeig uns die Werke, die du bei #MeetFrida ausstellen und verkaufen
