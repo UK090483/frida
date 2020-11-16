@@ -10,8 +10,8 @@ import { Navi, StyledNavButton, NavAnimationWrp } from "./Navigation"
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function CheckOut({ data, closeTo }) {
-  const { items } = useContext(UiContext)
-  const artworks = data.allFridaArtworks.nodes
+  const { items, userDataValid } = useContext(UiContext)
+  const artworks = data.allCSanityFridaArtworks.nodes
 
   const [state, setState] = React.useState("artikel")
   const activeArtworks = items
@@ -24,10 +24,11 @@ export default function CheckOut({ data, closeTo }) {
     setState(nStep)
   }
 
-  const NavButton = ({ goesTo, name, pos }) => {
+  const NavButton = ({ goesTo, name, pos, disabled, testid }) => {
     return (
-      <StyledNavButton pos={pos}>
+      <StyledNavButton pos={pos} disabled={disabled}>
         <Button
+          testid={testid}
           type={"clickButton"}
           onClick={() => {
             setState(goesTo)
@@ -81,12 +82,24 @@ export default function CheckOut({ data, closeTo }) {
 
       <Navi>
         <NavAnimationWrp show={state === "artikel"}>
-          <NavButton goesTo={"kasse"} name={"zur Kasse"} pos={"right"} />
+          <NavButton
+            goesTo={"kasse"}
+            name={"zur Kasse"}
+            pos={"right"}
+            testid={"zur-kasse"}
+          />
         </NavAnimationWrp>
 
         <NavAnimationWrp show={state === "kasse"}>
           <NavButton goesTo={"artikel"} name={"Zurück"} />
-          <NavButton goesTo={"payment"} name={"Checkout"} pos={"right"} />
+
+          <NavButton
+            goesTo={"payment"}
+            name={"Checkout"}
+            pos={"right"}
+            disabled={!userDataValid}
+            testid={"checkout"}
+          />
         </NavAnimationWrp>
         <NavAnimationWrp show={state === "payment"}>
           <NavButton goesTo={"kasse"} name={"Zurück"} />
@@ -114,6 +127,5 @@ const AnimationWrp = ({ children, show, name }) => {
 }
 const StyledWrap = styled(motion.div)`
   position: absolute;
-  width: calc(100vw - 40px);
   width: 100vw;
 `

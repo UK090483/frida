@@ -6,11 +6,11 @@ export default function Summary({ artikel }) {
 
   return (
     <Root>
+      <Head>Zusammenfassung</Head>
       <List>
         {artikel.map(item => {
-          console.log(item)
           return (
-            <ListItem>
+            <ListItem key={item.uuid}>
               <span>{item.artworkName}</span>
               <span>{item.price}€</span>
             </ListItem>
@@ -30,6 +30,11 @@ export default function Summary({ artikel }) {
     </Root>
   )
 }
+
+const Head = styled.div`
+  font-weight: 700;
+  border-bottom: black 1px solid;
+`
 
 const Seperator = styled.div`
   width: 100%;
@@ -59,11 +64,6 @@ const Root = styled.div`
   flex-direction: column;
   border: black solid 1px;
   border-radius: 5px;
-`
-const Sum = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
 `
 
 const getSum = artikel => {

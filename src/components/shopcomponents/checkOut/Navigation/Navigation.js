@@ -38,9 +38,6 @@ const StyledNavWrap = styled(motion.div)`
   display: flex;
   align-items: center;
   position: absolute;
-  justify-content: ${({ length }) => {
-    return length > 1 ? "space-between" : "flex-end"
-  }};
 
   @media ${({ theme }) => theme.device.tablet} {
     width: calc(100vw - 200px);
@@ -48,6 +45,7 @@ const StyledNavWrap = styled(motion.div)`
 `
 
 const StyledNavButton = styled.div`
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   ${({ pos }) => {
     switch (pos) {
       case "right":

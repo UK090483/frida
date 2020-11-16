@@ -23,11 +23,6 @@ function ArtworkContainer({ artworks, handleClick, infinite = false }) {
     loadMore
   )
 
-  const handleLoaded = () => {
-    // console.log("loadet")
-    // scrollRef.current = false
-  }
-
   return (
     <React.Fragment>
       <StyledArrow
@@ -40,12 +35,8 @@ function ArtworkContainer({ artworks, handleClick, infinite = false }) {
         <Grid>
           {[...artworks].slice(0, postCount).map((artwork, index) => (
             <Artwork
-              key={artwork.id}
+              key={artwork.uuid}
               artwork={artwork}
-              handleLoaded={handleLoaded}
-              handleClick={() => {
-                handleClick(artwork)
-              }}
               index={index}
             ></Artwork>
           ))}

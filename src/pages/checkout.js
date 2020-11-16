@@ -9,7 +9,7 @@ const ModalExamplePage = ({ data }) => (
     {({ modal, closeTo }) => {
       return (
         <div>
-          {modal ? (
+          {modal && true ? (
             <Checkout checkoutOpen={true} closeTo={closeTo} data={data} />
           ) : (
             <Layout>
@@ -26,25 +26,32 @@ export default ModalExamplePage
 
 export const query = graphql`
   query checkout {
-    allFridaArtworks {
+    allCSanityFridaArtworks {
       nodes {
         uuid
-        id
-        availability
-        width
-        artworkName
-        height
         slug
-        imageUrl
-        depth
-        artistName
+        artistDescription
         artistWebLink
-        instagramLink
+        artistName
+        artworkName
+        availability
+        depth
+        description
+        height
+        price
         medium
         stil
-        price
-        artistDescription
-        artworkDescription: description
+        image {
+          fluid100 {
+            base64
+            aspectRatio
+            sizes
+            src
+            srcSet
+            srcSetWebp
+            srcWebp
+          }
+        }
       }
     }
   }

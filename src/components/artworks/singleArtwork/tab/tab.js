@@ -5,32 +5,19 @@ import LinkIcon from "../../../../assets/link_icon.svg"
 import useMouse from "../../../generic/Mouse/hooks/useMouse"
 import styled, { keyframes } from "styled-components"
 
-// import {
-//   EmailShareButton,
-//   FacebookShareButton,
-//   FacebookIcon,
-//   HatenaShareButton,
-//   InstapaperShareButton,
-//   InstapaperIcon,
-//   LineShareButton,
-//   LinkedinShareButton,
-//   LivejournalShareButton,
-//   MailruShareButton,
-//   OKShareButton,
-//   PinterestShareButton,
-//   PocketShareButton,
-//   RedditShareButton,
-//   TelegramShareButton,
-//   TumblrShareButton,
-//   TwitterShareButton,
-//   ViberShareButton,
-//   VKShareButton,
-//   WhatsappShareButton,
-//   WorkplaceShareButton,
-// } from "react-share"
+import NSwitch from "./switch"
 
-export default function Tab({ text1, text2, instagramLink, artistWebLink }) {
+import { Link } from "gatsby"
+export default function Tab({
+  text1,
+  text2,
+  instagramLink,
+  artistWebLink,
+  relativeArtworks,
+  isModal,
+}) {
   const [active, setActive] = useState(true)
+  const [curentActive, setCurentActive] = useState("more")
 
   const { setMouse } = useMouse()
 
@@ -38,54 +25,36 @@ export default function Tab({ text1, text2, instagramLink, artistWebLink }) {
     setActive(!active)
   }
 
+  const getItems = () => {
+    const res = []
+    if (relativeArtworks || true) {
+      res.push({ label: "Weiter Bilder", name: "more" })
+    }
+    if (text1 || true) {
+      res.push({ label: "Künstler Info", name: "künstler" })
+    }
+    if (text2 || true) {
+      res.push({ label: "Kunstwer Info", name: "kunstwerk" })
+    }
+
+    return res
+  }
+
   return (
     <div>
-      <Controles
-      //  className={style.controls}
-      >
-        <Switch
-          active={active}
-          // className={style.button}
-          onClick={() => {
-            handleClick()
-          }}
-          onMouseEnter={() => {
-            setMouse("link", true)
-          }}
-          onMouseLeave={() => {
-            setMouse("link", false)
-          }}
-        >
-          <div>Künstler Info</div>
-          <div>Kunstwerk Info</div>
-        </Switch>
-        <LinkIconWrap
-        // className={style.linkIconWrap}
-        >
-          {/* <FacebookShareButton url={"https://meetfrida.art/"}>
-            <FacebookIcon
-              size={32}
-              round={true}
-              borderRadius={3}
-              bgStyle={{ fill: "#f5c5d9" }}
-              iconFillColor={"white"}
-            ></FacebookIcon>
-          </FacebookShareButton>
-          <InstapaperShareButton url={"https://meetfrida.art/"}>
-            <InstapaperIcon
-              size={32}
-              round={true}
-              borderRadius={3}
-              bgStyle={{ fill: "#f5c5d9" }}
-              iconFillColor={"white"}
-            ></InstapaperIcon>
-          </InstapaperShareButton> */}
+      <Controles>
+        <NSwitch
+          current={curentActive}
+          items={getItems()}
+          handleClick={name => setCurentActive(name)}
+        ></NSwitch>
+
+        <LinkIconWrap>
           {artistWebLink && (
             <Icon
               target="_blank"
               rel="noreferrer"
               href={artistWebLink}
-              // className={style.linkIcon}
               onMouseEnter={() => {
                 setMouse("link", true)
               }}
@@ -101,7 +70,6 @@ export default function Tab({ text1, text2, instagramLink, artistWebLink }) {
               target="_blank"
               rel="noreferrer"
               href={instagramLink}
-              // className={style.linkIcon}
               onMouseEnter={() => {
                 setMouse("link", true)
               }}
@@ -115,13 +83,41 @@ export default function Tab({ text1, text2, instagramLink, artistWebLink }) {
         </LinkIconWrap>
       </Controles>
 
-      {active && <Text dangerouslySetInnerHTML={{ __html: xss(text1) }}></Text>}
-      {!active && (
+      {curentActive === "künstler" && (
+        <Text dangerouslySetInnerHTML={{ __html: xss(text1) }}></Text>
+      )}
+      {curentActive === "more" && (
+        <Text>
+          <RelativArtworkWrap>
+            {relativeArtworks.map(item => {
+              return (
+                <Link
+                  key={item.slug}
+                  to={`/artwork/${item.slug}`}
+                  state={{ modal: isModal }}
+                >
+                  <RelativArtworkImage
+                    src={item.image.fluid100.src}
+                  ></RelativArtworkImage>
+                </Link>
+              )
+            })}
+          </RelativArtworkWrap>
+        </Text>
+      )}
+      {curentActive === "kunstwerk" && (
         <Text dangerouslySetInnerHTML={{ __html: xss(text2) }}></Text>
       )}
     </div>
   )
 }
+
+const RelativArtworkWrap = styled.div`
+  overflow: hidden;
+`
+const RelativArtworkImage = styled.img`
+  margin: 0 10px;
+`
 
 const textIn = keyframes`
   from {
@@ -200,7 +196,7 @@ const Switch = styled.div`
     width: unset;
   }
 
-  div {
+  button {
     padding: 0 20px;
     display: flex;
     justify-content: center;

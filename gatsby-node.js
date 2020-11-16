@@ -8,6 +8,23 @@
 
 const StoryblokClient = require("storyblok-js-client")
 const path = require(`path`)
+const imageUrlBuilder = require("@sanity/image-url")
+const sanityClient = require("@sanity/client")
+const {
+  getFluidGatsbyImage,
+  getFixedGatsbyImage,
+} = require("gatsby-source-sanity")
+
+const sanityConfig = { projectId: "ypuaahj7", dataset: "test2" }
+const client = sanityClient({
+  ...sanityConfig,
+  token: process.env.SANITY_TOKEN,
+})
+const builder = imageUrlBuilder(sanityConfig)
+
+function urlFor(source) {
+  return builder.image(source)
+}
 
 const Storyblok = new StoryblokClient({
   accessToken: process.env.STORYBLOCK_TOKEN,
@@ -22,50 +39,78 @@ exports.sourceNodes = async ({
   createNodeId,
   createContentDigest,
 }) => {
-  const artworks = await loadArtworks()
   const poster = await loadPoster()
-  shuffleArray(artworks)
-  // console.log("---------------------------------------------------------")
-  // console.log(process.env.STORYBLOCK_TOKEN)
-  // console.log("---------------------------------------------------------")
+  const sanityArtworks = await loadArtworksSanity()
+  shuffleArray(sanityArtworks)
+
   const { createNode } = actions
 
-  artworks.forEach(story => {
-    const {
-      slug,
-      uuid,
-      content: {
-        name: artworkName,
-        availability,
-        description,
-        width,
-        height,
-        depth,
-        price,
-        Image: { filename: imageUrl },
-        stil: {
-          content: { name: stil },
-        },
-        medium: {
-          content: { name: medium },
-        },
-        artist: {
-          content: {
-            anzeige_name: artistName,
-            web_link: artistWebLink,
-            description: artistDescription,
-            artist_instagram_link: instagramLink,
-          },
-        },
-      },
-    } = story
+  function getPriceWithTax(price) {
+    if (!price) {
+      return ""
+    }
+    const withTax = (price / 84) * 100
+    const roundTen = Math.ceil(withTax / 10) * 10
+    // console.log(`Preis: ${price}/ mitMwSt: ${withTax}/ gerundet: ${roundTen}`)
+    return roundTen
+  }
 
-    const cleanAvailability =
-      typeof availability === "object" ? availability[0] : availability
+  sanityArtworks.forEach(item => {
+    const {
+      slug: { current: slug },
+      _id: uuid,
+      name: artworkName,
+      availability,
+      description,
+      width,
+      height,
+      depth,
+      price,
+
+      stil: { name: stil },
+      medium: { name: medium },
+      artist: {
+        anzeigeName: artistName,
+        webLink: artistWebLink,
+        description: artistDescription,
+        instagramLink: instagramLink,
+        _id: artistId,
+      },
+      image: {
+        asset: { _ref: imageAssetId },
+      },
+    } = item
+
+    const fluid50 = getFluidGatsbyImage(
+      imageAssetId,
+      { maxWidth: 50, quality: 60 },
+      sanityConfig
+    )
+    const fluid100 = getFluidGatsbyImage(
+      imageAssetId,
+      { maxWidth: 100, quality: 60 },
+      sanityConfig
+    )
+    const fluid500 = getFluidGatsbyImage(
+      imageAssetId,
+      { maxWidth: 500, quality: 60 },
+      sanityConfig
+    )
+    const fluid1000 = getFluidGatsbyImage(
+      imageAssetId,
+      { maxWidth: 1000, quality: 60 },
+      sanityConfig
+    )
+    const base64 = urlFor(imageAssetId).width(20).url()
+
+    fluid50.base64 = base64
+    fluid500.base64 = base64
+    fluid1000.base64 = base64
+    fluid100.base64 = base64
 
     const data = {
       uuid,
-      availability: cleanAvailability,
+      availability,
       description,
       artistName,
       artistWebLink,
@@ -74,21 +119,27 @@ exports.sourceNodes = async ({
       medium,
       stil,
       artworkName,
+      artistId,
       slug,
       width,
       height,
       depth,
-      price,
-      imageUrl,
+      price: getPriceWithTax(price),
+      image: {
+        fluid50,
+        fluid100,
+        fluid500,
+        fluid1000,
+      },
     }
 
     const nodeContent = JSON.stringify(data)
     const nodeMeta = {
-      id: createNodeId(`my-data-${uuid}`),
+      id: createNodeId(`sanity-artwork-${uuid}`),
       parent: null,
       children: [],
       internal: {
-        type: `FridaArtworks`,
+        type: `CSanityFridaArtworks`,
         mediaType: `text/html`,
         content: nodeContent,
         contentDigest: createContentDigest(data),
@@ -139,49 +190,32 @@ function shuffleArray(array) {
   }
 }
 
-// const loadArtworks = async () => {
-//   let artworks = null,
-//     page = 0,
-//     results = [],
-//     per_page = 100
-//   do {
-//     artworks = await Storyblok.get("cdn/stories/", {
-//       per_page: per_page,
-//       page: page++,
-//       starts_with: "artwork/",
-//       resolve_relations: "artist,stil,medium",
-//     })
+const loadArtworksSanity = async () => {
+  console.log("sanity _ start")
+  console.time("SANITY_____Load")
+  const query = `
+  *[_type == 'artwork']{
+    _id,
+    slug,
+    name,
+    availability,
+    description,
+    width,
+    height,
+    depth,
+    price,
+    stil->{name},
+    medium->{name},
+    artist->{anzeigeName,description,instagramLink,webLink,_id},
+    image
+  }`
+  const params = {}
 
-//     results = results.concat(artworks.data.stories)
-//   } while (artworks.total > per_page * (page - 1))
+  const res = await client.fetch(query, params)
 
-//   return results
-// }
+  console.timeEnd("SANITY_____Load")
 
-const loadArtworks = async () => {
-  const perpage = 100
-  const count = await Storyblok.get("cdn/stories/", {
-    per_page: 1,
-    page: 1,
-    starts_with: "artwork/",
-  }).then(res => res.total)
-
-  const run = async p => {
-    return Storyblok.get("cdn/stories/", {
-      per_page: perpage,
-      page: p,
-      starts_with: "artwork/",
-      resolve_relations: "artist,stil,medium",
-    }).then(res => res.data.stories)
-  }
-
-  const testArray = new Array(Math.ceil(count / perpage))
-  testArray.fill(1)
-  const tasks = testArray.map((item, index) => {
-    return run(index + 1)
-  })
-  const results = await Promise.all(tasks)
-  return results.flat()
+  return res
 }
 
 const loadPoster = async () => {
@@ -205,32 +239,46 @@ const loadPoster = async () => {
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  // we use a Promise to make sure the data are loaded
-  // before attempting to create the pages with them
   return new Promise((resolve, reject) => {
-    // fetch your data here, generally with graphQL.
-    // for example, let say you use your data from Contentful using its associated source plugin
     graphql(`
       query MyQuery {
-        allFridaArtworks {
+        allCSanityFridaArtworks {
           nodes {
             uuid
-            id
+            slug
+            artistDescription
+            artistWebLink
+            artistName
+            artistId
             artworkName
             availability
-            width
-            height
-            slug
             depth
-            artistName
-            artistWebLink
-            instagramLink
+            description
+            height
+            width
+            price
             medium
             stil
-            price
-            artistDescription
-            artworkDescription: description
-            imageUrl
+            image {
+              fluid500 {
+                base64
+                aspectRatio
+                sizes
+                src
+                srcSet
+                srcSetWebp
+                srcWebp
+              }
+              fluid1000 {
+                base64
+                aspectRatio
+                sizes
+                src
+                srcSet
+                srcSetWebp
+                srcWebp
+              }
+            }
           }
         }
       }
@@ -241,19 +289,14 @@ exports.createPages = ({ graphql, actions }) => {
         reject(result.errors)
       }
 
-      // if no errors, you can map into the data and create your static pages
-      result.data.allFridaArtworks.nodes.forEach(artwork => {
-        // create page according to the fetched data
-
+      result.data.allCSanityFridaArtworks.nodes.forEach(artwork => {
         createPage({
-          path: `/artwork/${artwork.slug}`, // your url -> /categories/animals
-          component: path.resolve("./src/templates/singleArtworkTemplate.js"), // your template component
+          path: `/artwork/${artwork.slug}`,
+          component: path.resolve("./src/templates/singleArtworkTemplate.js"),
           context: {
-            // optional,
-            // data here will be passed as props to the component ``,
-            // as well as to the graphql query as graphql arguments.
             slug: artwork.slug,
             content: artwork,
+            artistId: artwork.artistId,
           },
         })
       })
@@ -270,86 +313,3 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     },
   })
 }
-// const path = require(`path`) // you will need it later to point at your template component
-
-// exports.createPages = ({ graphql, actions }) => {
-//   const { createPage } = actions
-
-//   // we use a Promise to make sure the data are loaded
-//   // before attempting to create the pages with them
-//   return new Promise((resolve, reject) => {
-//     // fetch your data here, generally with graphQL.
-//     // for example, let say you use your data from Contentful using its associated source plugin
-//     graphql(`
-//       query MyQuery {
-//         pages: allStoryblokEntry(filter: { full_slug: { regex: "/pages/" } }) {
-//           ...StoryblokPages
-//         }
-//         artworks: allStoryblokEntry(
-//           filter: { full_slug: { regex: "/artwork/" } }
-//           sort: { fields: field_randSort_number, order: ASC }
-//         ) {
-//           ...StoryblokArtworks
-//         }
-//       }
-
-//       fragment StoryblokPages on StoryblokEntryConnection {
-//         edges {
-//           node {
-//             slug
-//             content
-//           }
-//         }
-//       }
-
-//       fragment StoryblokArtworks on StoryblokEntryConnection {
-//         edges {
-//           node {
-//             slug
-//             id
-//           }
-//         }
-//       }
-//     `).then(result => {
-//       // first check if there is no errors
-//       if (result.errors) {
-//         // reject Promise if error
-//         reject(result.errors)
-//       }
-
-//       // if no errors, you can map into the data and create your static pages
-//       result.data.artworks.edges.forEach(artwork => {
-//         // create page according to the fetched data
-
-//         createPage({
-//           path: `/artwork/${artwork.node.slug}`, // your url -> /categories/animals
-//           component: path.resolve("./src/templates/singleArtworkTemplate.js"), // your template component
-//           context: {
-//             // optional,
-//             // data here will be passed as props to the component ``,
-//             // as well as to the graphql query as graphql arguments.
-
-//             slug: artwork.node.slug,
-//           },
-//         })
-//       })
-
-//       result.data.pages.edges.forEach(page => {
-//         // create page according to the fetched data
-
-//         createPage({
-//           path: `/${page.node.slug}`, // your url -> /categories/animals
-//           component: path.resolve("./src/templates/pages-template.js"), // your template component
-//           context: {
-//             // optional,
-//             // data here will be passed as props to the component ``,
-//             // as well as to the graphql query as graphql arguments.
-//             content: page.node.content,
-//             slug: page.node.slug,
-//           },
-//         })
-//       })
-//       resolve()
-//     })
-//   })
-// }

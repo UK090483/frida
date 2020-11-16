@@ -3,13 +3,25 @@ import { useStaticQuery, graphql } from "gatsby"
 import Frida from "../frida/frida"
 import Button from "../buttons/button"
 import styled, { keyframes } from "styled-components"
+import Img from "gatsby-image"
+import { useIntersection } from "react-use"
 
 export default function StartHero({ children }) {
   const data = useStaticQuery(graphql`
     query startHeroQuery {
-      allFridaArtworks {
+      allCSanityFridaArtworks {
         nodes {
-          imageUrl
+          image {
+            fluid50 {
+              aspectRatio
+              base64
+              sizes
+              src
+              srcSet
+              srcSetWebp
+              srcWebp
+            }
+          }
         }
       }
     }
@@ -19,44 +31,44 @@ export default function StartHero({ children }) {
     return Math.floor(Math.random() * (max - min) + min)
   }
 
-  const allImages = data.allFridaArtworks.nodes
+  const allImages = data.allCSanityFridaArtworks.nodes
   const [images, setImages] = useState([])
+  const intersectionRef = React.useRef(null)
+
+  const intersection = useIntersection(intersectionRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 1,
+  })
 
   useEffect(() => {
-    function transformImage(image, option) {
-      var imageService = "https://img2.storyblok.com/"
-      var path = image.replace("https://a.storyblok.com", "")
-      return imageService + option + "/" + path
-    }
-
     function getNext() {
       let item = allImages[getRandomInt(0, allImages.length)]
-      return transformImage(item.imageUrl, "150x0/filters:quality(60)")
+      return item.image.fluid50
     }
+    if (intersection && intersection.isIntersecting) {
+      const int = setTimeout(() => {
+        const nextImages = [...images]
+        if (nextImages.length > 10) {
+          nextImages.shift()
+        }
 
-    const int = setTimeout(() => {
-      const nextImages = [...images]
-      if (nextImages.length > 10) {
-        nextImages.shift()
-      }
+        const NextImage = {
+          key: Date.now(),
+          zIndex: getRandomInt(0, 2) > 0 ? 1 : 0,
+          src: getNext(),
+          left: `${getRandomInt(0, 100)}vw`,
+        }
 
-      let src = getNext()
-
-      const NextImage = {
-        key: Date.now(),
-        zIndex: getRandomInt(0, 2) > 0 ? 1 : 0,
-        src: src,
-        left: `${getRandomInt(0, 100)}vw`,
-      }
-      if (src) {
         nextImages.push(NextImage)
+
+        setImages(nextImages)
+      }, 800)
+      return () => {
+        clearTimeout(int)
       }
-      setImages(nextImages)
-    }, 800)
-    return () => {
-      clearTimeout(int)
     }
-  }, [allImages, images, setImages])
+  }, [allImages, images, setImages, intersection])
 
   return (
     <React.Fragment>
@@ -66,16 +78,13 @@ export default function StartHero({ children }) {
             children
           ) : (
             <React.Fragment>
-              {" "}
               <h6>
                 Neue Positionen kennenlernen, Kunst in ganz Deutschland sehen
                 und dabei Kunstschaffende unterstützen.
-                {/* Neue Werke, wechselnde Ausstellungsorte, 1 Plattform. */}
               </h6>
               <h1>
                 <Frida /> – Deutschlands größte Outdoor- und Online-Gallery für
                 junge Kunst
-                {/* Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida> */}
               </h1>
               <Button
                 label={"Mehr Erfahren"}
@@ -89,15 +98,22 @@ export default function StartHero({ children }) {
         {images.map(image => {
           return (
             <Image
-              alt={"flying "}
-              //   className={style.image}
-              style={{ left: image.left, zIndex: image.zIndex }}
+              style={{
+                left: image.left,
+                zIndex: image.zIndex,
+                animationPlayState:
+                  intersection && intersection.isIntersecting
+                    ? "running"
+                    : "paused",
+              }}
               key={image.key}
-              src={image.src}
-            ></Image>
+            >
+              <Img alt={"flying "} fluid={image.src}></Img>
+            </Image>
           )
         })}
       </Root>
+      <div ref={intersectionRef} />
     </React.Fragment>
   )
 }
@@ -132,7 +148,7 @@ const drive = keyframes`
   }
 `
 
-const Image = styled.img`
+const Image = styled.div`
   position: absolute;
   width: 25vw;
   z-index: 0;

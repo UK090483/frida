@@ -52,8 +52,8 @@ const Inner = styled.div`
 `
 
 const Root = styled.div`
-  /* position: fixed; */
-
+  position: relative;
+  overflow-x: hidden;
   width: 100vw;
   min-height: 100vh;
   background-color: ${({ theme }) => theme.colors.white};

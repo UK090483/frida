@@ -2,24 +2,17 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
-// import useBodyScrollStop from "./helper/useBodyScrollStop"
 import Filter from "./filter/filter"
 import Section from "../container/section"
 import Button from "../buttons/button"
 import { useStaticQuery, graphql } from "gatsby"
 import ArtworsContainer from "./artworksContainer/artworksContainer"
 import Frida from "../frida/frida"
-// import Slider from "./slider/slider"
 
 function Artworks({ filter = false, infinite = false }) {
   const [filert, setFElements] = useState(null)
   const artworks = usePreparedData()
 
-  const handleClick = artwork => {
-    // setArtwork(artwork)
-  }
-
-  /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
     <React.Fragment>
       <div id={"filter"} style={{ transform: "translateY(-10vh)" }}></div>
@@ -37,7 +30,6 @@ function Artworks({ filter = false, infinite = false }) {
         <Root>
           <ArtworsContainer
             artworks={filert || artworks}
-            handleClick={handleClick}
             infinite={infinite}
           ></ArtworsContainer>
         </Root>
@@ -72,30 +64,31 @@ Artworks.propTypes = {
 function usePreparedData() {
   const data = useStaticQuery(graphql`
     query MyQuery {
-      allFridaArtworks {
+      allCSanityFridaArtworks {
         nodes {
           uuid
-          id
-          availability
-          width
-          artworkName
-          height
           slug
-          imageUrl
-          depth
           artistName
-          artistWebLink
-          instagramLink
-          medium
-          stil
+          artworkName
+          availability
+          height
           price
-          artistDescription
-          artworkDescription: description
+          image {
+            fluid500 {
+              base64
+              aspectRatio
+              sizes
+              src
+              srcSet
+              srcSetWebp
+              srcWebp
+            }
+          }
         }
       }
     }
   `)
 
-  return data.allFridaArtworks.nodes
+  return data.allCSanityFridaArtworks.nodes
 }
 export default Artworks

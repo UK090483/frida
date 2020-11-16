@@ -1,30 +1,43 @@
 const postCssPlugins = require("./postcss-config.js")
-// const { createProxyMiddleware } = require("http-proxy-middleware")
+
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-//process.env.GATSBY_CONCURRENT_DOWNLOAD = 1
-
 module.exports = {
-  // developMiddleware: app => {
-  //   app.use(
-  //     "/.netlify/functions/",
-  //     createProxyMiddleware({
-  //       target: "http://localhost:9000",
-  //       pathRewrite: {
-  //         "/.netlify/functions/": "",
-  //       },
-  //     })
-  //   )
-  // },
-
   siteMetadata: {
     title: `Frida`,
     description: ``,
     author: ``,
+    siteUrl: `https://www.meetfrida.art`,
   },
   plugins: [
+    // {
+    //   resolve: `gatsby-plugin-sitemap`,
+    //   options: {
+    //     query: `
+    //       {
+    //         allSitePage {
+    //           nodes {
+    //             path
+    //           }
+    //         }
+    //     }`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-sanity`,
+    //   options: {
+    //     projectId: "ypuaahj7",
+    //     dataset: "test2",
+    //     // a token with read permissions is required
+    //     // if you have a private dataset
+    //     token: process.env.SANITY_TOKEN,
+
+    //     // If the Sanity GraphQL API was deployed using `--tag <name>`,
+    //     // use `graphqlTag` to specify the tag name. Defaults to `default`.
+    //   },
+    // },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-alias-imports`,
@@ -36,12 +49,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-modal-routing`,
       options: {
-        // A selector to set react-modal's app root to, default is `#___gatsby`
-        // See http://reactcommunity.org/react-modal/accessibility/#app-element
         appElement: "#___gatsby",
-
-        // Object of props that will be passed to the react-modal container
-        // See http://reactcommunity.org/react-modal/#usage
         modalProps: {
           htmlOpenClassName: "Frida_no_scroll",
           portalClassName: "Frida_ReactModalPortal",
@@ -49,7 +57,6 @@ module.exports = {
         },
       },
     },
-
     {
       resolve: "gatsby-plugin-eslint",
       options: {
@@ -66,15 +73,10 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics-gdpr`,
       options: {
-        // The property ID; the tracking code won't be generated without it.
         trackingId: "UA-173386755-1",
-        // Optional parameter (default false) - Enable analytics in development mode.
-        enableDevelopment: false, // default false
-        // Optional parameter (default true) - Some countries (such as Germany) require you to use the _anonymizeIP function for Google Analytics. Otherwise you are not allowed to use it.
+        enableDevelopment: false,
         anonymizeIP: true,
-        // Optional parameter (default false) - Starts google analytics with cookies enabled. In some countries (such as Germany) this is not allowed.
         autoStartWithCookiesEnabled: false,
-        // Optional parameter - Configuration for react-ga and google analytics
         reactGaOptions: {
           debug: false,
           gaOptions: {
@@ -84,61 +86,12 @@ module.exports = {
       },
     },
     // {
-    //   resolve: `gatsby-plugin-snipcart-advanced`,
+    //   resolve: "gatsby-source-storyblok",
     //   options: {
-    //     version: "3.0.22",
-    //     publicApiKey: "#####", // use public api key here or in environment variable
-    //     defaultLang: "de",
-    //     currency: "eur",
-    //     openCartOnAdd: false,
-
-    //     innerHTML: `
-    //       <billing section="bottom">
-    //           <!-- Customization goes here -->
-    //       </billing>`,
-    //   },
-    // },
-    {
-      resolve: "gatsby-source-storyblok",
-      options: {
-        accessToken: "ObvzIeHZVi9TkIUctkrfHQtt",
-        homeSlug: "home",
-        version: process.env.NODE_ENV === "production" ? "published" : "draft",
-        // version: "published",
-        resolveRelations: ["artist", "stil", "medium"],
-      },
-    },
-    // {
-    //   resolve: "gatsby-source-graphql",
-    //   options: {
-    //     // Arbitrary name for the remote schema Query type
-    //     typeName: "StoryQL",
-    //     // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
-    //     fieldName: "storyQL",
-    //     // Url to query from
-    //     url: "https://gapi.storyblok.com/v1/api",
-
-    //     headers: {
-    //       // Learn about environment variables: https://gatsby.dev/env-vars
-    //       Token: `ObvzIeHZVi9TkIUctkrfHQtt`,
-    //     },
-    //   },
-    // },
-    // {
-    //   resolve: "gatsby-source-custom-api",
-    //   options: {
-    //     url: "https://fridaadmin.konradullrich.com/wp-json/frida/v1/poster/",
-    //     imageKeys: ["images"],
-    //     rootKey: "fridaPoster",
-    //     schemas: {
-    //       fridaPoster: `
-    //         images: [images]
-    //       `,
-    //       images: `
-    //         url: String,
-    //         modified: Int
-    //       `,
-    //     },
+    //     accessToken: "ObvzIeHZVi9TkIUctkrfHQtt",
+    //     homeSlug: "home",
+    //     version: process.env.NODE_ENV === "production" ? "published" : "draft",
+    //     resolveRelations: ["artist", "stil", "medium"],
     //   },
     // },
     {
@@ -195,11 +148,8 @@ module.exports = {
         background_color: `#f5c5d9`,
         theme_color: `#f5c5d9`,
         display: `minimal-ui`,
-        icon: `src/images/frida-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/frida-icon.png`,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby - plugin - offline`,
   ],
 }

@@ -1,17 +1,13 @@
 import React from "react"
 import Tab from "./tab/tab"
 import FridaImage from "./fridaImage/fridaImage"
-// import SendMail from "./sendMail/sendMail"
 import ArtworkName from "../shared/artworkName"
-import getPriceWithTax from "../helper/getPriceWithTax"
-// import transformImage from "../helper/transformImage"
 import BuyButton from "./Buybutton/buybutton"
 
 import styled from "styled-components"
 
-export default function Artworks({ artwork }) {
+export default function Artworks({ artwork, relativeArtworks, isModal }) {
   const {
-    images,
     availability,
     artworkName,
     price,
@@ -30,33 +26,33 @@ export default function Artworks({ artwork }) {
     <Root>
       <Inner>
         <ImageRoot>
-          <FridaImage images={images} artwork={artwork}></FridaImage>
+          <FridaImage artwork={artwork}></FridaImage>
         </ImageRoot>
 
         <InfoRoot>
           <Tab
+            isModal={isModal}
             text1={artistDescription}
             text2={artworkDescription}
             artistWebLink={artistWebLink}
             instagramLink={instagramLink}
+            relativeArtworks={relativeArtworks}
           ></Tab>
-          {/* <div className={style.nameRoot}> */}
+
           <ArtworkName
             size="big"
             artworkName={artworkName}
             availability={availability}
           ></ArtworkName>
-          {/* </div> */}
+
           <Props>
             {`${medium}, ${width}*${height} ${
               depth ? "*" + depth : ""
             } cm ${stil}`}
           </Props>
-          <Price>{getPriceWithTax(price)}€</Price>
+          <Price>{price}€</Price>
 
           <BuyButton artwork={artwork}></BuyButton>
-
-          {/* <SendMail artwork={artwork}></SendMail> */}
         </InfoRoot>
       </Inner>
     </Root>

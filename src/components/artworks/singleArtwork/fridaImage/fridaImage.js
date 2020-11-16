@@ -13,37 +13,16 @@ export default function FridaImage({ artwork }) {
   const loupImageRef = useRef()
   const { setMouse } = useMouse()
 
-  const { artworkName, artistName, imageUrl } = artwork
-  // const { width, height } = images
+  const { artworkName, artistName, image } = artwork
 
-  // const [loaded, setLoaded] = useState(false);
-  // const [resized, setResized] = useState(false);
-
-  function transformImage(image, option) {
-    var imageService = "https://img2.storyblok.com/"
-    var path = image.replace("https://a.storyblok.com", "")
-    return imageService + option + "/" + path
-  }
-
-  const sizes = imageUrl.split("/")[5].split("x")
-  const width = sizes[0]
-  const height = sizes[1]
-  // console.log(width)
-  // console.log(height)
-
-  // const fluidProps = getFluidGatsbyImage(src, {
-  //   maxWidth: 400,
-  //   quality: 60,
-  //   smartCrop: false,
-  //   base64: transformImage(src, "10x0/filters:quality(10)"),
-  //   useBase64: true,
-  // })
+  const smallImageSrc = image.fluid500.src
+  const bigImageSrc = image.fluid1000.src
 
   useEffect(() => {
     const handleImageSizing = () => {
       if (imageRef.current && RootRef.current) {
         let rootClientRect = RootRef.current.getBoundingClientRect()
-        let imageRatio = width / height
+        let imageRatio = image.fluid500.aspectRatio
 
         if (window.innerWidth > 899) {
           if (rootClientRect.width > rootClientRect.height * imageRatio) {
@@ -66,7 +45,7 @@ export default function FridaImage({ artwork }) {
     return () => {
       window.removeEventListener("resize", handleImageSizing)
     }
-  }, [height, imageRef, width])
+  }, [image.fluid500.aspectRatio, imageRef])
 
   const [showGlass, setShowGlass] = useState(false)
   const [pos, setPos] = useState({ x: 50, y: 50, pageX: 0, pageY: 0 })
@@ -93,9 +72,6 @@ export default function FridaImage({ artwork }) {
     })
   }
 
-  // const srcSet = images.srcSet
-  // const src = images.src
-
   return (
     <Root ref={RootRef}>
       <Image
@@ -112,7 +88,7 @@ export default function FridaImage({ artwork }) {
         }}
         onClick={handleclick}
         ref={imageRef}
-        src={transformImage(imageUrl, "500x0/filters:quality(80)")}
+        src={smallImageSrc}
         alt={`Kunstwerk ${artworkName} von ${artistName}`}
       ></Image>
       <Magni
@@ -127,7 +103,7 @@ export default function FridaImage({ artwork }) {
             height: `${pos.height * SCALE[scale]}px`,
             transform: ` translateX(${pos.x}%) translateY(${pos.y}%)`,
           }}
-          src={transformImage(imageUrl, "1000x0")}
+          src={bigImageSrc}
           alt={`Kunstwerk ${artworkName} von ${artistName}`}
         ></GlassImg>
       </Magni>

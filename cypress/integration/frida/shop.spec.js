@@ -8,7 +8,7 @@
 
 context("Shop", () => {
   beforeEach(() => {
-    cy.viewport("macbook-15")
+    cy.viewport("macbook-13")
     cy.visit("/ausstellung")
     cy.get('[data-testid="artwork-prev"]:first').click()
     cy.get('[data-testid="add-to-cart-button"]').click()
@@ -16,7 +16,15 @@ context("Shop", () => {
   })
 
   it("should have initial items", () => {
-    cy.get('[data-testid="checkout-button"]').click()
+    cy.get('[data-testid="zur-kasse"]').click()
+
+    cy.get("input#name").type("konrich")
+    cy.get("input#email").type("konrich@test.com")
+    cy.get("input#street").type("konrich str")
+    cy.get("input#houseNumber").type(10)
+    cy.get("input#postcode").type(17034)
+
+    cy.get('[data-testid="checkout"]').click()
 
     cy.frameLoaded("#braintree-hosted-field-number")
     cy.iframe("#braintree-hosted-field-number")

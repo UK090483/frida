@@ -1,33 +1,50 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useContext } from "react"
 import { useFormik } from "formik"
 import styled from "styled-components"
-
+import UiContext from "~context/UiContext"
 const Form = ({ isFormValid, setIsFormValid }) => {
+  const { userData, setUserData, setUserDataValid } = useContext(UiContext)
+
+  const inital = userData
+    ? userData
+    : {
+        email: "",
+        name: "",
+        street: "",
+        houseNumber: "",
+      }
+
   const formik = useFormik({
     initialValues: {
-      email: "hjkh",
-      name: "",
-      street: "",
-      houseNumber: "",
+      ...inital,
     },
-    validateOnMount: true,
+
     validate,
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2))
     },
   })
 
-  const { isValid } = formik
+  const { isValid, values, validateForm } = formik
 
   useEffect(() => {
-    if (isFormValid !== isValid) {
-      setIsFormValid(isValid)
-    }
-  }, [isFormValid, isValid, setIsFormValid])
+    validateForm()
+    setUserDataValid(isValid)
+    setUserData(values)
+  }, [
+    isFormValid,
+    isValid,
+    setIsFormValid,
+    setUserData,
+    setUserDataValid,
+    validateForm,
+    values,
+  ])
 
   return (
     <FormWrap onSubmit={formik.handleSubmit}>
       <Input formik={formik} label={"Name"} name={"name"} type={"text"} />
+
       <Input formik={formik} label={"Email"} name={"email"} type={"email"} />
       <Input formik={formik} label={"Strasse"} name={"street"} type={"text"} />
       <Input
@@ -77,11 +94,15 @@ const validate = values => {
   if (!values.street) {
     errors.street = "Required"
   }
-
   return errors
 }
 
 const Input = ({ formik, label, name, type }) => {
+  const { touched } = formik.getFieldMeta(name)
+
+  const error =
+    touched && formik.errors[name] ? <Error>{formik.errors[name]}</Error> : ""
+
   return (
     <StyledInput>
       <input
@@ -90,10 +111,20 @@ const Input = ({ formik, label, name, type }) => {
         type={type}
         {...formik.getFieldProps(name)}
       />
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name}>
+        {label}
+        {error}
+      </label>
     </StyledInput>
   )
 }
+
+const Error = styled.span`
+  font-weight: 200;
+  color: red;
+  padding-left: 10px;
+  font-size: 15px;
+`
 
 const StyledInput = styled.div`
   width: 100%;

@@ -3,28 +3,26 @@ import Frida from "../../frida/frida"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
-import getPriceWithTax from "../helper/getPriceWithTax"
 import Container from "./container/artworkContainer"
 import ArtworkImage from "./artworkImage/artworkImage"
 import ArtworkInfo from "./artworkInfo/ArtworkInfo"
 
-function Artwork({ artwork, handleClick, handleLoaded }) {
-  const { availability, artworkName, artistName, price, imageUrl } = artwork
+function Artwork({ artwork }) {
+  const {
+    availability,
+    artworkName,
+    artistName,
+    price,
+    imageUrl,
+    image,
+  } = artwork
 
-  const makeVisilbe = () => {
-    handleLoaded()
-  }
-  /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
-    <Container
-      onClick={() => handleClick(artwork)}
-      loaded={true}
-      artwork={artwork}
-    >
+    <Container artwork={artwork}>
       <ArtworkImage
         alt={`artwork ${artworkName} from ${artistName}`}
-        onLoad={makeVisilbe}
         src={imageUrl}
+        fluid={image.fluid500}
       />
 
       <ArtistName>
@@ -33,7 +31,7 @@ function Artwork({ artwork, handleClick, handleLoaded }) {
 
       <ArtworkInfo
         availability={availability}
-        price={getPriceWithTax(price)}
+        price={price}
         artworkName={artworkName}
       />
     </Container>

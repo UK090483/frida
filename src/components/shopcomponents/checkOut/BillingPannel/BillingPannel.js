@@ -32,12 +32,14 @@ const Root = styled.div`
 
   @media ${({ theme }) => theme.device.tablet} {
     display: flex;
-    padding: 0 200px;
+    padding: 0 7%;
   }
 `
 const Box = styled.div`
   width: 100%;
+
   @media ${({ theme }) => theme.device.tablet} {
     width: 50%;
+    padding: 0 20px;
   }
 `

@@ -7,10 +7,13 @@ import Header from "../components/generic/header/header"
 import Kreutz from "../assets/Menu_Kreutz.svg"
 import { setMouse } from "../components/generic/Mouse/mouseRemote"
 import { Link } from "gatsby"
+import { graphql } from "gatsby"
 
 export default function SingleArtworkTemplate(props) {
-  const { pageContext } = props
+  const { pageContext, data } = props
   const { content: artwork } = pageContext
+
+  const relativeArtworks = data.allCSanityFridaArtworks.nodes
 
   return (
     <ModalRoutingContext.Consumer>
@@ -26,7 +29,6 @@ export default function SingleArtworkTemplate(props) {
                 >
                   <Link
                     style={{ width: 40, pointerEvents: "all" }}
-                    // onClick={handleCloseClick}
                     to={closeTo}
                     state={{
                       noScroll: true,
@@ -42,26 +44,72 @@ export default function SingleArtworkTemplate(props) {
                     />
                   </Link>
                 </Header>
-                <SingleArtwork artwork={artwork}></SingleArtwork>
+                <SingleArtwork
+                  isModal={true}
+                  artwork={artwork}
+                  relativeArtworks={relativeArtworks}
+                ></SingleArtwork>
               </React.Fragment>
             ) : (
-              <Layout title={artwork.artistName} color={"lila"}>
+              <Layout>
                 <SEO title={artwork.artistName} />
-                {/* <Section> */}
-                <SingleArtwork artwork={artwork}></SingleArtwork>
-                {/* </Section> */}
+                <Header
+                  title={artwork ? artwork.artistName : ""}
+                  color="lila"
+                  link={false}
+                >
+                  <Link
+                    style={{ width: 40, pointerEvents: "all" }}
+                    to={"/"}
+                    state={{
+                      noScroll: true,
+                    }}
+                  >
+                    <Kreutz
+                      onMouseEnter={() => {
+                        setMouse("link", true)
+                      }}
+                      onMouseLeave={() => {
+                        setMouse("link", false)
+                      }}
+                    />
+                  </Link>
+                </Header>
+                <SingleArtwork
+                  isModal={false}
+                  artwork={artwork}
+                  relativeArtworks={relativeArtworks}
+                ></SingleArtwork>
+                {/* <SingleArtwork
+                  artwork={artwork}
+                  relativeArtworks={relativeArtworks}
+                ></SingleArtwork> */}
               </Layout>
             )}
           </div>
         )
       }}
     </ModalRoutingContext.Consumer>
-
-    // <Layout title={artwork.artistName} color={"lila"}>
-    //   <SEO title={artwork.artistName} />
-    //   {/* <Section> */}
-    //   <SingleArtwork artwork={artwork}></SingleArtwork>
-    //   {/* </Section> */}
-    // </Layout>
   )
 }
+
+export const query = graphql`
+  query($artistId: String!) {
+    allCSanityFridaArtworks(filter: { artistId: { eq: $artistId } }) {
+      nodes {
+        slug
+        image {
+          fluid100 {
+            base64
+            aspectRatio
+            sizes
+            src
+            srcSet
+            srcSetWebp
+            srcWebp
+          }
+        }
+      }
+    }
+  }
+`

@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import DropDown from "../../input/dropDown"
 import style from "./filter.module.scss"
-import getPriceWithTax from "../helper/getPriceWithTax"
 
 const preisOptions = [
   { label: "100-500", value: "100-500" },
@@ -87,10 +86,9 @@ export default function Filter({ artworks, setFElements }) {
       if (f.Preis && res) {
         let range = f.Preis.split("-")
 
-        const priceWithTax = getPriceWithTax(artwork.price)
         res =
-          priceWithTax >= parseInt(range[0]) &&
-          priceWithTax <= parseInt(range[1])
+          artwork.price >= parseInt(range[0]) &&
+          artwork.price <= parseInt(range[1])
       }
       return res
     })

@@ -11,6 +11,8 @@ function UiContextProvider({ children }) {
   const [items, setItems] = useState(null)
   const [itemCount, setItemCount] = useState(0)
   const [clientToken, setClientToken] = useState(null)
+  const [userData, setUserData] = useState(null)
+  const [userDataValid, setUserDataValid] = useState(false)
 
   const requestClientToken = () => {
     if (!clientToken && !loadingRef.current) {
@@ -61,6 +63,10 @@ function UiContextProvider({ children }) {
   return (
     <UiContext.Provider
       value={{
+        userDataValid,
+        setUserDataValid,
+        userData,
+        setUserData,
         clientToken,
         requestClientToken,
         items,

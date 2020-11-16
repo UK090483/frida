@@ -2,14 +2,15 @@ import React, { useContext } from "react"
 import styled from "styled-components"
 import UiContext from "~context/UiContext"
 import EraseIcon from "../../../../../assets/erase.svg"
+import Img from "gatsby-image"
 
 export default function Artikel({ artikel }) {
-  const { imageUrl, artworkName, artistName, uuid, price } = artikel
+  const { artworkName, artistName, uuid, price, image } = artikel
   const { eraseItem } = useContext(UiContext)
 
   return (
     <Root>
-      <Image src={transformImage(imageUrl, "200x0")} />
+      <Image fluid={image.fluid100} />
       <InfoRoot>
         <Title>{artworkName + " / " + artistName}</Title>
         <Price>{price}€</Price>
@@ -41,7 +42,7 @@ const Root = styled.li`
     display: flex;
   }
 `
-const Image = styled.img`
+const Image = styled(Img)`
   width: 100px;
 `
 const Title = styled.h6`
@@ -68,8 +69,3 @@ const InfoRoot = styled.div`
     padding-left: 10px;
   }
 `
-function transformImage(image = "", option) {
-  var imageService = "https://img2.storyblok.com/"
-  var path = image.replace("https://a.storyblok.com", "")
-  return imageService + option + "/" + path
-}
