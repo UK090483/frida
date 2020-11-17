@@ -6,7 +6,7 @@ import { Link } from "gatsby"
 
 function ArtworkContainer({ children, artwork }) {
   return (
-    <Root>
+    <Root className="artwork-wrap">
       <Link
         data-testid={"artwork-prev"}
         to={`/artwork/${artwork.slug}`}

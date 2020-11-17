@@ -6,7 +6,7 @@ export default function Summary({ artikel }) {
 
   return (
     <Root>
-      <Head>Zusammenfassung</Head>
+      {/* <Head>Zusammenfassung</Head>
       <List>
         {artikel.map(item => {
           return (
@@ -17,7 +17,7 @@ export default function Summary({ artikel }) {
           )
         })}
       </List>
-      <Seperator />
+      <Seperator /> */}
       <List>
         <ListItem>
           <span>MwSt(16%):</span>
@@ -57,12 +57,9 @@ const ListItem = styled.li`
 
 const Root = styled.div`
   width: 100%;
-  max-width: 400px;
   margin: auto;
-  padding: 30px;
   display: flex;
   flex-direction: column;
-  border: black solid 1px;
   border-radius: 5px;
 `
 

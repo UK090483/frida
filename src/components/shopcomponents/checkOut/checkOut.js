@@ -2,59 +2,72 @@ import React, { useContext } from "react"
 import styled from "styled-components"
 import CheckOutContainer from "./container/CheckoutContainer"
 import UiContext from "../../../context/UiContext"
-import BillingPannel from "./BillingPannel"
+// import BillingPannel from "./BillingPannel"
 import ArtikelList from "./ArtikelList/ArtikelList"
-import Payment from "./Payment/Payment"
-import Button from "~components/buttons/button"
-import { Navi, StyledNavButton, NavAnimationWrp } from "./Navigation"
+// import Payment from "./Payment/Payment"
+// import Button from "~components/buttons/button"
+// import { Navi, StyledNavButton, NavAnimationWrp } from "./Navigation"
 import { motion, AnimatePresence } from "framer-motion"
 
+import PPP from "./ppp"
+
 export default function CheckOut({ data, closeTo }) {
-  const { items, userDataValid } = useContext(UiContext)
+  const { items } = useContext(UiContext)
   const artworks = data.allCSanityFridaArtworks.nodes
 
-  const [state, setState] = React.useState("artikel")
+  // const [state, setState] = React.useState("artikel")
   const activeArtworks = items
     ? artworks.filter(item => {
         return items.includes(item.uuid)
       })
     : []
 
-  const nextStep = nStep => {
-    setState(nStep)
-  }
+  // const nextStep = nStep => {
+  //   setState(nStep)
+  // }
 
-  const NavButton = ({ goesTo, name, pos, disabled, testid }) => {
-    return (
-      <StyledNavButton pos={pos} disabled={disabled}>
-        <Button
-          testid={testid}
-          type={"clickButton"}
-          onClick={() => {
-            setState(goesTo)
-          }}
-          label={name}
-        />
-      </StyledNavButton>
-    )
-  }
+  // const NavButton = ({ goesTo, name, pos, disabled, testid }) => {
+  //   return (
+  //     <StyledNavButton pos={pos} disabled={disabled}>
+  //       <Button
+  //         testid={testid}
+  //         type={"clickButton"}
+  //         onClick={() => {
+  //           setState(goesTo)
+  //         }}
+  //         label={name}
+  //       />
+  //     </StyledNavButton>
+  //   )
+  // }
+
+  // return <PPP></PPP>
 
   return (
     <CheckOutContainer closeTo={closeTo}>
-      <AnimationWrp show={state === "artikel"}>
+      <AnimationWrp show={true}>
         {/* <div
           style={{ width: "100%", height: 3000, backgroundColor: "red" }}
         ></div> */}
-        <ArtikelList
-          name={"artikel"}
-          artikel={activeArtworks}
-          nextStep={() => {
-            nextStep("kasse")
-          }}
-        ></ArtikelList>
+
+        <Root>
+          <Box>
+            <ArtikelList
+              name={"artikel"}
+              artikel={activeArtworks}
+              // nextStep={() => {
+              //   nextStep("kasse")
+              // }}
+            ></ArtikelList>
+          </Box>
+          <Box>
+            <PPP></PPP>
+            {/* <Form isFormValid={isFormValid} setIsFormValid={setIsFormValid}></Form> */}
+          </Box>
+        </Root>
       </AnimationWrp>
 
-      <AnimationWrp show={state === "kasse"}>
+      {/* <AnimationWrp show={state === "kasse"}>
         <BillingPannel
           name={"kasse"}
           artikel={activeArtworks}
@@ -78,9 +91,9 @@ export default function CheckOut({ data, closeTo }) {
             nextStep("kasse")
           }}
         />
-      </AnimationWrp>
+      </AnimationWrp> */}
 
-      <Navi>
+      {/* <Navi>
         <NavAnimationWrp show={state === "artikel"}>
           <NavButton
             goesTo={"kasse"}
@@ -104,7 +117,7 @@ export default function CheckOut({ data, closeTo }) {
         <NavAnimationWrp show={state === "payment"}>
           <NavButton goesTo={"kasse"} name={"Zurück"} />
         </NavAnimationWrp>
-      </Navi>
+      </Navi> */}
     </CheckOutContainer>
   )
 }
@@ -128,4 +141,23 @@ const AnimationWrp = ({ children, show, name }) => {
 const StyledWrap = styled(motion.div)`
   position: absolute;
   width: 100vw;
+`
+
+const Root = styled.div`
+  width: 100%;
+  padding: 0 20px;
+  padding-bottom: 100px;
+
+  @media ${({ theme }) => theme.device.tablet} {
+    display: flex;
+    padding: 0 7%;
+  }
+`
+const Box = styled.div`
+  width: 100%;
+
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 50%;
+    padding: 0 20px;
+  }
 `

@@ -16,14 +16,14 @@ export default function Tab({
   relativeArtworks,
   isModal,
 }) {
-  const [active, setActive] = useState(true)
+  // const [active, setActive] = useState(true)
   const [curentActive, setCurentActive] = useState("more")
 
   const { setMouse } = useMouse()
 
-  const handleClick = () => {
-    setActive(!active)
-  }
+  // const handleClick = () => {
+  //   setActive(!active)
+  // }
 
   const getItems = () => {
     const res = []
@@ -185,44 +185,44 @@ const Controles = styled.div`
   flex-wrap: wrap-reverse;
 `
 
-const Switch = styled.div`
-  display: flex;
-  min-height: 50px;
-  margin: 20px auto;
-  width: fit-content;
+// const Switch = styled.div`
+//   display: flex;
+//   min-height: 50px;
+//   margin: 20px auto;
+//   width: fit-content;
 
-  @media ${({ theme }) => theme.device.tablet} {
-    margin: 0;
-    width: unset;
-  }
+//   @media ${({ theme }) => theme.device.tablet} {
+//     margin: 0;
+//     width: unset;
+//   }
 
-  button {
-    padding: 0 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: ${({ theme }) => theme.colors.pink} solid
-      ${({ theme }) => theme.borderWidth};
-    background-color: ${({ active, theme }) =>
-      !active ? theme.colors.pink : "transparent"};
-    color: ${({ active, theme }) =>
-      !active ? theme.colors.white : theme.colors.pink};
-    font-size: 0.8em;
-    text-align: center;
-    font-weight: 900;
-    border-radius: 0 30px 30px 0;
-    transition: background-color 0.6s, color 0.6s;
+//   button {
+//     padding: 0 20px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     border: ${({ theme }) => theme.colors.pink} solid
+//       ${({ theme }) => theme.borderWidth};
+//     background-color: ${({ active, theme }) =>
+//       !active ? theme.colors.pink : "transparent"};
+//     color: ${({ active, theme }) =>
+//       !active ? theme.colors.white : theme.colors.pink};
+//     font-size: 0.8em;
+//     text-align: center;
+//     font-weight: 900;
+//     border-radius: 0 30px 30px 0;
+//     transition: background-color 0.6s, color 0.6s;
 
-    @media ${({ theme }) => theme.device.tablet} {
-      font-size: 1em;
-      text-align: center;
-    }
-    &:first-child {
-      border-radius: 30px 0 0 30px;
-      background-color: ${({ active, theme }) =>
-        active ? theme.colors.pink : "transparent"};
-      color: ${({ active, theme }) =>
-        active ? theme.colors.white : theme.colors.pink};
-    }
-  }
-`
+//     @media ${({ theme }) => theme.device.tablet} {
+//       font-size: 1em;
+//       text-align: center;
+//     }
+//     &:first-child {
+//       border-radius: 30px 0 0 30px;
+//       background-color: ${({ active, theme }) =>
+//         active ? theme.colors.pink : "transparent"};
+//       color: ${({ active, theme }) =>
+//         active ? theme.colors.white : theme.colors.pink};
+//     }
+//   }
+// `

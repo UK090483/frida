@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import Artikel from "./Artikel/Artikel"
+import Summary from "../BillingPannel/Summary"
 
 export default function ArtikelList({ artikel, nextStep }) {
   return (
@@ -9,6 +10,7 @@ export default function ArtikelList({ artikel, nextStep }) {
       {artikel.map(item => (
         <Artikel key={item.uuid} artikel={item} />
       ))}
+      <Summary artikel={artikel}></Summary>
     </Root>
   )
 }

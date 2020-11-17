@@ -115,13 +115,25 @@ module.exports = {
         },
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-prefetch-google-fonts`,
+    //   options: {
+    //     fonts: [
+    //       {
+    //         family: `Montserrat`,
+    //         variants: [`500`, `800`],
+    //       },
+    //     ],
+    //   },
+    // },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-google-fonts-v2`,
       options: {
         fonts: [
           {
             family: `Montserrat`,
-            variants: [`500`, `800`],
+            // variable: true,
+            weights: [`500`, `800`],
           },
         ],
       },

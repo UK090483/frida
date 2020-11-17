@@ -3,7 +3,7 @@ import styled from "styled-components"
 import Form from "./Form"
 import UiContext from "~context/UiContext"
 import Summary from "./Summary"
-
+import PPP from "../ppp"
 export default function BillingPannel({ artikel, nextStep, back }) {
   const [isFormValid, setIsFormValid] = useState(false)
 
@@ -19,7 +19,8 @@ export default function BillingPannel({ artikel, nextStep, back }) {
         <Summary artikel={artikel}></Summary>
       </Box>
       <Box>
-        <Form isFormValid={isFormValid} setIsFormValid={setIsFormValid}></Form>
+        <PPP></PPP>
+        {/* <Form isFormValid={isFormValid} setIsFormValid={setIsFormValid}></Form> */}
       </Box>
     </Root>
   )
