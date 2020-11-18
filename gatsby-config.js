@@ -71,6 +71,20 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-snipcart-advanced`,
+      options: {
+        version: "3.0.22",
+        publicApiKey: process.env.SNIPCART_KEY,
+        defaultLang: "de",
+        currency: "eur",
+        openCartOnAdd: false,
+        innerHTML: `
+          <billing section="bottom">
+              <!-- Customization goes here -->
+          </billing>`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-analytics-gdpr`,
       options: {
         trackingId: "UA-173386755-1",
