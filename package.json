@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@paypal/react-paypal-js": "^3.0.1",
     "@sanity/image-url": "^0.140.19",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.11.0",
@@ -26,6 +27,7 @@
     "gatsby-plugin-manifest": "^2.4.14",
     "gatsby-plugin-modal-routing": "^1.2.0",
     "gatsby-plugin-offline": "^3.2.13",
+    "gatsby-plugin-paypal": "^1.1.0",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
     "gatsby-plugin-react-helmet": "^3.3.6",
     "gatsby-plugin-react-svg": "^3.0.0",

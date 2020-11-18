@@ -126,6 +126,13 @@ module.exports = {
     //     ],
     //   },
     // },
+    // {
+    //   resolve: `gatsby-plugin-paypal`,
+    //   options: {
+    //     clientId: process.env.PAYPAL_CLIENT_ID,
+    //     currency: `EUR`, // Optional
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-google-fonts-v2`,
       options: {

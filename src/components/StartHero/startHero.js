@@ -107,6 +107,7 @@ export default function StartHero({ children }) {
                     : "paused",
               }}
               key={image.key}
+              src={image.src.src}
             >
               <Img alt={"flying "} fluid={image.src}></Img>
             </Image>
@@ -134,7 +135,7 @@ const Text = styled.div`
 `
 
 const drive = keyframes`
-   0% {
+  0% {
     transform: translate3d(0, 100vh, 0);
   }
   5% {
