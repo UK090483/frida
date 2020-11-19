@@ -1,8 +1,8 @@
 import React from "react"
-import SbEditable from "storyblok-react"
 import HandleFrida from "./handleFrida"
+
 export default function Header(props) {
-  const { text, variant } = props.blok
+  const { text, variant } = props
 
   const getContent = () => {
     switch (variant) {
@@ -51,5 +51,5 @@ export default function Header(props) {
     }
   }
 
-  return <SbEditable content={props.blok}>{getContent()}</SbEditable>
+  return <React.Fragment>{getContent()}</React.Fragment>
 }

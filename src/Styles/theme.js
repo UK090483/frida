@@ -9,6 +9,8 @@ const breackingpoints = {
   desktop: "2560px",
 }
 
+const space = 50
+
 const theme = {
   colors: {
     black: "#000000",
@@ -28,6 +30,13 @@ const theme = {
     laptopL: `(min-width: ${breackingpoints.laptopL})`,
     desktop: `(min-width: ${breackingpoints.desktop})`,
     desktopL: `(min-width: ${breackingpoints.desktop})`,
+  },
+  space: {
+    s: `${space}px`,
+    m: `${space * 2}px`,
+    l: `${space * 3}px`,
+    xl: `${space * 4}px`,
+    xxl: `${space * 5}px`,
   },
 }
 export default theme

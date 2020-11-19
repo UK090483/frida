@@ -1,23 +1,24 @@
 import React from "react"
 import DSection from "../components/container/section"
 import Components from "./components.js"
-import SbEditable from "storyblok-react"
 
 export default function Section(props) {
-  const { type, body, color } = props.blok
+  const { type, bgColor, content, bottomSpace, topSpace } = props
 
   return (
-    <SbEditable content={props.blok}>
-      <DSection type={type} backgroundColor={color || "default"}>
-        <React.Fragment>
-          {body.map(blok =>
-            React.createElement(Components(blok.component), {
-              key: blok._uid,
-              blok: blok,
-            })
-          )}
-        </React.Fragment>
-      </DSection>
-    </SbEditable>
+    <DSection
+      topSpace={topSpace}
+      bottomSpace={bottomSpace}
+      type={type}
+      backgroundColor={bgColor || "default"}
+    >
+      {content &&
+        content.map(blok =>
+          React.createElement(Components(blok._type), {
+            ...blok,
+            key: blok._key,
+          })
+        )}
+    </DSection>
   )
 }

@@ -133,6 +133,8 @@ const getColor = (theme, c) => {
       return theme.colors.white
     case "lila":
       return theme.colors.pink
+    case "pink":
+      return theme.colors.pink
     case "red":
       return theme.colors.red
     default:

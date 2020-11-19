@@ -1,7 +1,7 @@
 import React from "react"
 import Burger from "../../../../assets/Menu_Burger.svg"
 import { setMouse } from "../../Mouse/mouseRemote"
-import CheckoutLink from "../../../shopcomponents/checkoutLink"
+import CheckoutLink from "../../../shopcomponents/checkoutLinkSnipcart"
 import styled from "styled-components"
 
 export default function Icon({ onClick }) {

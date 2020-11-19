@@ -4,7 +4,7 @@ import SEO from "../components/seo"
 import Section from "../components/container/section"
 import Frida from "../components/frida/frida"
 
-import Button from "../components/buttons/buttonNwe"
+// import Button from "../components/buttons/buttonNwe"
 
 const IndexPage = () => (
   <Layout title={"MeetCollectors"}>
@@ -12,7 +12,7 @@ const IndexPage = () => (
 
     <Section backgroundColor="white">
       <div style={{ paddingTop: 300, paddingBottom: 100 }}>
-        <Button
+        {/* <Button
           onClick={() => {
             console.log("click")
           }}
@@ -22,7 +22,7 @@ const IndexPage = () => (
         <Button as="a" href="/">
           Blu
         </Button>
-        <Button>Bli</Button>
+        <Button>Bli</Button> */}
         <h1>
           H1 <Frida />
         </h1>

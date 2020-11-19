@@ -31,15 +31,15 @@ export default function Summary({ artikel }) {
   )
 }
 
-const Head = styled.div`
-  font-weight: 700;
-  border-bottom: black 1px solid;
-`
+// const Head = styled.div`
+//   font-weight: 700;
+//   border-bottom: black 1px solid;
+// `
 
-const Seperator = styled.div`
-  width: 100%;
-  border: black solid 1px;
-`
+// const Seperator = styled.div`
+//   width: 100%;
+//   border: black solid 1px;
+// `
 
 const List = styled.ul`
   width: 100%;

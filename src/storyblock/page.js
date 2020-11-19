@@ -4,14 +4,16 @@ import Layout from "../components/generic/layout/layout"
 import SEO from "../components/seo"
 
 const Page = props => {
+  const { title, content } = props.tree
+
   return (
-    <Layout title={props.blok.name || "Not Set"}>
-      <SEO title={props.blok.name} />
-      {props.blok.body &&
-        props.blok.body.map(blok =>
-          React.createElement(Components(blok.component), {
-            key: blok._uid,
-            blok: blok,
+    <Layout title={title || "Not Set"}>
+      <SEO title={title} />
+      {content &&
+        content.map(blok =>
+          React.createElement(Components(blok._type), {
+            ...blok,
+            key: blok._key,
           })
         )}
     </Layout>

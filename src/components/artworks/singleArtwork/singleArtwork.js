@@ -2,8 +2,8 @@ import React from "react"
 import Tab from "./tab/tab"
 import FridaImage from "./fridaImage/fridaImage"
 import ArtworkName from "../shared/artworkName"
-import BuyButton from "./Buybutton/buybutton"
-
+// import BuyButton from "./Buybutton/buybutton"
+import BuyButtonSnipCart from "./Buybutton/buybuttonSnipcart"
 import styled from "styled-components"
 
 export default function Artworks({ artwork, relativeArtworks, isModal }) {
@@ -52,7 +52,8 @@ export default function Artworks({ artwork, relativeArtworks, isModal }) {
           </Props>
           <Price>{price}€</Price>
 
-          <BuyButton artwork={artwork}></BuyButton>
+          {/* <BuyButton artwork={artwork}></BuyButton> */}
+          {/* <BuyButtonSnipCart artwork={artwork}></BuyButtonSnipCart> */}
         </InfoRoot>
       </Inner>
     </Root>

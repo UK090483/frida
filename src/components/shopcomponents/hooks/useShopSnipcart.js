@@ -6,12 +6,12 @@ export default function useShop(id) {
   const { cartQuantity, ready } = state
   const [onCard, setOnCard] = useState(false)
 
-  const checkonCard = () => {
-    if (ready) {
-      const items = window.Snipcart.store.getState().cart.items.items
-      setOnCard(!!items.find(item => id === item.id))
-    }
-  }
+  // const checkonCard = () => {
+  //   if (ready) {
+  //     const items = window.Snipcart.store.getState().cart.items.items
+  //     setOnCard(!!items.find(item => id === item.id))
+  //   }
+  // }
 
   const eraseItem = () => {
     if (ready) {
@@ -31,10 +31,13 @@ export default function useShop(id) {
   useEffect(() => {
     if (ready) {
       if (id) {
-        checkonCard()
+        const items = window.Snipcart.store.getState().cart.items.items
+        setOnCard(!!items.find(item => id === item.id))
+
+        // checkonCard()
       }
     }
-  }, [checkonCard, id, ready])
+  }, [id, ready])
 
   return { openCard, cartQuantity, onCard, eraseItem }
 }

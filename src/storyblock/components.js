@@ -14,10 +14,12 @@ import Spacer from "./spacer"
 import Störer from "../components/StartHero/stoerer"
 import ComponentNotFound from "./component_not_found"
 import Poster from "../components/Poster/Poster/poster"
+import RT from "./ritchText"
+import Supporter from "./Supporter"
 
 const ComponentList = {
   page: Page,
-  ArtworkBlock: ArtworksBlock,
+  artworks: ArtworksBlock,
   artwork: Artwork,
   header: Header,
   section: Section,
@@ -26,10 +28,12 @@ const ComponentList = {
   spacer: Spacer,
   störer: Störer,
   poster: Poster,
+  richText: RT,
+  supporter: Supporter,
   //   teaser: Teaser,
   //   feature: Feature,
   //   nav_item: NavItem,
-  Hero: Hero,
+  hero: Hero,
 }
 
 const Components = type => {

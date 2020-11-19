@@ -1,8 +1,8 @@
-import React, { useEffect } from "react"
+import React from "react"
 
 // import UiContext from "~context/UiContext"
-import { PayPalButton } from "react-paypal-button-v2"
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
+
+import { PayPalButtons } from "@paypal/react-paypal-js"
 // import Paypal from "gatsby-plugin-paypal"
 
 function PPP() {

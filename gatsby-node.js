@@ -91,6 +91,11 @@ exports.sourceNodes = async ({
       { maxWidth: 100, quality: 60 },
       sanityConfig
     )
+    const fluid200 = getFluidGatsbyImage(
+      imageAssetId,
+      { maxWidth: 200, quality: 60 },
+      sanityConfig
+    )
     const fluid500 = getFluidGatsbyImage(
       imageAssetId,
       { maxWidth: 500, quality: 60 },
@@ -104,9 +109,10 @@ exports.sourceNodes = async ({
     const base64 = urlFor(imageAssetId).width(20).url()
 
     fluid50.base64 = base64
+    fluid100.base64 = base64
+    fluid200.base64 = base64
     fluid500.base64 = base64
     fluid1000.base64 = base64
-    fluid100.base64 = base64
 
     const data = {
       uuid,
@@ -128,6 +134,7 @@ exports.sourceNodes = async ({
       image: {
         fluid50,
         fluid100,
+        fluid200,
         fluid500,
         fluid1000,
       },
@@ -269,6 +276,15 @@ exports.createPages = ({ graphql, actions }) => {
                 srcSetWebp
                 srcWebp
               }
+              fluid200 {
+                base64
+                aspectRatio
+                sizes
+                src
+                srcSet
+                srcSetWebp
+                srcWebp
+              }
               fluid1000 {
                 base64
                 aspectRatio
@@ -297,6 +313,23 @@ exports.createPages = ({ graphql, actions }) => {
             slug: artwork.slug,
             content: artwork,
             artistId: artwork.artistId,
+          },
+        })
+      })
+    })
+
+    client.fetch(`*[_type == 'page']`, {}).then(pages => {
+      pages.forEach(page => {
+        const preparedSlug =
+          page.slug.current === "home" ? "" : page.slug.current
+
+        createPage({
+          path: `/${preparedSlug}`,
+          component: path.resolve("./src/templates/page-template.js"),
+          context: {
+            slug: preparedSlug,
+            content: page.content,
+            title: page.title,
           },
         })
       })

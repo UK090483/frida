@@ -1,38 +1,36 @@
 import React from "react"
-import SbEditable from "storyblok-react"
 import DefaultHero from "./../components/hero/hero"
 import FlyningArtworkHero from "../components/StartHero/startHero"
 import Components from "./components"
 
 export default function Hero(props) {
-  console.log(props)
-  const { flyingArtworks } = props.blok
+  const { flyingArtworks, content, bgColor } = props
+
   const getContent = () => {
     return (
-      props.blok.body && (
+      content && (
         <React.Fragment>
-          {props.blok.body.map(blok =>
-            React.createElement(Components(blok.component), {
-              key: blok._uid,
-              blok: blok,
-            })
-          )}
+          {content &&
+            content.map(blok =>
+              React.createElement(Components(blok._type), {
+                ...blok,
+                key: blok._key,
+              })
+            )}
         </React.Fragment>
       )
     )
   }
 
   return (
-    <SbEditable content={props.blok}>
+    <React.Fragment>
       {flyingArtworks ? (
-        <FlyningArtworkHero backgroundColor={props.blok.color}>
+        <FlyningArtworkHero backgroundColor={bgColor}>
           {getContent()}
         </FlyningArtworkHero>
       ) : (
-        <DefaultHero backgroundColor={props.blok.color}>
-          {getContent()}
-        </DefaultHero>
+        <DefaultHero backgroundColor={bgColor}>{getContent()}</DefaultHero>
       )}
-    </SbEditable>
+    </React.Fragment>
   )
 }
