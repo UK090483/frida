@@ -6,25 +6,43 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Frida`,
-    description: ``,
+    title: `meetFrida`,
+    description: `Deutschlands größte Outdoor- und Online-Gallery für junge Kunst`,
     author: ``,
     siteUrl: `https://www.meetfrida.art`,
   },
   plugins: [
-    // {
-    //   resolve: `gatsby-plugin-sitemap`,
-    //   options: {
-    //     query: `
-    //       {
-    //         allSitePage {
-    //           nodes {
-    //             path
-    //           }
-    //         }
-    //     }`,
-    //   },
-    // },
+    "gatsby-plugin-next-seo",
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+        }`,
+      },
+      resolveSiteUrl: ({ site, allSitePage }) => {
+        //Alternatively, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
+        return site.siteMetadata.siteUrl
+      },
+      serialize: ({ site, allSitePage }) =>
+        allSitePage.nodes.map(node => {
+          return {
+            url: `${site.siteMetadata.siteUrl}${node.path}`,
+            changefreq: `daily`,
+            priority: 0.7,
+          }
+        }),
+    },
     // {
     //   resolve: `gatsby-source-sanity`,
     //   options: {

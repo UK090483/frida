@@ -64,7 +64,7 @@ Artworks.propTypes = {
 function usePreparedData() {
   const data = useStaticQuery(graphql`
     query MyQuery {
-      allCSanityFridaArtworks {
+      allFridaArtwork(sort: { fields: ransortNumber, order: DESC }) {
         nodes {
           uuid
           slug
@@ -73,22 +73,17 @@ function usePreparedData() {
           availability
           height
           price
+          stil
+          medium
+          banner
           image {
-            fluid500 {
-              base64
-              aspectRatio
-              sizes
-              src
-              srcSet
-              srcSetWebp
-              srcWebp
-            }
+            imageAssetId
           }
         }
       }
     }
   `)
 
-  return data.allCSanityFridaArtworks.nodes
+  return data.allFridaArtwork.nodes
 }
 export default Artworks

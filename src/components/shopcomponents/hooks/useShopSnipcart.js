@@ -33,11 +33,10 @@ export default function useShop(id) {
       if (id) {
         const items = window.Snipcart.store.getState().cart.items.items
         setOnCard(!!items.find(item => id === item.id))
-
         // checkonCard()
       }
     }
-  }, [id, ready])
+  }, [id, ready, state])
 
   return { openCard, cartQuantity, onCard, eraseItem }
 }

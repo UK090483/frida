@@ -1,10 +1,10 @@
 import React from "react"
 import DefaultHero from "./../components/hero/hero"
-import FlyningArtworkHero from "../components/StartHero/startHero"
+import StartHero from "../components/hero/StartHero/startHero"
 import Components from "./components"
 
 export default function Hero(props) {
-  const { flyingArtworks, content, bgColor } = props
+  const { flyingArtworks, content, bgColor, bgImage } = props
 
   const getContent = () => {
     return (
@@ -25,11 +25,11 @@ export default function Hero(props) {
   return (
     <React.Fragment>
       {flyingArtworks ? (
-        <FlyningArtworkHero backgroundColor={bgColor}>
-          {getContent()}
-        </FlyningArtworkHero>
+        <StartHero backgroundColor={bgColor}>{getContent()}</StartHero>
       ) : (
-        <DefaultHero backgroundColor={bgColor}>{getContent()}</DefaultHero>
+        <DefaultHero backgroundColor={bgColor} bgImage={bgImage}>
+          {getContent()}
+        </DefaultHero>
       )}
     </React.Fragment>
   )

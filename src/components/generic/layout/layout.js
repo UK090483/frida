@@ -9,14 +9,12 @@ import Nav from "../nav/nav"
 import Footer from "../Footer/footer"
 import Mouse from "../Mouse/mouse"
 import CookieConsent from "../../CookieConsent/CookieConsent"
-// import { setMouse } from "../Mouse/mouseRemote"
-// import "../../../fonts/webfonts/styles.css"
 
 const Layout = props => {
+  // console.log(props)
   const { children, title, header = "default", color } = props
   return (
     <React.Fragment>
-      {/* <NormalizeCss></NormalizeCss> */}
       <GlobalStyle></GlobalStyle>
       <div
         className={"page-layout"}

@@ -1,17 +1,16 @@
 import React from "react"
 
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo"
+import SEO from "../components/seo/seo"
 import Artworks from "../components/artworks"
-import StartHero from "../components/StartHero/startHero"
-import Stoerer from "../components/StartHero/stoerer"
+import StartHero from "../components/hero/StartHero/startHero"
 
 const IndexPage = props => {
   return (
     <Layout title={"Frida"}>
-      <SEO title="Home" />
+      <SEO title="Home" path={props.location.pathname} />
       <StartHero></StartHero>
-      <Stoerer></Stoerer>
+
       <Artworks></Artworks>
     </Layout>
   )

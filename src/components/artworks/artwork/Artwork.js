@@ -6,27 +6,28 @@ import PropTypes from "prop-types"
 import Container from "./container/artworkContainer"
 import ArtworkImage from "./artworkImage/artworkImage"
 import ArtworkInfo from "./artworkInfo/ArtworkInfo"
+import Banner from "./banner/banner"
 
-function Artwork({ artwork }) {
+function Artwork({ artwork, color = "pink", preventClick }) {
   const {
     availability,
     artworkName,
     artistName,
     price,
-    imageUrl,
     image,
+    banner,
   } = artwork
 
   return (
-    <Container artwork={artwork}>
+    <Container artwork={artwork} preventClick={preventClick}>
       <ArtworkImage
         alt={`artwork ${artworkName} from ${artistName}`}
-        src={imageUrl}
+        image={image}
         fluid={image.fluid500}
       />
-
+      {banner === "hinzundkunzt" && <Banner></Banner>}
       <ArtistName>
-        <Frida text={artistName} textColor="#f5c5d9"></Frida>
+        <Frida text={artistName} textColor={color}></Frida>
       </ArtistName>
 
       <ArtworkInfo

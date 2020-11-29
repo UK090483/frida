@@ -1,14 +1,14 @@
 import React from "react"
 
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo"
+import SEO from "../components/seo/seo"
 import Section from "../components/container/section"
 import Frida from "../components/frida/frida"
 import TeamImage from "../components/image/heroImage"
 
-const IndexPage = () => (
+const IndexPage = props => (
   <Layout title={"TheMakers"}>
-    <SEO title="Kontakt" />
+    <SEO title="Kontakt" path={props.location.pathname} />
     <Section backgroundColor="lila" type={"full"}>
       <TeamImage></TeamImage>
     </Section>

@@ -13,7 +13,7 @@ export default function Tab({
   text2,
   instagramLink,
   artistWebLink,
-  relativeArtworks,
+  relatedArtworks,
   isModal,
 }) {
   // const [active, setActive] = useState(true)
@@ -27,7 +27,7 @@ export default function Tab({
 
   const getItems = () => {
     const res = []
-    if (relativeArtworks || true) {
+    if (relatedArtworks || true) {
       res.push({ label: "Weiter Bilder", name: "more" })
     }
     if (text1 || true) {
@@ -89,7 +89,7 @@ export default function Tab({
       {curentActive === "more" && (
         <Text>
           <RelativArtworkWrap>
-            {relativeArtworks.map(item => {
+            {relatedArtworks.map(item => {
               return (
                 <Link
                   key={item.slug}

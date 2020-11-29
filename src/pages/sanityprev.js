@@ -24,13 +24,13 @@ export default function Pages(props) {
     clientForPreview.fetch(query, {}).then(page => {
       setstate(page)
     })
-    // const subscription = clientForPreview.listen(query, {}).subscribe(page => {
-    //   console.log([page.result])
-    //   setstate([page.result])
-    // })
-    // return () => {
-    //   subscription.unsubscribe()
-    // }
+    const subscription = clientForPreview.listen(query, {}).subscribe(page => {
+      console.log([page.result])
+      setstate([page.result])
+    })
+    return () => {
+      subscription.unsubscribe()
+    }
   }, [pageId, preparedPageId])
 
   return (

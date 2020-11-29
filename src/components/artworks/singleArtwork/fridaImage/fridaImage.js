@@ -1,9 +1,7 @@
 import React, { useRef, useState, useEffect } from "react"
 import useMouse from "../../../generic/Mouse/hooks/useMouse"
 import styled from "styled-components"
-// import { getFluidGatsbyImage } from "gatsby-storyblok-image"
-// import transformImage from "../../helper/transformImage"
-// import Img from "gatsby-image"
+import { getFluidImage } from "~components/helper/sanityImage"
 
 const SCALE = [2, 3]
 
@@ -15,14 +13,42 @@ export default function FridaImage({ artwork }) {
 
   const { artworkName, artistName, image } = artwork
 
-  const smallImageSrc = image.fluid500.src
-  const bigImageSrc = image.fluid1000.src
+  const smallImageSrc = getFluidImage(image.imageAssetId, {
+    maxWidth: 500,
+    quality: 60,
+  }).src
+
+  const aspectRatio = getFluidImage(image.imageAssetId, {
+    maxWidth: 1000,
+    quality: 60,
+  }).aspectRatio
+
+  const bigImageSrc = getFluidImage(image.imageAssetId, {
+    maxWidth: 1000,
+    quality: 60,
+  }).src
+
+  useEffect(() => {
+    const loupImage = loupImageRef.current
+    const handleLoad = () => {
+      if (imageRef.current) {
+        imageRef.current.src = bigImageSrc
+      }
+    }
+    if (loupImage) {
+      loupImage.addEventListener("load", handleLoad)
+    }
+    return () => {
+      loupImage.removeEventListener("load", handleLoad)
+      setMouse("hide", false)
+    }
+  }, [loupImageRef, imageRef, bigImageSrc, setMouse])
 
   useEffect(() => {
     const handleImageSizing = () => {
       if (imageRef.current && RootRef.current) {
         let rootClientRect = RootRef.current.getBoundingClientRect()
-        let imageRatio = image.fluid500.aspectRatio
+        let imageRatio = aspectRatio
 
         if (window.innerWidth > 899) {
           if (rootClientRect.width > rootClientRect.height * imageRatio) {
@@ -45,7 +71,7 @@ export default function FridaImage({ artwork }) {
     return () => {
       window.removeEventListener("resize", handleImageSizing)
     }
-  }, [image.fluid500.aspectRatio, imageRef])
+  }, [aspectRatio, imageRef])
 
   const [showGlass, setShowGlass] = useState(false)
   const [pos, setPos] = useState({ x: 50, y: 50, pageX: 0, pageY: 0 })

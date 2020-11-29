@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import { setMouse } from "../../Mouse/mouseRemote"
+import useBodyScrollStop from "../../../helper/useBodyScrollStop"
 
 const Routes = [
   { link: "/ausstellung/", label: "AUSSTELLUNG" },
@@ -12,6 +13,7 @@ const Routes = [
 ]
 
 function Links({ open }) {
+  const { enableBodySroll } = useBodyScrollStop()
   return (
     <Root open={open}>
       {Routes.map((route, index) => (
@@ -26,6 +28,9 @@ function Links({ open }) {
           }}
           onMouseLeave={() => {
             setMouse("link", false)
+          }}
+          onClick={() => {
+            enableBodySroll()
           }}
           activeClassName={"frida_nav_active"}
         >

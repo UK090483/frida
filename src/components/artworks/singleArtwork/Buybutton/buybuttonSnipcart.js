@@ -4,6 +4,7 @@ import React from "react"
 import useMouse from "../../../generic/Mouse/hooks/useMouse"
 import useShopSnipCart from "../../../shopcomponents/hooks/useShopSnipcart"
 import styled from "styled-components"
+import { getFluidImage } from "~components/helper/sanityImage"
 
 export default function Buybutton({ artwork }) {
   const {
@@ -19,6 +20,11 @@ export default function Buybutton({ artwork }) {
 
   const { openCard, onCard, eraseItem } = useShopSnipCart(uuid)
   const { setMouse } = useMouse()
+
+  const imageSrc = getFluidImage(image.imageAssetId, {
+    maxWidth: 200,
+    quality: 60,
+  }).src
 
   return (
     <Root>
@@ -48,7 +54,7 @@ export default function Buybutton({ artwork }) {
               data-item-price={price}
               data-item-url={"/artwork/" + slug}
               data-item-description={artistDescription}
-              data-item-image={image.fluid200.src}
+              data-item-image={imageSrc}
               data-item-name={artworkName}
               onMouseEnter={() => {
                 setMouse("link", true)
@@ -114,10 +120,10 @@ const BuyButton = styled.div`
   overflow: hidden;
   outline: none;
   transition: color 0.3s, background-color 0.3s;
-  background-color: ${({ theme }) => theme.colors.red};
+  background-color: ${({ theme }) => theme.colors.green};
   opacity: ${({ sold }) => (sold ? "0.8" : "1")};
   min-height: 70px;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,7 +131,7 @@ const BuyButton = styled.div`
   font-size: 1.4em;
   font-weight: 900;
   text-decoration: none;
-  border: ${({ theme }) => theme.colors.red} solid 3px;
+  border: ${({ theme }) => theme.colors.green} solid 3px;
   transform-origin: right;
   width: ${({ show }) => (show ? "100%" : "0")};
   overflow: hidden;
@@ -141,7 +147,7 @@ const BuyButton = styled.div`
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.red};
+    color: ${({ theme }) => theme.colors.black};
   }
   transition: width 0.3s cubic-bezier(0.47, 0.71, 0.42, 1.12);
 `

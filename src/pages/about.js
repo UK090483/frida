@@ -1,14 +1,14 @@
 import React from "react"
 
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo"
+import SEO from "../components/seo/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
 import Frida from "../components/frida/frida"
 
-const IndexPage = () => (
+const IndexPage = props => (
   <Layout title={"Frida"}>
-    <SEO title="about" />
+    <SEO title="about" path={props.location.pathname} />
     <Hero backgroundColor="lila">
       <h6 style={{ fontWeight: 800 }}>ABOUT</h6>
 

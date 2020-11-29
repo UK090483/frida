@@ -15,8 +15,6 @@ export default function PageTitle({
   const interItems = useRef()
   const ref = useRef()
 
-  // title = "AAAAAAAAAA" + "AAAAAAAAAA"
-
   const checkInterfering = throttle(() => {
     if (interItems.current) {
       let sholdAdd = false

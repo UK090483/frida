@@ -38,6 +38,6 @@ export default function Footer({ title }) {
   )
 }
 
-const GetInTouch = styled.h1`
+const GetInTouch = styled.h2`
   color: ${({ theme }) => theme.colors.white};
 `

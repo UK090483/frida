@@ -4,10 +4,15 @@ import PropTypes from "prop-types"
 import { setMouse } from "../../../generic/Mouse/mouseRemote"
 import { Link } from "gatsby"
 
-function ArtworkContainer({ children, artwork }) {
+function ArtworkContainer({ children, artwork, preventClick = false }) {
   return (
     <Root className="artwork-wrap">
       <Link
+        onClick={e => {
+          if (preventClick) {
+            e.preventDefault()
+          }
+        }}
         data-testid={"artwork-prev"}
         to={`/artwork/${artwork.slug}`}
         state={{ modal: true }}

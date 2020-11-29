@@ -1,12 +1,12 @@
 import React from "react"
 
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo"
+import SEO from "../components/seo/seo"
 import Section from "../components/container/section"
 
-const IndexPage = () => (
+const IndexPage = props => (
   <Layout title={"TheAGB"}>
-    <SEO title="Impressum" />
+    <SEO title="Impressum" path={props.location.pathname} />
 
     <Section backgroundColor={"lila"}>
       <div style={{ paddingTop: "30vh", paddingBottom: "30vh" }}>

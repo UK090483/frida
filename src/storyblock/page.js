@@ -1,7 +1,7 @@
 import React from "react"
 import Components from "./components.js"
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo"
+import SEO from "../components/seo/seo"
 
 const Page = props => {
   const { title, content } = props.tree

@@ -1,8 +1,8 @@
 import React from "react"
-import Section from "../container/section"
-import StoererSVG from "../../assets/Störer_open_call.svg"
+import Section from "../../container/section"
+import StoererSVG from "../../../assets/Störer_open_call.svg"
 import { Link } from "gatsby"
-import useMouse from "../generic/Mouse/hooks/useMouse"
+import useMouse from "../../generic/Mouse/hooks/useMouse"
 import styled, { keyframes } from "styled-components"
 
 export default function Stoerer() {

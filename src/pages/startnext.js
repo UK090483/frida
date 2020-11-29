@@ -1,7 +1,7 @@
 import React from "react"
 
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo"
+import SEO from "../components/seo/seo"
 import Poster from "../components/Poster/Poster/poster"
 import Hero from "../components/hero/hero"
 import Button from "../components/buttons/button"

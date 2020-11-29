@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Frida from "../frida/frida"
-import Button from "../buttons/button"
+import Frida from "../../frida/frida"
+import Button from "../../buttons/button"
 import styled, { keyframes } from "styled-components"
 import Img from "gatsby-image"
 import { useIntersection } from "react-use"
+import { getFluidImage } from "~components/helper/sanityImage"
+import Störer from "./stoerer"
 
 export default function StartHero({ children }) {
   const data = useStaticQuery(graphql`
     query startHeroQuery {
-      allCSanityFridaArtworks {
+      allFridaArtwork {
         nodes {
           image {
-            fluid50 {
-              aspectRatio
-              base64
-              sizes
-              src
-              srcSet
-              srcSetWebp
-              srcWebp
-            }
+            imageAssetId
           }
         }
       }
@@ -31,7 +25,7 @@ export default function StartHero({ children }) {
     return Math.floor(Math.random() * (max - min) + min)
   }
 
-  const allImages = data.allCSanityFridaArtworks.nodes
+  const allImages = data.allFridaArtwork.nodes
   const [images, setImages] = useState([])
   const intersectionRef = React.useRef(null)
 
@@ -44,7 +38,7 @@ export default function StartHero({ children }) {
   useEffect(() => {
     function getNext() {
       let item = allImages[getRandomInt(0, allImages.length)]
-      return item.image.fluid50
+      return getFluidImage(item.image.imageAssetId, { maxWidth: 50 })
     }
     if (intersection && intersection.isIntersecting) {
       const int = setTimeout(() => {
@@ -115,6 +109,7 @@ export default function StartHero({ children }) {
         })}
       </Root>
       <div ref={intersectionRef} />
+      <Störer></Störer>
     </React.Fragment>
   )
 }
