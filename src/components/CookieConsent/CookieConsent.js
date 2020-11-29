@@ -10,7 +10,7 @@ import { setMouse } from "../generic/Mouse/mouseRemote"
 const gdprCookie = "gatsby-plugin-google-analytics-gdpr_cookies-enabled"
 
 export default function CookieConsent() {
-  const [clicked, setClicked] = useState(true)
+  const [clicked, setClicked] = useState(false)
   const [cookies, setCookie] = useCookies()
 
   useEffect(() => {
@@ -82,7 +82,7 @@ const Root = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   position: fixed;
   bottom: ${({ clicked }) => (clicked ? "-100%" : "0")};
-  z-index: 888888;
+  z-index: 9000;
   padding: 10px 20px;
   transition: bottom 1s;
   @media ${({ theme }) => theme.device.tablet} {
