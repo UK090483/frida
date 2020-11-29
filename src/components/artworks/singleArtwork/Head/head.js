@@ -32,7 +32,7 @@ export default function Head({ artwork, setHeaderArtworkInfo }) {
     threshold: 1,
   })
 
-  console.log(window.location.href)
+  const location = typeof window !== `undefined` ? window.location.href : ""
 
   useEffect(() => {
     if (intersection) {
@@ -64,7 +64,7 @@ export default function Head({ artwork, setHeaderArtworkInfo }) {
           </Props>
           <Price>{price}€</Price>
           <IconWrap>
-            <FacebookShareButton url={window.location.href}>
+            <FacebookShareButton url={location}>
               <Icon icon={BiShareAlt} />
             </FacebookShareButton>
           </IconWrap>
