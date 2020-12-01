@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 
 import FridaImage from "../fridaImage/fridaImage"
 import ArtworkName from "../../shared/artworkName"
@@ -7,11 +7,9 @@ import BuyButtonSnipCart from "../Buybutton/buybuttonSnipcart"
 import styled from "styled-components"
 import PaymentHelp from "./paymentHelp/paymentHelp"
 import { useIntersection } from "react-use"
-import Icon from "~components/Icon"
-import { BiShareAlt } from "react-icons/bi"
-import { FacebookShareButton } from "react-share"
+import SozialShare from "~components/SozialShare/SozialShare"
 
-export default function Head({ artwork, setHeaderArtworkInfo }) {
+export default function Head({ artwork }) {
   const {
     availability,
     artworkName,
@@ -24,24 +22,12 @@ export default function Head({ artwork, setHeaderArtworkInfo }) {
   } = artwork
 
   const intersectionRef = React.useRef(null)
-  const chache = React.useRef(true)
 
-  const intersection = useIntersection(intersectionRef, {
+  const bIntersection = useIntersection(intersectionRef, {
     root: null,
-    rootMargin: "0px",
-    threshold: 1,
+    rootMargin: "0px 0px 100% 0px",
+    threshold: 0,
   })
-
-  const location = typeof window !== `undefined` ? window.location.href : ""
-
-  useEffect(() => {
-    if (intersection) {
-      if (chache.current !== intersection.isIntersecting) {
-        chache.current = intersection.isIntersecting
-        setHeaderArtworkInfo(!intersection.isIntersecting)
-      }
-    }
-  }, [intersection, setHeaderArtworkInfo])
 
   return (
     <Root>
@@ -64,12 +50,17 @@ export default function Head({ artwork, setHeaderArtworkInfo }) {
           </Props>
           <Price>{price}€</Price>
           <IconWrap>
-            <FacebookShareButton url={location}>
-              <Icon icon={BiShareAlt} />
-            </FacebookShareButton>
+            <SozialShare />
           </IconWrap>
-          <BuyButtonSnipCart artwork={artwork}></BuyButtonSnipCart>
-          <div ref={intersectionRef} />
+
+          <BuyButtonOutWrap>
+            <div ref={intersectionRef} />
+            <BuyButtonWrap
+              isOut={bIntersection ? !bIntersection.isIntersecting : false}
+            >
+              <BuyButtonSnipCart artwork={artwork}></BuyButtonSnipCart>
+            </BuyButtonWrap>
+          </BuyButtonOutWrap>
         </Info>
         <PaymentHelp />
       </InfoRoot>
@@ -77,6 +68,25 @@ export default function Head({ artwork, setHeaderArtworkInfo }) {
   )
 }
 
+const BuyButtonWrap = styled.div`
+  ${({ isOut }) =>
+    isOut &&
+    "position: fixed; bottom: 10px;left:20px; width:calc(100vw - 40px);z-index:9999;"}
+  
+
+  @media ${({ theme }) => theme.device.laptopM} {
+    position: relative;
+    width: 500px;
+    margin-left: auto;
+    margin-right: 80px;
+    ${({ isOut }) =>
+      isOut &&
+      "position: fixed; top: 10px;right:20px; width:500px; z-index:9999;"}
+  }
+`
+const BuyButtonOutWrap = styled.div`
+  height: 80px;
+`
 const Price = styled.div`
   margin-bottom: 20px;
   font-size: 1.9em;
@@ -105,6 +115,7 @@ const Info = styled.div`
 
 const Root = styled.div`
   padding: 100px 20px 60px 20px;
+  position: relative;
 
   min-height: 650px;
   @media ${({ theme }) => theme.device.laptop} {

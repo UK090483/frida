@@ -6,7 +6,7 @@ export default function Banner() {
   return (
     <Root>
       <Marquee velocity={80}>
-        {[<Text>Hinz&Kunzt – Straßen-KunztEdition </Text>]}
+        {[<Text key={"fist"}>Hinz&Kunzt – Straßen-KunztEdition </Text>]}
       </Marquee>
     </Root>
   )

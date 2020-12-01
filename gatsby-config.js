@@ -43,19 +43,14 @@ module.exports = {
           }
         }),
     },
-    // {
-    //   resolve: `gatsby-source-sanity`,
-    //   options: {
-    //     projectId: "ypuaahj7",
-    //     dataset: "test2",
-    //     // a token with read permissions is required
-    //     // if you have a private dataset
-    //     token: process.env.SANITY_TOKEN,
-
-    //     // If the Sanity GraphQL API was deployed using `--tag <name>`,
-    //     // use `graphqlTag` to specify the tag name. Defaults to `default`.
-    //   },
-    // },
+    {
+      resolve: "gatsby-plugin-mailchimp",
+      options: {
+        endpoint:
+          "https://konradullrich.us2.list-manage.com/subscribe/post?u=f8a1eaf8a1e4185054a0e48db&amp;id=a56d78dc14", // string; add your MC list endpoint here; see instructions below
+        timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-alias-imports`,
@@ -117,15 +112,7 @@ module.exports = {
         },
       },
     },
-    // {
-    //   resolve: "gatsby-source-storyblok",
-    //   options: {
-    //     accessToken: "ObvzIeHZVi9TkIUctkrfHQtt",
-    //     homeSlug: "home",
-    //     version: process.env.NODE_ENV === "production" ? "published" : "draft",
-    //     resolveRelations: ["artist", "stil", "medium"],
-    //   },
-    // },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -147,24 +134,6 @@ module.exports = {
         },
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-prefetch-google-fonts`,
-    //   options: {
-    //     fonts: [
-    //       {
-    //         family: `Montserrat`,
-    //         variants: [`500`, `800`],
-    //       },
-    //     ],
-    //   },
-    // },
-    // {
-    //   resolve: `gatsby-plugin-paypal`,
-    //   options: {
-    //     clientId: process.env.PAYPAL_CLIENT_ID,
-    //     currency: `EUR`, // Optional
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-google-fonts-v2`,
       options: {

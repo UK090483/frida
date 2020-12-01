@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react"
-import useMouse from "../../../generic/Mouse/hooks/useMouse"
+import { setMouse } from "../../../generic/Mouse/mouseRemote"
 import styled from "styled-components"
 import { getFluidImage } from "~components/helper/sanityImage"
 
@@ -9,7 +9,6 @@ export default function FridaImage({ artwork }) {
   const imageRef = useRef()
   const RootRef = useRef()
   const loupImageRef = useRef()
-  const { setMouse } = useMouse()
 
   const { artworkName, artistName, image } = artwork
 
@@ -40,10 +39,14 @@ export default function FridaImage({ artwork }) {
     }
     return () => {
       loupImage.removeEventListener("load", handleLoad)
+    }
+  }, [loupImageRef, imageRef, bigImageSrc])
+
+  useEffect(() => {
+    return () => {
       setMouse("hide", false)
     }
-  }, [loupImageRef, imageRef, bigImageSrc, setMouse])
-
+  }, [])
   useEffect(() => {
     const handleImageSizing = () => {
       if (imageRef.current && RootRef.current) {
@@ -83,6 +86,7 @@ export default function FridaImage({ artwork }) {
 
   const handleMouseMove = e => {
     const imageClientRef = imageRef.current.getBoundingClientRect()
+
     let x = ((e.pageX - imageClientRef.left) / imageClientRef.width) * -100
     let y =
       ((e.pageY - window.scrollY - imageClientRef.top) /
@@ -94,7 +98,8 @@ export default function FridaImage({ artwork }) {
       x: x,
       y: y,
       pageX: e.pageX,
-      pageY: e.pageY - window.scrollY,
+      pageY: e.pageY - window.scrollY - imageClientRef.top + 100,
+      pageYn: e.pageY,
     })
   }
 

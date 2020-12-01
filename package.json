@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.24",
     "@paypal/react-paypal-js": "^3.0.1",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/image-url": "^0.140.19",
@@ -15,6 +16,7 @@
     "braintree": "^3.0.0",
     "braintree-web-drop-in-react": "^1.2.1",
     "btoa": "^1.2.1",
+    "crypto": "^1.0.1",
     "dot-prop": "^6.0.0",
     "dotenv": "^8.2.0",
     "framer-motion": "^2.6.5",
@@ -25,6 +27,7 @@
     "gatsby-plugin-google-analytics-gdpr": "0.0.5",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-google-fonts-v2": "0.0.6",
+    "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-manifest": "^2.4.14",
     "gatsby-plugin-modal-routing": "^1.2.0",
     "gatsby-plugin-next-seo": "^1.6.1",

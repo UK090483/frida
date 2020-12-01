@@ -10,7 +10,7 @@ import { setMouse } from "../generic/Mouse/mouseRemote"
 const gdprCookie = "gatsby-plugin-google-analytics-gdpr_cookies-enabled"
 
 export default function CookieConsent() {
-  const [clicked, setClicked] = useState(false)
+  const [clicked, setClicked] = useState(true)
   const [cookies, setCookie] = useCookies()
 
   useEffect(() => {

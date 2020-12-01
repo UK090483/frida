@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import { setMouse } from "../generic/Mouse/mouseRemote"
+
 function Button(props) {
   const {
     label,

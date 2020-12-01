@@ -1,17 +1,17 @@
 import React from "react"
-import ArtworkName from "../shared/artworkName"
+// import ArtworkName from "../shared/artworkName"
 import styled from "styled-components"
 import BuyButtonSnipCart from "../singleArtwork/Buybutton/buybuttonSnipcart"
 
 const ArtworkHeaderInfo = ({ artwork }) => {
-  const { artworkName, availability, price } = artwork
+  // const { artworkName, availability, price } = artwork
 
   return (
     <Root>
-      <h6>
+      {/* <h6>
         <ArtworkName artworkName={artworkName} availability={availability} />
       </h6>
-      <h6>{price}€</h6>
+      <h6>{price}€</h6> */}
       <ButtonWrap>
         <BuyButtonSnipCart artwork={artwork}></BuyButtonSnipCart>
       </ButtonWrap>
@@ -31,6 +31,7 @@ const Root = styled.div`
   }
 `
 const ButtonWrap = styled.div`
+  margin-left: auto;
   pointer-events: all;
   width: 600px;
 `

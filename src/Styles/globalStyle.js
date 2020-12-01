@@ -52,7 +52,7 @@ h6 {
   ${fluidFont(15, 30, 320, 1920)}
 }
 
-p,
+p,input,button,
 li {
   font-weight: 500;
   font-family: "Montserrat", sans-serif;

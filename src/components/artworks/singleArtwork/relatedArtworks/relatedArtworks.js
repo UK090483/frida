@@ -3,18 +3,16 @@ import Artwork from "../../artwork/Artwork"
 import styled from "styled-components"
 import Carousel from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
+import { isBrowser, isMobile } from "react-device-detect"
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md"
 
 const responsive = {
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 3000, min: 1281 },
     items: 3,
   },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 1,
-  },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 1280, min: 0 },
     items: 1,
   },
 }
@@ -30,6 +28,16 @@ export default function RelatedArtworks({ artworks, header, color }) {
   }, [artworks.length, carousel])
   const [state, setState] = useState({ isMoving: false })
 
+  const setCarousel = dir => {
+    if (carousel.current) {
+      if (dir === "next") {
+        carousel.current.next()
+      } else {
+        carousel.current.previous()
+      }
+    }
+  }
+
   return (
     <Root color={color}>
       <Header>{header}</Header>
@@ -39,9 +47,9 @@ export default function RelatedArtworks({ artworks, header, color }) {
         ssr={true}
         keyBoardControl={true}
         arrows={false}
-        // autoPlay={true}
-        // autoPlaySpeed={3000}
-        centerMode={true}
+        autoPlay={isMobile}
+        autoPlaySpeed={3000}
+        centerMode={isBrowser}
         infinite={true}
         beforeChange={e => {
           setState({ ...state, isMoving: true })
@@ -64,6 +72,25 @@ export default function RelatedArtworks({ artworks, header, color }) {
           })}
       </Carousel>
       {/* <div>{carousel.current ? carousel.current.state.currentSlide : 0}</div> */}
+      <Navigation>
+        <NavIcon
+          as={MdKeyboardArrowLeft}
+          size={"100px"}
+          color={"black"}
+          onClick={() => {
+            setCarousel("prev")
+          }}
+        />
+
+        <NavIcon
+          as={MdKeyboardArrowRight}
+          size={"100px"}
+          color={"black"}
+          onClick={() => {
+            setCarousel("next")
+          }}
+        />
+      </Navigation>
     </Root>
   )
 }
@@ -84,6 +111,7 @@ const Header = styled.h5`
 `
 const Root = styled.div`
   /* border: red solid 1px; */
+  position: relative;
   background-color: ${({ theme, color }) => theme.colors[color]};
 
   .react-multi-carousel-list {
@@ -94,5 +122,24 @@ const Root = styled.div`
       /* border: blue solid 1px; */
       padding: 0 20px;
     }
+  }
+`
+const Navigation = styled.div`
+  position: absolute;
+  bottom: 0px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media ${({ theme }) => theme.device.tablet} {
+    width: fit-content;
+  }
+`
+const NavIcon = styled.div`
+  max-width: 50px;
+  max-height: 50px;
+  @media ${({ theme }) => theme.device.tablet} {
+    max-width: 100px;
+    max-height: 100px;
   }
 `

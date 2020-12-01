@@ -2,7 +2,7 @@ import React from "react"
 
 import Layout from "../components/generic/layout/layout"
 import SEO from "../components/seo/seo"
-import Poster from "../components/Poster/Poster/poster"
+// import Poster from "../components/Poster/Poster/poster"
 import Hero from "../components/hero/hero"
 import Button from "../components/buttons/button"
 import Section from "../components/container/section"
@@ -34,9 +34,7 @@ const StartNext = () => (
         im Eingabefeld den Namen des/der Künstlers*in oder des Kunstwerks.
       </p>
     </Hero>
-    <Section>
-      <Poster />
-    </Section>
+    <Section>{/* <Poster /> */}</Section>
   </Layout>
 )
 

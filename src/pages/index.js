@@ -4,6 +4,7 @@ import Layout from "../components/generic/layout/layout"
 import SEO from "../components/seo/seo"
 import Artworks from "../components/artworks"
 import StartHero from "../components/hero/StartHero/startHero"
+import Quotes from "../components/Quote/Quotes/Quotes"
 
 const IndexPage = props => {
   return (
@@ -12,6 +13,7 @@ const IndexPage = props => {
       <StartHero></StartHero>
 
       <Artworks></Artworks>
+      <Quotes></Quotes>
     </Layout>
   )
 }

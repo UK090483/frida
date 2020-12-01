@@ -1,28 +1,34 @@
 import React from "react"
 import styled from "styled-components"
 
-export default function Icon({ icon, onClick }) {
+const sizes = {
+  s: 40,
+  m: 60,
+  l: 80,
+}
+
+export default function Icon({ icon, onClick, size = "m" }) {
   return (
-    <IconWrap onClick={onClick}>
-      <IconInner as={icon} />
+    <IconWrap onClick={onClick} customsize={size}>
+      <IconInner as={icon} customsize={size} />
     </IconWrap>
   )
 }
 const IconInner = styled.div`
-  width: 30px;
-  height: 30px;
-  background-color: ${({ theme }) => theme.colors.pink};
+  width: ${({ customsize }) => sizes[customsize] / 2 + "px"};
+  height: ${({ customsize }) => sizes[customsize] / 2 + "px"};
+  background-color: ${({ theme }) => theme.colors.green};
 `
 const IconWrap = styled.div`
-  width: 60px;
-  height: 60px;
-  min-width: 60px;
-  min-height: 60px;
-  max-width: 60px;
-  max-height: 60px;
+  width: ${({ customsize }) => sizes[customsize] + "px"};
+  height: ${({ customsize }) => sizes[customsize] + "px"};
+  min-width: ${({ customsize }) => sizes[customsize] + "px"};
+  min-height: ${({ customsize }) => sizes[customsize] + "px"};
+  max-width: ${({ customsize }) => sizes[customsize] + "px"};
+  max-height: ${({ customsize }) => sizes[customsize] + "px"};
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.pink};
+  background-color: ${({ theme }) => theme.colors.green};
 `

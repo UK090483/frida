@@ -5,7 +5,7 @@ import TextFlow from "./TextFlow/textFlow"
 import AllSupporter from "../../Supporter/allSupporter"
 import Infos from "./Infos/infos"
 import styled from "styled-components"
-
+import NewsLetter from "../../newsletter/newsletter"
 export default function Footer({ title }) {
   return (
     <div>
@@ -26,7 +26,7 @@ export default function Footer({ title }) {
           <TextFlow></TextFlow>
         </React.Fragment>
       )}
-
+      <NewsLetter />
       <Section backgroundColor="red">
         <div style={{ padding: "50px 0" }}>
           <GetInTouch>GET IN TOUCH WITH FRIDA</GetInTouch>

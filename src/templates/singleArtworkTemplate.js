@@ -8,14 +8,13 @@ import Kreutz from "../assets/Menu_Kreutz.svg"
 import { setMouse } from "../components/generic/Mouse/mouseRemote"
 import { Link } from "gatsby"
 import { graphql } from "gatsby"
-import ArtworkHeaderInfo from "~components/artworks/headerInfo/headerInfo"
 
 export default function SingleArtworkTemplate(props) {
   const { data } = props
   const artwork = data.artwork
   const relatedArtworks = data.relatedArtworks.nodes
   const randomArtworks = data.randomArtworks.nodes
-  const [headerArtworkInfo, setHeaderArtworkInfo] = React.useState(false)
+  const quotes = data.quotes.nodes
 
   return (
     <ModalRoutingContext.Consumer>
@@ -29,7 +28,6 @@ export default function SingleArtworkTemplate(props) {
                   color="lila"
                   link={false}
                 >
-                  {headerArtworkInfo && <ArtworkHeaderInfo artwork={artwork} />}
                   <Link
                     style={{ minWidth: 40, pointerEvents: "all" }}
                     to={closeTo}
@@ -52,7 +50,7 @@ export default function SingleArtworkTemplate(props) {
                   artwork={artwork}
                   relatedArtworks={relatedArtworks}
                   randomArtworks={randomArtworks}
-                  setHeaderArtworkInfo={setHeaderArtworkInfo}
+                  quotes={quotes}
                 ></SingleArtwork>
               </React.Fragment>
             ) : (
@@ -68,7 +66,6 @@ export default function SingleArtworkTemplate(props) {
                   color="lila"
                   link={false}
                 >
-                  {headerArtworkInfo && <ArtworkHeaderInfo artwork={artwork} />}
                   <Link
                     style={{ width: 40, pointerEvents: "all" }}
                     to={"/"}
@@ -77,6 +74,7 @@ export default function SingleArtworkTemplate(props) {
                     }}
                   >
                     <Kreutz
+                      style={{ width: 40, pointerEvents: "all" }}
                       onMouseEnter={() => {
                         setMouse("link", true)
                       }}
@@ -91,7 +89,7 @@ export default function SingleArtworkTemplate(props) {
                   artwork={artwork}
                   relatedArtworks={relatedArtworks}
                   randomArtworks={randomArtworks}
-                  setHeaderArtworkInfo={setHeaderArtworkInfo}
+                  quotes={quotes}
                 ></SingleArtwork>
               </Layout>
             )}
@@ -134,6 +132,25 @@ export const query = graphql`
         image {
           imageAssetId
         }
+      }
+    }
+
+    quotes: allFridaQuote(filter: { artworkUuid: { eq: $uuid } }) {
+      nodes {
+        quote
+        author
+        image {
+          asset {
+            _ref
+          }
+          hotspot {
+            y
+            x
+            width
+            height
+          }
+        }
+        subtitle
       }
     }
 
