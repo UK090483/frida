@@ -3,14 +3,19 @@ import styled from "styled-components"
 import UiContext from "~context/UiContext"
 import EraseIcon from "../../../../../assets/erase.svg"
 import Img from "gatsby-image"
+import { getFluidImage } from "~components/helper/sanityImage"
 
 export default function Artikel({ artikel }) {
   const { artworkName, artistName, uuid, price, image } = artikel
   const { eraseItem } = useContext(UiContext)
 
+  const fluidprops = getFluidImage(image.imageAssetId, { maxWidth: 200 })
+
   return (
     <Root>
-      <Image fluid={image.fluid100} />
+      <Image fluid={fluidprops} />
+      {/* <Img alt={"alt"} fluid={fluidprops} draggable={false} /> */}
+
       <InfoRoot>
         <Title>{artworkName + " / " + artistName}</Title>
         <Price>{price}€</Price>

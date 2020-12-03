@@ -43,8 +43,20 @@ const Form = ({ isFormValid, setIsFormValid }) => {
 
   return (
     <FormWrap onSubmit={formik.handleSubmit}>
-      <Input formik={formik} label={"Name"} name={"name"} type={"text"} />
-
+      <Input
+        formik={formik}
+        label={"Firts Name"}
+        name={"fname"}
+        type={"text"}
+        size={"s"}
+      />
+      <Input
+        formik={formik}
+        label={"Last Name"}
+        name={"lname"}
+        type={"text"}
+        size={"s"}
+      />
       <Input formik={formik} label={"Email"} name={"email"} type={"email"} />
       <Input formik={formik} label={"Strasse"} name={"street"} type={"text"} />
       <Input
@@ -67,12 +79,18 @@ const Form = ({ isFormValid, setIsFormValid }) => {
 
 export default Form
 
+const Collumn = styled.div`
+  display: flex;
+  width: 100%;
+`
 const FormWrap = styled.form`
   width: 100%;
-  max-width: 600px;
+  /* max-width: 600px; */
   display: flex;
   margin: 0 auto;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* flex-direction: column; */
   padding-bottom: 100px;
   @media ${({ theme }) => theme.device.tablet} {
     font-size: 1.3rem;
@@ -97,14 +115,14 @@ const validate = values => {
   return errors
 }
 
-const Input = ({ formik, label, name, type }) => {
+const Input = ({ formik, label, name, type, size }) => {
   const { touched } = formik.getFieldMeta(name)
 
   const error =
     touched && formik.errors[name] ? <Error>{formik.errors[name]}</Error> : ""
 
   return (
-    <StyledInput>
+    <StyledInput size={size}>
       <input
         placeholder={label}
         id={name}
@@ -127,15 +145,17 @@ const Error = styled.span`
 `
 
 const StyledInput = styled.div`
-  width: 100%;
+  width: ${({ size }) => (size == "s" ? "calc(50% - 10px)" : "100%")};
   position: relative;
   padding: 15px 0 0;
   margin-top: 15px;
   margin-bottom: 5px;
+  background-color: ${({ theme }) => theme.colors.green};
 
   label {
     position: absolute;
     top: 0;
+    left: 20px;
     display: block;
     transition: 0.2s;
     font-size: 0.8rem;
@@ -149,14 +169,16 @@ const StyledInput = styled.div`
     font-family: inherit;
     width: 100%;
     border: 0;
-    border-bottom: 3px solid ${({ theme }) => theme.colors.black};
+    /* border-bottom: 3px solid ${({ theme }) => theme.colors.black}; */
+    
     outline: 0;
     font-size: 0.8rem;
     color: blue;
     padding: 7px 0;
+    padding-left:20px;
     background: transparent;
     transition: border-color 0.2s;
-
+    background-color: ${({ theme }) => theme.colors.green};
     @media ${({ theme }) => theme.device.tablet} {
       font-size: 1.3rem;
     }
@@ -174,6 +196,7 @@ const StyledInput = styled.div`
       ~ label {
         position: absolute;
         top: 0;
+        left:10px;
         display: block;
         transition: 0.2s;
         font-size: 1rem;

@@ -1,5 +1,39 @@
 const { sanity } = require("./sanityClient")
 
+const loadArtworksSanity = async () => {
+  console.log("sanity _ start")
+  console.time("SANITY_____Load")
+  const query = `
+    *[_type == 'artwork']{
+      "uuid":_id,
+      "slug" : slug.current,
+      "artworkName":name,
+      availability,
+      description,
+      width,
+      height,
+      depth,
+      price,
+      "stil":stil->name,
+      "medium":medium->name,
+      "artistName": artist->anzeigeName,
+      "artistWebLink": artist->webLink,
+      "artistDescription": artist->description,
+      "instagramLink": artist->instagramLink,
+      "artistId": artist->_id,
+      image,
+      "rating":coalesce(rating, 0),
+      "banner":coalesce(banner, 'unknown')
+    }`
+  const params = {}
+
+  const res = await sanity.fetch(query, params)
+
+  console.timeEnd("SANITY_____Load")
+
+  return res
+}
+
 async function createArtworNodes(actions, createNodeId, createContentDigest) {
   const sanityArtworks = await loadArtworksSanity()
   const { createNode } = actions
@@ -72,40 +106,6 @@ async function createArtworNodes(actions, createNodeId, createContentDigest) {
 
 function getWithRating(rating) {
   return rating === 0 ? Math.random() : (rating + Math.random() - 1) * 0.1
-}
-
-const loadArtworksSanity = async () => {
-  console.log("sanity _ start")
-  console.time("SANITY_____Load")
-  const query = `
-    *[_type == 'artwork']{
-      "uuid":_id,
-      "slug" : slug.current,
-      "artworkName":name,
-      availability,
-      description,
-      width,
-      height,
-      depth,
-      price,
-      "stil":stil->name,
-      "medium":medium->name,
-      "artistName": artist->anzeigeName,
-      "artistWebLink": artist->webLink,
-      "artistDescription": artist->description,
-      "instagramLink": artist->instagramLink,
-      "artistId": artist->_id,
-      image,
-      "rating":coalesce(rating, 0),
-      "banner":coalesce(banner, 'unknown')
-    }`
-  const params = {}
-
-  const res = await sanity.fetch(query, params)
-
-  console.timeEnd("SANITY_____Load")
-
-  return res
 }
 
 function getPriceWithTax(price) {

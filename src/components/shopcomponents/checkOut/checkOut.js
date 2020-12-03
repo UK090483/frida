@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import styled from "styled-components"
 import CheckOutContainer from "./container/CheckoutContainer"
 import UiContext from "../../../context/UiContext"
-// import BillingPannel from "./BillingPannel"
+import BillingPannel from "./BillingPannel"
 import ArtikelList from "./ArtikelList/ArtikelList"
 // import Payment from "./Payment/Payment"
 // import Button from "~components/buttons/button"
@@ -13,44 +13,66 @@ import PPP from "./ppp"
 
 export default function CheckOut({ data, closeTo }) {
   const { items } = useContext(UiContext)
-  const artworks = data.allCSanityFridaArtworks.nodes
+  const artworks = data.allFridaArtwork.nodes
 
-  // const [state, setState] = React.useState("artikel")
-  const activeArtworks = items
-    ? artworks.filter(item => {
-        return items.includes(item.uuid)
-      })
-    : []
+  const [state, setState] = React.useState("artikel")
+  const [isFormValid, setIsFormValid] = React.useState("artikel")
+  // const activeArtworks = items
+  //   ? artworks.filter(item => {
+  //       return items.includes(item.uuid)
+  //     })
+  //   : []
 
-  // const nextStep = nStep => {
-  //   setState(nStep)
-  // }
+  const activeArtworks = [artworks[0]]
 
-  // const NavButton = ({ goesTo, name, pos, disabled, testid }) => {
-  //   return (
-  //     <StyledNavButton pos={pos} disabled={disabled}>
-  //       <Button
-  //         testid={testid}
-  //         type={"clickButton"}
-  //         onClick={() => {
-  //           setState(goesTo)
-  //         }}
-  //         label={name}
-  //       />
-  //     </StyledNavButton>
-  //   )
-  // }
+  console.log(artworks[0])
 
-  // return <PPP></PPP>
+  const nextStep = nStep => {
+    setState(nStep)
+  }
+
+  const NavButton = ({ goesTo, name, pos, disabled, testid }) => {
+    return (
+      <StyledNavButton pos={pos} disabled={disabled}>
+        <Button
+          testid={testid}
+          type={"clickButton"}
+          onClick={() => {
+            setState(goesTo)
+          }}
+          label={name}
+        />
+      </StyledNavButton>
+    )
+  }
 
   return (
     <CheckOutContainer closeTo={closeTo}>
-      <AnimationWrp show={true}>
-        {/* <div
-          style={{ width: "100%", height: 3000, backgroundColor: "red" }}
-        ></div> */}
+      <AnimationWrp show={state === "artikel"}>
+        <ArtikelList name={"artikel"} artikel={activeArtworks}></ArtikelList>
+        <button
+          onClick={() => {
+            setState("kasse")
+          }}
+        >
+          next
+        </button>
+      </AnimationWrp>
 
+      <AnimationWrp show={state === "kasse"}>
         <Root>
+          <Box>
+            <BillingPannel
+              name={"kasse"}
+              artikel={activeArtworks}
+              nextStep={() => {
+                nextStep("payment")
+              }}
+              back={() => {
+                nextStep("artikel")
+              }}
+            />
+          </Box>
           <Box>
             <ArtikelList
               name={"artikel"}
@@ -60,38 +82,8 @@ export default function CheckOut({ data, closeTo }) {
               // }}
             ></ArtikelList>
           </Box>
-          <Box>
-            <PPP></PPP>
-            {/* <Form isFormValid={isFormValid} setIsFormValid={setIsFormValid}></Form> */}
-          </Box>
         </Root>
       </AnimationWrp>
-
-      {/* <AnimationWrp show={state === "kasse"}>
-        <BillingPannel
-          name={"kasse"}
-          artikel={activeArtworks}
-          nextStep={() => {
-            nextStep("payment")
-          }}
-          back={() => {
-            nextStep("artikel")
-          }}
-        />
-      </AnimationWrp>
-
-      <AnimationWrp show={state === "payment"}>
-        <Payment
-          name={"payment"}
-          artikel={activeArtworks}
-          nextStep={() => {
-            nextStep("payment")
-          }}
-          back={() => {
-            nextStep("kasse")
-          }}
-        />
-      </AnimationWrp> */}
 
       {/* <Navi>
         <NavAnimationWrp show={state === "artikel"}>
