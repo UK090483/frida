@@ -10,14 +10,14 @@ export default function Artworks({
   artwork,
   relatedArtworks,
   randomArtworks,
-
   quotes,
+  shopifyProduct,
 }) {
   const { artistDescription, description } = artwork
 
   return (
     <Root>
-      <Head artwork={artwork} />
+      <Head artwork={artwork} shopifyProduct={shopifyProduct} />
       {description && (
         <TextSection>
           <h5>Über das Kunstwerk</h5>
@@ -30,13 +30,15 @@ export default function Artworks({
           <p>{artistDescription}</p>
         </TextSection>
       )}
-      <RelatedArtworks
-        artworks={relatedArtworks}
-        header={"Weitere Werke des Künstlers"}
-        color={"white"}
-      />
+      {relatedArtworks.length > 0 && (
+        <RelatedArtworks
+          artworks={relatedArtworks}
+          header={"Weitere Werke des Künstlers"}
+          color={"white"}
+        />
+      )}
       {quotes.map(quote => (
-        <ArtworkQuote quote={quote} />
+        <ArtworkQuote key={quote.id} quote={quote} />
       ))}
       <RelatedArtworks
         artworks={randomArtworks}

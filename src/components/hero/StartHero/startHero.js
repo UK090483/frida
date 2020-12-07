@@ -66,7 +66,7 @@ export default function StartHero({ children }) {
 
   return (
     <React.Fragment>
-      <Root>
+      <Root data-color={"pink"}>
         <Text>
           {children ? (
             children

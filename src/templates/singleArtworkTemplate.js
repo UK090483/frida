@@ -15,93 +15,74 @@ export default function SingleArtworkTemplate(props) {
   const relatedArtworks = data.relatedArtworks.nodes
   const randomArtworks = data.randomArtworks.nodes
   const quotes = data.quotes.nodes
+  const shopifyProduct = data.shopifyProduct
 
   return (
     <ModalRoutingContext.Consumer>
       {({ modal, closeTo }) => {
         return (
-          <div>
-            {modal ? (
-              <React.Fragment>
-                <Header
-                  title={artwork ? artwork.artistName : ""}
-                  color="lila"
-                  link={false}
-                >
-                  <Link
-                    style={{ minWidth: 40, pointerEvents: "all" }}
-                    to={closeTo}
-                    state={{
-                      noScroll: true,
-                    }}
-                  >
-                    <Kreutz
-                      onMouseEnter={() => {
-                        setMouse("link", true)
-                      }}
-                      onMouseLeave={() => {
-                        setMouse("link", false)
-                      }}
-                    />
-                  </Link>
-                </Header>
-                <SingleArtwork
-                  isModal={true}
-                  artwork={artwork}
-                  relatedArtworks={relatedArtworks}
-                  randomArtworks={randomArtworks}
-                  quotes={quotes}
-                ></SingleArtwork>
-              </React.Fragment>
-            ) : (
-              <Layout header={""}>
-                <SEO
-                  title={artwork.artistName}
-                  path={props.location.pathname}
-                  description={artwork.description}
-                  artwork={artwork}
+          <Wrap
+            modal={modal}
+            pathname={props.location.pathname}
+            artwork={artwork}
+          >
+            <Header title={artwork ? artwork.artistName : ""} color="lila">
+              <Link
+                style={{ minWidth: 40, pointerEvents: "all" }}
+                to={modal ? closeTo : "/"}
+                state={{
+                  noScroll: true,
+                }}
+              >
+                <Kreutz
+                  onMouseEnter={() => {
+                    setMouse("link", true)
+                  }}
+                  onMouseLeave={() => {
+                    setMouse("link", false)
+                  }}
                 />
-                <Header
-                  title={artwork ? artwork.artistName : ""}
-                  color="lila"
-                  link={false}
-                >
-                  <Link
-                    style={{ width: 40, pointerEvents: "all" }}
-                    to={"/"}
-                    state={{
-                      noScroll: true,
-                    }}
-                  >
-                    <Kreutz
-                      style={{ width: 40, pointerEvents: "all" }}
-                      onMouseEnter={() => {
-                        setMouse("link", true)
-                      }}
-                      onMouseLeave={() => {
-                        setMouse("link", false)
-                      }}
-                    />
-                  </Link>
-                </Header>
-                <SingleArtwork
-                  isModal={false}
-                  artwork={artwork}
-                  relatedArtworks={relatedArtworks}
-                  randomArtworks={randomArtworks}
-                  quotes={quotes}
-                ></SingleArtwork>
-              </Layout>
-            )}
-          </div>
+              </Link>
+            </Header>
+            <SingleArtwork
+              isModal={true}
+              artwork={artwork}
+              relatedArtworks={relatedArtworks}
+              randomArtworks={randomArtworks}
+              shopifyProduct={shopifyProduct}
+              quotes={quotes}
+            />
+          </Wrap>
         )
       }}
     </ModalRoutingContext.Consumer>
   )
 }
 
+const Wrap = ({ modal, children, pathname, artwork }) => {
+  return !modal ? (
+    <Layout header={""}>
+      <SEO
+        title={artwork.artistName}
+        description={artwork.description}
+        artwork={artwork}
+        path={pathname}
+      />
+      {children}
+    </Layout>
+  ) : (
+    <React.Fragment>{children}</React.Fragment>
+  )
+}
+
 export const query = graphql`
-  query($artistId: String!, $uuid: String!, $ranNum: Float!) {
+  query($artistId: String!, $uuid: String!, $ranNum: Float!, $slug: String!) {
+    shopifyProduct(handle: { eq: $slug }) {
+      variants {
+        shopifyId
+      }
+    }
+
     relatedArtworks: allFridaArtwork(
       filter: { artistId: { eq: $artistId }, uuid: { ne: $uuid } }
     ) {
@@ -137,6 +118,7 @@ export const query = graphql`
 
     quotes: allFridaQuote(filter: { artworkUuid: { eq: $uuid } }) {
       nodes {
+        id
         quote
         author
         image {

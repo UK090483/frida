@@ -5,10 +5,11 @@ import { setMouse } from "../../Mouse/mouseRemote"
 import useBodyScrollStop from "../../../helper/useBodyScrollStop"
 
 const Routes = [
-  { link: "/ausstellung/", label: "AUSSTELLUNG" },
-  { link: "/teilnehmen/", label: "TEILNEHMEN" },
-  { link: "/unterstützen/", label: "UNTERSTÜTZEN" },
+  { link: "/ausstellung/", label: "Online-Gallery" },
   { link: "/about/", label: "WER IST FRIDA?" },
+  { link: "/teilnehmen/", label: "WERKE EINREICHEN" },
+  { link: "/unterstützen/", label: "UNTERSTÜTZEN" },
+  { link: "/mearch/", label: "MEARCHANDISE" },
   { link: "/kontakt/", label: "KONTAKT" },
 ]
 
@@ -44,7 +45,7 @@ function Links({ open }) {
 const Root = styled.div`
   position: relative;
   width: 100%;
-  padding-top: 20vh;
+  padding-top: 10vh;
   padding-left: 7%;
 `
 
@@ -75,6 +76,7 @@ const StyledLink = styled(Link)`
     -webkit-text-stroke-width: 0.1em;
   }
   h2 {
+    margin-bottom: 15px;
     transform: ${({ open }) =>
       open ? "translate3d(0, 0, 0)" : "translate3d(100vw, 0, 0)"};
 

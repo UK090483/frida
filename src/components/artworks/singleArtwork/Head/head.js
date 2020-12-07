@@ -3,13 +3,14 @@ import React from "react"
 import FridaImage from "../fridaImage/fridaImage"
 import ArtworkName from "../../shared/artworkName"
 // import BuyButton from "./Buybutton/buybutton"
-import BuyButtonSnipCart from "../Buybutton/buybuttonSnipcart"
+// import BuyButtonSnipCart from "../Buybutton/buybuttonSnipcart"
 import styled from "styled-components"
 import PaymentHelp from "./paymentHelp/paymentHelp"
 import { useIntersection } from "react-use"
 import SozialShare from "~components/SozialShare/SozialShare"
+import BuyButtonShopify from "../Buybutton/buybuttonShopify"
 
-export default function Head({ artwork }) {
+export default function Head({ artwork, shopifyProduct }) {
   const {
     availability,
     artworkName,
@@ -58,7 +59,10 @@ export default function Head({ artwork }) {
             <BuyButtonWrap
               isOut={bIntersection ? !bIntersection.isIntersecting : false}
             >
-              <BuyButtonSnipCart artwork={artwork}></BuyButtonSnipCart>
+              <BuyButtonShopify
+                artwork={artwork}
+                shopifyProduct={shopifyProduct}
+              ></BuyButtonShopify>
             </BuyButtonWrap>
           </BuyButtonOutWrap>
         </Info>

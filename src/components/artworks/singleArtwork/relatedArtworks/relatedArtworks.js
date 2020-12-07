@@ -39,7 +39,7 @@ export default function RelatedArtworks({ artworks, header, color }) {
   }
 
   return (
-    <Root color={color}>
+    <Root color={color} data-color={color}>
       <Header>{header}</Header>
       <Carousel
         ref={el => (carousel.current = el)}

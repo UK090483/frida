@@ -1,22 +1,31 @@
 import React, { useContext } from "react"
 import ShopIcon from "../../assets/shop_icon.svg"
 import useMouse from "../../components/generic/Mouse/hooks/useMouse"
-import UiContext from "../../context/UiContext"
+
+import shopContext from "~context/shopifyContext"
+import { navigate } from "gatsby"
 
 export default function CheckOutLink() {
-  const { openCard, itemCount } = useContext(UiContext)
   const { setMouse } = useMouse()
+
+  const shop = useContext(shopContext)
+
+  const {
+    store: { lineItems },
+  } = shop
 
   return (
     <React.Fragment>
-      {itemCount > 0 && (
+      {lineItems.length > 0 && (
         <div
           style={{
             pointerEvents: "auto",
             width: 50,
             height: 50,
           }}
-          onClick={() => openCard()}
+          onMouseDown={() => {
+            navigate("/checkout")
+          }}
           onMouseEnter={() => {
             setMouse("link", true)
           }}
@@ -39,7 +48,7 @@ export default function CheckOutLink() {
               alignItems: "center",
             }}
           >
-            {itemCount}
+            {shop.store.lineItems.length}
           </div>
         </div>
       )}

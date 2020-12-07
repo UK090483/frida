@@ -1,10 +1,13 @@
 import React from "react"
-
+import { StoreContextProvider } from "~context/shopifyContext"
 import { ThemeProvider } from "styled-components"
+
 import theme from "./src/Styles/theme"
 
 export const wrapRootElement = ({ element }) => (
-  <ThemeProvider theme={theme}>{element}</ThemeProvider>
+  <StoreContextProvider>
+    <ThemeProvider theme={theme}>{element}</ThemeProvider>
+  </StoreContextProvider>
 )
 
 const postBody = [

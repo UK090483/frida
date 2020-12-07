@@ -6,18 +6,6 @@ export default function Summary({ artikel }) {
 
   return (
     <Root>
-      {/* <Head>Zusammenfassung</Head>
-      <List>
-        {artikel.map(item => {
-          return (
-            <ListItem key={item.uuid}>
-              <span>{item.artworkName}</span>
-              <span>{item.price}€</span>
-            </ListItem>
-          )
-        })}
-      </List>
-      <Seperator /> */}
       <List>
         <ListItem>
           <span>MwSt(16%):</span>

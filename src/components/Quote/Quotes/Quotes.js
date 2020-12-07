@@ -75,7 +75,7 @@ export default function Quotes() {
   // })
   // console.log(intersection && intersection.isIntersecting)
   return (
-    <Root ref={intersectionRef}>
+    <Root ref={intersectionRef} data-color={"black"}>
       <Carousel
         ref={el => (carousel.current = el)}
         responsive={responsive}

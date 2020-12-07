@@ -23,8 +23,9 @@ const loadArtworksSanity = async () => {
       "artistId": artist->_id,
       image,
       "rating":coalesce(rating, 0),
-      "banner":coalesce(banner, 'unknown')
-    }`
+      "banner":coalesce(banner, 'unknown'),
+      shopify_variant_id
+    }[0...10]`
   const params = {}
 
   const res = await sanity.fetch(query, params)
@@ -57,6 +58,7 @@ async function createArtworNodes(actions, createNodeId, createContentDigest) {
       artistDescription,
       instagramLink,
       artistId,
+      shopify_variant_id,
       image: {
         asset: { _ref: imageAssetId },
       },
@@ -85,6 +87,7 @@ async function createArtworNodes(actions, createNodeId, createContentDigest) {
       image: {
         imageAssetId,
       },
+      shopify_variant_id,
     }
 
     const nodeContent = JSON.stringify(data)

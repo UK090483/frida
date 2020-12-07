@@ -13,12 +13,14 @@ const client = Client.buildClient(
 )
 
 const StoreContextProvider = ({ children }) => {
+  /* eslint-disable react-hooks/exhaustive-deps */
   let initialStoreState = {
     client,
     adding: false,
     checkout: { lineItems: [] },
     products: [],
     shop: {},
+    lineItems: [],
   }
 
   const [store, updateStore] = useState(initialStoreState)
@@ -66,13 +68,31 @@ const StoreContextProvider = ({ children }) => {
 
     initializeCheckout()
   }, [isRemoved, store.client.checkout])
-  console.log(store.checkout.webUrl)
+
   useEffect(
     () => () => {
       isRemoved = true
     },
     []
   )
+
+  useEffect(() => {
+    console.log(client)
+    client.product.fetchAll().then(res => {
+      console.log(res)
+    })
+  }, [])
+  useEffect(() => {
+    const lI = store.checkout.lineItems.map(item => {
+      return { variantId: item.variant?.id, lineItemId: item.id }
+    })
+
+    if (lI.length !== store.lineItems.length) {
+      updateStore(prevState => {
+        return { ...prevState, lineItems: lI }
+      })
+    }
+  }, [store])
 
   return (
     <StoreContext.Provider

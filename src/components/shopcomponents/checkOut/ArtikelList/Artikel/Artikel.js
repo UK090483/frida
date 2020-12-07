@@ -1,28 +1,26 @@
-import React, { useContext } from "react"
+import React from "react"
 import styled from "styled-components"
-import UiContext from "~context/UiContext"
 import EraseIcon from "../../../../../assets/erase.svg"
-import Img from "gatsby-image"
-import { getFluidImage } from "~components/helper/sanityImage"
+// import Img from "gatsby-image"
+// import { getFluidImage } from "~components/helper/sanityImage"
 
-export default function Artikel({ artikel }) {
-  const { artworkName, artistName, uuid, price, image } = artikel
-  const { eraseItem } = useContext(UiContext)
-
-  const fluidprops = getFluidImage(image.imageAssetId, { maxWidth: 200 })
+export default function Artikel({ artikel, onRemove }) {
+  const {
+    title,
+    variant: { price, image },
+  } = artikel
 
   return (
     <Root>
-      <Image fluid={fluidprops} />
-      {/* <Img alt={"alt"} fluid={fluidprops} draggable={false} /> */}
+      <Image src={image.src} />
 
       <InfoRoot>
-        <Title>{artworkName + " / " + artistName}</Title>
+        <Title>{title}</Title>
         <Price>{price}€</Price>
       </InfoRoot>
       <StyledEraseIcon
         onClick={() => {
-          eraseItem(uuid)
+          onRemove(artikel.id)
         }}
       ></StyledEraseIcon>
     </Root>
@@ -47,7 +45,7 @@ const Root = styled.li`
     display: flex;
   }
 `
-const Image = styled(Img)`
+const Image = styled.img`
   width: 100px;
 `
 const Title = styled.h6`

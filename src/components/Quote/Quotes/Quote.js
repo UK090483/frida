@@ -21,6 +21,7 @@ export default function Quote({ quote: quoteObject }) {
 
   return (
     <Root
+      data-color={"black"}
       onMouseLeave={() => {
         setHover(false)
       }}

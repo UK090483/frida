@@ -15,7 +15,7 @@ exports.sourceNodes = async ({
   createNodeId,
   createContentDigest,
 }) => {
-  await createArtworNodes(actions, createNodeId, createContentDigest)
+  // await createArtworNodes(actions, createNodeId, createContentDigest)
   await createQuoteNodes(actions, createNodeId, createContentDigest)
 }
 
@@ -48,6 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
             artistId: artwork.artistId,
             uuid: artwork.uuid,
             ranNum: Math.random(),
+            slug: artwork.slug,
           },
         })
 
@@ -61,10 +62,37 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               artistId: artwork.artistId,
               uuid: artwork.uuid,
+
               ranNum: Math.random(),
             },
           })
         }
+      })
+    })
+
+    graphql(`
+      query ProductPageQuery {
+        allShopifyProduct(filter: { productType: { ne: "artwork" } }) {
+          nodes {
+            handle
+          }
+        }
+      }
+    `).then(result => {
+      // first check if there is no errors
+      if (result.errors) {
+        // reject Promise if error
+        reject(result.errors)
+      }
+
+      result.data.allShopifyProduct.nodes.forEach(product => {
+        createPage({
+          path: `/product/${product.handle}`,
+          component: path.resolve("./src/templates/productPageTemplate.js"),
+          context: {
+            handle: product.handle,
+          },
+        })
       })
     })
 
