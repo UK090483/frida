@@ -160,16 +160,18 @@ module.exports = {
         // to select "Allow this app to access your storefront data using the
         // Storefront API".
         // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
-        accessToken: process.env.SHOPIFY_ACCESS_TOKEN,
+        accessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
 
         // Set verbose to true to display a verbose output on `npm run develop`
         // or `npm run build`. This prints which nodes are being fetched and how
         // much time was required to fetch and process the data.
         // Defaults to true.
+
         verbose: true,
         includeCollections: ["shop"],
       },
     },
+
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

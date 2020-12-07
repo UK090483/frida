@@ -6,7 +6,7 @@ const StoreContext = React.createContext()
 
 const client = Client.buildClient(
   {
-    storefrontAccessToken: process.env.SHOPIFY_ACCESS_TOKEN,
+    storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
     domain: `${process.env.SHOPIFY_SHOP_NAME}.myshopify.com`,
   },
   fetch

@@ -8,9 +8,9 @@ function ArtworkContainer({ children, artwork, preventClick = false }) {
   return (
     <Root className="artwork-wrap">
       <div
-        href={`/artwork/${artwork.slug}`}
+        // href={`/artwork/${artwork.slug}`}
         onClick={e => {
-          // e.preventDefault()
+          e.preventDefault()
           // // if (preventClick) {
           // //   e.preventDefault()
           // // }

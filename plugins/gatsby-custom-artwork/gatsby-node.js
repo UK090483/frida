@@ -1,7 +1,8 @@
-const { sanity } = require("../../g-node/sanityClient")
+const { sanity } = require("../../lib/sanityClient")
 
-const { SantityToShopify } = require("./lib/fucntions")
+const { SantityToShopify } = require("./lib/functions")
 const { getAllShopifyProducts } = require("./lib/shopify")
+const { getPriceWithTax } = require("../../lib/getPriceWithTax")
 
 const loadArtworksSanity = async () => {
   console.log("sanity _ start")
@@ -28,9 +29,8 @@ const loadArtworksSanity = async () => {
     image,
     "rating":coalesce(rating, 0),
     "banner":coalesce(banner, 'unknown'),
-    shopify_updated_at,
-    _updatedAt
-    }[0...30]`
+    shopify_handle,
+    }[0...50]`
   const params = {}
 
   const res = await sanity.fetch(query, params)
@@ -40,11 +40,11 @@ const loadArtworksSanity = async () => {
   return res
 }
 async function createArtworNodes(actions, createNodeId, createContentDigest) {
+  const sanityArtworksbefore = await loadArtworksSanity()
+
+  await SantityToShopify("artwork", sanityArtworksbefore)
+
   const sanityArtworks = await loadArtworksSanity()
-  const products = await getAllShopifyProducts()
-
-  await SantityToShopify("artworks", sanityArtworks, products)
-
   const { createNode } = actions
   sanityArtworks.forEach(item => {
     const {
@@ -66,6 +66,7 @@ async function createArtworNodes(actions, createNodeId, createContentDigest) {
       artistDescription,
       instagramLink,
       artistId,
+      shopify_handle,
       image: {
         asset: { _ref: imageAssetId },
       },
@@ -90,6 +91,7 @@ async function createArtworNodes(actions, createNodeId, createContentDigest) {
       depth,
       rating,
       banner,
+      shopify_handle,
       price: getPriceWithTax(price),
       image: {
         imageAssetId,
@@ -115,16 +117,6 @@ async function createArtworNodes(actions, createNodeId, createContentDigest) {
 
 function getWithRating(rating) {
   return rating === 0 ? Math.random() : (rating + Math.random() - 1) * 0.1
-}
-
-function getPriceWithTax(price) {
-  if (!price) {
-    return ""
-  }
-  const withTax = (price / 84) * 100
-  const roundTen = Math.ceil(withTax / 10) * 10
-  // console.log(`Preis: ${price}/ mitMwSt: ${withTax}/ gerundet: ${roundTen}`)
-  return roundTen
 }
 
 exports.sourceNodes = async ({

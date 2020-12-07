@@ -8,7 +8,7 @@ import styled from "styled-components"
 import PaymentHelp from "./paymentHelp/paymentHelp"
 import { useIntersection } from "react-use"
 import SozialShare from "~components/SozialShare/SozialShare"
-import BuyButtonShopify from "../Buybutton/buybuttonShopify"
+import BuyButtonShopify from "../../../ProductComponents/parts/BuyButton/buybuttonShopify"
 
 export default function Head({ artwork, shopifyProduct }) {
   const {
@@ -21,6 +21,8 @@ export default function Head({ artwork, shopifyProduct }) {
     width,
     depth,
   } = artwork
+
+  console.log(shopifyProduct)
 
   const intersectionRef = React.useRef(null)
 
@@ -60,8 +62,8 @@ export default function Head({ artwork, shopifyProduct }) {
               isOut={bIntersection ? !bIntersection.isIntersecting : false}
             >
               <BuyButtonShopify
-                artwork={artwork}
-                shopifyProduct={shopifyProduct}
+                availability={artwork.availability === "availabil"}
+                shopifyId={shopifyProduct.variants[0].shopifyId}
               ></BuyButtonShopify>
             </BuyButtonWrap>
           </BuyButtonOutWrap>

@@ -1,8 +1,8 @@
 const path = require(`path`)
 const sanityClient = require("@sanity/client")
 
-const { createArtworNodes } = require("./g-node/createArtworkNodes")
-const { createQuoteNodes } = require("./g-node/createQuoteNodes")
+const { createArtworNodes } = require("./lib/createArtworkNodes")
+const { createQuoteNodes } = require("./lib/createQuoteNodes")
 
 const sanityConfig = { projectId: "ypuaahj7", dataset: "test2" }
 const client = sanityClient({
@@ -30,6 +30,7 @@ exports.createPages = ({ graphql, actions }) => {
             uuid
             artistId
             slug
+            shopify_handle
           }
         }
       }
@@ -49,6 +50,7 @@ exports.createPages = ({ graphql, actions }) => {
             uuid: artwork.uuid,
             ranNum: Math.random(),
             slug: artwork.slug,
+            shopify_handle: artwork.shopify_handle,
           },
         })
 
@@ -62,7 +64,6 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               artistId: artwork.artistId,
               uuid: artwork.uuid,
-
               ranNum: Math.random(),
             },
           })
@@ -72,7 +73,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     graphql(`
       query ProductPageQuery {
-        allShopifyProduct(filter: { productType: { ne: "artwork" } }) {
+        allShopifyProduct(filter: { productType: { ne: "artworks" } }) {
           nodes {
             handle
           }

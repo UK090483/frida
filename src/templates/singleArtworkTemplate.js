@@ -76,8 +76,13 @@ const Wrap = ({ modal, children, pathname, artwork }) => {
 }
 
 export const query = graphql`
-  query($artistId: String!, $uuid: String!, $ranNum: Float!, $slug: String!) {
-    shopifyProduct(handle: { eq: $slug }) {
+  query(
+    $artistId: String!
+    $uuid: String!
+    $ranNum: Float!
+    $shopify_handle: String!
+  ) {
+    shopifyProduct(handle: { eq: $shopify_handle }) {
       variants {
         shopifyId
       }
@@ -153,6 +158,7 @@ export const query = graphql`
       medium
       stil
       banner
+      shopify_handle
       image {
         imageAssetId
       }
