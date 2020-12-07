@@ -4,13 +4,10 @@ import Client from "shopify-buy"
 
 const StoreContext = React.createContext()
 
-const client = Client.buildClient(
-  {
-    storefrontAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
-    domain: `${process.env.SHOPIFY_SHOP_NAME}.myshopify.com`,
-  },
-  fetch
-)
+const client = Client.buildClient({
+  storefrontAccessToken: "70947569be251c38207ae74a02da0cc3",
+  domain: `${"fridateststore"}.myshopify.com`,
+})
 
 const StoreContextProvider = ({ children }) => {
   /* eslint-disable react-hooks/exhaustive-deps */
