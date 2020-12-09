@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 import { navigate } from "gatsby"
 
-import { Price, ProductName } from "../../ProductComponents"
+import { Price, ProductName } from "../../lib/ProductComponents"
 
 function ProductItem(props) {
   const { variants, handle, title } = props.product
@@ -15,7 +15,7 @@ function ProductItem(props) {
   const {
     localFile: {
       childImageSharp: {
-        resize: { height, width, src },
+        resize: { src },
       },
     },
   } = image

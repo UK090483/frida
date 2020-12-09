@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Artikel from "./Artikel/Artikel"
 import Summary from "./Summary"
 import shopContext from "~context/shopifyContext"
-import Button from "../../../buttons/button"
+
 export default function ArtikelList() {
   const shop = useContext(shopContext)
 
@@ -17,11 +17,13 @@ export default function ArtikelList() {
     removeLineItem(client, checkout.id, e)
   }
 
+  console.log(checkout)
   return (
     <Root>
-      {checkout.lineItems.map(item => (
-        <Artikel key={item.id} artikel={item} onRemove={handleRemove} />
-      ))}
+      {checkout.lineItems.length > 0 &&
+        checkout.lineItems.map(item => (
+          <Artikel key={item.id} artikel={item} onRemove={handleRemove} />
+        ))}
       <Summary sum={checkout.totalPrice} tax={checkout.totalTax}></Summary>
 
       <ButtonWrap>

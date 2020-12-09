@@ -1,20 +1,20 @@
 import React from "react"
 import styled from "styled-components"
 import ArtikelList from "./ArtikelList/ArtikelList"
-import RelatedArtworks from "~components/artworks/singleArtwork/relatedArtworks/relatedArtworks"
+// import RelatedArtworks from "~components/artworks/singleArtwork/relatedArtworks/relatedArtworks"
 
-export default function CheckOut({ closeTo, data }) {
+export default function CheckOut({ closeTo }) {
   return (
     <Root>
       <div data-color="white">
         <Header>Warenkorb</Header>
         <ArtikelList />
       </div>
-      <RelatedArtworks
+      {/* <RelatedArtworks
         header={"Diese Kunstwerke Könnten Dir Auch gefallen"}
         artworks={data.allFridaArtwork.nodes}
         color={"pink"}
-      />
+      /> */}
     </Root>
   )
 }

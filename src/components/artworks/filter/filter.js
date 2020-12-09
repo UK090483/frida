@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import DropDown from "../../input/dropDown"
+import DropDown from "../../lib/input/dropDown"
 import style from "./filter.module.scss"
 
 const preisOptions = [

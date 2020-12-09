@@ -1,7 +1,8 @@
+import { sanityConfig } from "../../../lib/sanityConfig"
 import { getFluidGatsbyImage, getFixedGatsbyImage } from "gatsby-source-sanity"
+//  const sanityConfig = { projectId: "zll53fvk", dataset: "production" }
 const imageUrlBuilder = require("@sanity/image-url")
 
-const sanityConfig = { projectId: "ypuaahj7", dataset: "test2" }
 const builder = imageUrlBuilder(sanityConfig)
 
 function urlFor(source) {

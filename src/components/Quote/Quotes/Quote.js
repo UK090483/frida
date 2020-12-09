@@ -4,19 +4,11 @@ import { getFluidImage } from "~components/helper/sanityImage"
 import Img from "gatsby-image"
 
 export default function Quote({ quote: quoteObject }) {
-  const {
-    quote,
-    image: {
-      asset: { _ref: imageAssetId },
-    },
-    author,
-    subtitle,
-    artworkImage,
-  } = quoteObject
+  const { quote, image, author, subtitle, artworkImage } = quoteObject
 
   const [hover, setHover] = useState(false)
 
-  const fluidprops = getFluidImage(imageAssetId, { maxWidth: 300 })
+  const fluidprops = getFluidImage(image, { maxWidth: 300 })
   const fluidpropsArtwork = getFluidImage(artworkImage, { maxWidth: 300 })
 
   return (

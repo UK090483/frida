@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import {
   Wrap,
@@ -10,30 +10,31 @@ import {
   BuyButtonWrap,
   ProductName,
   Price,
-} from "~components/ProductComponents"
-
+  ImagePreview,
+  Options,
+} from "~components/lib/ProductComponents"
+import useShopify from "~components/hooks/useShopify"
 import SozialShare from "../../SozialShare/SozialShare"
-import DropDown from "../../input/dropDown"
 
 export default function SingleView({ data }) {
-  const [variant, setVariant] = useState("")
-  const { variants, title, options } = data
-
-  const hasOptions = variants.length > 1
-
-  const curentItem = variant
-    ? variants.find(v => v.title === variant)
-    : variants[0]
+  const {
+    variant,
+    hasOptions,
+    imagesArray,
+    onImageClick,
+    selectedOption,
+    setOption,
+    title,
+    options,
+  } = useShopify(data)
 
   const {
-    price,
-    shopifyId,
-    image: {
-      localFile: { childImageSharp },
+    localFile: {
+      childImageSharp: { smallImage, bigImage, sizes },
     },
-  } = curentItem
+  } = variant.image
 
-  const { smallImage, bigImage, sizes } = childImageSharp
+  const { price, shopifyId } = variant
 
   return (
     <Wrap>
@@ -44,12 +45,22 @@ export default function SingleView({ data }) {
           aspectRatio={sizes.aspectRatio}
           alt={"bla"}
         />
+
+        {imagesArray.length > 1 && (
+          <ImagePreview images={imagesArray} handleClick={onImageClick} />
+        )}
       </ImageWrap>
       <InfoWrap>
         <Groupe>
           <ProductName name={title} />
           <Price price={price} />
-          {hasOptions && <Options options={options} setVariant={setVariant} />}
+          {hasOptions && (
+            <Options
+              options={options}
+              setOption={setOption}
+              selectedOption={selectedOption}
+            />
+          )}
           <SozialShare />
           <BuyButtonWrap>
             <BuyButton availability={true} shopifyId={shopifyId} />
@@ -67,31 +78,3 @@ const Groupe = styled.div`
   flex-direction: column;
   justify-content: center;
 `
-
-const Options = ({ options, setVariant }) => {
-  const [state, setState] = React.useState("")
-  return (
-    <React.Fragment>
-      {options &&
-        options.map(option => {
-          const { name, values } = option
-
-          return (
-            <DropDown
-              key={name}
-              filterName={name}
-              label={name}
-              options={values.map(item => ({ label: item, value: item }))}
-              open={state === name}
-              setOpen={e => {
-                setState(e)
-              }}
-              setFilter={(fitername, b) => {
-                setVariant(b)
-              }}
-            />
-          )
-        })}
-    </React.Fragment>
-  )
-}

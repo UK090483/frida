@@ -1,14 +1,18 @@
 import React from "react"
 import styled from "styled-components"
 import EraseIcon from "../../../../../assets/erase.svg"
-// import Img from "gatsby-image"
-// import { getFluidImage } from "~components/helper/sanityImage"
 
 export default function Artikel({ artikel, onRemove }) {
-  const {
-    title,
-    variant: { price, image },
-  } = artikel
+  const { title, variant } = artikel
+
+  if (!variant)
+    return (
+      <Root>
+        <div>Dieser Artikel wurde vor kurzem entfernt</div>
+      </Root>
+    )
+
+  const { price, image } = variant
 
   return (
     <Root>

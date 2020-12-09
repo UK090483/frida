@@ -1,7 +1,7 @@
 import React from "react"
 
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo/seo"
+import SEO from "../components/generic/seo/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
 import Frida from "../components/frida/frida"

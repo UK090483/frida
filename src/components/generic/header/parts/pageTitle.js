@@ -4,46 +4,12 @@ import { setMouse } from "../../Mouse/mouseRemote"
 import styled from "styled-components"
 import Frida from "../../../frida/frida"
 import { fluidFont } from "../../../../Styles/theme"
-import throttle from "lodash/throttle"
 
 function PageTitle({ title, color, link, initialColor }) {
-  const interItems = useRef()
+  /* eslint-disable react-hooks/exhaustive-deps */
+
   const ref = useRef()
   const observers = useRef([])
-
-  // const checkInterfering = throttle(() => {
-  //   if (interItems.current) {
-  //     let sholdAdd = false
-  //     interItems.current.forEach(element => {
-  //       const clientRect = element.getBoundingClientRect()
-  //       if (clientRect.top < 60 && clientRect.bottom > 60) {
-  //         sholdAdd = true
-  //       }
-  //     })
-
-  //     if (sholdAdd) {
-  //       ref.current &&
-  //         !ref.current.classList.contains("pageHeader_pink") &&
-  //         ref.current.classList.add("pageHeader_pink")
-  //     } else {
-  //       ref.current &&
-  //         ref.current.classList.contains("pageHeader_pink") &&
-  //         ref.current.classList.remove("pageHeader_pink")
-  //     }
-  //   }
-  // }, 300)
-
-  // useEffect(() => {
-  //   if (checkInter) {
-  //     interItems.current = document.querySelectorAll("[data-color=default]")
-  //     if (interItems.current.length > 0) {
-  //       document.addEventListener("scroll", checkInterfering)
-  //     }
-  //   }
-  //   return () => {
-  //     document.removeEventListener("scroll", checkInterfering)
-  //   }
-  // }, [checkInter])
 
   useEffect(() => {
     const observerCallback = (entries, observer, header) => {

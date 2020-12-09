@@ -3,7 +3,6 @@ import React from "react"
 import PageTitle from "./parts/pageTitle"
 import Header from "./parts/header"
 import Nav from "../nav/nav"
-import styled from "styled-components"
 
 const DefaultHeader = ({ initialColor, title }) => (
   <Header>

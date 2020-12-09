@@ -4,16 +4,9 @@ import { getFluidImage } from "~components/helper/sanityImage"
 import Img from "gatsby-image"
 
 export default function ArtworkQuote({ quote: quoteObject }) {
-  const {
-    quote,
-    image: {
-      asset: { _ref: imageAssetId },
-    },
-    author,
-    subtitle,
-  } = quoteObject
+  const { quote, image, author, subtitle } = quoteObject
 
-  const fluidprops = getFluidImage(imageAssetId, { maxWidth: 500 })
+  const fluidprops = getFluidImage(image, { maxWidth: 500 })
 
   return (
     <Root>
@@ -27,7 +20,7 @@ export default function ArtworkQuote({ quote: quoteObject }) {
           alt={"alt"}
           fluid={fluidprops}
           objectFit={"cover"}
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "300px" }}
         />
       </Collumn2>
     </Root>
@@ -52,11 +45,14 @@ const Collumn1 = styled.div`
   }
 `
 const Collumn2 = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  img {
+  /* img {
     width: 100%;
     height: 100%;
-  }
+  } */
   @media ${({ theme }) => theme.device.tablet} {
     width: 30%;
   }

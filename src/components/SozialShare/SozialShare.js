@@ -5,7 +5,7 @@ import {
   TwitterShareButton,
   EmailShareButton,
 } from "react-share"
-import Icon from "~components/Icon"
+import Icon from "~components/lib/Icon"
 import { BiShareAlt } from "react-icons/bi"
 import styled from "styled-components"
 import {

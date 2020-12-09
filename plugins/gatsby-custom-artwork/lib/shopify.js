@@ -23,22 +23,21 @@ const addToProductListing = async id => {
 
 const buildProductObject = (type, sanityProduct) => {
   const {
-    title,
     image,
     price,
-    slug,
     description,
     artistName,
     artworkName,
+    stil,
+    medium,
   } = sanityProduct
-
-  // const { variants, images, hasVariants } = getValues(sanityProduct);
 
   return {
     title: `${artworkName} von ${artistName}`,
     product_type: type,
     body_html: `<p>${description}</p>`,
     published_scope: "global",
+    tags: `${stil},${medium}`,
     variants: [
       {
         inventory_management: "shopify",

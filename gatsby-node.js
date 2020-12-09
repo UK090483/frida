@@ -1,14 +1,8 @@
 const path = require(`path`)
-const sanityClient = require("@sanity/client")
+const { sanity } = require("./lib/sanityClient")
 
 const { createArtworNodes } = require("./lib/createArtworkNodes")
 const { createQuoteNodes } = require("./lib/createQuoteNodes")
-
-const sanityConfig = { projectId: "ypuaahj7", dataset: "test2" }
-const client = sanityClient({
-  ...sanityConfig,
-  token: process.env.SANITY_TOKEN,
-})
 
 exports.sourceNodes = async ({
   actions,
@@ -97,7 +91,7 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
 
-    client.fetch(`*[_type == 'page']`, {}).then(pages => {
+    sanity.fetch(`*[_type == 'page']`, {}).then(pages => {
       pages.forEach(page => {
         const preparedSlug =
           page.slug.current === "home" ? "" : page.slug.current

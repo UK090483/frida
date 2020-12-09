@@ -1,14 +1,15 @@
-import fetch from "isomorphic-fetch"
+// import fetch from "isomorphic-fetch"
 import React, { useState, useEffect } from "react"
 import Client from "shopify-buy"
 
 const StoreContext = React.createContext()
 
 const client = Client.buildClient({
-  storefrontAccessToken: "70947569be251c38207ae74a02da0cc3",
-  domain: `${"fridateststore"}.myshopify.com`,
+  storefrontAccessToken: "7167264619603fabaa685d01928ab18e",
+  domain: `${"meetfrida"}.myshopify.com`,
 })
 
+console.log(client)
 const StoreContextProvider = ({ children }) => {
   /* eslint-disable react-hooks/exhaustive-deps */
   let initialStoreState = {
@@ -73,12 +74,6 @@ const StoreContextProvider = ({ children }) => {
     []
   )
 
-  useEffect(() => {
-    console.log(client)
-    client.product.fetchAll().then(res => {
-      console.log(res)
-    })
-  }, [])
   useEffect(() => {
     const lI = store.checkout.lineItems.map(item => {
       return { variantId: item.variant?.id, lineItemId: item.id }

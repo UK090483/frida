@@ -13,7 +13,7 @@ import Hero from "./Hero"
 import Spacer from "./spacer"
 import Störer from "../components/hero/StartHero/stoerer"
 import ComponentNotFound from "./component_not_found"
-import Poster from "../components/Poster/Poster/poster"
+
 import RT from "./ritchText"
 import Supporter from "./Supporter"
 
@@ -27,12 +27,8 @@ const ComponentList = {
   button: Button,
   spacer: Spacer,
   störer: Störer,
-  poster: Poster,
   richText: RT,
   supporter: Supporter,
-  //   teaser: Teaser,
-  //   feature: Feature,
-  //   nav_item: NavItem,
   hero: Hero,
 }
 

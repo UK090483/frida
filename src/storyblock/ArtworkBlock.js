@@ -1,4 +1,5 @@
 import React from "react"
+
 import Artworks from "../components/artworks"
 
 export default function ArtworksBlock(props) {

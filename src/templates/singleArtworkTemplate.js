@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo/seo"
+import SEO from "../components/generic/seo/seo"
 import SingleArtwork from "../components/artworks/singleArtwork/singleArtwork"
 import { ModalRoutingContext } from "gatsby-plugin-modal-routing"
 import Header from "../components/generic/header/header"
@@ -14,6 +14,7 @@ export default function SingleArtworkTemplate(props) {
   const artwork = data.artwork
   const relatedArtworks = data.relatedArtworks.nodes
   const randomArtworks = data.randomArtworks.nodes
+
   const quotes = data.quotes.nodes
   const shopifyProduct = data.shopifyProduct
 
@@ -126,17 +127,7 @@ export const query = graphql`
         id
         quote
         author
-        image {
-          asset {
-            _ref
-          }
-          hotspot {
-            y
-            x
-            width
-            height
-          }
-        }
+        image
         subtitle
       }
     }

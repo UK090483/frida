@@ -7,7 +7,7 @@ import { useStaticQuery, graphql } from "gatsby"
 export default function Products() {
   const data = useStaticQuery(graphql`
     query ProductQuery {
-      allShopifyProduct(filter: { productType: { ne: "artworks" } }) {
+      allShopifyProduct(filter: { productType: { ne: "artwork" } }) {
         nodes {
           title
           id

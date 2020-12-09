@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo/seo"
+import SEO from "../components/generic/seo/seo"
 import { ModalRoutingContext } from "gatsby-plugin-modal-routing"
 import Header from "../components/generic/header/header"
 import Kreutz from "../assets/Menu_Kreutz.svg"
@@ -9,7 +9,7 @@ import { Link } from "gatsby"
 import { graphql } from "gatsby"
 import ProductSingeView from "../components/Products/SingleView/ProductSingleView"
 
-export default function SingleArtworkTemplate(props) {
+export default function SingleProductTemplate(props) {
   const { data } = props
 
   return (
@@ -20,7 +20,7 @@ export default function SingleArtworkTemplate(props) {
             <Header title={"shop"} color="lila">
               <Link
                 style={{ minWidth: 40, pointerEvents: "all" }}
-                to={modal ? closeTo : "/"}
+                to={modal ? closeTo : "/mearch"}
                 state={{
                   noScroll: true,
                 }}
@@ -56,10 +56,33 @@ export const query = graphql`
         name
         values
       }
+      images {
+        id
+        originalSrc
+        localFile {
+          childImageSharp {
+            smallImage: resize(width: 1000) {
+              src
+            }
+            bigImage: resize(width: 2000) {
+              src
+            }
+            sizes {
+              aspectRatio
+            }
+          }
+        }
+      }
       variants {
         price
         shopifyId
+        selectedOptions {
+          name
+          value
+        }
         image {
+          id
+          originalSrc
           localFile {
             childImageSharp {
               smallImage: resize(width: 500) {

@@ -9,10 +9,10 @@ const ModalExamplePage = ({ data }) => (
       return (
         <div>
           {modal && true ? (
-            <Checkout checkoutOpen={true} closeTo={closeTo} data={data} />
+            <Checkout checkoutOpen={true} closeTo={closeTo} />
           ) : (
             <Layout initialColor={"white"}>
-              <Checkout checkoutOpen={true} closeTo={"/"} data={data} />
+              <Checkout checkoutOpen={true} closeTo={"/"} />
             </Layout>
           )}
         </div>
@@ -22,28 +22,3 @@ const ModalExamplePage = ({ data }) => (
 )
 
 export default ModalExamplePage
-
-export const query = graphql`
-  query checkout {
-    allFridaArtwork {
-      nodes {
-        uuid
-        slug
-        artistDescription
-        artistWebLink
-        artistName
-        artworkName
-        availability
-        depth
-        description
-        height
-        price
-        medium
-        stil
-        image {
-          imageAssetId
-        }
-      }
-    }
-  }
-`
