@@ -11,7 +11,7 @@ const ModalExamplePage = ({ data }) => (
           {modal && true ? (
             <Checkout checkoutOpen={true} closeTo={closeTo} />
           ) : (
-            <Layout initialColor={"white"}>
+            <Layout initialColor={"white"} initialColor={"white"}>
               <Checkout checkoutOpen={true} closeTo={"/"} />
             </Layout>
           )}

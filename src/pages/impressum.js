@@ -4,11 +4,11 @@ import SEO from "../components/generic/seo/seo"
 import Section from "../components/container/section"
 
 const IndexPage = props => (
-  <Layout title={"TheImprint"}>
+  <Layout title={"TheImprint"} initialColor={"pink"}>
     <SEO title="Impressum" path={props.location.pathname} />
 
     <Section backgroundColor={"lila"}>
-      {/* <div style={{ paddingTop: "30vh" }}>
+      <div style={{ paddingTop: "30vh" }}>
         <p>
           <strong>Impressum</strong>
         </p>
@@ -2432,8 +2432,8 @@ const IndexPage = props => (
           sind nicht gestattet, soweit dies nicht gesetzlich zugelassen ist. Sie
           k&ouml;nnen den Abzug jedoch weiterverkaufen.
         </p>
-        <p>Stand: 25. August 2020</p> 
-      </div>*/}
+        <p>Stand: 25. August 2020</p>
+      </div>
     </Section>
   </Layout>
 )

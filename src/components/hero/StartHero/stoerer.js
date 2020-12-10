@@ -1,9 +1,10 @@
 import React from "react"
 import Section from "../../container/section"
-import StoererSVG from "../../../assets/Störer_open_call.svg"
+import StoererSVG from "../../../assets/Störer_Newsletter.svg"
 import { Link } from "gatsby"
 import useMouse from "../../generic/Mouse/hooks/useMouse"
 import styled, { keyframes } from "styled-components"
+import scrollTo from "gatsby-plugin-smoothscroll"
 
 export default function Stoerer() {
   const { setMouse } = useMouse()
@@ -18,7 +19,13 @@ export default function Stoerer() {
           setMouse("link", false)
         }}
       >
-        <Link to="/teilnehmen/">
+        <Link
+          to="/"
+          onClick={e => {
+            e.preventDefault()
+            scrollTo("#newsletter")
+          }}
+        >
           <StoererSVG />
         </Link>
       </Root>

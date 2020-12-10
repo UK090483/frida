@@ -8,6 +8,8 @@ export default function Newsletter() {
   const [email, setEmail] = useState("")
   const [validateError, setValidateError] = useState(false)
   const [state, setstate] = useState("start")
+  const [message, setMessage] = useState("")
+  const [hp, setHp] = useState("")
 
   const isMailValid = useCallback(() => {
     return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)
@@ -27,22 +29,28 @@ export default function Newsletter() {
   }
 
   const send = () => {
-    setstate("load")
-    addToMailchimp(email) // listFields are optional if you are only capturing the email address.
-      .then(data => {
-        setstate("succsess")
-
-        console.log(data)
-      })
-      .catch(err => {
-        setstate("fail")
-        console.log(err)
-      })
+    if (!hp) {
+      setstate("load")
+      addToMailchimp(email) // listFields are optional if you are only capturing the email address.
+        .then(data => {
+          if (data.result === "success") {
+            setstate("succsess")
+          } else {
+            setstate("message")
+            setMessage(data.msg)
+          }
+          console.log(data)
+        })
+        .catch(err => {
+          setstate("fail")
+          console.log(err)
+        })
+    }
   }
 
   return (
     <Section>
-      <Root>
+      <Root id="newsletter">
         <Collumn>
           <h4>Bleib up to date!</h4>
           <p>
@@ -65,6 +73,32 @@ export default function Newsletter() {
                   value={email}
                 />
                 <Submitbutton onClick={handleClick}>Abonieren</Submitbutton>
+                <Hp>
+                  <label htmlFor="name"></label>
+                  <input
+                    value={hp}
+                    autoComplete="off"
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your first Name here"
+                    onChange={e => {
+                      setHp(e.target.value)
+                    }}
+                  />
+                  <label htmlFor="aname"></label>
+                  <input
+                    value={hp}
+                    autoComplete="off"
+                    type="text"
+                    id="aname"
+                    name="aname"
+                    placeholder="Your last Name here"
+                    onChange={e => {
+                      setHp(e.target.value)
+                    }}
+                  />
+                </Hp>
               </React.Fragment>
             )}
             {state === "load" && <h4>Loading...</h4>}
@@ -73,8 +107,12 @@ export default function Newsletter() {
                 <GoThumbsup size={60} />
                 <p>
                   Vielen Dank! Nur noch die E-Mail bestätigen und du bist dabei!
+                  (bestätigungs Mail kann bis zu 12h dauern)
                 </p>
               </Succsess>
+            )}
+            {state === "message" && (
+              <Message dangerouslySetInnerHTML={{ __html: message }}></Message>
             )}
           </InputWrap>
           {validateError && (
@@ -85,6 +123,13 @@ export default function Newsletter() {
     </Section>
   )
 }
+
+const Message = styled.div``
+
+const Hp = styled.div`
+  height: 0px;
+  overflow: hidden;
+`
 
 const Root = styled.div`
   padding: 100px 0;
@@ -131,9 +176,26 @@ const Input = styled.input`
   border-color: ${({ theme }) => theme.colors.pink};
   background-color: ${({ theme }) => theme.colors.pink};
   border-style: solid;
-  border-radius: 30px 0 0 30px;
+  border-radius: 30px;
   ::placeholder {
+    font-size: 20px;
+    transform: translateX(-10px);
     color: ${({ theme }) => theme.colors.white};
+    text-align: center;
+  }
+  margin-bottom: 20px;
+
+  @media ${({ theme }) => theme.device.laptop} {
+    width: fit-content;
+    border-radius: 30px 0 0 30px;
+    margin-bottom: 0;
+    padding-left: 30px;
+    ::placeholder {
+      font-size: 20px;
+      transform: translateY(-4px);
+      color: ${({ theme }) => theme.colors.white};
+      text-align: left;
+    }
   }
 `
 
@@ -143,8 +205,14 @@ const Submitbutton = styled.button`
   border-color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.black};
   color: ${({ theme }) => theme.colors.white};
-  border-radius: 0 30px 30px 0;
+  border-radius: 30px;
   font-size: 20px;
+  width: 100%;
+
+  @media ${({ theme }) => theme.device.laptop} {
+    width: fit-content;
+    border-radius: 0 30px 30px 0;
+  }
 `
 
 const InputWrap = styled.div`
@@ -152,8 +220,10 @@ const InputWrap = styled.div`
   padding-top: 50px;
   height: 100%;
   align-items: center;
+  flex-wrap: wrap;
 
   @media ${({ theme }) => theme.device.laptop} {
+    flex-wrap: nowrap;
     padding-top: 0;
     padding-left: 50px;
   }

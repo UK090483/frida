@@ -6,8 +6,8 @@ import Products from "../components/Products/Product/product"
 import Hero from "../components/hero/hero"
 
 const StartNext = () => (
-  <Layout title={"Frida"}>
-    <SEO title="Poster" />
+  <Layout title={"FridaShop"} initialColor={"pink"}>
+    <SEO title="Shop" />
     <Hero backgroundColor="lila" height={"medium"}>
       <h1>Who do you wanna meet?</h1>
       <p style={{ paddingTop: 20, paddingBottom: 20 }}>

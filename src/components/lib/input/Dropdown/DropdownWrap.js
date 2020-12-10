@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import style from "./dropDown.module.scss"
 import Flip from "react-reveal/Flip"
 import { setMouse } from "../../../../components/generic/Mouse/mouseRemote"

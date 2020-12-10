@@ -5,10 +5,10 @@ export default function Summary({ sum, tax }) {
   return (
     <Root>
       <List>
-        <ListItem>
+        {/* <ListItem>
           <span>MwSt(16%):</span>
           <span>{tax}€</span>
-        </ListItem>
+        </ListItem> */}
         <ListItem>
           <span>GESAMTBETRAG: </span> <span>{sum}€</span>
         </ListItem>

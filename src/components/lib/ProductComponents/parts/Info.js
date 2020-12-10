@@ -8,7 +8,7 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-top: 20px;
+  padding: 20px 20px 0 20px;
   @media ${({ theme }) => theme.device.laptop} {
     width: 50%;
     padding-top: 0;

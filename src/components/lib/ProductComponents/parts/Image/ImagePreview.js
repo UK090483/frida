@@ -4,31 +4,54 @@ import styled from "styled-components"
 import { getShopifyImage } from "../../../../helper/shopifyImage"
 
 function ImagePreview({ images, handleClick }) {
+  const numItems = images.length
+
+  const size = 100 / numItems
+
   return (
     <Root>
-      {images.map((image, index) => {
-        return (
-          <ImageWrap key={index} active={image.active}>
-            <Image
-              src={getShopifyImage(image.src, "200x200")}
-              onClick={() => handleClick(image)}
-            ></Image>
-          </ImageWrap>
-        )
-      })}
+      <Inner>
+        {images.map((image, index) => {
+          return (
+            <ImageWrap key={index} active={image.active}>
+              <Image
+                size={size}
+                style={{
+                  backgroundImage: `url(${getShopifyImage(
+                    image.src,
+                    "200x200"
+                  )})`,
+                }}
+                // src={getShopifyImage(image.src, "200x200")}
+                onClick={() => handleClick(image)}
+              ></Image>
+            </ImageWrap>
+          )
+        })}
+      </Inner>
     </Root>
   )
 }
 
-const Root = styled.div`
+const Inner = styled.div`
   height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
 `
+const Root = styled.div`
+  overflow: hidden;
+  width: 100%;
+`
 
-const Image = styled.img`
-  height: 100px;
+const Image = styled.div`
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: ${({ size }) => `calc(${size}vw - 15px)`};
+  height: ${({ size }) => `calc(${size}vw - 15px)`};
+  max-height: 100px;
+  max-width: 100px;
   margin: 0;
   padding: 0;
 `

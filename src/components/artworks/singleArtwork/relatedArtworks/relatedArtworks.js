@@ -66,6 +66,7 @@ export default function RelatedArtworks({ artworks, header, color }) {
                   artwork={artwork}
                   color={fridaColor}
                   preventClick={state.isMoving}
+                  reactOnMouseDown={false}
                 />
               </ArtWortWrap>
             )

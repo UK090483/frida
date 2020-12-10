@@ -8,7 +8,7 @@ const loadArtworksSanity = async () => {
   console.log("sanity _ start")
   console.time("SANITY_____Load")
   const query = `
-  *[_type == 'artwork']{
+  *[_type == 'artwork' && !(_id in path('drafts.**'))]{
     "uuid":_id,
     "slug" : slug.current,
     "artworkName":name,

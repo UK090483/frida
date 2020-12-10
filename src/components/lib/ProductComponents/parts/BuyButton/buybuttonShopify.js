@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react"
+import React, { useContext, useState } from "react"
 
 import styled from "styled-components"
 import { navigate } from "gatsby"
@@ -6,17 +6,23 @@ import shopContext from "~context/shopifyContext"
 import { setMouse } from "~components/generic/Mouse/mouseRemote"
 
 export default function BuybuttonShopify(props) {
-  const { availability, shopifyId, shopifyHandle } = props
+  const { availability, shopifyId } = props
   const isBrowser = typeof window !== "undefined"
 
-  const [availableForSale, setAvailableForSale] = useState("loading")
+  // const [availableForSale, setAvailableForSale] = useState("loading")
+
+  const availableForSale = "loading"
+
+  const [optimisticRenderState, setOptimisticRenderState] = useState({
+    onCard: false,
+  })
 
   const shop = useContext(shopContext)
 
   const {
     removeLineItem,
     addVariantToCart,
-    store: { client, checkout, lineItems },
+    store: { client, checkout, lineItems, adding },
   } = shop
 
   const onCard = isBrowser
@@ -24,12 +30,19 @@ export default function BuybuttonShopify(props) {
     : null
 
   const handleRemove = () => {
+    setOptimisticRenderState({ onCard: false })
     removeLineItem(client, checkout.id, onCard.lineItemId)
   }
+  const handleAdd = () => {
+    setOptimisticRenderState({ onCard: true })
+    addVariantToCart(shopifyId, 1)
+  }
+
+  const OptimisticOncard = adding ? optimisticRenderState.onCard : onCard
 
   // useEffect(() => {
   //   client.product
-  //     .fetchByHandle(shopifyHandle)
+  //     .fetchAll(shopifyId)
   //     .then(product => {
   //       if (product) {
   //         setAvailableForSale(product.availableForSale)
@@ -38,11 +51,11 @@ export default function BuybuttonShopify(props) {
   //     .catch(err => {
   //       console.log(err)
   //     })
-  // }, [client.product, shopifyHandle])
+  // }, [client.product, shopifyHandle, shopifyId])
 
   return (
     <Root>
-      {!onCard ? (
+      {!OptimisticOncard ? (
         <React.Fragment>
           {availability === "sold" || !availableForSale ? (
             <BuyButton
@@ -61,7 +74,7 @@ export default function BuybuttonShopify(props) {
             <BuyButton
               show={true}
               onClick={() => {
-                addVariantToCart(shopifyId, 1)
+                handleAdd()
               }}
               onMouseEnter={() => {
                 setMouse("link", true)
@@ -76,7 +89,7 @@ export default function BuybuttonShopify(props) {
         </React.Fragment>
       ) : (
         <BuyButton
-          key="snipcart-erase"
+          key="erase"
           show={true}
           onMouseEnter={() => {
             setMouse("link", true)
@@ -93,8 +106,8 @@ export default function BuybuttonShopify(props) {
       )}
 
       <BuyButton
-        key="snipcart-show"
-        show={onCard}
+        key="show"
+        show={OptimisticOncard}
         margin
         onMouseEnter={() => {
           setMouse("link", true)

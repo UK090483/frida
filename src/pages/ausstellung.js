@@ -11,7 +11,7 @@ const Ausstellung = props => {
   const { location } = props
 
   return (
-    <Layout title={"NewArtists"}>
+    <Layout title={"NewArtists"} initialColor={"pink"}>
       <SEO title="Ausstellung" path={location.pathname} />
       <Hero backgroundColor="lila">
         <h6>AUSSTELLUNG</h6>

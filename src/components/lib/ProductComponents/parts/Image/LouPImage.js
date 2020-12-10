@@ -91,43 +91,52 @@ export default function FridaImage({
   }
 
   return (
-    <Root ref={RootRef}>
-      <Image
-        onMouseMove={e => {
-          handleMouseMove(e)
-        }}
-        onMouseEnter={() => {
-          setShowGlass(true)
-          setMouse("hide", true)
-        }}
-        onMouseLeave={() => {
-          setShowGlass(false)
-          setMouse("hide", false)
-        }}
-        onClick={handleclick}
-        ref={imageRef}
-        src={smallImageSrc}
-        alt={alt}
-      ></Image>
-      <Magni
-        show={showGlass}
-        // className={`${style.magni} ${showGlass ? style.showGalss : ""}`}
-        style={{ left: `${pos.pageX}px`, top: `${pos.pageY}px` }}
-      >
-        <GlassImg
-          ref={loupImageRef}
-          style={{
-            width: `${pos.width * SCALE[scale]}px`,
-            height: `${pos.height * SCALE[scale]}px`,
-            transform: ` translateX(${pos.x}%) translateY(${pos.y}%)`,
+    <PaddingRoot>
+      <Root ref={RootRef}>
+        <Image
+          onMouseMove={e => {
+            handleMouseMove(e)
           }}
-          src={bigImageSrc}
+          onMouseEnter={() => {
+            setShowGlass(true)
+            setMouse("hide", true)
+          }}
+          onMouseLeave={() => {
+            setShowGlass(false)
+            setMouse("hide", false)
+          }}
+          onClick={handleclick}
+          ref={imageRef}
+          src={smallImageSrc}
           alt={alt}
-        ></GlassImg>
-      </Magni>
-    </Root>
+        ></Image>
+        <Magni
+          show={showGlass}
+          // className={`${style.magni} ${showGlass ? style.showGalss : ""}`}
+          style={{ left: `${pos.pageX}px`, top: `${pos.pageY}px` }}
+        >
+          <GlassImg
+            ref={loupImageRef}
+            style={{
+              width: `${pos.width * SCALE[scale]}px`,
+              height: `${pos.height * SCALE[scale]}px`,
+              transform: ` translateX(${pos.x}%) translateY(${pos.y}%)`,
+            }}
+            src={bigImageSrc}
+            alt={alt}
+          ></GlassImg>
+        </Magni>
+      </Root>
+    </PaddingRoot>
   )
 }
+
+const PaddingRoot = styled.div`
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 100%;
+  height: 100%;
+`
 
 const Root = styled.div`
   width: 100%;

@@ -4,4 +4,4 @@
   publish = "public"
 
 [dev]
-  command = "npm run start"
+  command = "gatsby develop -H 0.0.0.0"

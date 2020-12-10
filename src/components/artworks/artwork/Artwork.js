@@ -8,7 +8,7 @@ import ArtworkImage from "./artworkImage/artworkImage"
 import ArtworkInfo from "./artworkInfo/ArtworkInfo"
 import Banner from "./banner/banner"
 
-function Artwork({ artwork, color = "pink", preventClick }) {
+function Artwork({ artwork, color = "pink", preventClick, reactOnMouseDown }) {
   const {
     availability,
     artworkName,
@@ -19,7 +19,11 @@ function Artwork({ artwork, color = "pink", preventClick }) {
   } = artwork
 
   return (
-    <Container artwork={artwork} preventClick={preventClick}>
+    <Container
+      artwork={artwork}
+      preventClick={preventClick}
+      reactOnMouseDown={reactOnMouseDown}
+    >
       <ArtworkImage
         alt={`artwork ${artworkName} from ${artistName}`}
         image={image}

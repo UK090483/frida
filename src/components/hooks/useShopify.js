@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react"
+import { useState, useContext } from "react"
 import shopContext from "~context/shopifyContext"
 
 export default function useShopify(product) {
-  const { variants, title, options, images } = product
+  const { variants, title, options, images, description } = product
   const shop = useContext(shopContext)
   const {
     store: { client },
@@ -13,10 +13,16 @@ export default function useShopify(product) {
 
   const hasOptions = variants.length > 1
 
-  const selectedVariant =
-    client.product.helpers.variantForOptions(product, selectedOption) || variant
+  const selectedVariant = client.product.helpers.variantForOptions(
+    product,
+    selectedOption
+  )
 
-  const imagesArray = getImageArray(images, selectedVariant, selImage)
+  const { imagesArray, activeImage } = getImageArray(
+    images,
+    selectedVariant,
+    selImage
+  )
 
   const onImageClick = i => {
     const _v = variants.find(_variant => {
@@ -40,21 +46,32 @@ export default function useShopify(product) {
     selectedOption,
     images,
     imagesArray,
+    activeImage,
     onImageClick,
+    description,
     title,
   }
 }
 
 const getImageArray = (images, selectedVariant, selImage) => {
-  return images.map(image => {
-    return {
+  const imagesArray = []
+  let activeImage = null
+  images.forEach(image => {
+    const isActive = selImage
+      ? selImage === image.id
+      : selectedVariant.image.id === image.id
+
+    imagesArray.push({
       src: image.originalSrc,
       id: image.id,
-      active: selImage
-        ? selImage === image.id
-        : selectedVariant.image.id === image.id,
+      active: isActive,
+    })
+
+    if (isActive) {
+      activeImage = image
     }
   })
+  return { imagesArray, activeImage }
 }
 
 const getInitialOption = variant => {

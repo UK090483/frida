@@ -7,6 +7,7 @@ import { fluidFont } from "../../../../Styles/theme"
 
 function PageTitle({ title, color, link, initialColor }) {
   /* eslint-disable react-hooks/exhaustive-deps */
+  console.log(initialColor)
 
   const ref = useRef()
   const observers = useRef([])
@@ -93,6 +94,13 @@ const Root = styled.div`
     span {
       span {
         color: ${({ theme }) => theme.colors.pink};
+      }
+    }
+  }
+  &[data-color='pink']{
+    span {
+      span {
+        color: ${({ theme }) => theme.colors.white};
       }
     }
   }

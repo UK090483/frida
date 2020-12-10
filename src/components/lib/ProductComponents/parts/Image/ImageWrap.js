@@ -7,6 +7,8 @@ export default function Image({ children }) {
 const ImageRoot = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding-right: 0;
 
   @media ${({ theme }) => theme.device.laptop} {
     width: 50%;

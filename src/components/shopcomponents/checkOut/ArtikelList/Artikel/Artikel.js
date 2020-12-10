@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import EraseIcon from "../../../../../assets/erase.svg"
+import { getShopifyImage } from "../../../../helper/shopifyImage"
 
 export default function Artikel({ artikel, onRemove }) {
   const { title, variant } = artikel
@@ -16,7 +17,11 @@ export default function Artikel({ artikel, onRemove }) {
 
   return (
     <Root>
-      <Image src={image.src} />
+      <Image
+        style={{
+          backgroundImage: `url(${getShopifyImage(image.src, "200x200")})`,
+        }}
+      />
 
       <InfoRoot>
         <Title>{title}</Title>
@@ -49,8 +54,12 @@ const Root = styled.li`
     display: flex;
   }
 `
-const Image = styled.img`
+const Image = styled.div`
   width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 `
 const Title = styled.h6`
   font-size: 20px;

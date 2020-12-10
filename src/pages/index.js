@@ -8,7 +8,7 @@ import Quotes from "../components/Quote/Quotes/Quotes"
 
 const IndexPage = props => {
   return (
-    <Layout title={"Frida"}>
+    <Layout title={"Frida"} initialColor={"pink"}>
       <SEO title="Home" path={props.location.pathname} />
       <StartHero></StartHero>
 

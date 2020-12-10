@@ -9,7 +9,6 @@ const client = Client.buildClient({
   domain: `${"meetfrida"}.myshopify.com`,
 })
 
-console.log(client)
 const StoreContextProvider = ({ children }) => {
   /* eslint-disable react-hooks/exhaustive-deps */
   let initialStoreState = {
@@ -116,11 +115,15 @@ const StoreContextProvider = ({ children }) => {
             })
         },
         removeLineItem: (client, checkoutID, lineItemID) => {
+          updateStore(prevState => {
+            return { ...prevState, adding: true }
+          })
+
           return client.checkout
             .removeLineItems(checkoutID, [lineItemID])
             .then(res => {
               updateStore(prevState => {
-                return { ...prevState, checkout: res }
+                return { ...prevState, checkout: res, adding: false }
               })
             })
         },

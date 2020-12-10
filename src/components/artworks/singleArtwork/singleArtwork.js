@@ -19,13 +19,13 @@ export default function Artworks({
     <Root>
       <Head artwork={artwork} shopifyProduct={shopifyProduct} />
       {description && (
-        <TextSection>
+        <TextSection data-color={"white"}>
           <h5>Über das Kunstwerk</h5>
           <p>{description}</p>
         </TextSection>
       )}
       {artistDescription && (
-        <TextSection>
+        <TextSection data-color={"white"}>
           <h5>Über den Künstler</h5>
           <p>{artistDescription}</p>
         </TextSection>

@@ -25,14 +25,16 @@ export default function SingleView({ data }) {
     selectedOption,
     setOption,
     title,
+    description,
     options,
+    activeImage,
   } = useShopify(data)
 
   const {
     localFile: {
       childImageSharp: { smallImage, bigImage, sizes },
     },
-  } = variant.image
+  } = activeImage
 
   const { price, shopifyId } = variant
 
@@ -54,6 +56,7 @@ export default function SingleView({ data }) {
         <Groupe>
           <ProductName name={title} />
           <Price price={price} />
+          <Description>{description}</Description>
           {hasOptions && (
             <Options
               options={options}
@@ -77,4 +80,7 @@ const Groupe = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+`
+const Description = styled.p`
+  font-size: 20px;
 `
