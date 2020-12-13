@@ -11,16 +11,16 @@ export default function Footer({ title }) {
     <div>
       {title !== "OurSupporters" && (
         <React.Fragment>
-          <Section backgroundColor="lila">
+          <Section backgroundColor="pink">
             <div style={{ padding: "200px 0 50px 0" }}>
               <h6>SUPPORTER</h6>
               <h2>
                 Ohne Euch wäre diese Aktion nicht möglich.
-                <span style={{ color: "white" }}>Danke.</span>
+                <span style={{ color: "white" }}> Danke.</span>
               </h2>
             </div>
           </Section>
-          <Section backgroundColor="lila" type={"full"}>
+          <Section backgroundColor="pink" type={"full"}>
             <AllSupporter></AllSupporter>
           </Section>
           <TextFlow></TextFlow>

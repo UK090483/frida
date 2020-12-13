@@ -5,6 +5,8 @@ import { navigate } from "gatsby"
 
 import { Price, ProductName } from "../../lib/ProductComponents"
 
+import { setMouse } from "../../generic/Mouse/mouseRemote"
+
 function ProductItem(props) {
   const { variants, handle, title } = props.product
 
@@ -24,6 +26,12 @@ function ProductItem(props) {
     <Root
       onClick={() => {
         navigate(`/product/${handle}`, { state: { modal: true } })
+      }}
+      onMouseEnter={() => {
+        setMouse("link", true)
+      }}
+      onMouseLeave={() => {
+        setMouse("link", false)
       }}
     >
       <Image src={src}></Image>

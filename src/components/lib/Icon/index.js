@@ -17,7 +17,7 @@ export default function Icon({ icon, onClick, size = "m" }) {
 const IconInner = styled.div`
   width: ${({ customsize }) => sizes[customsize] / 2 + "px"};
   height: ${({ customsize }) => sizes[customsize] / 2 + "px"};
-  background-color: ${({ theme }) => theme.colors.green};
+  background-color: ${({ theme }) => theme.colors.grey};
 `
 const IconWrap = styled.div`
   width: ${({ customsize }) => sizes[customsize] + "px"};
@@ -30,5 +30,5 @@ const IconWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.green};
+  background-color: ${({ theme }) => theme.colors.grey};
 `

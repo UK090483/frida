@@ -4,7 +4,7 @@ import SEO from "../components/generic/seo/seo"
 import SingleArtwork from "../components/artworks/singleArtwork/singleArtwork"
 import { ModalRoutingContext } from "gatsby-plugin-modal-routing"
 import Header from "../components/generic/header/header"
-import Kreutz from "../assets/Menu_Kreutz.svg"
+import Kreutz from "../assets/Menu_Kreutz_black.svg"
 import { setMouse } from "../components/generic/Mouse/mouseRemote"
 import { Link } from "gatsby"
 import { graphql } from "gatsby"
@@ -42,6 +42,7 @@ export default function SingleArtworkTemplate(props) {
                   onMouseLeave={() => {
                     setMouse("link", false)
                   }}
+                  style={{ cursor: "none" }}
                 />
               </Link>
             </Header>
@@ -86,6 +87,18 @@ export const query = graphql`
     shopifyProduct(handle: { eq: $shopify_handle }) {
       variants {
         shopifyId
+        availableForSale
+        price
+        selectedOptions {
+          name
+          value
+        }
+        image {
+          id
+        }
+      }
+      images {
+        id
       }
     }
 
@@ -137,6 +150,7 @@ export const query = graphql`
       slug
       artistDescription
       artistWebLink
+      instagramLink
       artistName
       artistId
       artworkName

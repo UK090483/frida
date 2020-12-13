@@ -1,6 +1,6 @@
 import React from "react"
 import { useIntersection } from "react-use"
-import styled from "styled-components"
+import styled, { keyframes, css } from "styled-components"
 
 export default function BuyButtonWrap({ children }) {
   const intersectionRef = React.useRef(null)
@@ -10,32 +10,69 @@ export default function BuyButtonWrap({ children }) {
     rootMargin: "0px 0px 100% 0px",
     threshold: 0,
   })
+
+  const isOut = () => {
+    if (!intersection) {
+      return
+    }
+    return intersection.boundingClientRect.y < 0
+  }
+
   return (
-    <Root>
-      <div ref={intersectionRef} />
-      <Inner isOut={intersection ? !intersection.isIntersecting : false}>
-        {children}
-      </Inner>
+    <Root ref={intersectionRef}>
+      <Inner isOut={isOut()}>{children}</Inner>
     </Root>
   )
 }
 
+const width = 600
+
+const AnimateIn = keyframes`
+ 0% { transform:translate3d(0,-100px,0) }
+ 100% { transform:translate3d(0,0,0) }
+`
+const AnimateInMob = keyframes`
+ 0% { transform:translate3d(0,100px,0) }
+ 100% { transform:translate3d(0,0,0) }
+`
 const Inner = styled.div`
   ${({ isOut }) =>
     isOut &&
-    "position: fixed; bottom: 10px;left:20px; width:calc(100vw - 40px);z-index:9999;"}
+    css`
+      animation-name: ${AnimateInMob};
+      animation-duration: 0.3s;
+      animation-fill-mode: forwards;
+      position: fixed;
+      bottom: 10px;
+      left: 20px;
+      width: calc(100vw - 40px);
+      height: 70px;
+      z-index: 9999;
+    `}
   
 
   @media ${({ theme }) => theme.device.laptopM} {
     position: relative;
-    width: 500px;
-    margin-left: auto;
+    width: ${width}px;
+    
     margin-right: 80px;
     ${({ isOut }) =>
       isOut &&
-      "position: fixed; top: 10px;right:20px; width:500px; z-index:9999;"}
+      css`
+      animation-name: ${AnimateIn};
+      animation-duration: 0.3s;
+      animation-fill-mode: forwards;
+      position: fixed;
+      top: 10px;
+      right:20px;
+      width:${width}px;
+      margin-left: auto;
+      z-index:9999;
+      animation
+      `}
   }
 `
+
 const Root = styled.div`
   /* height: 80px; */
 `

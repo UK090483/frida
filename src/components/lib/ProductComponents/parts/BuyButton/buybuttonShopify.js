@@ -1,63 +1,21 @@
-import React, { useContext, useState } from "react"
-
+import React from "react"
 import styled from "styled-components"
 import { navigate } from "gatsby"
-import shopContext from "~context/shopifyContext"
+
 import { setMouse } from "~components/generic/Mouse/mouseRemote"
 
 export default function BuybuttonShopify(props) {
-  const { availability, shopifyId } = props
-  const isBrowser = typeof window !== "undefined"
+  const { availability, addToCart, inCart, checkoutUrl } = props
 
-  // const [availableForSale, setAvailableForSale] = useState("loading")
-
-  const availableForSale = "loading"
-
-  const [optimisticRenderState, setOptimisticRenderState] = useState({
-    onCard: false,
-  })
-
-  const shop = useContext(shopContext)
-
-  const {
-    removeLineItem,
-    addVariantToCart,
-    store: { client, checkout, lineItems, adding },
-  } = shop
-
-  const onCard = isBrowser
-    ? lineItems.find(item => item.variantId === shopifyId)
-    : null
-
-  const handleRemove = () => {
-    setOptimisticRenderState({ onCard: false })
-    removeLineItem(client, checkout.id, onCard.lineItemId)
-  }
   const handleAdd = () => {
-    setOptimisticRenderState({ onCard: true })
-    addVariantToCart(shopifyId, 1)
+    addToCart()
   }
-
-  const OptimisticOncard = adding ? optimisticRenderState.onCard : onCard
-
-  // useEffect(() => {
-  //   client.product
-  //     .fetchAll(shopifyId)
-  //     .then(product => {
-  //       if (product) {
-  //         setAvailableForSale(product.availableForSale)
-  //       }
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // }, [client.product, shopifyHandle, shopifyId])
 
   return (
     <Root>
-      {!OptimisticOncard ? (
+      {!inCart ? (
         <React.Fragment>
-          {availability === "sold" || !availableForSale ? (
+          {!availability ? (
             <BuyButton
               show={true}
               sold={true}
@@ -88,7 +46,7 @@ export default function BuybuttonShopify(props) {
           )}
         </React.Fragment>
       ) : (
-        <BuyButton
+        <WarenKorbButton
           key="erase"
           show={true}
           onMouseEnter={() => {
@@ -98,16 +56,16 @@ export default function BuybuttonShopify(props) {
             setMouse("link", false)
           }}
           onClick={() => {
-            handleRemove()
+            navigate("/checkout")
           }}
         >
-          Entfernen
-        </BuyButton>
+          Warenkorb
+        </WarenKorbButton>
       )}
 
       <BuyButton
         key="show"
-        show={OptimisticOncard}
+        show={inCart}
         margin
         onMouseEnter={() => {
           setMouse("link", true)
@@ -116,20 +74,29 @@ export default function BuybuttonShopify(props) {
           setMouse("link", false)
         }}
         onClick={() => {
-          navigate("/checkout")
+          window.location = checkoutUrl
         }}
       >
-        {"zum Warenkorb"}
+        {"Kasse"}
       </BuyButton>
     </Root>
   )
+}
+
+BuybuttonShopify.defaultProps = {
+  availability: false,
+  addToCart: () => {
+    "addToCart functionProp ist needed in Buybutton"
+  },
+  inCart: false,
+  checkoutUrl: "/",
 }
 
 const Root = styled.div`
   width: 100%;
   display: flex;
   overflow: hidden;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
 
   @media ${({ theme }) => theme.device.tablet} {
     flex-wrap: nowrap;
@@ -139,11 +106,10 @@ const Root = styled.div`
 const BuyButton = styled.div`
   overflow: hidden;
   outline: none;
-  transition: color 0.3s, background-color 0.3s;
   background-color: ${({ theme }) => theme.colors.green};
   opacity: ${({ sold }) => (sold ? "0.8" : "1")};
-  min-height: 70px;
-  color: ${({ theme }) => theme.colors.black};
+  min-height: 45px;
+  color: ${({ theme }) => theme.colors.white};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,18 +123,30 @@ const BuyButton = styled.div`
   overflow: hidden;
   white-space: nowrap;
   border-width: ${({ show }) => (show ? "3px" : "0")};
-  padding: ${({ show }) => (show ? "1px 6px" : "0")};
+  padding: ${({ show }) => (show ? "0px 0px" : "0")};
   margin-top: 10px;
 
   @media ${({ theme }) => theme.device.tablet} {
     margin-left: ${({ margin, show }) => (margin && show ? "20px" : "0")};
     margin-top: 0;
+    min-height: 70px;
   }
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.white};
-    /* background-color: transparent; */
-    color: ${({ theme }) => theme.colors.black};
+    background-color: transparent;
+    color: ${({ theme }) => theme.colors.green};
   }
-  transition: width 0.3s cubic-bezier(0.47, 0.71, 0.42, 1.12);
+  transition: width 0.3s cubic-bezier(0.47, 0.71, 0.42, 1.12),
+    background-color 0.3s, color 0.3s, border 0.3s;
+`
+const WarenKorbButton = styled(BuyButton)`
+  border: ${({ theme }) => theme.colors.black} solid 3px;
+  color: ${({ theme }) => theme.colors.black};
+  background-color: transparent;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.green};
+    border: ${({ theme }) => theme.colors.green} solid 3px;
+  }
 `

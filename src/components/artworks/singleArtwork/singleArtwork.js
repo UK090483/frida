@@ -1,12 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-
+import ArtistLinks from "./ArtistLinks/artistLinks"
 import Head from "./Head/head"
 // import ArtworkQuote from "../../Quote/ArtworkQuote/ArtworkQuote"
-import RelatedArtworks from "./relatedArtworks/relatedArtworks"
-import ArtworkQuote from "~components/Quote/ArtworkQuote/ArtworkQuote"
+import RelatedArtworks from "./relatedArtworks/relArtworks"
+// import ArtworkQuote from "~components/Quote/ArtworkQuote/ArtworkQuote"
 
-export default function Artworks({
+export default function SingleArtwork({
   artwork,
   relatedArtworks,
   randomArtworks,
@@ -24,12 +24,16 @@ export default function Artworks({
           <p>{description}</p>
         </TextSection>
       )}
-      {artistDescription && (
-        <TextSection data-color={"white"}>
-          <h5>Über den Künstler</h5>
-          <p>{artistDescription}</p>
-        </TextSection>
-      )}
+
+      <TextSection data-color={"white"}>
+        <h5>Über den Künstler</h5>
+        {artistDescription && <p>{artistDescription}</p>}
+        <ArtistLinks artwork={artwork} />
+      </TextSection>
+
+      {/* {quotes.map(quote => (
+        <ArtworkQuote key={quote.id} quote={quote} />
+      ))} */}
       {relatedArtworks.length > 0 && (
         <RelatedArtworks
           artworks={relatedArtworks}
@@ -37,9 +41,6 @@ export default function Artworks({
           color={"white"}
         />
       )}
-      {quotes.map(quote => (
-        <ArtworkQuote key={quote.id} quote={quote} />
-      ))}
       <RelatedArtworks
         artworks={randomArtworks}
         header={"Diese Werke könnten Dir auch gefallen"}

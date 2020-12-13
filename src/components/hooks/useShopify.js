@@ -1,15 +1,20 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import shopContext from "~context/shopifyContext"
 
 export default function useShopify(product) {
   const { variants, title, options, images, description } = product
   const shop = useContext(shopContext)
+
   const {
-    store: { client },
+    updateLineItem,
+    addVariantToCart,
+    store: { client, checkout },
   } = shop
 
   const [selImage, setSelImage] = useState(null)
   const [selectedOption, setOption] = useState(getInitialOption(variants[0]))
+  const [chachedQuantity, setCachedQuantity] = useState(1)
+  const [chachedInCart, setChachedInCart] = useState(false)
 
   const hasOptions = variants.length > 1
 
@@ -17,6 +22,28 @@ export default function useShopify(product) {
     product,
     selectedOption
   )
+
+  const selectedLineItem = checkout.lineItems.find(
+    lineItem => lineItem.variant.id === selectedVariant.shopifyId
+  )
+
+  const availability = selectedVariant.availableForSale
+
+  const setQuantity = _quantity => {
+    setCachedQuantity(_quantity)
+    if (selectedLineItem) {
+      updateLineItem(client, checkout.id, selectedLineItem.id, _quantity)
+    }
+  }
+
+  const addToCart = () => {
+    setChachedInCart(true)
+    addVariantToCart(selectedVariant.shopifyId, chachedQuantity)
+  }
+
+  useEffect(() => {}, [])
+
+  const inCart = chachedInCart ? chachedInCart : !!selectedLineItem
 
   const { imagesArray, activeImage } = getImageArray(
     images,
@@ -39,6 +66,12 @@ export default function useShopify(product) {
   }
 
   return {
+    checkoutUrl: checkout.webUrl,
+    availability,
+    inCart,
+    addToCart,
+    quantity: selectedLineItem ? selectedLineItem.quantity : chachedQuantity,
+    setQuantity,
     variant: selectedVariant,
     hasOptions,
     options,

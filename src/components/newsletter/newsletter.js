@@ -1,10 +1,26 @@
 import React, { useState, useEffect, useCallback } from "react"
 import styled from "styled-components"
 import Section from "../container/section"
-import { GoThumbsup } from "react-icons/go"
 import addToMailchimp from "gatsby-plugin-mailchimp"
+import { useStaticQuery, graphql } from "gatsby"
 
 export default function Newsletter() {
+  const data = useStaticQuery(graphql`
+    query subscribeQuery {
+      allFile(filter: { relativeDirectory: { eq: "newsletter" } }) {
+        edges {
+          node {
+            childImageSharp {
+              fluid {
+                srcSet
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
   const [email, setEmail] = useState("")
   const [validateError, setValidateError] = useState(false)
   const [state, setstate] = useState("start")
@@ -104,7 +120,12 @@ export default function Newsletter() {
             {state === "load" && <h4>Loading...</h4>}
             {state === "succsess" && (
               <Succsess>
-                <GoThumbsup size={60} />
+                <Image
+                  srcSet={
+                    data.allFile.edges[0].node.childImageSharp.fluid.srcSet
+                  }
+                />
+
                 <p>
                   Vielen Dank! Nur noch die E-Mail bestätigen und du bist dabei!
                   (bestätigungs Mail kann bis zu 12h dauern)
@@ -112,7 +133,18 @@ export default function Newsletter() {
               </Succsess>
             )}
             {state === "message" && (
-              <Message dangerouslySetInnerHTML={{ __html: message }}></Message>
+              <Succsess>
+                <Image
+                  srcSet={
+                    data.allFile.edges[1].node.childImageSharp.fluid.srcSet
+                  }
+                />
+                <p>Hmmmm..., da stimmt was nicht </p>
+                <p>Bist du vielleicht schon im Newsletter ?</p>
+                <Message
+                  dangerouslySetInnerHTML={{ __html: message }}
+                ></Message>
+              </Succsess>
             )}
           </InputWrap>
           {validateError && (
@@ -124,10 +156,17 @@ export default function Newsletter() {
   )
 }
 
-const Message = styled.div``
+const Image = styled.img`
+  width: 100px;
+`
+
+const Message = styled.div`
+  font-size: 13px;
+`
 
 const Hp = styled.div`
   height: 0px;
+  width: 0px;
   overflow: hidden;
 `
 
@@ -135,13 +174,13 @@ const Root = styled.div`
   padding: 100px 0;
   display: flex;
   flex-wrap: wrap;
-  @media ${({ theme }) => theme.device.laptop} {
+  @media ${({ theme }) => theme.device.laptopM} {
     flex-wrap: nowrap;
   }
 `
 const Collumn = styled.div`
   width: 100%;
-  @media ${({ theme }) => theme.device.laptop} {
+  @media ${({ theme }) => theme.device.laptopM} {
     width: 50%;
   }
 `
@@ -185,7 +224,7 @@ const Input = styled.input`
   }
   margin-bottom: 20px;
 
-  @media ${({ theme }) => theme.device.laptop} {
+  @media ${({ theme }) => theme.device.laptopM} {
     width: fit-content;
     border-radius: 30px 0 0 30px;
     margin-bottom: 0;
@@ -209,22 +248,23 @@ const Submitbutton = styled.button`
   font-size: 20px;
   width: 100%;
 
-  @media ${({ theme }) => theme.device.laptop} {
+  @media ${({ theme }) => theme.device.laptopM} {
     width: fit-content;
     border-radius: 0 30px 30px 0;
   }
 `
 
 const InputWrap = styled.div`
+  /* border: red solid 1px; */
   display: flex;
   padding-top: 50px;
   height: 100%;
   align-items: center;
   flex-wrap: wrap;
 
-  @media ${({ theme }) => theme.device.laptop} {
+  @media ${({ theme }) => theme.device.laptopM} {
+    justify-content: center;
     flex-wrap: nowrap;
     padding-top: 0;
-    padding-left: 50px;
   }
 `

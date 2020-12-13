@@ -9,9 +9,9 @@
   z-index: 10;
   font-weight: 600;
   background-color: $white;
-  color: $lila;
+  color: $green;
   border: none;
-  border-bottom: $lila 3px solid;
+  border-bottom: $green 3px solid;
   outline: none;
   padding: 0;
   cursor: none;
@@ -46,7 +46,7 @@
   height: 50px;
   width: 300px;
   display: flex;
-  background-color: $lila;
+  background-color: $green;
   align-items: center;
   color: white;
   padding-left: 20px;
@@ -56,7 +56,7 @@
 
 .option:hover {
   background-color: $white;
-  color: $lila;
+  color: $green;
   padding-left: 40px;
 }
 

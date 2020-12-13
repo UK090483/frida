@@ -7,7 +7,6 @@ import { fluidFont } from "../../../../Styles/theme"
 
 function PageTitle({ title, color, link, initialColor }) {
   /* eslint-disable react-hooks/exhaustive-deps */
-  console.log(initialColor)
 
   const ref = useRef()
   const observers = useRef([])

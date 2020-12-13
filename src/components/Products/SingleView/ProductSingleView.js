@@ -12,6 +12,7 @@ import {
   Price,
   ImagePreview,
   Options,
+  Quantity,
 } from "~components/lib/ProductComponents"
 import useShopify from "~components/hooks/useShopify"
 import SozialShare from "../../SozialShare/SozialShare"
@@ -28,6 +29,12 @@ export default function SingleView({ data }) {
     description,
     options,
     activeImage,
+    quantity,
+    setQuantity,
+    inCart,
+    addToCart,
+    availability,
+    checkoutUrl,
   } = useShopify(data)
 
   const {
@@ -36,7 +43,7 @@ export default function SingleView({ data }) {
     },
   } = activeImage
 
-  const { price, shopifyId } = variant
+  const { price } = variant
 
   return (
     <Wrap>
@@ -54,19 +61,31 @@ export default function SingleView({ data }) {
       </ImageWrap>
       <InfoWrap>
         <Groupe>
-          <ProductName name={title} />
+          <ProductName name={title} availability={availability} />
           <Price price={price} />
           <Description>{description}</Description>
-          {hasOptions && (
-            <Options
-              options={options}
-              setOption={setOption}
-              selectedOption={selectedOption}
-            />
-          )}
+
+          <ControlesWrap>
+            <Quantity quantity={quantity} setQuantity={setQuantity} />
+            <Spacer />
+            {hasOptions && (
+              <Options
+                options={options}
+                setOption={setOption}
+                selectedOption={selectedOption}
+              />
+            )}
+          </ControlesWrap>
+          <Spacer />
           <SozialShare />
+          <Spacer />
           <BuyButtonWrap>
-            <BuyButton availability={true} shopifyId={shopifyId} />
+            <BuyButton
+              checkoutUrl={checkoutUrl}
+              availability={availability}
+              addToCart={addToCart}
+              inCart={inCart}
+            />
           </BuyButtonWrap>
         </Groupe>
         <PaymenInfo />
@@ -74,6 +93,14 @@ export default function SingleView({ data }) {
     </Wrap>
   )
 }
+
+const ControlesWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  @media ${({ theme }) => theme.device.tablet} {
+  }
+`
 
 const Groupe = styled.div`
   height: 100%;
@@ -83,4 +110,7 @@ const Groupe = styled.div`
 `
 const Description = styled.p`
   font-size: 20px;
+`
+const Spacer = styled.div`
+  height: 20px;
 `

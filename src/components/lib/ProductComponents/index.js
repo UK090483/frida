@@ -9,7 +9,9 @@ import ProductName from "./parts/productName"
 import Price from "./parts/Price"
 import ImagePreview from "./parts/Image/ImagePreview"
 import Options from "./parts/Options"
+import Quantity from "./parts/quantity"
 export {
+  Quantity,
   Wrap,
   ImageWrap,
   InfoWrap,

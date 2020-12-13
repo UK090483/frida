@@ -2,7 +2,14 @@ import React from "react"
 import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
 import Quote from "./Quote"
-import { Carousel } from "../../lib/Carousel"
+import { Carousel, CarouselItem } from "../../lib/Carousel"
+
+const breakpoints = {
+  320: {
+    slidesPerView: 1,
+    spaceBetween: 0,
+  },
+}
 
 export default function Quotes() {
   const data = useStaticQuery(graphql`
@@ -22,9 +29,16 @@ export default function Quotes() {
 
   return (
     <Root data-color={"black"}>
-      <Carousel>
+      <Carousel
+        breakpoints={breakpoints}
+        loop={true}
+        autoHeight={false}
+        uiColor="bright"
+      >
         {data.allFridaQuote.nodes.map((quote, index) => (
-          <Quote key={index} quote={quote} />
+          <CarouselItem key={index}>
+            <Quote quote={quote} />
+          </CarouselItem>
         ))}
       </Carousel>
     </Root>
@@ -32,6 +46,5 @@ export default function Quotes() {
 }
 
 const Root = styled.div`
-  /* width: 100%; */
   background-color: ${({ theme }) => theme.colors.black};
 `

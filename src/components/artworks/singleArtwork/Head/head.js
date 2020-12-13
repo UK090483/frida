@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 import FridaImage from "../fridaImage/fridaImage"
 import SozialShare from "~components/SozialShare/SozialShare"
+import useShopify from "../../../hooks/useShopify"
 
 import {
   BuyButton,
@@ -16,17 +17,11 @@ import {
 } from "../../../lib/ProductComponents"
 
 export default function Head({ artwork, shopifyProduct }) {
-  const {
-    availability,
-    artworkName,
-    price,
-    height,
-    medium,
-    stil,
-    width,
-    depth,
-    shopify_handle,
-  } = artwork
+  const { artworkName, height, medium, stil, width, depth } = artwork
+
+  const { inCart, addToCart, availability, variant, checkoutUrl } = useShopify(
+    shopifyProduct
+  )
 
   return (
     <Wrap>
@@ -38,23 +33,24 @@ export default function Head({ artwork, shopifyProduct }) {
           <ProductName
             size="l"
             name={artworkName}
-            availability={availability === "availabil"}
+            availability={availability}
           ></ProductName>
           <Props>
             {`${medium}, ${width}*${height} ${
               depth ? "*" + depth : ""
             } cm ${stil}`}
           </Props>
-          <Price price={price} />
+          <Price price={variant.price} />
           <IconWrap>
             <SozialShare />
           </IconWrap>
           <BuyButtonWrap>
             <BuyButton
-              availability={artwork.availability === "availabil"}
-              shopifyId={shopifyProduct.variants[0].shopifyId}
-              shopifyHandle={shopify_handle}
-            ></BuyButton>
+              checkoutUrl={checkoutUrl}
+              availability={availability}
+              addToCart={addToCart}
+              inCart={inCart}
+            />
           </BuyButtonWrap>
         </Info>
         <PaymenInfo />

@@ -5,7 +5,7 @@ import { setMouse } from "../../Mouse/mouseRemote"
 import useBodyScrollStop from "../../../helper/useBodyScrollStop"
 
 const Routes = [
-  { link: "/ausstellung/", label: "Online-Gallery" },
+  { link: "/ausstellung/", label: "ONLINE-GALLERY" },
   { link: "/about/", label: "WER IST FRIDA?" },
   { link: "/teilnehmen/", label: "WERKE EINREICHEN" },
   { link: "/unterstützen/", label: "UNTERSTÜTZEN" },

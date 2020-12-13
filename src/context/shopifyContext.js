@@ -128,6 +128,9 @@ const StoreContextProvider = ({ children }) => {
             })
         },
         updateLineItem: (client, checkoutID, lineItemID, quantity) => {
+          updateStore(prevState => {
+            return { ...prevState, adding: true }
+          })
           const lineItemsToUpdate = [
             { id: lineItemID, quantity: parseInt(quantity, 10) },
           ]
@@ -135,7 +138,7 @@ const StoreContextProvider = ({ children }) => {
             .updateLineItems(checkoutID, lineItemsToUpdate)
             .then(res => {
               updateStore(prevState => {
-                return { ...prevState, checkout: res }
+                return { ...prevState, checkout: res, adding: false }
               })
             })
         },

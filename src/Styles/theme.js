@@ -10,11 +10,12 @@ const breackingpoints = {
 }
 
 const space = 50
-
+// const oldGreen = "#75f9d5"
 const theme = {
   colors: {
     black: "#000000",
-    green: "#75f9d5",
+    grey: "#f5f5f5",
+    green: "#6dd163",
     red: "#fa464c",
     white: "white",
     pink: "#f5c5d9",

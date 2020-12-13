@@ -4,10 +4,11 @@ import PropTypes from "prop-types"
 
 import Filter from "./filter/filter"
 import Section from "../container/section"
-import Button from "../buttons/button"
+
 import { useStaticQuery, graphql } from "gatsby"
 import ArtworsContainer from "./artworksContainer/artworksContainer"
 import Frida from "../frida/frida"
+import FullWidthButton from "../buttons/fullWidthButton"
 
 function Artworks({ filter = false, infinite = false }) {
   const [filert, setFElements] = useState(null)
@@ -35,17 +36,18 @@ function Artworks({ filter = false, infinite = false }) {
         </Root>
       </Section>
       {!filter && (
-        <Section>
-          <div
-            style={{
-              width: "fit-content",
-              margin: "0 auto",
-              padding: "30px 0",
-            }}
-          >
-            <Button label={"mehr Kunst"} link={"/ausstellung/"}></Button>
-          </div>
-        </Section>
+        <FullWidthButton label={"Mehr Werke entdecken"} />
+        // <Section>
+        //   <div
+        //     style={{
+        //       width: "fit-content",
+        //       margin: "0 auto",
+        //       padding: "30px 0",
+        //     }}
+        //   >
+        //     <Button label={"mehr Kunst"} link={"/ausstellung/"}></Button>
+        //   </div>
+        // </Section>
       )}
     </React.Fragment>
   )

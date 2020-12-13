@@ -11,7 +11,6 @@ const IndexPage = props => {
     <Layout title={"Frida"} initialColor={"pink"}>
       <SEO title="Home" path={props.location.pathname} />
       <StartHero></StartHero>
-
       <Artworks></Artworks>
       <Quotes></Quotes>
     </Layout>

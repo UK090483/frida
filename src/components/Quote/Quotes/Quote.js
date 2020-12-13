@@ -1,14 +1,12 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { getFluidImage } from "~components/helper/sanityImage"
+import { getFluidImage, urlFor } from "~components/helper/sanityImage"
 import Img from "gatsby-image"
 
 export default function Quote({ quote: quoteObject }) {
   const { quote, image, author, subtitle, artworkImage } = quoteObject
 
   const [hover, setHover] = useState(false)
-
-  const fluidprops = getFluidImage(image, { maxWidth: 300 })
   const fluidpropsArtwork = getFluidImage(artworkImage, { maxWidth: 300 })
 
   return (
@@ -35,23 +33,36 @@ export default function Quote({ quote: quoteObject }) {
           />
         </ArtworkImage>
 
-        <AuthorImage hover={hover}>
-          <Img alt={"alt"} fluid={fluidprops} style={{ width: "200px" }} />
-        </AuthorImage>
+        {image && (
+          <AuthorImage
+            hover={hover}
+            style={{
+              backgroundImage: `url(${urlFor(image).width(300).url()})`,
+            }}
+          ></AuthorImage>
+        )}
       </Collumn2>
     </Root>
   )
 }
 
 const AuthorImage = styled.div`
+  width: 50vw;
+  height: 50vw;
+  max-width: 250px;
+  max-height: 250px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
   position: absolute;
-  left: 0;
+  left: 20px;
   bottom: 0;
   transition: transform 0.3s;
   ${({ hover }) => hover && "transform: scale(1.05) translate3d(-20px,0,0);"};
 `
 const ArtworkImage = styled.div`
   width: 50%;
+  max-width: 200px;
   padding: 30px 0;
   transition: transform 0.3s;
   ${({ hover }) => hover && "transform: scale(1.05) translate3d(20px,0,0);"};
@@ -60,12 +71,13 @@ const ArtworkImage = styled.div`
 const Root = styled.div`
   display: flex;
   flex-wrap: wrap-reverse;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.black};
 
   @media ${({ theme }) => theme.device.laptopM} {
     flex-wrap: nowrap;
+    padding-bottom: 100px;
   }
 `
 const Collumn1 = styled.div`

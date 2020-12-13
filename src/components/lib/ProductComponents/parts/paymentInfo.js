@@ -6,8 +6,11 @@ import Icon from "~components/lib/Icon"
 export default function PaymentHelp() {
   return (
     <Root>
-      <p>Du hast eine Frage? Wir helfen Dir gerne weiter!</p>
-      <a href="mailto:name@email.com">name@email.com</a>
+      <p>
+        Du hast eine Frage?
+        <a href="mailto:name@email.com"> Wir helfen Dir gerne weiter!</a>
+      </p>
+
       <FlexWrap>
         <Container>
           <Icon icon={GoCreditCard} />
@@ -15,7 +18,6 @@ export default function PaymentHelp() {
         </Container>
         <Container>
           <Icon icon={GoMailRead} />
-
           <p>Versandt erfolgt direkt durch die Künstler</p>
         </Container>
       </FlexWrap>

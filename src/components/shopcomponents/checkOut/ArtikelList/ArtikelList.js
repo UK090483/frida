@@ -4,6 +4,7 @@ import styled from "styled-components"
 import Artikel from "./Artikel/Artikel"
 import Summary from "./Summary"
 import shopContext from "~context/shopifyContext"
+import Button from "../../../buttons/button"
 
 export default function ArtikelList() {
   const shop = useContext(shopContext)
@@ -17,18 +18,27 @@ export default function ArtikelList() {
     removeLineItem(client, checkout.id, e)
   }
 
-  console.log(checkout)
   return (
     <Root>
-      {checkout.lineItems.length > 0 &&
-        checkout.lineItems.map(item => (
-          <Artikel key={item.id} artikel={item} onRemove={handleRemove} />
-        ))}
-      <Summary sum={checkout.totalPrice} tax={checkout.totalTax}></Summary>
-
-      <ButtonWrap>
-        <CheckoutButton href={checkout.webUrl}>Kasse</CheckoutButton>
-      </ButtonWrap>
+      {checkout.lineItems.length > 0 ? (
+        <React.Fragment>
+          {checkout.lineItems.map(item => (
+            <Artikel key={item.id} artikel={item} onRemove={handleRemove} />
+          ))}
+          <Summary sum={checkout.totalPrice} tax={checkout.totalTax}></Summary>
+          <ButtonWrap>
+            <CheckoutButton href={checkout.webUrl}>Kasse</CheckoutButton>
+          </ButtonWrap>
+        </React.Fragment>
+      ) : (
+        <div>
+          <Text>Da ist leider noch nichts im Warenkorb...</Text>
+          <ButtonsWrap>
+            <Button label="zur OnlineGallery" type="link" link="/ausstellung" />
+            <Button label="zum Shop" type="link" link="/shop" />
+          </ButtonsWrap>
+        </div>
+      )}
     </Root>
   )
 }
@@ -58,6 +68,23 @@ const ButtonWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`
+
+const Text = styled.p`
+  text-align: center;
+`
+const ButtonsWrap = styled.div`
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+
+  @media ${({ theme }) => theme.device.tablet} {
+    width: 500px;
+    justify-content: space-between;
+  }
 `
 const CheckoutButton = styled.a`
 

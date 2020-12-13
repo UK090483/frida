@@ -9,7 +9,7 @@ import Frida from "../components/frida/frida"
 const IndexPage = () => (
   <Layout title={"MeetCollectors"}>
     <SEO title="Teilnehmen" />
-
+    <div style={{ paddingTop: 300, paddingBottom: 100 }}></div>
     <Section backgroundColor="white">
       <div style={{ paddingTop: 300, paddingBottom: 100 }}>
         {/* <Button

@@ -9,6 +9,7 @@ const ImageRoot = styled.div`
   flex-direction: column;
   width: 100%;
   padding-right: 0;
+  overflow: hidden;
 
   @media ${({ theme }) => theme.device.laptop} {
     width: 50%;

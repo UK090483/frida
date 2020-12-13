@@ -100,6 +100,10 @@ html {
 }
 * {
   box-sizing: border-box;
+  -ms-user-select: None;
+ -moz-user-select: None;
+ -webkit-user-select: None;
+ user-select: None;
 }
 
 html {

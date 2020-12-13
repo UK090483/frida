@@ -5,21 +5,16 @@ import SEO from "../components/generic/seo/seo"
 import Products from "../components/Products/Product/product"
 import Hero from "../components/hero/hero"
 
-const StartNext = () => (
+const Shop = props => (
   <Layout title={"FridaShop"} initialColor={"pink"}>
-    <SEO title="Shop" />
+    <SEO title="Shop" path={props.location.pathname} />
     <Hero backgroundColor="lila" height={"medium"}>
-      <h1>Who do you wanna meet?</h1>
-      <p style={{ paddingTop: 20, paddingBottom: 20 }}>
-        Eins dieser Motive kann schon bald dein Wohn-, Schlaf- oder
-        Arbeitszimmer schmücken - aber vorher hast du die Qual der Wahl. Deine
-        Auswahl kannst du uns bei StartNext mitteilen, verrate uns dafür einfach
-        im Eingabefeld den Namen des/der Künstlers*in oder des Kunstwerks.
-      </p>
+      <h1>Shop Header Text ???</h1>
+      <p style={{ paddingTop: 20, paddingBottom: 20 }}>Bli Bla Blup</p>
     </Hero>
 
     <Products />
   </Layout>
 )
 
-export default StartNext
+export default Shop
