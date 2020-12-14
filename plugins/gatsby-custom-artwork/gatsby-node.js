@@ -30,7 +30,7 @@ const loadArtworksSanity = async () => {
     "rating":coalesce(rating, 0),
     "banner":coalesce(banner, 'unknown'),
     shopify_handle,
-    }[0...50]`
+    }[0...100]`
   const params = {}
 
   const res = await sanity.fetch(query, params)

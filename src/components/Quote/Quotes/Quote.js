@@ -2,9 +2,18 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { getFluidImage, urlFor } from "~components/helper/sanityImage"
 import Img from "gatsby-image"
+import { navigate } from "gatsby"
+import { setMouse } from "../../generic/Mouse/mouseRemote"
 
 export default function Quote({ quote: quoteObject }) {
-  const { quote, image, author, subtitle, artworkImage } = quoteObject
+  const {
+    quote,
+    image,
+    author,
+    subtitle,
+    artworkImage,
+    artworkSlug,
+  } = quoteObject
 
   const [hover, setHover] = useState(false)
   const fluidpropsArtwork = getFluidImage(artworkImage, { maxWidth: 300 })
@@ -14,9 +23,14 @@ export default function Quote({ quote: quoteObject }) {
       data-color={"black"}
       onMouseLeave={() => {
         setHover(false)
+        setMouse("link", false)
       }}
       onMouseEnter={() => {
         setHover(true)
+        setMouse("link", true)
+      }}
+      onClick={() => {
+        navigate(`artwork/${artworkSlug}`)
       }}
     >
       <Collumn1>

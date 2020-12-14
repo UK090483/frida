@@ -16,6 +16,7 @@ export default function Quotes() {
     query quotesQuerry {
       allFridaQuote {
         nodes {
+          artworkSlug
           artworkImage
           id
           author

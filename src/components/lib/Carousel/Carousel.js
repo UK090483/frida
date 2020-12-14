@@ -79,15 +79,15 @@ const Carousel = ({
 }
 
 const Root = styled(Swiper)`
-  /* border: red solid 1px; */
+   /* border: red solid 1px;  */
 
   ${({ super_responsive }) =>
     super_responsive === "true" &&
     css`
       transform: scale(0.5) translateX(-50%);
       width: 200%;
-      margin-top: -200px;
-      margin-bottom: -400px;
+      margin-top: -50%;
+      margin-bottom: -50%;
     `}
  
   @media ${({ theme }) => theme.device.mobileL} {

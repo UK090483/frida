@@ -146,6 +146,19 @@ module.exports = {
     `gatsby-plugin-smoothscroll`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    // {
+    //   resolve: "gatsby-custom-shopify-storefront",
+    //   options: {
+    //     // Your Shopify instance name (e.g. 'shopify-store-name',
+    //     // if your shopify shop is located at https://shopify-store-name.myshopify.com/)
+    //     siteName: process.env.SHOPIFY_SHOP_NAME,
+    //     // Your Shopify Storefront API access token
+    //     // generated in the private apps section of your store admin.
+    //     // Refer to Shopify's Storefront API Documentation for more information
+    //     // https://help.shopify.com/api/storefront-api/getting-started
+    //     accessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+    //   },
+    // },
     {
       resolve: `gatsby-source-shopify`,
       options: {

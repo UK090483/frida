@@ -56,7 +56,7 @@ const StyledLink = styled(Link)`
     margin: 0;
     line-height: 2.2rem;
   } */
-
+  cursor: none;
   color: white;
   /* font-size: 2rem; */
   line-height: 5.2rem;

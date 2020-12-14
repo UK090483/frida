@@ -65,5 +65,5 @@ const Root = styled.div`
   padding: 200;
   background-color: transparent;
   opacity: 1;
-  transition: opacity 0.5s 1s;
+  transition: opacity 0.1s;
 `

@@ -43,6 +43,7 @@ const ArtWortWrap = styled.div`
   } */
 `
 const Header = styled.h5`
+  /* border: red solid 1px; */
   padding-top: 30px;
   padding-bottom: 20px;
   text-align: center;

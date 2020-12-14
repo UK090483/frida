@@ -41,7 +41,12 @@ export default function useShopify(product) {
     addVariantToCart(selectedVariant.shopifyId, chachedQuantity)
   }
 
-  useEffect(() => {}, [])
+  // useEffect(() => {
+  //   client.product.fetch(selectedVariant.shopifyId).then(product => {
+  //     // Do something with the product
+  //     console.log(product)
+  //   })
+  // }, [client.product, product.shopifyId, selectedVariant.shopifyId])
 
   const inCart = chachedInCart ? chachedInCart : !!selectedLineItem
 
