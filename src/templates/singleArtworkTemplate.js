@@ -84,9 +84,9 @@ export const query = graphql`
     $ranNum: Float!
     $shopify_handle: String!
   ) {
-    shopifyProduct(handle: { eq: $shopify_handle }) {
+    shopifyProduct: shopifyProduct2(handle: { eq: $shopify_handle }) {
       variants {
-        shopifyId
+        id
         availableForSale
         price
         selectedOptions {

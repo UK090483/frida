@@ -54,11 +54,9 @@ export default function SingleProductTemplate(props) {
 
 export const query = graphql`
   query($handle: String!) {
-    shopifyProduct(handle: { eq: $handle }) {
+    shopifyProduct: shopifyProduct2(handle: { eq: $handle }) {
       description
-      descriptionHtml
-      shopifyId
-      tags
+
       title
       options {
         name
@@ -66,24 +64,11 @@ export const query = graphql`
       }
       images {
         id
-        originalSrc
-        localFile {
-          childImageSharp {
-            smallImage: resize(width: 1000) {
-              src
-            }
-            bigImage: resize(width: 2000) {
-              src
-            }
-            sizes {
-              aspectRatio
-            }
-          }
-        }
+        src
       }
       variants {
         price
-        shopifyId
+        id
         availableForSale
         selectedOptions {
           name
@@ -91,20 +76,7 @@ export const query = graphql`
         }
         image {
           id
-          originalSrc
-          localFile {
-            childImageSharp {
-              smallImage: resize(width: 500) {
-                src
-              }
-              bigImage: resize(width: 1000) {
-                src
-              }
-              sizes {
-                aspectRatio
-              }
-            }
-          }
+          src
         }
         title
       }

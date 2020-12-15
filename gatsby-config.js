@@ -146,44 +146,63 @@ module.exports = {
     `gatsby-plugin-smoothscroll`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    // {
-    //   resolve: "gatsby-custom-shopify-storefront",
-    //   options: {
-    //     // Your Shopify instance name (e.g. 'shopify-store-name',
-    //     // if your shopify shop is located at https://shopify-store-name.myshopify.com/)
-    //     siteName: process.env.SHOPIFY_SHOP_NAME,
-    //     // Your Shopify Storefront API access token
-    //     // generated in the private apps section of your store admin.
-    //     // Refer to Shopify's Storefront API Documentation for more information
-    //     // https://help.shopify.com/api/storefront-api/getting-started
-    //     accessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
-    //   },
-    // },
     {
-      resolve: `gatsby-source-shopify`,
+      resolve: "gatsby-custom-shopify-storefront",
       options: {
-        // The domain name of your Shopify shop. This is required.
-        // Example: 'gatsby-source-shopify-test-shop' if your Shopify address is
-        // 'gatsby-source-shopify-test-shop.myshopify.com'.
-        shopName: process.env.SHOPIFY_SHOP_NAME,
-
-        // An API access token to your Shopify shop. This is required.
-        // You can generate an access token in the "Manage private apps" section
-        // of your shop's Apps settings. In the Storefront API section, be sure
-        // to select "Allow this app to access your storefront data using the
-        // Storefront API".
-        // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
+        // Your Shopify instance name (e.g. 'shopify-store-name',
+        // if your shopify shop is located at https://shopify-store-name.myshopify.com/)
+        siteName: process.env.SHOPIFY_SHOP_NAME,
+        // Your Shopify Storefront API access token
+        // generated in the private apps section of your store admin.
+        // Refer to Shopify's Storefront API Documentation for more information
+        // https://help.shopify.com/api/storefront-api/getting-started
         accessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
-
-        // Set verbose to true to display a verbose output on `npm run develop`
-        // or `npm run build`. This prints which nodes are being fetched and how
-        // much time was required to fetch and process the data.
-        // Defaults to true.
-
-        verbose: true,
-        includeCollections: ["shop"],
       },
     },
+    // {
+    //   resolve: `gatsby-source-shopify`,
+    //   options: {
+    //     // The domain name of your Shopify shop. This is required.
+    //     // Example: 'gatsby-source-shopify-test-shop' if your Shopify address is
+    //     // 'gatsby-source-shopify-test-shop.myshopify.com'.
+    //     shopName: process.env.SHOPIFY_SHOP_NAME,
+
+    //     // An API access token to your Shopify shop. This is required.
+    //     // You can generate an access token in the "Manage private apps" section
+    //     // of your shop's Apps settings. In the Storefront API section, be sure
+    //     // to select "Allow this app to access your storefront data using the
+    //     // Storefront API".
+    //     // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
+    //     accessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+
+    //     // Set verbose to true to display a verbose output on `npm run develop`
+    //     // or `npm run build`. This prints which nodes are being fetched and how
+    //     // much time was required to fetch and process the data.
+    //     // Defaults to true.
+
+    //     verbose: true,
+    //     includeCollections: ["shop"],
+    //   },
+    // },
+
+    // {
+    //   resolve: "gatsby-source-graphql",
+    //   options: {
+    //     typeName: "Shop",
+    //     fieldName: "shop",
+    //     url: `https://${process.env.SHOPIFY_SHOP_NAME}.myshopify.com/api/graphql`,
+    //     // HTTP headers
+    //     headers: {
+    //       // Learn about environment variables: https://gatsby.dev/env-vars
+    //       "X-Shopify-Storefront-Access-Token":
+    //         process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+    //     },
+    //     // HTTP headers alternatively accepts a function (allows async)
+
+    //     // Additional options to pass to node-fetch
+    //     fetchOptions: {},
+    //   },
+    // },
 
     {
       resolve: `gatsby-plugin-manifest`,

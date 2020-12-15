@@ -67,7 +67,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     graphql(`
       query ProductPageQuery {
-        allShopifyProduct(filter: { productType: { ne: "artworks" } }) {
+        allShopifyProduct2(filter: { productType: { ne: "artwork" } }) {
           nodes {
             handle
           }
@@ -80,7 +80,7 @@ exports.createPages = ({ graphql, actions }) => {
         reject(result.errors)
       }
 
-      result.data.allShopifyProduct.nodes.forEach(product => {
+      result.data.allShopifyProduct2.nodes.forEach(product => {
         createPage({
           path: `/product/${product.handle}`,
           component: path.resolve("./src/templates/productPageTemplate.js"),
@@ -89,26 +89,27 @@ exports.createPages = ({ graphql, actions }) => {
           },
         })
       })
-    })
-
-    sanity.fetch(`*[_type == 'page']`, {}).then(pages => {
-      pages.forEach(page => {
-        const preparedSlug =
-          page.slug.current === "home" ? "" : page.slug.current
-
-        createPage({
-          path: `/${preparedSlug}`,
-          component: path.resolve("./src/templates/page-template.js"),
-          context: {
-            uuid: page.uuid,
-            slug: preparedSlug,
-            content: page.content,
-            title: page.title,
-          },
-        })
-      })
       resolve()
     })
+
+    // sanity.fetch(`*[_type == 'page']`, {}).then(pages => {
+    //   pages.forEach(page => {
+    //     const preparedSlug =
+    //       page.slug.current === "home" ? "" : page.slug.current
+
+    //     createPage({
+    //       path: `/${preparedSlug}`,
+    //       component: path.resolve("./src/templates/page-template.js"),
+    //       context: {
+    //         uuid: page.uuid,
+    //         slug: preparedSlug,
+    //         content: page.content,
+    //         title: page.title,
+    //       },
+    //     })
+    //   })
+
+    // })
   })
 }
 

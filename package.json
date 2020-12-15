@@ -41,7 +41,7 @@
     "gatsby-plugin-styled-components": "^3.3.10",
     "gatsby-source-custom-api": "^2.1.4",
     "gatsby-source-filesystem": "^2.3.14",
-    "gatsby-source-graphql": "^2.7.5",
+    "gatsby-source-graphql": "^2.10.0",
     "gatsby-source-sanity": "^6.0.4",
     "gatsby-source-shopify": "^3.6.0",
     "gatsby-source-shopify-storefront": "^1.0.0",

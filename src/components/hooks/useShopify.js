@@ -2,6 +2,27 @@ import { useState, useContext, useEffect } from "react"
 import shopContext from "~context/shopifyContext"
 
 export default function useShopify(product) {
+  if (!product) {
+    return {
+      checkoutUrl: "/",
+      availability: false,
+      inCart: false,
+      addToCart: () => {},
+      quantity: 1,
+      setQuantity: () => {},
+      variant: { price: 0 },
+      hasOptions: false,
+      options: [],
+      setOption: () => {},
+      selectedOption: () => {},
+      images: [],
+      imagesArray: [],
+      activeImage,
+      onImageClick: () => {},
+      description: "",
+      title: "",
+    }
+  }
   const { variants, title, options, images, description } = product
   const shop = useContext(shopContext)
 
@@ -24,7 +45,7 @@ export default function useShopify(product) {
   )
 
   const selectedLineItem = checkout.lineItems.find(
-    lineItem => lineItem.variant.id === selectedVariant.shopifyId
+    lineItem => lineItem.variant?.id === selectedVariant.id
   )
 
   const availability = selectedVariant.availableForSale
@@ -38,7 +59,7 @@ export default function useShopify(product) {
 
   const addToCart = () => {
     setChachedInCart(true)
-    addVariantToCart(selectedVariant.shopifyId, chachedQuantity)
+    addVariantToCart(selectedVariant.id, chachedQuantity)
   }
 
   // useEffect(() => {
@@ -100,7 +121,7 @@ const getImageArray = (images, selectedVariant, selImage) => {
       : selectedVariant.image.id === image.id
 
     imagesArray.push({
-      src: image.originalSrc,
+      src: image.src,
       id: image.id,
       active: isActive,
     })

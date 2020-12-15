@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import { navigate } from "gatsby"
+import { getShopifyImage } from "../../helper/shopifyImage"
 
 import { Price, ProductName } from "../../lib/ProductComponents"
 
@@ -14,13 +15,7 @@ function ProductItem(props) {
 
   const { image, price } = item
 
-  const {
-    localFile: {
-      childImageSharp: {
-        resize: { src },
-      },
-    },
-  } = image
+  const { src } = image
 
   return (
     <Root
@@ -34,7 +29,7 @@ function ProductItem(props) {
         setMouse("link", false)
       }}
     >
-      <Image src={src}></Image>
+      <Image src={getShopifyImage(src, "500x500")}></Image>
       <InfoWrap>
         <PriceWrap>
           <h6>#MeetFrida</h6>

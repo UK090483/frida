@@ -7,26 +7,19 @@ import { useStaticQuery, graphql } from "gatsby"
 export default function Products() {
   const data = useStaticQuery(graphql`
     query ProductQuery {
-      allShopifyProduct(filter: { productType: { ne: "artwork" } }) {
+      allShopifyProduct: allShopifyProduct2(
+        filter: { productType: { ne: "artwork" } }
+      ) {
         nodes {
           title
           id
           handle
           variants {
-            shopifyId
+            id
             title
             price
             image {
-              originalSrc
-              localFile {
-                childImageSharp {
-                  resize(width: 500) {
-                    height
-                    src
-                    width
-                  }
-                }
-              }
+              src
             }
           }
         }

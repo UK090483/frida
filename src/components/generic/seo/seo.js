@@ -5,7 +5,16 @@ import { useStaticQuery, graphql } from "gatsby"
 // import { GatsbySeo, ProductJsonLd } from "gatsby-plugin-next-seo"
 import { getFluidImage, urlFor } from "~components/helper/sanityImage"
 
-function SEO({ description, lang, meta, title, path, image, artwork }) {
+function SEO({
+  description,
+  lang,
+  meta,
+  title,
+  path,
+  image,
+  artwork,
+  product,
+}) {
   const { site, fridalogo } = useStaticQuery(
     graphql`
       query {
@@ -43,7 +52,7 @@ function SEO({ description, lang, meta, title, path, image, artwork }) {
       image: { imageAssetId },
       // price,
     } = artwork
-    // console.log(artwork)
+
     const fluidImg = urlFor(imageAssetId).width(1200).url()
     const aspectRatio = getFluidImage(imageAssetId, {}).aspectRatio
 

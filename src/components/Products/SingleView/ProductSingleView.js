@@ -16,6 +16,7 @@ import {
 } from "~components/lib/ProductComponents"
 import useShopify from "~components/hooks/useShopify"
 import SozialShare from "../../SozialShare/SozialShare"
+import { getShopifyImage } from "../../helper/shopifyImage"
 
 export default function SingleView({ data }) {
   const {
@@ -37,22 +38,17 @@ export default function SingleView({ data }) {
     checkoutUrl,
   } = useShopify(data)
 
-  const {
-    localFile: {
-      childImageSharp: { smallImage, bigImage, sizes },
-    },
-  } = activeImage
-
+  const { src } = activeImage
   const { price } = variant
 
   return (
     <Wrap>
       <ImageWrap>
         <LoupImage
-          smallImageSrc={smallImage.src}
-          bigImageSrc={bigImage.src}
-          aspectRatio={sizes.aspectRatio}
-          alt={"bla"}
+          smallImageSrc={getShopifyImage(src, "500x500")}
+          bigImageSrc={getShopifyImage(src, "2000x2000")}
+          aspectRatio={"1"}
+          alt={`artwork ${title}`}
         />
 
         {imagesArray.length > 1 && (

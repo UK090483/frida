@@ -12,20 +12,45 @@ const checkIfUpdateNeeded = (sanity, shopify) => {
 const SantityToShopify = async (type, sanityProduckts) => {
   const products = await getAllShopifyProducts()
 
+  let created = 0
+  let updated = 0
+  let needsTowait = false
+
   for (const SanityProduct of sanityProduckts) {
     const { action = null, product = null } = checkNeededActions(
       products,
       SanityProduct
     )
     if (action === "create") {
+      needsTowait = true
+      created++
       console.log(".................handle create")
       await createProduct(type, SanityProduct)
     }
     if (action === "update") {
+      needsTowait = true
+      updated++
       console.log(".................handle update")
       await handleUpdateProduct(type, SanityProduct, product.id)
     }
   }
+
+  if (needsTowait) {
+    await waitSomeTime()
+  }
+
+  return { created, updated, needsTowait }
+}
+
+async function waitSomeTime() {
+  console.log("waitSomeTime")
+  await sleep(10000)
+}
+
+function sleep(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms)
+  })
 }
 
 const createProduct = async (type, artwork) => {

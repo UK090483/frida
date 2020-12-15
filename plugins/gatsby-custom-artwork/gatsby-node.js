@@ -5,7 +5,6 @@ const { getAllShopifyProducts } = require("./lib/shopify")
 const { getPriceWithTax } = require("../../lib/getPriceWithTax")
 
 const loadArtworksSanity = async () => {
-  console.log("sanity _ start")
   console.time("SANITY_____Load")
   const query = `
   *[_type == 'artwork' && !(_id in path('drafts.**'))]{
@@ -30,12 +29,14 @@ const loadArtworksSanity = async () => {
     "rating":coalesce(rating, 0),
     "banner":coalesce(banner, 'unknown'),
     shopify_handle,
-    }[0...100]`
+    }[0...150]`
+
   const params = {}
 
   const res = await sanity.fetch(query, params)
 
   console.timeEnd("SANITY_____Load")
+  console.log("loaded " + res.length + " artworks ")
 
   return res
 }
@@ -45,6 +46,7 @@ async function createArtworNodes(actions, createNodeId, createContentDigest) {
   await SantityToShopify("artwork", sanityArtworksbefore)
 
   const sanityArtworks = await loadArtworksSanity()
+
   const { createNode } = actions
   sanityArtworks.forEach(item => {
     const {
