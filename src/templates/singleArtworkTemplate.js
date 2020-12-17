@@ -88,6 +88,7 @@ export const query = graphql`
       variants {
         id
         availableForSale
+        quantityAvailable
         price
         selectedOptions {
           name

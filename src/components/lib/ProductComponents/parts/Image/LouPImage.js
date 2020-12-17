@@ -7,7 +7,7 @@ const SCALE = [2, 3]
 export default function FridaImage({
   smallImageSrc,
   bigImageSrc,
-  aspectRatio,
+  aspectRatio = -1,
   alt,
 }) {
   const imageRef = useRef()

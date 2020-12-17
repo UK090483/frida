@@ -1,28 +1,28 @@
-import { useState, useContext, useEffect } from "react"
+import { useState, useContext } from "react"
 import shopContext from "~context/shopifyContext"
 
-export default function useShopify(product) {
-  if (!product) {
-    return {
-      checkoutUrl: "/",
-      availability: false,
-      inCart: false,
-      addToCart: () => {},
-      quantity: 1,
-      setQuantity: () => {},
-      variant: { price: 0 },
-      hasOptions: false,
-      options: [],
-      setOption: () => {},
-      selectedOption: () => {},
-      images: [],
-      imagesArray: [],
-      activeImage,
-      onImageClick: () => {},
-      description: "",
-      title: "",
-    }
-  }
+const defaultProduct = {
+  checkoutUrl: "/",
+  availability: false,
+  inCart: false,
+  addToCart: () => {},
+  quantity: 1,
+  setQuantity: () => {},
+  variant: { price: 0 },
+  hasOptions: false,
+  options: [],
+  setOption: () => {},
+  selectedOption: () => {},
+  images: [],
+  imagesArray: [],
+  activeImage: "",
+  onImageClick: () => {},
+  description: "",
+  title: "",
+  quantityAvailable: 0,
+}
+
+export default function useShopify(product = defaultProduct) {
   const { variants, title, options, images, description } = product
   const shop = useContext(shopContext)
 

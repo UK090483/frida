@@ -59,6 +59,8 @@ exports.createPages = ({ graphql, actions }) => {
               artistId: artwork.artistId,
               uuid: artwork.uuid,
               ranNum: Math.random(),
+              slug: artwork.slug,
+              shopify_handle: artwork.shopify_handle,
             },
           })
         }

@@ -6,6 +6,7 @@ const { getAllShopifyProducts } = require("./shopify")
 const checkIfUpdateNeeded = (sanity, shopify) => {
   const sa = new Date(sanity).getTime()
   const sh = new Date(shopify).getTime()
+
   return sa - sh > 10000
 }
 

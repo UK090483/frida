@@ -1,11 +1,11 @@
 const crypto = require("crypto")
-const productQuery = require("./lib/product-query")
+
 const getAllProducts = require("./lib/getAllProducts")
 
 exports.sourceNodes = async ({ actions }, { siteName, accessToken }) => {
   const { createNode } = actions
   const client = require("graphql-client")({
-    url: `https://${siteName}.myshopify.com/api/graphql`,
+    url: `https://${siteName}.myshopify.com/api/2020-10/graphql.json`,
     headers: {
       "X-Shopify-Storefront-Access-Token": accessToken,
     },

@@ -24,7 +24,7 @@ export default function SingleProductTemplate(props) {
             pathname={props.location.pathname}
             product={data.shopifyProduct}
           >
-            <Header title={title} color="lila">
+            <Header title={"Shop"} color="lila">
               <Link
                 style={{ minWidth: 40, pointerEvents: "all" }}
                 to={modal ? closeTo : "/shop"}
@@ -56,7 +56,6 @@ export const query = graphql`
   query($handle: String!) {
     shopifyProduct: shopifyProduct2(handle: { eq: $handle }) {
       description
-
       title
       options {
         name
@@ -70,6 +69,7 @@ export const query = graphql`
         price
         id
         availableForSale
+        quantityAvailable
         selectedOptions {
           name
           value
@@ -85,11 +85,16 @@ export const query = graphql`
 `
 
 const Wrap = ({ modal, children, pathname, product }) => {
-  const { title } = product
+  const { title, description } = product
 
   return !modal ? (
     <Layout header={""}>
-      <SEO title={title} path={pathname} description={"artwork.description"} />
+      <SEO
+        title={title}
+        path={pathname}
+        description={description}
+        product={product}
+      />
       {children}
     </Layout>
   ) : (

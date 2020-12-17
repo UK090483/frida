@@ -38,6 +38,7 @@ export default function SingleView({ data }) {
     checkoutUrl,
   } = useShopify(data)
 
+  console.log(variant.quantityAvailable)
   const { src } = activeImage
   const { price } = variant
 
@@ -47,7 +48,6 @@ export default function SingleView({ data }) {
         <LoupImage
           smallImageSrc={getShopifyImage(src, "500x500")}
           bigImageSrc={getShopifyImage(src, "2000x2000")}
-          aspectRatio={"1"}
           alt={`artwork ${title}`}
         />
 
@@ -62,7 +62,11 @@ export default function SingleView({ data }) {
           <Description>{description}</Description>
 
           <ControlesWrap>
-            <Quantity quantity={quantity} setQuantity={setQuantity} />
+            <Quantity
+              quantity={quantity}
+              setQuantity={setQuantity}
+              quantityAvailable={variant.quantityAvailable}
+            />
             <Spacer />
             {hasOptions && (
               <Options

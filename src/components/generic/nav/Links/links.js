@@ -6,10 +6,10 @@ import useBodyScrollStop from "../../../helper/useBodyScrollStop"
 
 const Routes = [
   { link: "/ausstellung/", label: "ONLINE-GALLERY" },
+  { link: "/shop/", label: "SHOP" },
   { link: "/about/", label: "WER IST FRIDA?" },
   { link: "/teilnehmen/", label: "WERKE EINREICHEN" },
   { link: "/unterstützen/", label: "UNTERSTÜTZEN" },
-  { link: "/shop/", label: "SHOP" },
   { link: "/kontakt/", label: "KONTAKT" },
 ]
 

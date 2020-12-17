@@ -23,6 +23,7 @@ module.exports = `query ProductsQuery($first: Int, $after: String) {
             edges {
               node {
                 availableForSale
+                quantityAvailable
                 id
                 title
                 selectedOptions {

@@ -1,9 +1,11 @@
 import React from "react"
 import styled from "styled-components"
-function Quantity({ quantity, setQuantity }) {
+function Quantity({ quantity, setQuantity, quantityAvailable }) {
   const handleChange = e => {
     if (e === "add") {
-      setQuantity(quantity + 1)
+      if (quantity < quantityAvailable) {
+        setQuantity(quantity + 1)
+      }
     } else {
       if (quantity > 1) {
         setQuantity(quantity - 1)
@@ -12,26 +14,29 @@ function Quantity({ quantity, setQuantity }) {
   }
 
   return (
-    <Root>
-      <Input>{quantity}</Input>
-
-      <ButtonWrap>
-        <div
-          onClick={() => {
-            handleChange("add")
-          }}
-        >
-          +
-        </div>
-        <div
-          onClick={() => {
-            handleChange("subtract")
-          }}
-        >
-          -
-        </div>
-      </ButtonWrap>
-    </Root>
+    <React.Fragment>
+      {quantityAvailable > 1 && (
+        <Root>
+          <Input>{quantity}</Input>
+          <ButtonWrap isMax={quantity === quantityAvailable}>
+            <div
+              onClick={() => {
+                handleChange("add")
+              }}
+            >
+              +
+            </div>
+            <div
+              onClick={() => {
+                handleChange("subtract")
+              }}
+            >
+              -
+            </div>
+          </ButtonWrap>
+        </Root>
+      )}
+    </React.Fragment>
   )
 }
 
@@ -64,6 +69,8 @@ const ButtonWrap = styled.div`
     border: ${({ theme }) => theme.colors.green} solid 3px;
     border-radius: 0 0 5px 0;
     &:first-child {
+      color: ${({ theme, isMax }) =>
+        isMax ? theme.colors.red : theme.colors.green};
       border-radius: 0 5px 0 0;
       border-bottom-width: 0;
     }
@@ -71,6 +78,7 @@ const ButtonWrap = styled.div`
 `
 
 Quantity.defaultProps = {
+  quantityAvailable: 1,
   quantity: 1,
   setQuantity: e => {
     console.error("Component Qauntity needs a setQuantity functionProp")
