@@ -71,7 +71,7 @@ const buildProductObject = (type, sanityProduct) => {
     hasVariants: false,
   }
 }
-const buildProductUpdateObject = (type, sanityProduct) => {
+const buildProductUpdateObject = (type, sanityProduct, product) => {
   const {
     image,
     price,
@@ -82,16 +82,16 @@ const buildProductUpdateObject = (type, sanityProduct) => {
     medium,
   } = sanityProduct
 
+  const { variants } = product
+
   return {
     title: `${artworkName} von ${artistName}`,
-    product_type: type,
     body_html: `<p>${description}</p>`,
-    published_scope: "global",
     tags: `${stil},${medium}`,
     variants: [
       {
         inventory_management: "shopify",
-
+        inventory_quantity: variants[0].inventory_quantity,
         price: getPriceWithTax(price),
         requires_shipping: false,
       },
@@ -128,11 +128,11 @@ const makeProduct = async (type, artwork) => {
   return res.product
 }
 
-const updateProduct = async (type, artwork, id) => {
-  const product = buildProductUpdateObject(type, artwork)
-  console.log("start update product " + product.title)
-  let res = await shopifyFetch(`products/${id}`, "PUT", {
-    product: product,
+const updateProduct = async (type, artwork, product) => {
+  const Nextproduct = buildProductUpdateObject(type, artwork, product)
+  console.log("start update product " + Nextproduct.title)
+  let res = await shopifyFetch(`products/${product.id}`, "PUT", {
+    product: Nextproduct,
   })
 
   if (!res.product) {

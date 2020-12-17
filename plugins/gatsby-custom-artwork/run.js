@@ -12,14 +12,14 @@ const { eraseAllProducts, logAllProducts } = require("./helper/helper")
 const SyncToShopify = async () => {
   logStart("STARTING UP SANITY TO SHOPIFY")
 
-  // const artworks = await getAllArtworksSanity()
+  const artworks = await getAllArtworksSanity()
 
   //const products = await getAllShopifyProducts()
 
   // products.forEach(p => {
   //   console.log(p.handle)
   // })
-  // await SantityToShopify("artwork", artworks)
+  await SantityToShopify("artwork", artworks)
 }
 
 //eraseAllProducts();

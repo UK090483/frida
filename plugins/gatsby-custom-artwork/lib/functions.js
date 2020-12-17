@@ -32,7 +32,7 @@ const SantityToShopify = async (type, sanityProduckts) => {
       needsTowait = true
       updated++
       console.log(".................handle update")
-      await handleUpdateProduct(type, SanityProduct, product.id)
+      await handleUpdateProduct(type, SanityProduct, product)
     }
   }
 
@@ -66,8 +66,8 @@ const createProduct = async (type, artwork) => {
   await addSyncDataToSanity(newProduct, artwork)
 }
 
-const handleUpdateProduct = async (type, SanityProduct, id) => {
-  const updatedProduct = await updateProduct(type, SanityProduct, id)
+const handleUpdateProduct = async (type, SanityProduct, product) => {
+  const updatedProduct = await updateProduct(type, SanityProduct, product)
 
   if (!updatedProduct) {
     console.log(
@@ -83,6 +83,8 @@ checkNeededActions = (products, artwork) => {
     return product.handle === artwork.shopify_handle
   })
 
+  // console.log(isExistend)
+
   const product = isExistend.length > 0 ? isExistend[0] : null
 
   if (!product) {
@@ -97,7 +99,7 @@ checkNeededActions = (products, artwork) => {
     return { action: "update", product }
   }
 
-  logSuccses(" ----already exists ---- needs no update" + artwork.artworkName)
+  //logSuccses(" ----already exists ---- needs no update" + artwork.artworkName)
 
   return { action: null }
 }

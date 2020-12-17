@@ -3,7 +3,7 @@ const { logSuccses, logError } = require("./logger")
 
 const getAllArtworksSanity = async () => {
   const query = `
-        *[_type == 'artwork']{
+  *[_type == 'artwork' && !(_id in path('drafts.**'))]{
           "uuid":_id,
           "slug" : slug.current,
           "artworkName":name,
@@ -27,7 +27,7 @@ const getAllArtworksSanity = async () => {
           shopify_updated_at,
           shopify_handle,
           _updatedAt
-        }[0...10]`
+        }`
   const params = {}
 
   try {
