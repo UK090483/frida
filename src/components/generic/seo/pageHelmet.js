@@ -45,7 +45,6 @@ export default function PageHelmet({ path, title }) {
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
     >
-      <link rel="canonical" href={siteUrl + path} />
       {/* General tags */}
       <title>{title}</title>
       <meta name="description" content={description} />

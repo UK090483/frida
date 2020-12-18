@@ -46,7 +46,6 @@ function ProductHelmet({ path, artwork, product }) {
         title={title}
         titleTemplate={`%s | ${site.siteMetadata.title}`}
       >
-        <link rel="canonical" href={siteUrl + path} />
         {/* General tags */}
         <title>{title}</title>
         <meta name="description" content={description} />
