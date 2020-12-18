@@ -1,13 +1,12 @@
 import React from "react"
-import PropTypes from "prop-types"
+// import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 // import { GatsbySeo, ProductJsonLd } from "gatsby-plugin-next-seo"
 import { getFluidImage, urlFor } from "~components/helper/sanityImage"
-import PageHelmet from "./pageHelmet"
 
 function ProductHelmet({ path, artwork, product }) {
-  const { site, fridalogo } = useStaticQuery(
+  const { site } = useStaticQuery(
     graphql`
       query {
         site {

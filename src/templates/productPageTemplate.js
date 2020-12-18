@@ -11,9 +11,6 @@ import ProductSingeView from "../components/Products/SingleView/ProductSingleVie
 
 export default function SingleProductTemplate(props) {
   const { data } = props
-  const {
-    shopifyProduct: { title },
-  } = data
 
   return (
     <ModalRoutingContext.Consumer>

@@ -29,6 +29,7 @@ const loadArtworksSanity = async () => {
     "rating":coalesce(rating, 0),
     "banner":coalesce(banner, 'unknown'),
     shopify_handle,
+    shopify_product_id,
     _updatedAt
     }`
 

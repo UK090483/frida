@@ -1,6 +1,7 @@
 const { logSuccses } = require("../lib/logger")
 const { getAllShopifyProducts } = require("../lib/shopify")
 const { shopifyFetch } = require("../../../lib/shopifyClient")
+var _remove = require("lodash/remove")
 
 const eraseAllProducts = async () => {
   let res = await shopifyFetch("products", "GET", null)
@@ -25,6 +26,22 @@ const logAllProducts = async () => {
     console.log(element)
   })
 }
+// const isExistend = products.filter(product => {
+//   return product.handle === artwork.shopify_handle
+// })
+const checkforNotconnected = async (artworks, products) => {
+  artworks.forEach(artwork => {
+    _remove(products, p => {
+      return p.handle === artwork.shopify_handle
+    })
+  })
+
+  products.forEach(p => {
+    console.log(p.title)
+  })
+}
+
+exports.checkforNotconnected = checkforNotconnected
 
 exports.eraseAllProducts = eraseAllProducts
 exports.logAllProducts = logAllProducts

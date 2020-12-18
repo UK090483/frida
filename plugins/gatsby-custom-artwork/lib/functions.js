@@ -1,7 +1,11 @@
 const { logSuccses, logInfo } = require("./logger")
-const { makeProduct, updateProduct } = require("./shopify")
+const {
+  makeProduct,
+  updateProduct,
+  getAllShopifyProducts,
+  checkForProduct,
+} = require("./shopify")
 const { addSyncDataToSanity } = require("./sanity")
-const { getAllShopifyProducts } = require("./shopify")
 
 const checkIfUpdateNeeded = (sanity, shopify) => {
   const sa = new Date(sanity).getTime()
@@ -18,7 +22,7 @@ const SantityToShopify = async (type, sanityProduckts) => {
   let needsTowait = false
 
   for (const SanityProduct of sanityProduckts) {
-    const { action = null, product = null } = checkNeededActions(
+    const { action = null, product = null } = await checkNeededActions(
       products,
       SanityProduct
     )
@@ -78,18 +82,22 @@ const handleUpdateProduct = async (type, SanityProduct, product) => {
   await addSyncDataToSanity(updatedProduct, SanityProduct)
 }
 
-checkNeededActions = (products, artwork) => {
+checkNeededActions = async (products, artwork) => {
   const isExistend = products.filter(product => {
     return product.handle === artwork.shopify_handle
   })
 
-  // console.log(isExistend)
-
-  const product = isExistend.length > 0 ? isExistend[0] : null
+  let product = isExistend.length > 0 ? isExistend[0] : null
 
   if (!product) {
-    logInfo("needs do be created")
-    return { action: "create" }
+    logInfo("couldnt find product in first run ... check specific")
+    product = await checkForProduct(artwork.shopify_product_id)
+
+    if (!product) {
+      logInfo("couldnt find product in second run ... ")
+      logInfo("needs do be created")
+      return { action: "create" }
+    }
   }
 
   if (checkIfUpdateNeeded(artwork._updatedAt, product.updated_at)) {

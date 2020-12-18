@@ -70,9 +70,9 @@ export default function Newsletter() {
         <Collumn>
           <h4>Bleib up to date!</h4>
           <p>
-            Jetzt für Fridas Newsletter anmelden und nichts verpassen –
-            New,spezielle Angebote, wöchentliche Auktion, Events und vieles
-            mehr.
+            Jetzt für Fridas Newsletter anmelden und nichts verpassen -
+            exklusive Rabatte, neue Postionen, aktuelle Projekte und vieles
+            mehr!
           </p>
         </Collumn>
         <Collumn>
@@ -206,6 +206,11 @@ const Succsess = styled.div`
 `
 
 const Input = styled.input`
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
   height: 60px;
   width: 100%;
   padding: 0;

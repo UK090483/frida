@@ -198,6 +198,14 @@ const getAllProducts = async (
   return aggregatedResponse
 }
 
+const checkForProduct = async id => {
+  let res = await shopifyFetch(`products/${id}`, "GET")
+  if (res.errors === "Not Found") {
+    return null
+  }
+  return res.product
+}
+exports.checkForProduct = checkForProduct
 exports.getAllShopifyProducts = getAllShopifyProducts
 exports.makeProduct = makeProduct
 exports.updateProduct = updateProduct

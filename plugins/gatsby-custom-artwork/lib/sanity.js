@@ -26,6 +26,7 @@ const getAllArtworksSanity = async () => {
           "banner":coalesce(banner, 'unknown'),
           shopify_updated_at,
           shopify_handle,
+          shopify_product_id,
           _updatedAt
         }`
   const params = {}

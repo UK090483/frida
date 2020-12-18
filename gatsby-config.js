@@ -17,6 +17,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
+        exclude: [`/sanityprev`, `/style`, `/cityartweek`],
         query: `
           {
             site {

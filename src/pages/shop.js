@@ -7,9 +7,10 @@ import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
 
 const Shop = props => (
-  <Layout title={"FridaShop"} initialColor={"pink"}>
+  <Layout title={"FridasShop"} initialColor={"pink"}>
     <SEO title="Shop" path={props.location.pathname} />
     <Hero backgroundColor="lila" height={"medium"}>
+      <h6>SHOP</h6>
       <h1>
         Alles was das Herz echter Art Lover begehrt – auch bei kleinerem Budget.
       </h1>

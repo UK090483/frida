@@ -4,22 +4,28 @@ require("dotenv").config({
 })
 
 const { logStart } = require("./lib/logger")
-const { getAllShopifyProducts } = require("./lib/shopify")
+const { getAllShopifyProducts, checkForProduct } = require("./lib/shopify")
 const { getAllArtworksSanity, getAllProductsSanity } = require("./lib/sanity")
 const { SantityToShopify } = require("./lib/functions")
-const { eraseAllProducts, logAllProducts } = require("./helper/helper")
+const {
+  eraseAllProducts,
+  logAllProducts,
+  checkforNotconnected,
+} = require("./helper/helper")
 
 const SyncToShopify = async () => {
   logStart("STARTING UP SANITY TO SHOPIFY")
 
-  const artworks = await getAllArtworksSanity()
+  // const artworks = await getAllArtworksSanity()
 
-  //const products = await getAllShopifyProducts()
+  // console.log(artworks[200].shopify_product_id)
+  // const products = await getAllShopifyProducts()
 
+  // const notConected = await checkforNotconnected(artworks, products)
   // products.forEach(p => {
   //   console.log(p.handle)
   // })
-  await SantityToShopify("artwork", artworks)
+  // await SantityToShopify("artwork", artworks)
 }
 
 //eraseAllProducts();
