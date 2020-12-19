@@ -25,6 +25,7 @@ exports.createPages = ({ graphql, actions }) => {
             artistId
             slug
             shopify_handle
+            alternativeSlug
           }
         }
       }
@@ -48,12 +49,9 @@ exports.createPages = ({ graphql, actions }) => {
           },
         })
 
-        if (
-          artwork.slug ===
-          "metamorphose-seelische-gestalt-auf-reisen-ergaenzung"
-        ) {
+        if (artwork.alternativeSlug) {
           createPage({
-            path: `/MeetChristin`,
+            path: `/${artwork.alternativeSlug}`,
             component: path.resolve("./src/templates/singleArtworkTemplate.js"),
             context: {
               artistId: artwork.artistId,

@@ -30,6 +30,7 @@ const loadArtworksSanity = async () => {
     "banner":coalesce(banner, 'unknown'),
     shopify_handle,
     shopify_product_id,
+    "alternativeSlug": alternaiveSlug.current,
     _updatedAt
     }`
 
@@ -71,12 +72,14 @@ async function createArtworNodes(actions, createNodeId, createContentDigest) {
       instagramLink,
       artistId,
       shopify_handle,
+      alternativeSlug,
       image: {
         asset: { _ref: imageAssetId },
       },
     } = item
 
     const data = {
+      alternativeSlug,
       ransortNumber: getWithRating(rating),
       uuid,
       availability,

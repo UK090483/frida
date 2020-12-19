@@ -27,6 +27,7 @@ const getAllArtworksSanity = async () => {
           shopify_updated_at,
           shopify_handle,
           shopify_product_id,
+          alternaiveSlug,
           _updatedAt
         }`
   const params = {}
