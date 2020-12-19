@@ -2,11 +2,18 @@ import React, { useEffect } from "react"
 import { createGlobalStyle } from "styled-components"
 import MouseClassNames from "./classNames"
 import { isBrowser } from "react-device-detect"
+import { setMouse } from "./mouseRemote"
 
 export default function () {
-  // const MouseRef = useRef()
+  const setMoove = e => {
+    setMouse("move", e)
+  }
 
   useEffect(() => {
+    console.log("mouseInit____________________________________")
+    // const Overlay = document.querySelector(".Frida_ReactModalPortal")
+    const body = document.querySelector("body")
+
     const MouseRef = { current: window.FridaMouse }
     const setMouseDown = () => {
       MouseRef.current &&
@@ -25,12 +32,15 @@ export default function () {
         MouseRef.current.classList.add(MouseClassNames.mouseOut)
     }
 
+    body.addEventListener("mousemove", setMoove)
     document.addEventListener("mousedown", setMouseDown)
     document.addEventListener("mouseup", setMouseUp)
     document.addEventListener("mouseenter", setMouseIn)
     document.addEventListener("mouseleave", setMouseOut)
 
     return () => {
+      setMouse("reset")
+      body.removeEventListener("mousemove", setMoove)
       document.removeEventListener("mousedown", setMouseDown)
       document.removeEventListener("mouseup", setMouseUp)
       document.removeEventListener("mouseenter", setMouseIn)
@@ -54,7 +64,7 @@ const MouseStyle = createGlobalStyle`
     width: 30px;
     height: 30px;
 
-    z-index: 99999999;
+    z-index: 10000;
     position: absolute;
     pointer-events: none;
     border-radius: 50%;

@@ -1,9 +1,7 @@
 import React, { useRef, useState, useEffect } from "react"
-import useMouse from "../../../generic/Mouse/hooks/useMouse"
+import { setMouse } from "../../../generic/Mouse/mouseRemote"
 import styled from "styled-components"
-// import { getFluidGatsbyImage } from "gatsby-storyblok-image"
-// import transformImage from "../../helper/transformImage"
-// import Img from "gatsby-image"
+import { getFluidImage } from "~components/helper/sanityImage"
 
 const SCALE = [2, 3]
 
@@ -11,39 +9,49 @@ export default function FridaImage({ artwork }) {
   const imageRef = useRef()
   const RootRef = useRef()
   const loupImageRef = useRef()
-  const { setMouse } = useMouse()
 
-  const { artworkName, artistName, imageUrl } = artwork
-  // const { width, height } = images
+  const { artworkName, artistName, image } = artwork
 
-  // const [loaded, setLoaded] = useState(false);
-  // const [resized, setResized] = useState(false);
+  const smallImageSrc = getFluidImage(image.imageAssetId, {
+    maxWidth: 500,
+    quality: 60,
+  }).src
 
-  function transformImage(image, option) {
-    var imageService = "https://img2.storyblok.com/"
-    var path = image.replace("https://a.storyblok.com", "")
-    return imageService + option + "/" + path
-  }
+  const aspectRatio = getFluidImage(image.imageAssetId, {
+    maxWidth: 1000,
+    quality: 60,
+  }).aspectRatio
 
-  const sizes = imageUrl.split("/")[5].split("x")
-  const width = sizes[0]
-  const height = sizes[1]
-  // console.log(width)
-  // console.log(height)
+  const bigImageSrc = getFluidImage(image.imageAssetId, {
+    maxWidth: 1000,
+    quality: 60,
+  }).src
 
-  // const fluidProps = getFluidGatsbyImage(src, {
-  //   maxWidth: 400,
-  //   quality: 60,
-  //   smartCrop: false,
-  //   base64: transformImage(src, "10x0/filters:quality(10)"),
-  //   useBase64: true,
-  // })
+  useEffect(() => {
+    const loupImage = loupImageRef.current
+    const handleLoad = () => {
+      if (imageRef.current) {
+        imageRef.current.src = bigImageSrc
+      }
+    }
+    if (loupImage) {
+      loupImage.addEventListener("load", handleLoad)
+    }
+    return () => {
+      loupImage.removeEventListener("load", handleLoad)
+    }
+  }, [loupImageRef, imageRef, bigImageSrc])
 
+  useEffect(() => {
+    return () => {
+      setMouse("hide", false)
+    }
+  }, [])
   useEffect(() => {
     const handleImageSizing = () => {
       if (imageRef.current && RootRef.current) {
         let rootClientRect = RootRef.current.getBoundingClientRect()
-        let imageRatio = width / height
+        let imageRatio = aspectRatio
 
         if (window.innerWidth > 899) {
           if (rootClientRect.width > rootClientRect.height * imageRatio) {
@@ -66,7 +74,7 @@ export default function FridaImage({ artwork }) {
     return () => {
       window.removeEventListener("resize", handleImageSizing)
     }
-  }, [height, imageRef, width])
+  }, [aspectRatio, imageRef])
 
   const [showGlass, setShowGlass] = useState(false)
   const [pos, setPos] = useState({ x: 50, y: 50, pageX: 0, pageY: 0 })
@@ -78,6 +86,7 @@ export default function FridaImage({ artwork }) {
 
   const handleMouseMove = e => {
     const imageClientRef = imageRef.current.getBoundingClientRect()
+
     let x = ((e.pageX - imageClientRef.left) / imageClientRef.width) * -100
     let y =
       ((e.pageY - window.scrollY - imageClientRef.top) /
@@ -89,51 +98,58 @@ export default function FridaImage({ artwork }) {
       x: x,
       y: y,
       pageX: e.pageX,
-      pageY: e.pageY - window.scrollY,
+      pageY: e.pageY - window.scrollY - imageClientRef.top + 100,
+      pageYn: e.pageY,
     })
   }
 
-  // const srcSet = images.srcSet
-  // const src = images.src
-
   return (
-    <Root ref={RootRef}>
-      <Image
-        onMouseMove={e => {
-          handleMouseMove(e)
-        }}
-        onMouseEnter={() => {
-          setShowGlass(true)
-          setMouse("hide", true)
-        }}
-        onMouseLeave={() => {
-          setShowGlass(false)
-          setMouse("hide", false)
-        }}
-        onClick={handleclick}
-        ref={imageRef}
-        src={transformImage(imageUrl, "500x0/filters:quality(80)")}
-        alt={`Kunstwerk ${artworkName} von ${artistName}`}
-      ></Image>
-      <Magni
-        show={showGlass}
-        // className={`${style.magni} ${showGlass ? style.showGalss : ""}`}
-        style={{ left: `${pos.pageX}px`, top: `${pos.pageY}px` }}
-      >
-        <GlassImg
-          ref={loupImageRef}
-          style={{
-            width: `${pos.width * SCALE[scale]}px`,
-            height: `${pos.height * SCALE[scale]}px`,
-            transform: ` translateX(${pos.x}%) translateY(${pos.y}%)`,
+    <PaddingRoot>
+      <Root ref={RootRef}>
+        <Image
+          onMouseMove={e => {
+            handleMouseMove(e)
           }}
-          src={transformImage(imageUrl, "1000x0")}
+          onMouseEnter={() => {
+            setShowGlass(true)
+            setMouse("hide", true)
+          }}
+          onMouseLeave={() => {
+            setShowGlass(false)
+            setMouse("hide", false)
+          }}
+          onClick={handleclick}
+          ref={imageRef}
+          src={smallImageSrc}
           alt={`Kunstwerk ${artworkName} von ${artistName}`}
-        ></GlassImg>
-      </Magni>
-    </Root>
+        ></Image>
+        <Magni
+          show={showGlass}
+          // className={`${style.magni} ${showGlass ? style.showGalss : ""}`}
+          style={{ left: `${pos.pageX}px`, top: `${pos.pageY}px` }}
+        >
+          <GlassImg
+            ref={loupImageRef}
+            style={{
+              width: `${pos.width * SCALE[scale]}px`,
+              height: `${pos.height * SCALE[scale]}px`,
+              transform: ` translateX(${pos.x}%) translateY(${pos.y}%)`,
+            }}
+            src={bigImageSrc}
+            alt={`Kunstwerk ${artworkName} von ${artistName}`}
+          ></GlassImg>
+        </Magni>
+      </Root>
+    </PaddingRoot>
   )
 }
+
+const PaddingRoot = styled.div`
+  padding-right: 20px;
+  padding-left: 20px;
+  width: 100%;
+  height: 100%;
+`
 
 const Root = styled.div`
   width: 100%;

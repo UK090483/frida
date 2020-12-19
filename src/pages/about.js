@@ -1,14 +1,14 @@
 import React from "react"
 
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo"
+import SEO from "../components/generic/seo/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
 import Frida from "../components/frida/frida"
 
-const IndexPage = () => (
+const IndexPage = props => (
   <Layout title={"Frida"}>
-    <SEO title="about" />
+    <SEO title="about" path={props.location.pathname} />
     <Hero backgroundColor="lila">
       <h6 style={{ fontWeight: 800 }}>ABOUT</h6>
 
@@ -19,6 +19,27 @@ const IndexPage = () => (
     <Section backgroundColor="lila" type="text">
       <div>
         <p>
+          #MeetFrida ist eine Initiative zur Förderung von Kunstschaffenden in
+          Deutschland. Seit August 2020 bringt sie Kunst vom digitalen in den
+          öffentlichen Raum. Sie bietet Künstlerinnen die Chance, ihre Kunst
+          sichtbar zu machen und so neue Verkaufswege zu finden. Ob Malerei,
+          Fotografie oder Skulptur, über 800 Werke sind inzwischen auf der
+          Online-Gallery zu finden und zu kaufen. Mindestens eines der Werke
+          jeder/s Künsterin kostet unter 500 EUR.
+        </p>
+        <br />
+        <p>
+          Neben der Online-Gallery www.meetfrida.art sind ausgewählte Arbeiten
+          der Künstlerinnen im öffentlichen Raum zu sehen. Werke werden auf
+          großflächigen Plakatwänden in ganz Deutschland gezeigt. Kunstdrucke
+          machen Innenstädte im Rahmen von City Art Weeks zu Museen auf Zeit und
+          Künstlerinnen bespielen mit offenen Ateliers Leerstände in
+          verschiedenen Innenstädten. So wird Kunst – trotz der
+          Corona-Beschränkungen – wieder sichtbar, selbst für Menschen, die
+          sonst nicht mit Kultur in Berührung kommen. Und nebenbei entsteht die
+          größte Outdoor-Gallery, die es in Deutschland je gab.
+        </p>
+        {/* <p>
           #MeetFrida ist eine neuartige Plattform, um Künstler*innen
           Sichtbarkeit zu geben und ihnen neue Verkaufswege zu eröffnen. Die
           neue Kunstschau zeigt junge Positionen aus Malerei, Fotografie und
@@ -64,7 +85,7 @@ const IndexPage = () => (
           Zeiten von Corona. Aber wir wollen hier nicht Frida Kahlo besser
           kennenlernen, sondern alle Künstler*innen, die bei unserer Aktion
           mitmachen. Denn es geht um sie und ihre Kunst.
-        </p>
+        </p> */}
         <br />
       </div>
     </Section>

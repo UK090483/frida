@@ -1,9 +1,8 @@
 import React from "react"
-import SbEditable from "storyblok-react"
 
 const SPACE = 50
 export default function Spacer(props) {
-  const { size } = props.blok
+  const { size } = props
 
   const getSize = () => {
     switch (size) {
@@ -21,9 +20,5 @@ export default function Spacer(props) {
         return 100
     }
   }
-  return (
-    <SbEditable content={props.blok}>
-      <div style={{ height: getSize(), width: "100%" }}></div>
-    </SbEditable>
-  )
+  return <div style={{ height: getSize(), width: "100%" }} />
 }

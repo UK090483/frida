@@ -3,37 +3,40 @@ import Frida from "../../frida/frida"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
-import getPriceWithTax from "../helper/getPriceWithTax"
 import Container from "./container/artworkContainer"
 import ArtworkImage from "./artworkImage/artworkImage"
 import ArtworkInfo from "./artworkInfo/ArtworkInfo"
+import Banner from "./banner/banner"
 
-function Artwork({ artwork, handleClick, handleLoaded }) {
-  const { availability, artworkName, artistName, price, imageUrl } = artwork
+function Artwork({ artwork, color = "pink", preventClick, reactOnMouseDown }) {
+  const {
+    availability,
+    artworkName,
+    artistName,
+    price,
+    image,
+    banner,
+  } = artwork
 
-  const makeVisilbe = () => {
-    handleLoaded()
-  }
-  /* eslint-disable jsx-a11y/anchor-is-valid */
   return (
     <Container
-      onClick={() => handleClick(artwork)}
-      loaded={true}
       artwork={artwork}
+      preventClick={preventClick}
+      reactOnMouseDown={reactOnMouseDown}
     >
       <ArtworkImage
         alt={`artwork ${artworkName} from ${artistName}`}
-        onLoad={makeVisilbe}
-        src={imageUrl}
+        image={image}
+        fluid={image.fluid500}
       />
-
+      {banner === "hinzundkunzt" && <Banner></Banner>}
       <ArtistName>
-        <Frida text={artistName} textColor="#f5c5d9"></Frida>
+        <Frida text={artistName} textColor={color}></Frida>
       </ArtistName>
 
       <ArtworkInfo
         availability={availability}
-        price={getPriceWithTax(price)}
+        price={price}
         artworkName={artworkName}
       />
     </Container>

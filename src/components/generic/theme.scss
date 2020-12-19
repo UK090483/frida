@@ -1,173 +1,173 @@
-@import "../variables.scss";
+// @import "../variables.scss";
 
-$mod_1: 1.2;
-$mod_2: 1.5;
-$min_width: 320px;
-$max_width: 1600px;
-$min-font: 30px;
-$max_font: 90px;
+// $mod_1: 1.2;
+// $mod_2: 1.5;
+// $min_width: 320px;
+// $max_width: 1600px;
+// $min-font: 30px;
+// $max_font: 90px;
 
-body {
-  font-family: "Montserrat", sans-serif;
-  color: #000000;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 800;
-  line-height: 1.1;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  margin-bottom: 1.45rem;
-}
-
-h1 {
-  font-family: "Montserrat", sans-serif;
-  font-size: $mod_1 * $mod_1 * $mod_1 * $mod_1 * 1rem;
-  @include fluid-type($min_width, $max_width, $min-font, $max_font);
-}
-
-h2 {
-  font-family: "Montserrat", sans-serif;
-  font-size: $mod_1 * $mod_1 * $mod_1 * 1rem;
-  @include fluid-type($min_width, $max_width, $min-font * 0.8, $max-font * 0.8);
-}
-h3 {
-  font-family: "Montserrat", sans-serif;
-  font-size: $mod_1 * $mod_1 * 1rem;
-  @include fluid-type($min_width, $max_width, $min-font * 0.6, $max-font * 0.6);
-}
-h4 {
-  //   font-weight: 700;
-  font-family: "Montserrat", sans-serif;
-  font-size: $mod_1 * 1rem;
-  @include fluid-type($min_width, $max_width, $min-font * 0.5, $max-font * 0.5);
-}
-
-h5 {
-  //   font-weight: 700;
-  font-family: "Montserrat", sans-serif;
-  font-size: $mod_1 * 1rem;
-  @include fluid-type($min_width, $max_width, $min-font * 0.4, $max-font * 0.4);
-}
-h6 {
-  //   font-weight: 700;
-  font-family: "Montserrat", sans-serif;
-  font-size: $mod_1 * 1rem;
-  @include fluid-type($min_width, $max_width, $min-font * 0.4, $max-font * 0.3);
-}
-
-p,
-li {
-  font-weight: 500;
-  font-family: "Montserrat", sans-serif;
-  font-size: $mod_1 * 1rem;
-  @include fluid-type(
-    $min_width,
-    $max_width,
-    $min-font * 0.5,
-    $max-font * 0.34
-  );
-  line-height: 1.3em;
-  padding-bottom: 20px;
-}
-
-// .text-white {
-//   color: white;
+// body {
+//   font-family: "Montserrat", sans-serif;
+//   color: #000000;
 // }
-// .text-black {
-//   color: black;
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   font-weight: 800;
+//   line-height: 1.1;
+//   margin-left: 0;
+//   margin-right: 0;
+//   margin-top: 0;
+//   padding-bottom: 0;
+//   padding-left: 0;
+//   padding-right: 0;
+//   padding-top: 0;
+//   margin-bottom: 1.45rem;
 // }
-// .text-lila {
-//   color: #f5c5d9;
+
+// h1 {
+//   font-family: "Montserrat", sans-serif;
+//   font-size: $mod_1 * $mod_1 * $mod_1 * $mod_1 * 1rem;
+//   @include fluid-type($min_width, $max_width, $min-font, $max_font);
 // }
-// .text-red {
+
+// h2 {
+//   font-family: "Montserrat", sans-serif;
+//   font-size: $mod_1 * $mod_1 * $mod_1 * 1rem;
+//   @include fluid-type($min_width, $max_width, $min-font * 0.8, $max-font * 0.8);
+// }
+// h3 {
+//   font-family: "Montserrat", sans-serif;
+//   font-size: $mod_1 * $mod_1 * 1rem;
+//   @include fluid-type($min_width, $max_width, $min-font * 0.6, $max-font * 0.6);
+// }
+// h4 {
+//   //   font-weight: 700;
+//   font-family: "Montserrat", sans-serif;
+//   font-size: $mod_1 * 1rem;
+//   @include fluid-type($min_width, $max_width, $min-font * 0.5, $max-font * 0.5);
+// }
+
+// h5 {
+//   //   font-weight: 700;
+//   font-family: "Montserrat", sans-serif;
+//   font-size: $mod_1 * 1rem;
+//   @include fluid-type($min_width, $max_width, $min-font * 0.4, $max-font * 0.4);
+// }
+// h6 {
+//   //   font-weight: 700;
+//   font-family: "Montserrat", sans-serif;
+//   font-size: $mod_1 * 1rem;
+//   @include fluid-type($min_width, $max_width, $min-font * 0.4, $max-font * 0.3);
+// }
+
+// p,
+// li {
+//   font-weight: 500;
+//   font-family: "Montserrat", sans-serif;
+//   font-size: $mod_1 * 1rem;
+//   @include fluid-type(
+//     $min_width,
+//     $max_width,
+//     $min-font * 0.5,
+//     $max-font * 0.34
+//   );
+//   line-height: 1.3em;
+//   padding-bottom: 20px;
+// }
+
+// // .text-white {
+// //   color: white;
+// // }
+// // .text-black {
+// //   color: black;
+// // }
+// // .text-lila {
+// //   color: #f5c5d9;
+// // }
+// // .text-red {
+// //   color: #fa464c;
+// // }
+
+// body::-webkit-scrollbar {
+//   display: none;
+// }
+
+// a {
 //   color: #fa464c;
 // }
 
-body::-webkit-scrollbar {
-  display: none;
-}
+// .page-layout {
+//   transition: opacity 1s;
+//   opacity: 1;
+// }
+// .frida_mouse_active {
+//   cursor: none;
+// }
 
-a {
-  color: #fa464c;
-}
-
-.page-layout {
-  transition: opacity 1s;
-  opacity: 1;
-}
-.frida_mouse_active {
-  cursor: none;
-}
-
-@media only screen and (max-width: 480px) {
-  html {
-    font-size: 100%;
-  }
-}
-html {
-  font: 112.5%/1.45em georgia, serif;
-  box-sizing: border-box;
-  overflow-y: scroll;
-}
-* {
-  box-sizing: border-box;
-}
-
-html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.snipcart-cart--opened {
-  .page-layout {
-    transition: opacity 1s;
-    opacity: 0;
-  }
-  .frida_mouse_active {
-    cursor: auto;
-  }
-}
-
-.snipcart-item-line__container {
-  margin-bottom: 10px !important;
-}
-.snipcart-layout {
-  font-family: "Montserrat", sans-serif !important;
-  font-weight: 500;
-}
-.snipcart-item-quantity__quantity,
-.snipcart-item-quantity__label {
-  opacity: 0;
-}
-
-// .snipcart-cart-header {
-//   border: red solid 1px;
-//   .snipcart-cart-header__close-button {
-//     border: red solid 1px;
-//     max-width: fit-content;
-//     min-width: fit-content;
-//   }
-//   div {
-//     width: 100%;
-//     h3 {
-//       border: green solid 1px;
-//       width: 100%;
-//     }
+// @media only screen and (max-width: 480px) {
+//   html {
+//     font-size: 100%;
 //   }
 // }
+// html {
+//   font: 112.5%/1.45em georgia, serif;
+//   box-sizing: border-box;
+//   overflow-y: scroll;
+// }
+// * {
+//   box-sizing: border-box;
+// }
+
+// html {
+//   font-family: sans-serif;
+//   -ms-text-size-adjust: 100%;
+//   -webkit-text-size-adjust: 100%;
+// }
+// body {
+//   margin: 0;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+// }
+
+// .snipcart-cart--opened {
+//   .page-layout {
+//     transition: opacity 1s;
+//     opacity: 0;
+//   }
+//   .frida_mouse_active {
+//     cursor: auto;
+//   }
+// }
+
+// .snipcart-item-line__container {
+//   margin-bottom: 10px !important;
+// }
+// .snipcart-layout {
+//   font-family: "Montserrat", sans-serif !important;
+//   font-weight: 500;
+// }
+// .snipcart-item-quantity__quantity,
+// .snipcart-item-quantity__label {
+//   opacity: 0;
+// }
+
+// // .snipcart-cart-header {
+// //   border: red solid 1px;
+// //   .snipcart-cart-header__close-button {
+// //     border: red solid 1px;
+// //     max-width: fit-content;
+// //     min-width: fit-content;
+// //   }
+// //   div {
+// //     width: 100%;
+// //     h3 {
+// //       border: green solid 1px;
+// //       width: 100%;
+// //     }
+// //   }
+// // }

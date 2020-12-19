@@ -1,57 +1,97 @@
 const postCssPlugins = require("./postcss-config.js")
-// const { createProxyMiddleware } = require("http-proxy-middleware")
+
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-//process.env.GATSBY_CONCURRENT_DOWNLOAD = 1
-
 module.exports = {
-  // developMiddleware: app => {
-  //   app.use(
-  //     "/.netlify/functions/",
-  //     createProxyMiddleware({
-  //       target: "http://localhost:9000",
-  //       pathRewrite: {
-  //         "/.netlify/functions/": "",
-  //       },
-  //     })
-  //   )
-  // },
-
   siteMetadata: {
-    title: `MeetFrida.Art`,
+    title: `meetFrida`,
     description: `Deutschlands größte Outdoor- und Online-Gallery für junge Kunst`,
-    author: `schwan-communications.com`,
+    author: ``,
+    siteUrl: `https://www.meetfrida.art`,
   },
   plugins: [
+    "gatsby-custom-artwork",
+    "gatsby-plugin-next-seo",
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: [`/sanityprev`, `/style`, `/cityartweek`],
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+        }`,
+      },
+      resolveSiteUrl: ({ site, allSitePage }) => {
+        //Alternatively, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
+        return site.siteMetadata.siteUrl
+      },
+      serialize: ({ site, allSitePage }) =>
+        allSitePage.nodes.map(node => {
+          return {
+            url: `${site.siteMetadata.siteUrl}${node.path}`,
+            changefreq: `daily`,
+            priority: 0.7,
+          }
+        }),
+    },
+    {
+      resolve: "gatsby-plugin-mailchimp",
+      options: {
+        endpoint:
+          "https://schwan-communications.us10.list-manage.com/subscribe/post?u=0693cf0fd1f53ea9e2aa9f071&amp;id=475c170fb2", // string; add your MC list endpoint here; see instructions below
+        timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
+      },
+    },
     `gatsby-plugin-react-helmet`,
-
-    // {
-    //   resolve: "gatsby-plugin-eslint",
-    //   options: {
-    //     test: /\.js$|\.jsx$/,
-    //     exclude: /(node_modules|.cache|public)/,
-    //     stages: ["develop"],
-    //     options: {
-    //       emitWarning: true,
-    //       failOnError: false,
-    //       fix: true,
-    //     },
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: { "~components": "src/components", "~context": "src/context" },
+        extensions: ["js"],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-modal-routing`,
+      options: {
+        appElement: "#___gatsby",
+        modalProps: {
+          htmlOpenClassName: "Frida_no_scroll",
+          portalClassName: "Frida_ReactModalPortal",
+          closeTimeoutMS: 300,
+        },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-eslint",
+      options: {
+        test: /\.js$|\.jsx$/,
+        exclude: /(node_modules|.cache|public)/,
+        stages: ["develop"],
+        options: {
+          emitWarning: true,
+          failOnError: false,
+          fix: true,
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-google-analytics-gdpr`,
       options: {
-        // The property ID; the tracking code won't be generated without it.
         trackingId: "UA-173386755-1",
-        // Optional parameter (default false) - Enable analytics in development mode.
-        enableDevelopment: true, // default false
-        // Optional parameter (default true) - Some countries (such as Germany) require you to use the _anonymizeIP function for Google Analytics. Otherwise you are not allowed to use it.
+        enableDevelopment: false,
         anonymizeIP: true,
-        // Optional parameter (default false) - Starts google analytics with cookies enabled. In some countries (such as Germany) this is not allowed.
         autoStartWithCookiesEnabled: false,
-        // Optional parameter - Configuration for react-ga and google analytics
         reactGaOptions: {
           debug: false,
           gaOptions: {
@@ -60,64 +100,7 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: `gatsby-plugin-snipcart-advanced`,
-      options: {
-        version: "3.0.22",
-        publicApiKey: "#####", // use public api key here or in environment variable
-        defaultLang: "de",
-        currency: "eur",
-        openCartOnAdd: false,
 
-        innerHTML: `
-          <billing section="bottom">
-              <!-- Customization goes here -->
-          </billing>`,
-      },
-    },
-    {
-      resolve: "gatsby-source-storyblok",
-      options: {
-        accessToken: "ObvzIeHZVi9TkIUctkrfHQtt",
-        homeSlug: "home",
-        version: process.env.NODE_ENV === "production" ? "published" : "draft",
-        // version: "published",
-        resolveRelations: ["artist", "stil", "medium"],
-      },
-    },
-    // {
-    //   resolve: "gatsby-source-graphql",
-    //   options: {
-    //     // Arbitrary name for the remote schema Query type
-    //     typeName: "StoryQL",
-    //     // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
-    //     fieldName: "storyQL",
-    //     // Url to query from
-    //     url: "https://gapi.storyblok.com/v1/api",
-
-    //     headers: {
-    //       // Learn about environment variables: https://gatsby.dev/env-vars
-    //       Token: `ObvzIeHZVi9TkIUctkrfHQtt`,
-    //     },
-    //   },
-    // },
-    // {
-    //   resolve: "gatsby-source-custom-api",
-    //   options: {
-    //     url: "https://fridaadmin.konradullrich.com/wp-json/frida/v1/poster/",
-    //     imageKeys: ["images"],
-    //     rootKey: "fridaPoster",
-    //     schemas: {
-    //       fridaPoster: `
-    //         images: [images]
-    //       `,
-    //       images: `
-    //         url: String,
-    //         modified: Int
-    //       `,
-    //     },
-    //   },
-    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -176,6 +159,64 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
+      resolve: "gatsby-custom-shopify-storefront",
+      options: {
+        // Your Shopify instance name (e.g. 'shopify-store-name',
+        // if your shopify shop is located at https://shopify-store-name.myshopify.com/)
+        siteName: process.env.SHOPIFY_SHOP_NAME,
+        // Your Shopify Storefront API access token
+        // generated in the private apps section of your store admin.
+        // Refer to Shopify's Storefront API Documentation for more information
+        // https://help.shopify.com/api/storefront-api/getting-started
+        accessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+      },
+    },
+    // {
+    //   resolve: `gatsby-source-shopify`,
+    //   options: {
+    //     // The domain name of your Shopify shop. This is required.
+    //     // Example: 'gatsby-source-shopify-test-shop' if your Shopify address is
+    //     // 'gatsby-source-shopify-test-shop.myshopify.com'.
+    //     shopName: process.env.SHOPIFY_SHOP_NAME,
+
+    //     // An API access token to your Shopify shop. This is required.
+    //     // You can generate an access token in the "Manage private apps" section
+    //     // of your shop's Apps settings. In the Storefront API section, be sure
+    //     // to select "Allow this app to access your storefront data using the
+    //     // Storefront API".
+    //     // See: https://help.shopify.com/api/custom-storefronts/storefront-api/getting-started#authentication
+    //     accessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+
+    //     // Set verbose to true to display a verbose output on `npm run develop`
+    //     // or `npm run build`. This prints which nodes are being fetched and how
+    //     // much time was required to fetch and process the data.
+    //     // Defaults to true.
+
+    //     verbose: true,
+    //     includeCollections: ["shop"],
+    //   },
+    // },
+
+    // {
+    //   resolve: "gatsby-source-graphql",
+    //   options: {
+    //     typeName: "Shop",
+    //     fieldName: "shop",
+    //     url: `https://${process.env.SHOPIFY_SHOP_NAME}.myshopify.com/api/graphql`,
+    //     // HTTP headers
+    //     headers: {
+    //       // Learn about environment variables: https://gatsby.dev/env-vars
+    //       "X-Shopify-Storefront-Access-Token":
+    //         process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+    //     },
+    //     // HTTP headers alternatively accepts a function (allows async)
+
+    //     // Additional options to pass to node-fetch
+    //     fetchOptions: {},
+    //   },
+    // },
+
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `#MeetFrida`,
@@ -184,11 +225,8 @@ module.exports = {
         background_color: `#f5c5d9`,
         theme_color: `#f5c5d9`,
         display: `minimal-ui`,
-        icon: `src/images/frida-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/frida-icon.png`,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby - plugin - offline`,
   ],
 }

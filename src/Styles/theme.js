@@ -9,10 +9,13 @@ const breackingpoints = {
   desktop: "2560px",
 }
 
+const space = 50
+// const oldGreen = "#75f9d5"
 const theme = {
   colors: {
     black: "#000000",
-    green: "#75f9d5",
+    grey: "#f5f5f5",
+    green: "#6dd163",
     red: "#fa464c",
     white: "white",
     pink: "#f5c5d9",
@@ -28,6 +31,13 @@ const theme = {
     laptopL: `(min-width: ${breackingpoints.laptopL})`,
     desktop: `(min-width: ${breackingpoints.desktop})`,
     desktopL: `(min-width: ${breackingpoints.desktop})`,
+  },
+  space: {
+    s: `${space}px`,
+    m: `${space * 2}px`,
+    l: `${space * 3}px`,
+    xl: `${space * 4}px`,
+    xxl: `${space * 5}px`,
   },
 }
 export default theme

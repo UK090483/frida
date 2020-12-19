@@ -1,112 +1,71 @@
 import React from "react"
-import Tab from "./tab/tab"
-import FridaImage from "./fridaImage/fridaImage"
-// import SendMail from "./sendMail/sendMail"
-import ArtworkName from "../shared/artworkName"
-import getPriceWithTax from "../helper/getPriceWithTax"
-// import transformImage from "../helper/transformImage"
-import BuyButton from "./Buybutton/buybutton"
-
 import styled from "styled-components"
+import ArtistLinks from "./ArtistLinks/artistLinks"
+import Head from "./Head/head"
+// import ArtworkQuote from "../../Quote/ArtworkQuote/ArtworkQuote"
+import RelatedArtworks from "./relatedArtworks/relArtworks"
+// import ArtworkQuote from "~components/Quote/ArtworkQuote/ArtworkQuote"
 
-export default function Artworks({ artwork }) {
-  const {
-    images,
-    availability,
-    artworkName,
-    price,
-    artistDescription,
-    artworkDescription,
-    instagramLink,
-    artistWebLink,
-    height,
-    medium,
-    stil,
-    width,
-    depth,
-  } = artwork
+export default function SingleArtwork({
+  artwork,
+  relatedArtworks,
+  randomArtworks,
+  quotes,
+  shopifyProduct,
+}) {
+  const { artistDescription, description } = artwork
 
   return (
     <Root>
-      <Inner>
-        <ImageRoot>
-          <FridaImage images={images} artwork={artwork}></FridaImage>
-        </ImageRoot>
+      <Head artwork={artwork} shopifyProduct={shopifyProduct} />
+      {description && (
+        <TextSection data-color={"white"}>
+          <h5>Über das Kunstwerk</h5>
+          <p>{description}</p>
+        </TextSection>
+      )}
 
-        <InfoRoot>
-          <Tab
-            text1={artistDescription}
-            text2={artworkDescription}
-            artistWebLink={artistWebLink}
-            instagramLink={instagramLink}
-          ></Tab>
-          {/* <div className={style.nameRoot}> */}
-          <ArtworkName
-            size="big"
-            artworkName={artworkName}
-            availability={availability}
-          ></ArtworkName>
-          {/* </div> */}
-          <Props>
-            {`${medium}, ${width}*${height} ${
-              depth ? "*" + depth : ""
-            } cm ${stil}`}
-          </Props>
-          <Price>{getPriceWithTax(price)}€</Price>
+      <TextSection data-color={"white"}>
+        <h5>Über den Künstler</h5>
+        {artistDescription && <p>{artistDescription}</p>}
+        <ArtistLinks artwork={artwork} />
+      </TextSection>
 
-          <BuyButton artwork={artwork}></BuyButton>
-
-          {/* <SendMail artwork={artwork}></SendMail> */}
-        </InfoRoot>
-      </Inner>
+      {/* {quotes.map(quote => (
+        <ArtworkQuote key={quote.id} quote={quote} />
+      ))} */}
+      {relatedArtworks.length > 0 && (
+        <RelatedArtworks
+          artworks={relatedArtworks}
+          header={"Weitere Werke des Künstlers"}
+          color={"white"}
+        />
+      )}
+      <RelatedArtworks
+        artworks={randomArtworks}
+        header={"Diese Werke könnten Dir auch gefallen"}
+        color={"pink"}
+      />
+      <Spacer />
     </Root>
   )
 }
 
-const Price = styled.div`
-  margin-bottom: 20px;
-  font-size: 1.9em;
-  font-weight: 800;
-`
-
-const Props = styled.div`
-  font-size: 0.7rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  @media ${({ theme }) => theme.device.laptop} {
-    font-size: 1rem;
+const Spacer = styled.div`
+  height: 100px;
+  background-color: ${({ theme }) => theme.colors.pink};
+  @media ${({ theme }) => theme.device.laptopM} {
+    height: 0;
   }
 `
 
+const TextSection = styled.div`
+  padding: 50px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+`
 const Root = styled.div`
-  padding: 100px 20px 60px 20px;
-  height: 100vh;
-  overflow: auto;
-  @media ${({ theme }) => theme.device.laptop} {
-    padding: 100px 30px 30px 30px;
-  }
-`
-const Inner = styled.div`
-  min-height: 650px;
-  @media ${({ theme }) => theme.device.laptop} {
-    display: flex;
-    height: calc(100vh - 130px);
-  }
-`
-const ImageRoot = styled.div`
-  @media ${({ theme }) => theme.device.laptop} {
-    width: 50%;
-    padding-right: 20px;
-  }
-`
-const InfoRoot = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-top: 20px;
-  @media ${({ theme }) => theme.device.laptop} {
-    width: 50%;
-    padding-top: 0;
-    padding-left: 20px;
+  p {
+    font-size: 20px;
   }
 `

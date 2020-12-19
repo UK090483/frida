@@ -5,11 +5,15 @@ import styled from "styled-components"
 import Container from "./container"
 import { setMouse } from "../generic/Mouse/mouseRemote"
 
-export default function Section({
-  children,
-  backgroundColor = "default",
-  type,
-}) {
+export default function Section(props) {
+  const {
+    children,
+    backgroundColor = "default",
+    type,
+    topSpace,
+    bottomSpace,
+  } = props
+
   return (
     <Root
       onMouseOver={() => {
@@ -17,6 +21,8 @@ export default function Section({
           ? setMouse("color", true)
           : setMouse("color", false)
       }}
+      bottomSpace={bottomSpace}
+      topSpace={topSpace}
       data-color={backgroundColor}
       brColor={backgroundColor}
     >
@@ -33,6 +39,8 @@ const getColor = (theme, c) => {
       return theme.colors.white
     case "lila":
       return theme.colors.pink
+    case "pink":
+      return theme.colors.pink
     case "red":
       return theme.colors.red
     default:
@@ -41,6 +49,10 @@ const getColor = (theme, c) => {
 }
 const Root = styled.section`
   background-color: ${({ theme, brColor }) => getColor(theme, brColor)};
+  padding-top: ${({ theme, topSpace }) =>
+    theme.space[topSpace] ? theme.space[topSpace] : ""};
+  padding-bottom: ${({ theme, bottomSpace }) =>
+    theme.space[bottomSpace] ? theme.space[bottomSpace] : ""};
 `
 
 Section.propTypes = {

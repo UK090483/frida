@@ -5,45 +5,56 @@ import LinkIcon from "../../../../assets/link_icon.svg"
 import useMouse from "../../../generic/Mouse/hooks/useMouse"
 import styled, { keyframes } from "styled-components"
 
-export default function Tab({ text1, text2, instagramLink, artistWebLink }) {
-  const [active, setActive] = useState(true)
+import NSwitch from "./switch"
+
+import { Link } from "gatsby"
+export default function Tab({
+  text1,
+  text2,
+  instagramLink,
+  artistWebLink,
+  relatedArtworks,
+  isModal,
+}) {
+  // const [active, setActive] = useState(true)
+  const [curentActive, setCurentActive] = useState("more")
 
   const { setMouse } = useMouse()
 
-  const handleClick = () => {
-    setActive(!active)
+  // const handleClick = () => {
+  //   setActive(!active)
+  // }
+
+  const getItems = () => {
+    const res = []
+    if (relatedArtworks || true) {
+      res.push({ label: "Weiter Bilder", name: "more" })
+    }
+    if (text1 || true) {
+      res.push({ label: "Künstler Info", name: "künstler" })
+    }
+    if (text2 || true) {
+      res.push({ label: "Kunstwer Info", name: "kunstwerk" })
+    }
+
+    return res
   }
 
   return (
     <div>
-      <Controles
-      //  className={style.controls}
-      >
-        <Switch
-          active={active}
-          // className={style.button}
-          onClick={() => {
-            handleClick()
-          }}
-          onMouseEnter={() => {
-            setMouse("link", true)
-          }}
-          onMouseLeave={() => {
-            setMouse("link", false)
-          }}
-        >
-          <div>Künstler Info</div>
-          <div>Kunstwerk Info</div>
-        </Switch>
-        <LinkIconWrap
-        // className={style.linkIconWrap}
-        >
+      <Controles>
+        <NSwitch
+          current={curentActive}
+          items={getItems()}
+          handleClick={name => setCurentActive(name)}
+        ></NSwitch>
+
+        <LinkIconWrap>
           {artistWebLink && (
             <Icon
               target="_blank"
               rel="noreferrer"
               href={artistWebLink}
-              // className={style.linkIcon}
               onMouseEnter={() => {
                 setMouse("link", true)
               }}
@@ -59,7 +70,6 @@ export default function Tab({ text1, text2, instagramLink, artistWebLink }) {
               target="_blank"
               rel="noreferrer"
               href={instagramLink}
-              // className={style.linkIcon}
               onMouseEnter={() => {
                 setMouse("link", true)
               }}
@@ -73,13 +83,41 @@ export default function Tab({ text1, text2, instagramLink, artistWebLink }) {
         </LinkIconWrap>
       </Controles>
 
-      {active && <Text dangerouslySetInnerHTML={{ __html: xss(text1) }}></Text>}
-      {!active && (
+      {curentActive === "künstler" && (
+        <Text dangerouslySetInnerHTML={{ __html: xss(text1) }}></Text>
+      )}
+      {curentActive === "more" && (
+        <Text>
+          <RelativArtworkWrap>
+            {relatedArtworks.map(item => {
+              return (
+                <Link
+                  key={item.slug}
+                  to={`/artwork/${item.slug}`}
+                  state={{ modal: isModal }}
+                >
+                  <RelativArtworkImage
+                    src={item.image.fluid100.src}
+                  ></RelativArtworkImage>
+                </Link>
+              )
+            })}
+          </RelativArtworkWrap>
+        </Text>
+      )}
+      {curentActive === "kunstwerk" && (
         <Text dangerouslySetInnerHTML={{ __html: xss(text2) }}></Text>
       )}
     </div>
   )
 }
+
+const RelativArtworkWrap = styled.div`
+  overflow: hidden;
+`
+const RelativArtworkImage = styled.img`
+  margin: 0 10px;
+`
 
 const textIn = keyframes`
   from {
@@ -147,44 +185,44 @@ const Controles = styled.div`
   flex-wrap: wrap-reverse;
 `
 
-const Switch = styled.div`
-  display: flex;
-  min-height: 50px;
-  margin: 20px auto;
-  width: fit-content;
+// const Switch = styled.div`
+//   display: flex;
+//   min-height: 50px;
+//   margin: 20px auto;
+//   width: fit-content;
 
-  @media ${({ theme }) => theme.device.tablet} {
-    margin: 0;
-    width: unset;
-  }
+//   @media ${({ theme }) => theme.device.tablet} {
+//     margin: 0;
+//     width: unset;
+//   }
 
-  div {
-    padding: 0 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: ${({ theme }) => theme.colors.pink} solid
-      ${({ theme }) => theme.borderWidth};
-    background-color: ${({ active, theme }) =>
-      !active ? theme.colors.pink : "transparent"};
-    color: ${({ active, theme }) =>
-      !active ? theme.colors.white : theme.colors.pink};
-    font-size: 0.8em;
-    text-align: center;
-    font-weight: 900;
-    border-radius: 0 30px 30px 0;
-    transition: background-color 0.6s, color 0.6s;
+//   button {
+//     padding: 0 20px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     border: ${({ theme }) => theme.colors.pink} solid
+//       ${({ theme }) => theme.borderWidth};
+//     background-color: ${({ active, theme }) =>
+//       !active ? theme.colors.pink : "transparent"};
+//     color: ${({ active, theme }) =>
+//       !active ? theme.colors.white : theme.colors.pink};
+//     font-size: 0.8em;
+//     text-align: center;
+//     font-weight: 900;
+//     border-radius: 0 30px 30px 0;
+//     transition: background-color 0.6s, color 0.6s;
 
-    @media ${({ theme }) => theme.device.tablet} {
-      font-size: 1em;
-      text-align: center;
-    }
-    &:first-child {
-      border-radius: 30px 0 0 30px;
-      background-color: ${({ active, theme }) =>
-        active ? theme.colors.pink : "transparent"};
-      color: ${({ active, theme }) =>
-        active ? theme.colors.white : theme.colors.pink};
-    }
-  }
-`
+//     @media ${({ theme }) => theme.device.tablet} {
+//       font-size: 1em;
+//       text-align: center;
+//     }
+//     &:first-child {
+//       border-radius: 30px 0 0 30px;
+//       background-color: ${({ active, theme }) =>
+//         active ? theme.colors.pink : "transparent"};
+//       color: ${({ active, theme }) =>
+//         active ? theme.colors.white : theme.colors.pink};
+//     }
+//   }
+// `

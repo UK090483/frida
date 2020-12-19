@@ -1,7 +1,7 @@
 import React from "react"
 
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo"
+import SEO from "../components/generic/seo/seo"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
 import Frida from "../components/frida/frida"
@@ -9,9 +9,9 @@ import Supporter from "../components/Supporter/supporter"
 import Kooperation from "../components/Supporter/kooperation"
 import Button from "../components/buttons/button"
 
-const IndexPage = () => (
+const IndexPage = props => (
   <Layout title={"OurSupporters"}>
-    <SEO title="Unterstützen" />
+    <SEO title="Unterstützen" path={props.location.pathname} />
     <Hero backgroundColor="lila">
       <h6>UNTERSTÜTZEN</h6>
       <h1>

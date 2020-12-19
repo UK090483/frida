@@ -1,32 +1,11 @@
-import React, { useState } from "react"
-// import { isBrowser, isMobile } from "react-device-detect"
+import React from "react"
 
-const defaultState = {
-  dark: false,
-  toggleDark: () => {},
-}
+const defaultState = {}
 
 const UiContext = React.createContext(defaultState)
 
 function UiContextProvider({ children }) {
-  const [mouseStyle, setMouseStyle] = useState(null)
-  const [mouseColor, setMouseColor] = useState("red")
-  const [userData, setUserData] = useState({ name: "", email: "" })
-
-  return (
-    <UiContext.Provider
-      value={{
-        mouseStyle,
-        mouseColor,
-        setMouseColor,
-        setMouseStyle,
-        userData,
-        setUserData,
-      }}
-    >
-      {children}
-    </UiContext.Provider>
-  )
+  return <UiContext.Provider value={{}}>{children}</UiContext.Provider>
 }
 
 export { UiContextProvider }

@@ -82,7 +82,7 @@ const Root = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   position: fixed;
   bottom: ${({ clicked }) => (clicked ? "-100%" : "0")};
-  z-index: 888888;
+  z-index: 9000;
   padding: 10px 20px;
   transition: bottom 1s;
   @media ${({ theme }) => theme.device.tablet} {

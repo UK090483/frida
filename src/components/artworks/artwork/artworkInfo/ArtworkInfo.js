@@ -1,12 +1,17 @@
 import React from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
-import ArtworkName from "../../shared/artworkName"
+
+import { ProductName } from "../../../lib/ProductComponents"
 const ArtworkInfo = ({ availability, artworkName, price }) => {
   return (
     <Root>
       <NamePriceWrap>
-        <ArtworkName artworkName={artworkName} availability={availability} />
+        <ProductName
+          size={"s"}
+          name={artworkName}
+          availability={availability === "availabil"}
+        />
         <Price>{price}€</Price>
       </NamePriceWrap>
     </Root>

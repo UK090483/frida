@@ -1,15 +1,28 @@
 import React from "react"
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo"
+import SEO from "../components/generic/seo/seo"
 import Section from "../components/container/section"
 import Frida from "../components/frida/frida"
+
+// import Button from "../components/buttons/buttonNwe"
 
 const IndexPage = () => (
   <Layout title={"MeetCollectors"}>
     <SEO title="Teilnehmen" />
-
-    <Section backgroundColor="red">
+    <div style={{ paddingTop: 300, paddingBottom: 100 }}></div>
+    <Section backgroundColor="white">
       <div style={{ paddingTop: 300, paddingBottom: 100 }}>
+        {/* <Button
+          onClick={() => {
+            console.log("click")
+          }}
+        >
+          Blaa
+        </Button>
+        <Button as="a" href="/">
+          Blu
+        </Button>
+        <Button>Bli</Button> */}
         <h1>
           H1 <Frida />
         </h1>

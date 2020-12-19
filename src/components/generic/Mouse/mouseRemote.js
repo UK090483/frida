@@ -2,6 +2,12 @@ import MouseClassNames from "./classNames"
 
 let mouseNeeded = false
 
+const thandle = throttled(20, (mouse, e) => {
+  // console.count("Throtled    MouseMoove")
+  mouse.style.left = e.pageX - 15 + "px"
+  mouse.style.top = e.pageY - 15 + "px"
+})
+
 const setMouse = (type, e) => {
   let mouse = window.FridaMouse
   !mouse && (mouse = window.FridaMouse)
@@ -14,8 +20,10 @@ const setMouse = (type, e) => {
     switch (type) {
       case "move":
         !mouseNeeded && initMouse()
-        mouse.style.left = e.pageX - 15 + "px"
-        mouse.style.top = e.pageY - 15 + "px"
+        // console.count("MouseMoove")
+        thandle(mouse, e)
+        // mouse.style.left = e.pageX - 15 + "px"
+        // mouse.style.top = e.pageY - 15 + "px"
         break
       case "link":
         e
@@ -34,6 +42,11 @@ const setMouse = (type, e) => {
           ? mouse.classList.add(MouseClassNames.hide)
           : mouse.classList.remove(MouseClassNames.hide)
         break
+      case "reset":
+        mouse.classList.remove(MouseClassNames.linkHover)
+        mouse.classList.remove(MouseClassNames.black)
+        mouse.classList.remove(MouseClassNames.hide)
+        break
 
       default:
         break
@@ -42,3 +55,15 @@ const setMouse = (type, e) => {
 }
 
 export { setMouse }
+
+function throttled(delay, fn, args) {
+  let lastCall = 0
+  return function (...args) {
+    const now = new Date().getTime()
+    if (now - lastCall < delay) {
+      return
+    }
+    lastCall = now
+    return fn(...args)
+  }
+}

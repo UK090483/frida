@@ -1,12 +1,19 @@
 import PropTypes from "prop-types"
 import React from "react"
-import PageTitle from "../pageTitle/pageTitle"
+import PageTitle from "./parts/pageTitle"
 import styled from "styled-components"
 
 const Header = ({ children, title = "", color = "white", link = true }) => (
   <Root>
     <Inner>
-      {title && <PageTitle title={title} color={color} link={link}></PageTitle>}
+      {title && (
+        <PageTitle
+          title={title}
+          color={color}
+          link={link}
+          initialColor={color}
+        ></PageTitle>
+      )}
 
       {children}
     </Inner>

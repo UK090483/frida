@@ -1,18 +1,20 @@
 import React from "react"
 
 import Layout from "../components/generic/layout/layout"
-import SEO from "../components/seo"
+import SEO from "../components/generic/seo/seo"
 import Artworks from "../components/artworks"
-import StartHero from "../components/StartHero/startHero"
-import Stoerer from "../components/StartHero/stoerer"
+import StartHero from "../components/hero/StartHero/startHero"
+import Quotes from "../components/Quote/Quotes/Quotes"
 
-const IndexPage = () => (
-  <Layout title={"Frida"}>
-    <SEO title="Home" />
-    <StartHero></StartHero>
-    <Stoerer></Stoerer>
-    <Artworks></Artworks>
-  </Layout>
-)
+const IndexPage = props => {
+  return (
+    <Layout title={"Frida"} initialColor={"pink"}>
+      <SEO title="Home" path={props.location.pathname} />
+      <StartHero></StartHero>
+      <Artworks></Artworks>
+      <Quotes></Quotes>
+    </Layout>
+  )
+}
 
 export default IndexPage

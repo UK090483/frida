@@ -5,28 +5,28 @@ import TextFlow from "./TextFlow/textFlow"
 import AllSupporter from "../../Supporter/allSupporter"
 import Infos from "./Infos/infos"
 import styled from "styled-components"
-
+import NewsLetter from "../../newsletter/newsletter"
 export default function Footer({ title }) {
   return (
     <div>
       {title !== "OurSupporters" && (
         <React.Fragment>
-          <Section backgroundColor="lila">
+          <Section backgroundColor="pink">
             <div style={{ padding: "200px 0 50px 0" }}>
               <h6>SUPPORTER</h6>
               <h2>
                 Ohne Euch wäre diese Aktion nicht möglich.
-                <span style={{ color: "white" }}>Danke.</span>
+                <span style={{ color: "white" }}> Danke.</span>
               </h2>
             </div>
           </Section>
-          <Section backgroundColor="lila" type={"full"}>
+          <Section backgroundColor="pink" type={"full"}>
             <AllSupporter></AllSupporter>
           </Section>
           <TextFlow></TextFlow>
         </React.Fragment>
       )}
-
+      <NewsLetter />
       <Section backgroundColor="red">
         <div style={{ padding: "50px 0" }}>
           <GetInTouch>GET IN TOUCH WITH FRIDA</GetInTouch>
@@ -38,6 +38,6 @@ export default function Footer({ title }) {
   )
 }
 
-const GetInTouch = styled.h1`
+const GetInTouch = styled.h2`
   color: ${({ theme }) => theme.colors.white};
 `
