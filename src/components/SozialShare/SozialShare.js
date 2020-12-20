@@ -77,6 +77,9 @@ export default function SozialShare({ url }) {
 
 const Root = styled.div`
   position: relative;
+  /* border: red solid 1px; */
+  width: 280px;
+  padding: 10px;
 `
 
 const ShareIcon = styled.div`

@@ -8,7 +8,7 @@ const Root = styled.div`
   padding: 100px 0 60px 0;
   position: relative;
 
-  min-height: 650px;
+  min-height: 800px;
   @media ${({ theme }) => theme.device.laptop} {
     display: flex;
     height: calc(100vh - 130px);

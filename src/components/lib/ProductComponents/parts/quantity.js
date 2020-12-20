@@ -41,13 +41,18 @@ function Quantity({ quantity, setQuantity, quantityAvailable }) {
 }
 
 const Root = styled.div`
+  width: 50%;
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
 `
 const Input = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 50px;
+  height: 48px;
   border: ${({ theme }) => theme.colors.green} solid 3px;
   border-right-width: 0;
   border-radius: 5px 0 0 5px;
@@ -65,7 +70,7 @@ const ButtonWrap = styled.div`
     justify-content: center;
     align-items: center;
     width: 25px;
-    height: 25.5px;
+    height: 24px;
     border: ${({ theme }) => theme.colors.green} solid 3px;
     border-radius: 0 0 5px 0;
     &:first-child {
