@@ -106,6 +106,7 @@ const Groupe = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `
 const Description = styled.p`
   height: fit-content;
