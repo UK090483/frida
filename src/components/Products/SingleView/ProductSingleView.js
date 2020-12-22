@@ -78,6 +78,7 @@ export default function SingleView({ data }) {
           </ControlesWrap>
 
           <Spacer />
+
           <BuyButtonWrap>
             <BuyButton
               checkoutUrl={checkoutUrl}
@@ -108,7 +109,12 @@ const Groupe = styled.div`
   justify-content: center;
 `
 const Description = styled.p`
+  height: fit-content;
+  max-height: 130px;
+  overflow: auto;
   font-size: 20px;
+  margin: 0;
+  padding: 0;
 `
 const Spacer = styled.div`
   height: 20px;

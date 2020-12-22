@@ -1,5 +1,6 @@
 import React from "react"
 import DropDown from "../../input/Dropdown/DropdownWrap"
+import styled from "styled-components"
 
 const Options = ({ options, setOption, selectedOption }) => {
   const [state, setState] = React.useState("")
@@ -11,7 +12,7 @@ const Options = ({ options, setOption, selectedOption }) => {
   }
 
   return (
-    <React.Fragment>
+    <Root>
       {options &&
         options.map(option => {
           const { name, values } = option
@@ -33,8 +34,10 @@ const Options = ({ options, setOption, selectedOption }) => {
             />
           )
         })}
-    </React.Fragment>
+    </Root>
   )
 }
+
+const Root = styled.div``
 
 export default Options
