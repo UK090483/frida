@@ -67,7 +67,7 @@ export default function SingleView({ data }) {
               setQuantity={setQuantity}
               quantityAvailable={variant.quantityAvailable}
             />
-            <Spacer />
+            <SozialShare />
             {hasOptions && (
               <Options
                 options={options}
@@ -76,8 +76,7 @@ export default function SingleView({ data }) {
               />
             )}
           </ControlesWrap>
-          <Spacer />
-          <SozialShare />
+
           <Spacer />
           <BuyButtonWrap>
             <BuyButton
