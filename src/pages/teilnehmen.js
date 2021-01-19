@@ -24,7 +24,12 @@ const IndexPage = () => (
         Wer deine Arbeit mag, kann sie direkt kaufen. Auf unserer Website und
         Online-Galerie lädst du dazu deine Werke hoch. Du bestimmst den Preis,
         Teilnahmekosten gibt es nicht. 100% des Erlöses gehen an dich.
-        <br />
+        #MeetFrida bringt Kunst vom digitalen in den öffentlichen Raum. Dafür
+        nutzen wir Plakatflächen in vielen Städten, um Deine Kunst auszustellen.
+        Wer Deine Arbeit mag, kann sie direkt kaufen. Auf unserer Website und
+        Online-Galerie lädst Du dazu Deine Werke hoch. Du bestimmst den Preis,
+        Teilnahmekosten gibt es nicht. 80% des Erlöses gehen an Dich.
+        {/* <br />
         <br />
         #MeetFrida will Kunst in die Welt bringen. Und vor allem: #MeetFrida
         will Dich und Deine Arbeit unterstützen. Deine Werke bekommen die
@@ -34,7 +39,7 @@ const IndexPage = () => (
         werden. In Kooperation mit der Spiegelberger Stiftung kuratieren
         internationale Kunstexperten unsere Outdoor Gallery und wählen die
         Kunstwerke aus, die auf den Plakatflächen gezeigt werden. Die ersten
-        Plakate sind ab dem 08. September in Deutschland zu sehen.
+        Plakate sind ab dem 08. September in Deutschland zu sehen. */}
         <br />
         <br />
         Reiche jetzt Deine Kunst ein und nutze die Möglichkeit, tausende

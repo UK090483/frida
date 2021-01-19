@@ -23,7 +23,7 @@ const Ausstellung = props => {
           <p>
             <Frida textColor={"black"} /> zeigt neue Positionen junger
             Künstler*innen aus Deutschland und Europa. Täglich kommen neue Werke
-            hinzu. Die erzielten Gewinne aller erworbenen Werke gehen zu 100% an
+            hinzu. Die erzielten Gewinne aller erworbenen Werke gehen zu 80% an
             die Künstler*innen.
           </p>
         </div>
