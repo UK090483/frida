@@ -42,7 +42,7 @@ export default function SingleArtworkTemplate(props) {
                   onMouseLeave={() => {
                     setMouse("link", false)
                   }}
-                  style={{ cursor: "none" }}
+                  style={{ cursor: "none", maxWidth: 44 }}
                 />
               </Link>
             </Header>
