@@ -13,18 +13,20 @@ const Ausstellung = props => {
     <Layout title={"NewArtists"} initialColor={"pink"}>
       <SEO title="Ausstellung" path={location.pathname} />
       <Hero backgroundColor="lila">
-        <h6>AUSSTELLUNG</h6>
+        <h6>ONLINE GALLERY</h6>
         <h2>
-          Deutschlandweite Kunstschau und Online-Galerie – <Frida></Frida>
+          Entdeckt Kunst, die Ihr liebt. Und kauft direkt von unseren
+          Künstler*innen.
         </h2>
       </Hero>
       <Section type={"text"}>
         <div style={{ paddingTop: 100 }}>
           <p>
             <Frida textColor={"black"} /> zeigt neue Positionen junger
-            Künstler*innen aus Deutschland und Europa. Täglich kommen neue Werke
-            hinzu. Die erzielten Gewinne aller erworbenen Werke gehen zu 80% an
-            die Künstler*innen.
+            Künstler*innen aus Deutschland und Europa in Malerei, Fotografie und
+            Skulptur. Alle Werke sind sorgfältig kuratiert und gemeinsam mit
+            unseren Künstlern ausgewählt. Hier findet Ihr Kunst, die Ihr liebt –
+            in allen Preiskategorien.
           </p>
         </div>
       </Section>

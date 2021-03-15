@@ -19,16 +19,11 @@ const IndexPage = () => (
     </Hero>
     <Section type={"text"} backgroundColor="red">
       <p style={{ paddingTop: 100, paddingBottom: 100 }}>
-        #MeetFrida bringt Kunst vom digitalen in den öffentlichen Raum. Dafür
-        nutzen wir Plakatflächen in vielen Städten, um Deine Kunst auszustellen.
-        Wer deine Arbeit mag, kann sie direkt kaufen. Auf unserer Website und
-        Online-Galerie lädst du dazu deine Werke hoch. Du bestimmst den Preis,
-        Teilnahmekosten gibt es nicht. 100% des Erlöses gehen an dich.
-        #MeetFrida bringt Kunst vom digitalen in den öffentlichen Raum. Dafür
-        nutzen wir Plakatflächen in vielen Städten, um Deine Kunst auszustellen.
-        Wer Deine Arbeit mag, kann sie direkt kaufen. Auf unserer Website und
-        Online-Galerie lädst Du dazu Deine Werke hoch. Du bestimmst den Preis,
-        Teilnahmekosten gibt es nicht. 80% des Erlöses gehen an Dich.
+        #MeetFrida zeigt Kunst online und im öffentlichen Raum. Dafür nutzen wir
+        Plakatflächen in vielen Städten, um Deine Kunst auszustellen. Wer Deine
+        Arbeit mag, kann sie direkt kaufen. Auf unserer Website und
+        Online-Gallery lädst Du dazu Deine Werke hoch. Du bestimmst den Preis,
+        Teilnahmekosten gibt es nicht.
         <br />
         <br />
         Reiche jetzt Deine Kunst ein und nutze die Möglichkeit, tausende
@@ -87,8 +82,8 @@ const IndexPage = () => (
 
       <ul style={{ paddingBottom: 100, marginBottom: 0 }}>
         <li>Du kannst fünf Arbeiten einreichen.</li>
-        <li>Du bestimmst die Preise.</li>
-        <li>Eines der Werke muss weniger als 500 Euro kosten.</li>
+        <li>Bitte gib immer Brutto-Endpreise an</li>
+        <li>Eines der Werke muss weniger als 500 EUR brutto kosten</li>
       </ul>
     </Section>
 
