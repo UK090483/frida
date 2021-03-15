@@ -5,6 +5,7 @@ import SEO from "../components/generic/seo/seo"
 import Products from "../components/Products/Product/product"
 import Hero from "../components/hero/hero"
 import Section from "../components/container/section"
+import Frida from "../components/frida/frida"
 
 const Shop = props => (
   <Layout title={"FridasShop"} initialColor={"pink"}>
@@ -19,10 +20,10 @@ const Shop = props => (
     <Section type={"text"}>
       <div style={{ paddingTop: 100 }}>
         <p>
-          Die neuen Produkte von MeetFrida bringen Kunst in den deinen Alltag.
-          Als Geschenk oder für dich selbst – Fridas Shop bietet dir spannende
-          Kunsterlebnisse für unter 100 Euro! Die Erlöse gehen an das Projekt
-          MeetFrida und unterstützen weitere Aktionen zur Kunstförderung
+          <Frida textColor={"black"} /> bringt Kunst in Deinen Alltag. Als
+          Geschenk oder für Dich selbst – Fridas Shop bietet Dir spannende
+          Kunsterlebnisse für unter 150 Euro! Die Erlöse kommen dem Projekt
+          zugute und unterstützen weitere Aktionen zur Kunstförderung.
         </p>
       </div>
     </Section>

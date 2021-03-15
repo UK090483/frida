@@ -9,7 +9,7 @@ const Routes = [
   { link: "/shop/", label: "SHOP" },
   { link: "/about/", label: "WER IST FRIDA?" },
   { link: "/teilnehmen/", label: "WERKE EINREICHEN" },
-  { link: "/unterstützen/", label: "UNTERSTÜTZEN" },
+  { link: "/unterstützen/", label: "PARTNER" },
   { link: "/kontakt/", label: "KONTAKT" },
 ]
 

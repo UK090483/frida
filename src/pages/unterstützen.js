@@ -13,45 +13,58 @@ const IndexPage = props => (
   <Layout title={"OurSupporters"}>
     <SEO title="Unterstützen" path={props.location.pathname} />
     <Hero backgroundColor="lila">
-      <h6>UNTERSTÜTZEN</h6>
-      <h1>
-        Unterstütze <Frida /> und zeige Dein Engagement in der größten
-        Kunstschau Deutschlands
-      </h1>
+      <h6>PARTNERSCHAFTEN</h6>
+      <h1>Frida liebt Euch. Denn Ihr liebt Kunst. Und zeigt es.</h1>
     </Hero>
     <Section backgroundColor="lila" type={"text"}>
       <div style={{ paddingTop: 100, paddingBottom: 100 }}>
         <p>
-          Nicht nur Kunst braucht Förderung, auch <Frida /> braucht
-          Unterstützer*innen, die das Projekt bekannt machen. Oder die uns als
-          Sponsoren unterstützen und die Produktionskosten übernehmen. Alle
-          erzielten Einnahmen kommen dem Projekt zu Gute. Je mehr wir einnehmen,
-          desto größer wird <Frida /> und desto länger können wir Künstler mit
-          unserer Aktion unterstützen.
+          <Frida /> geht neue Wege, um Künstler*innen zu unterstützen und Kunst
+          zu zeigen. Denn wir finden: Kunst sollte zu einem Teil unseres Alltags
+          werden und uns überall begleiten. Deshalb sorgen wir mit unseren
+          Aktionen im öffentlichen Raum dafür, dass Kunst sichtbar wird. Auch in
+          Zeiten von Corona und auch als Möglichkeit, Innenstädte neu zu
+          beleben.
         </p>
         <p>
-          Gern könnt Ihr uns auch über unsere Crowdfunding-Kampagne auf
-          Startnext unterstützen. Dazu bitte hier entlang!
+          Mit unseren Projekten gehen wir weit über das hinaus, was Online
+          Galerien normalerweise machen. Immer mit kreativen Ansätzen und gerne
+          in Kollaboration mit Partnern, die genauso denken, wie wir.
         </p>
 
-        <div style={{ padding: "60px 0" }}>
+        <p>
+          Deshalb freuen wir uns immer über neue Partnerschaften – mit
+          Unternehmen, mit Galerien, mit Projekten, mit Architekten und Interior
+          Designern. Kontaktiert uns, wenn Ihr gemeinsam neue Projekte
+          realisieren wollt. Wir freuen uns schon jetzt!
+        </p>
+
+        <br />
+        <br />
+        <br />
+        <p>
+          Wir danken unseren Partnern für die tollen gemeinsamen Projekte und
+          die spannende Kollaboration!
+        </p>
+
+        {/* <div style={{ padding: "60px 0" }}>
           <Button
             type={"externalLink"}
             label={"Jetzt Unterstützen"}
             link={"https://www.startnext.com/meetfrida"}
             backgroundColor={"lila"}
           />
-        </div>
-        <p>
+        </div> */}
+        {/* <p>
           <span style={{ fontWeight: 800 }}>
             {" "}
             Unsere Kooperationspartner*innen:{" "}
           </span>
-        </p>
+        </p> */}
         <Kooperation></Kooperation>
-        <p>
+        {/* <p>
           <span style={{ fontWeight: 800 }}> Unsere Supporter*innen </span>
-        </p>
+        </p> */}
         <Supporter></Supporter>
       </div>
     </Section>
